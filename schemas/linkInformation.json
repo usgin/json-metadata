@@ -1,5 +1,5 @@
 {
-  "id": "https://raw.github.com/usgin/json-metadata/blob/master/linkInformation.json",
+  "id": "https://raw.github.com/usgin/json-metadata/blob/master/schemas/linkInformation.json",
   "type": "object",
   "description": "Used to link to an some online resource",
   "properties": {
@@ -18,7 +18,7 @@
     "AltTitle": {
       "type": "array",
       "description": "A list of language-specific titles for the link",
-      "items": { "$ref": "https://raw.github.com/usgin/json-metadata/blob/master/localizedString.json" },
+      "items": { "$ref": "https://raw.github.com/usgin/json-metadata/blob/master/schemas/localizedString.json" },
       "minItems": 0
     }
     
@@ -64,7 +64,7 @@
     "LinkModifiers": {
       "type": "array",
       "description": "???",
-      "items": { "$ref": "http://raw.github.com/usgin/json-metadata/blob/master/controlledConcept.json" },
+      "items": { "$ref": "http://raw.github.com/usgin/json-metadata/blob/master/schemas/controlledConcept.json" },
       "minItems": 0
     }
   }
