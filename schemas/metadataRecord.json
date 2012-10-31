@@ -1,5 +1,5 @@
 {
-  "id": "https://raw.github.com/usgin/json-metadata/blob/master/schemas/metadataRecord.json",
+  "id": "https://raw.github.com/usgin/json-metadata/master/schemas/metadataRecord.json",
   "type": "object",
   "description": "A metadata record, containing information about the record itself, and more importantly containing information about a particular resource",
   "properties": {
@@ -23,25 +23,25 @@
     },
     
     "Specification": {
-      "$ref": "https://raw.github.com/usgin/json-metadata/blob/master/referenceInformation.json"
+      "$ref": "https://raw.github.com/usgin/json-metadata/master/referenceInformation.json"
     },
     
     "Maintenance": {
       "type": "array",
       "description": "Maintenance log for the metadata record",
-      "items": { "$ref": "https://raw.github.com/usgin/json-metadata/blob/master/schemas/maintenanceInformation.json" }
+      "items": { "$ref": "https://raw.github.com/usgin/json-metadata/master/schemas/maintenanceInformation.json" }
       "minItems": 1
     }, 
     
     "Lineage": {
       "type": "array",
       "description": "Lineage log for the metadata record",
-      "items": { "$ref": "https://raw.github.com/usgin/json-metadata/blob/master/schemas/lineageInformation.json" },
+      "items": { "$ref": "https://raw.github.com/usgin/json-metadata/master/schemas/lineageInformation.json" },
       "minItems": 0
     },
     
     "ResourceInformation": {
-      "$ref": "https://raw.github.com/usgin/json-metadata/blob/master/schemas/resourceInformation.json"
+      "$ref": "https://raw.github.com/usgin/json-metadata/master/schemas/resourceInformation.json"
     }
   }
 }
