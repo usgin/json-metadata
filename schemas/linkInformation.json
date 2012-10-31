@@ -18,7 +18,7 @@
     "AltTitle": {
       "type": "array",
       "description": "A list of language-specific titles for the link",
-      "items": { "$ref": "https://raw.github.com/usgin/json-metadata/master/schemas/localizedString.json" },
+      "items": { "$ref": "localizedString.json" },
       "minItems": 0
     }
     
@@ -42,7 +42,7 @@
       "description": "MIME type of the linked resource. From IANA registry at http://www.iana.org/assignments/media-types/application/index.html",
     },
     
-    "ServiceType": { "$ref": "http://raw.github.com/usgin/json-metadata/master/resourceInformation.json" },
+    "ServiceType": { "$ref": "resourceInformation.json" },
     
     "ResponseSchema": {
       "type": "string",
@@ -64,7 +64,7 @@
     "LinkModifiers": {
       "type": "array",
       "description": "???",
-      "items": { "$ref": "http://raw.github.com/usgin/json-metadata/master/schemas/controlledConcept.json" },
+      "items": { "$ref": "controlledConcept.json" },
       "minItems": 0
     }
   }

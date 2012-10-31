@@ -23,25 +23,25 @@
     },
     
     "Specification": {
-      "$ref": "https://raw.github.com/usgin/json-metadata/master/referenceInformation.json"
+      "$ref": "referenceInformation.json"
     },
     
     "Maintenance": {
       "type": "array",
       "description": "Maintenance log for the metadata record",
-      "items": { "$ref": "https://raw.github.com/usgin/json-metadata/master/schemas/maintenanceInformation.json" }
+      "items": { "$ref": "maintenanceInformation.json" }
       "minItems": 1
     }, 
     
     "Lineage": {
       "type": "array",
       "description": "Lineage log for the metadata record",
-      "items": { "$ref": "https://raw.github.com/usgin/json-metadata/master/schemas/lineageInformation.json" },
+      "items": { "$ref": "lineageInformation.json" },
       "minItems": 0
     },
     
     "ResourceInformation": {
-      "$ref": "https://raw.github.com/usgin/json-metadata/master/schemas/resourceInformation.json"
+      "$ref": "resourceInformation.json"
     }
   }
 }

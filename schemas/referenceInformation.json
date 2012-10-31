@@ -13,7 +13,7 @@
     "Links": {
       "type": "array",
       "description": "A set of links to representations of some resource"
-      "items": { "$ref": "https://raw.github.com/usgin/json-metadata/master/schemas/linkInformation.json" },
+      "items": { "$ref": "linkInformation.json" },
       "minItems": 0
     }
   }
