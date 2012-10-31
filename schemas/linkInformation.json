@@ -20,7 +20,7 @@
       "description": "A list of language-specific titles for the link",
       "items": { "$ref": "localizedString.json" },
       "minItems": 0
-    }
+    },
     
     "Description": {
       "type": "string",
@@ -58,7 +58,7 @@
     "HrefLanguage": {
       "type": "string",
       "description": "The language of the linked resource",
-      "pattern": /[a-zA-Z]{3}/
+      "pattern": "/[a-zA-Z]{3}/"
     },
     
     "LinkModifiers": {
