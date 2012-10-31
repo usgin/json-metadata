@@ -1,0 +1,20 @@
+{
+  "id": "https://raw.github.com/usgin/json-metadata/blob/master/referenceInformation.json",
+  "type": "object",
+  "description": "needs a more concise description",
+  "properties": {
+    
+    "URI": {
+      "type": "string",
+      "description": "Indentifier for the referenced resource",
+      "format": "uri"
+    },
+    
+    "Links": {
+      "type": "array",
+      "description": "A set of links to representations of some resource"
+      "items": { "$ref": "https://raw.github.com/usgin/json-metadata/blob/master/linkInformation.json" },
+      "minItems": 0
+    }
+  }
+}

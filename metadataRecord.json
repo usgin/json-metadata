@@ -1,18 +1,47 @@
 {
-  "id": "",
+  "id": "https://raw.github.com/usgin/json-metadata/blob/master/metadataRecord.json",
   "type": "object",
   "description": "A metadata record, containing information about the record itself, and more importantly containing information about a particular resource",
   "properties": {
-    "RecordURI": {
+    
+    "URI": {
       "type": "string",
       "description": "A URI for the metadata record itself",
       "format": "uri"
-    }, "RecordUpdated": {
+    }, 
+    
+    "UpdateDate": {
       "type": "string",
       "description": "The timestamp for the most recent change to the metadata record",
       "format": "date-time"
-    }, "RecordMaintenance": {
-      "$ref": ""
+    }, 
+    
+    "Language": {
+      "type": "string",
+      "description": "The language in which the metadata record is written as a three-letter ISO code",
+      "pattern": /[a-zA-Z]{3}/
+    },
+    
+    "Specification": {
+      "$ref": "https://raw.github.com/usgin/json-metadata/blob/master/referenceInformation.json"
+    },
+    
+    "Maintenance": {
+      "type": "array",
+      "description": "Maintenance log for the metadata record",
+      "items": { "$ref": "https://raw.github.com/usgin/json-metadata/blob/master/maintenanceInformation.json" }
+      "minItems": 1
+    }, 
+    
+    "Lineage": {
+      "type": "array",
+      "description": "Lineage log for the metadata record",
+      "items": { "$ref": "https://raw.github.com/usgin/json-metadata/blob/master/lineageInformation.json" },
+      "minItems": 0
+    },
+    
+    "ResourceInformation": {
+      "$ref": "https://raw.github.com/usgin/json-metadata/blob/master/resourceInformation.json"
     }
   }
 }
