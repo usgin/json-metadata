@@ -1,4 +1,18 @@
 {
   "id": "https://raw.github.com/usgin/json-metadata/master/schemas/localizedString.json",
-  "type": "object"
+  "type": "object",
+  "description": "Provide a string with in a specific language",
+  "properties": {
+    
+    "Language": {
+      "type": "string",
+      "description": "The language in which the metadata record is written as a three-letter ISO code",
+      "pattern": /[a-zA-Z]{3}/ 
+    },
+    
+    "Text": {
+      "type": "string"
+      "description": "The text in the specified language"
+    }
+  }
 }

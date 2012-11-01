@@ -1,4 +1,19 @@
 {
   "id": "https://raw.github.com/usgin/json-metadata/master/schemas/lineageInformation.json",
-  "type": "object"
+  "type": "object",
+  "description": "",
+  "properties": {
+    
+    "Statement": {
+      "type": "string",
+      "description": "Free text description of provenance of resource and processing steps in its production"
+    },
+    
+    "History": {
+      "type": "array",
+      "description": "",
+      "items": { "$ref": "processInformation.json" },
+      "minItems": 0
+    }
+  }
 }

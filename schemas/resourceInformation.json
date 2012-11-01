@@ -1,4 +1,106 @@
 {
   "id": "https://raw.github.com/usgin/json-metadata/master/schemas/resourceInformation.json",
-  "type": "object"
+  "type": "object",
+  "description": "Metadata describing any resource",
+  "properties": {
+    
+    "Title": {
+      "type": "string",
+      "description": "The title of the resource being described",
+    },
+    
+    "AltTitle": {
+      "type": "array",
+      "description": "Localized titles for the resource being described",
+      "items": { "$ref": "localizedString.json" }
+    },
+    
+    "Originator": {
+      "type": "array",
+      "description": "Person(s) responsible for creation of the resource being described",
+      "items": { "$ref": "contactInformation.json" },
+      "minItems": 0
+    },
+    
+    "OriginDate": {
+      "type": "array",
+      "description": "Why would there be more than one origin?",
+      "items": { "$ref": "eventInformation.json" },
+      "minItems": 0
+    },
+    
+    "URI": {
+      "type": "string",
+      "description": "The identifier for the resource being described",
+      "format": "uri"
+    },
+    
+    "Language": {
+      "type": "string",
+      "description": "The language in which the metadata record is written as a three-letter ISO code",
+      "pattern": /[a-zA-Z]{3}/
+    },
+    
+    "Type": {
+      "type": "array",
+      "description": "Why so many damn arrays?",
+      "items": { "$ref": "controlledConcept.json" },
+      "minItems": 0
+    },
+    
+    "TypeDetails": {
+      "type": "array",
+      "description": "???",
+      "items": { "$ref": "resourceTypeInformation.json" },
+      "minItems": 0
+    }
+    
+    "Tags": {
+      "type": "array",
+      "description": "Free text keywords that pertain to the resource being described",
+      "items": { "type": "string" },
+      "minItems": 0
+    },
+    
+    "Keywords": {
+      "type": "array",
+      "description": "Keywords from controlled vocabularies describing a resource",
+      "items": { "$ref": "controlledKeyword.json" },
+      "minItems": 0
+    },
+    
+    "SpatialExtent": {
+      "type": "array",
+      "description": "seriously. fewer arrays needed",
+      "items": { "$ref": "spatialExtentInformation.json" },
+      "minItems": 0
+    },
+    
+    "TemporalScope": {
+      "type": "array",
+      "description": "",
+      "items": { "$ref": "temporalScopeInformation.json" },
+      "minItems": 0
+    },
+    
+    "RelatedResources": {
+      "type": "array",
+      "description": "Pointers to other resources that are related to the resource being described",
+      "items": { "$ref": "referenceInformation.json" },
+      "minItems": 0
+    },
+    
+    "Distribution": {
+      "type": "array",
+      "description": "Distribution mechanisms for the resource being described",
+      "items": { "$ref": "distributionInformation.json" },
+      "minItems": 0
+    }
+    
+    "Lineage": { "$ref": "lineageInformation.json" },
+    
+    "Quality": { "$ref": "qualityInformation.json" },
+    
+    "Maintenance": { "$ref": "maintenanceInformation.json" }
+  }
 }

@@ -1,4 +1,35 @@
 {
   "id": "https://raw.github.com/usgin/json-metadata/master/schemas/maintenanceInformation.json",
-  "type": "object"
+  "type": "object",
+  "description": "Provide a record of maintenance activity",
+  "properties": {
+    
+    "Contact": {
+      "type": "array",
+      "description": "Persons responsible for this maintenance activity",
+      "items": { "$ref": "contactInformation" },
+      "minItems": 1
+    },
+    
+    "Note": {
+      "type": "string",
+      "description": "Free text desribing maintenance plans, workflow, process..."
+    },
+    
+    "Interval": {
+      "type": "string",
+      "description": "Time interval between planned maintenance events"
+    },
+    
+    "Frequency": {
+      "type": { "$ref": "controlledConcept.json" }
+    },
+    
+    "Date": {
+      "type": "array",
+      "description": "Why is this an array?",
+      "items": { "$ref": "eventInformation.json" },
+      "minItems": 0
+    }
+  }
 }

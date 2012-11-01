@@ -42,7 +42,7 @@
       "description": "MIME type of the linked resource. From IANA registry at http://www.iana.org/assignments/media-types/application/index.html",
     },
     
-    "ServiceType": { "$ref": "resourceInformation.json" },
+    "ServiceType": { "$ref": "referenceInformation.json" },
     
     "ResponseSchema": {
       "type": "string",
