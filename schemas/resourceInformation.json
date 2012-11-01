@@ -18,7 +18,7 @@
     "Originator": {
       "type": "array",
       "description": "Person(s) responsible for creation of the resource being described",
-      "items": { "$ref": "contactInformation.json" },
+      "items": { "$ref": "partyInformation.json" },
       "minItems": 0
     },
     
@@ -65,7 +65,7 @@
     "Keywords": {
       "type": "array",
       "description": "Keywords from controlled vocabularies describing a resource",
-      "items": { "$ref": "controlledKeyword.json" },
+      "items": { "$ref": "controlledKeywords.json" },
       "minItems": 0
     },
     

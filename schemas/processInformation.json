@@ -1,0 +1,81 @@
+{
+  "id": "https://raw.github.com/usgin/json-metadata/master/schemas/processInformation.json",
+  "type": "object",
+  "description": "",
+  "properties": {
+    
+    "Label": {
+      "type": "string"
+      "description": ""
+    },
+    
+    "Party": {
+      "type": "array",
+      "description": "",
+      "items": { "$ref": "partyInformation.json" },
+      "minItems": 0
+    },
+    
+    "Type": {
+      "type": "array",
+      "description": "",
+      "items": { "$ref": "controlledConcept.json" },
+      "minItems": 0
+    },
+    
+    "Description": {
+      "type": "string",
+      "description": ""
+    },
+    
+    "SequenceNumber": {
+      "type": "number",
+      "description": "Number each step to order them"
+    },
+    
+    "InputResource": {
+      "type": "array",
+      "description": "",
+      "items": { "$ref": "referenceInformation.json" },
+      "minItems": 0
+    },
+    
+    "OutputResource": {
+      "type": "array",
+      "description": "",
+      "items": { "$ref": "referenceInformation.json" },
+      "minItems": 0
+    },
+    
+    "Event": {
+      "type": "array",
+      "description": "",
+      "items": { "$ref": "eventInformation.json" },
+      "minItems": 0
+    },
+    
+    "Rationale": {
+      "type": "string",
+      "description": ""
+    },
+    
+    "ComputerProcessing": { "$ref": "computerProcessingInformation.json" },
+    
+    "ProcessExtent": {
+      "type": "array",
+      "description": "",
+      "items": { "$ref": "spatialExtentInformation.json" },
+      "minItems": 0
+    },
+    
+    "ProcessedElements": {
+      "type": "array",
+      "description": "",
+      "items": {
+        "type": "string",
+        "description": "",
+        "format": "uri"
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "https://raw.github.com/usgin/json-metadata/master/schemas/personInformation.json",
+  "type": "object",
+  "description": "",
+  "properties": {
+    
+    "URI": {
+      "type": "string",
+      "description": "",
+      "format": "uri"
+    },
+    
+    "Name": {
+      "type": "string",
+      "description": "Person's name, in a format like 'Clark, Ryan J.'",
+      "pattern": "^[a-zA-Z]+, [a-zA-Z]+ [A-Z]\.?$"
+    },
+    
+    "Position": {
+      "type": "string",
+      "description": "Position of an individual within an organization",
+    },
+    
+    "Info": {
+      "type": "array",
+      "description": "",
+      "items": { "$ref": "linkInformation.json" },
+      "minItems": 0
+    }
+  }
+}

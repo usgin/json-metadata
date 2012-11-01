@@ -7,7 +7,7 @@
     "Contact": {
       "type": "array",
       "description": "Persons responsible for this maintenance activity",
-      "items": { "$ref": "contactInformation" },
+      "items": { "$ref": "partyInformation" },
       "minItems": 1
     },
     

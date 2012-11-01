@@ -1,0 +1,15 @@
+{
+  "id": "https://raw.github.com/usgin/json-metadata/master/schemas/partyInformation.json",
+  "type": "object",
+  "description": "Information about a particular person",
+  "properties": {
+    
+    "Role": { "$ref" : "controlledConcept.json" },
+    
+    "Person": { "$ref": "personInformation.json" },
+    
+    "Organization": { "$ref": "organizationInformation.json" },
+    
+    "ContactInformation": { "$ref": "contactInformation.json" }
+  }
+}

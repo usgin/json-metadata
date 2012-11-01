@@ -1,0 +1,20 @@
+{
+  "id": "https://raw.github.com/usgin/json-metadata/master/schemas/eventInformation.json",
+  "type": "object",
+  "description": "",
+  "properties": {
+    
+    "Type": {
+      "type": "array",
+      "description": "",
+      "items": { "$ref": "controlledConcept.json" },
+      "minItems": 1
+    },
+    
+    "Date": {
+      "type": "string",
+      "description": "",
+      "format": "date-time"
+    }
+  }
+}

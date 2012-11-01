@@ -1,0 +1,39 @@
+{
+  "id": "https://raw.github.com/usgin/json-metadata/master/schemas/controlledConcept.json",
+  "type": "object",
+  "description": "",
+  "properties": {
+    
+    "URI": {
+      "type": "string",
+      "description": "Identifier for this concept",
+      "format": "uri"
+    },
+    
+    "Label": {
+      "type": "string",
+      "description": "Label for display of this concept"
+    },
+    
+    
+    "AltLabel": {
+      "type": "array",
+      "description": "Localized string",
+      "items": { "$ref": "localizedString.json" },
+      "minItems": 0
+    },
+    
+    "VocabularyURI": {
+      "type": "string",
+      "description": "The URI for the vocabulary defining this concept",
+      "format": "uri"
+    },
+    
+    "ConceptLinks": {
+      "type": "array",
+      "description": "Provide various links to get related concepts, definitions, etc.",
+      "items": { "$ref": "linkInformation.json" },
+      "minItems": 0
+    }
+  }
+}

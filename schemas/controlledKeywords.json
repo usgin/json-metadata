@@ -1,0 +1,16 @@
+{
+  "id": "https://raw.github.com/usgin/json-metadata/master/schemas/controlledKeyword.json",
+  "type": "object",
+  "description": "",
+  "properties": {
+    
+    "Theme": { "$ref": "controlledConcept.json" },
+    
+    "Keyword": {
+      "type": "array",
+      "description": "",
+      "items": { "$ref": "controlledConcept.json" },
+      "minItems": 1
+    }
+  }
+}

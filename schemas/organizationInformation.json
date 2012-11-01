@@ -1,0 +1,27 @@
+{
+  "id": "https://raw.github.com/usgin/json-metadata/master/schemas/organizationInformation.json",
+  "type": "object",
+  "description": "",
+  "properties": {
+    
+    "URI": {
+      "type": "string",
+      "description": "",
+      "format": "uri"
+    },
+    
+    "Name": {
+      "type": "array",
+      "description": "",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    
+    "Info": {
+      "type": "array",
+      "description": "",
+      "items": { "$ref": "linkInformation" },
+      "minItems": 0
+    }
+  }
+}
