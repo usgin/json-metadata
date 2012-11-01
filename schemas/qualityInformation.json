@@ -1,0 +1,21 @@
+{
+  "id": "https://raw.github.com/usgin/json-metadata/master/schemas/qualityInformation.json",
+  "type": "object",
+  "description": "",
+  "properties": {
+    
+    "Statement": {
+      "type": "string",
+      "description": ""
+    },
+    
+    "QualityScope": { "$ref": "qualityScopeInformation.json" },
+    
+    "QualityReport": {
+      "type": "array",
+      "description": "",
+      "items": { "$ref": "qualityReportElement.json" },
+      "minItems": 0
+    }
+  }
+}
