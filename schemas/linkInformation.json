@@ -29,17 +29,17 @@
     
     "Relation": {
       "type": "string",
-      "description": "Term from the IANA rel vocabulary for consistency with IETF 5988",
+      "description": "Term from the IANA rel vocabulary for consistency with IETF 5988"
     },
     
     "BaseProtocol": {
       "type": "string",
-      "description": "Internet protocol from IETF registry at http://www.rfc-editor.org/rfcxx00.html",
+      "description": "Internet protocol from IETF registry at http://www.rfc-editor.org/rfcxx00.html"
     },
     
     "MIMEType": {
       "type": "string",
-      "description": "MIME type of the linked resource. From IANA registry at http://www.iana.org/assignments/media-types/application/index.html",
+      "description": "MIME type of the linked resource. From IANA registry at http://www.iana.org/assignments/media-types/application/index.html"
     },
     
     "ServiceType": { "$ref": "resourceInformation.json" },
@@ -58,7 +58,7 @@
     "HrefLanguage": {
       "type": "string",
       "description": "The language of the linked resource",
-      "pattern": "/[a-zA-Z]{3}/"
+      "pattern": "^[a-zA-Z]{3}$"
     },
     
     "LinkModifiers": {
