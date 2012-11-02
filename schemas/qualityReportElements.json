@@ -1,0 +1,41 @@
+{
+  "id": "https://raw.github.com/usgin/json-metadata/master/schemas/qualityReportInformation.json",
+  "type": "object",
+  "description": "",
+  "properties": {
+    
+    "StandaloneReport": { "$ref": "referenceInformation.json" },
+    
+    "Type": { "$ref": "controlledConcept.json" },
+    
+    "Confidence": {
+      "type": "string",
+      "description": "",
+    },
+    
+    "Representativity": {
+      "type": "string",
+      "description": ""
+    },
+    
+    "Homogeneity": {
+      "type": "string",
+      "description": ""
+    },
+    
+    "QualityMeasure": { "$ref": "qualityMeasureInformation.json" },
+    
+    "QualityEvaluation": { "$ref": "qualityEvaluationInformation.json" },
+    
+    "QualityElementResult": { "$ref": "qualityElementResult.json" },
+    
+    "ConformanceResult": { "$ref": "conformanceResult.json" },
+    
+    "ResultDescription": {
+      "type": "string",
+      "description": ""
+    },
+    
+    "QuantitativeResult": { "$ref": "quantitativeResult.json" }
+  }
+}
