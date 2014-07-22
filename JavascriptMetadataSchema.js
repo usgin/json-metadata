@@ -1,8 +1,6 @@
-
 metadataSchema = {
-	description : 'A metadata record has two sections, one with information for management of the metadata itself, and one that describes some individual resource. Each metadata record describes exactly 1 resource. The metadata record can be considered a representation of the resource, but it has an identity that is distinct from the identity of the described resource.  There may be more than one metadata record in the system describing a single resource; these should have distinct metadata lineages.
-		specifications followed here-  JSON pointer--http: tools.ietf.org/html/rfc6901',
 	$schema : 'http://json-schema.org/draft-04/schema#',
+	description : 'A metadata record has two sections, one with information for management of the metadata itself, and one that describes some individual resource. Each metadata record describes exactly one resource. The metadata record can be considered a representation of the resource, but it has an identity that is distinct from the identity of the described resource.  There may be more than one metadata record in the system describing a single resource, these should have distinct metadata lineages. specifications followed here-  JSON pointer--http: tools.ietf.org/html/rfc6901',
 	id : 'http://resources.usgin.org/uri-gin/usgin/schema/json',
 	metadataRecord : {
 		id : '#metadataRecord',
@@ -23,7 +21,7 @@ metadataSchema = {
 	metadataRecordInfo : {
 		id : '#metadataRecordInfo',
 		type : 'object',
-		description : 'these are data items for managing the metadata record as a resource.'
+		description : 'these are data items for managing the metadata record as a resource.',
 		properties : {
 			MDRecordURI : {
 				type : 'string',
@@ -38,13 +36,12 @@ metadataSchema = {
 				description : 'Identifies the specification & profile for interpreting this document',
 				$ref : '#/definitions/referenceTemplate'
 			},
-			.
 			MDMaintenance : {
 				$ref : '#/maintenance'
 			},
 			MDLanguage : {
 				type : 'string',
-				format : 'ISO three letter language code'
+				format : 'ISO three letter language code',
 				pattern : '/[a-zA-Z]{3}/',
 				description : 'exactly 0..1 default is eng if no value is specified.'
 			},
@@ -374,16 +371,18 @@ metadataSchema = {
 					},
 					RunTimeParameters : {
 						type : 'array',
-						items : [
-							ProcessParameterName : {
-								type : 'string',
-								description : 'name of parameter'
-							},
-							ProcessParameterValue : {
-								type : 'string',
-								description : 'parameter value'
+						items : [{
+								ProcessParameterName : {
+									type : 'string',
+									description : 'name of parameter'
+								}
+							}, {
+								ProcessParameterValue : {
+									type : 'string',
+									description : 'parameter value'
+								}
 							}
-						]//0..N
+						]
 					}
 				}
 			},
@@ -405,7 +404,7 @@ metadataSchema = {
 	},
 	resourceQualityTemplate : {
 		id : '#resourceQuality',
-		description : 'ISO19157 quality model here...',
+		description : 'ISO19157 quality model',
 		type : 'object',
 		properties : {
 			QualityStatement : {
@@ -436,126 +435,137 @@ metadataSchema = {
 			QualityReportElements : {
 				type : 'array',
 				description : 'each item in this list is a data quality element',
-				items : [StandaloneReport : {
-						type : {
-							$ref : '#/definitions/reference'
-						},
-						description : 'URI for a group of elements that might be extracted as a stand alone object'
-					},
-					ElementType : {
-						type : {
-							$ref : '#/definitions/controlledConcept'
+				items : [{
+						StandaloneReport : {
+							type : {
+								$ref : '#/definitions/reference'
+							},
+							description : 'URI for a group of elements that might be extracted as a stand alone object'
 						}
-					},
-					ElementConfidence : {
-						type : 'string',
-						description : 'general statement of confidence in this quality element assessment, guessing what the intention in 19157 is supposed to be'
-					},
-					ElementHomogeneity : {
-						type : 'string',
-						description : 'how uniformly this element value applies across the assigned result scope'
-					},
-					QualityMeasure : {
-						properties : {
-							MeasureType : {
-								type : {
-									$ref : '#/definitions/reference'
-								}
-							},
-							MeasureLabel : {
-								type : 'string',
-								description : 'Text label for users to understand measure type'
-							},
-							MeasureDescription : {
-								type : 'string',
-								description : 'explanation of measureType'
+					}, {
+						ElementType : {
+							type : {
+								$ref : '#/definitions/controlledConcept'
 							}
 						}
-					},
-					QualityEvaluation : {
-						properties : {
-							EvaluationType : {
-								type : {
-									$ref : '#/definitions/reference'
+					}, {
+						ElementConfidence : {
+							type : 'string',
+							description : 'general statement of confidence in this quality element assessment, guessing what the intention in 19157 is supposed to be'
+						}
+					}, {
+						ElementHomogeneity : {
+							type : 'string',
+							description : 'how uniformly this element value applies across the assigned result scope'
+						}
+					}, {
+						QualityMeasure : {
+							properties : {
+								MeasureType : {
+									type : {
+										$ref : '#/definitions/reference'
+									}
 								},
-								description : 'links to reference docs for evaluation method should be in here'
-							},
-							EvaluationMethodDescription : {
-								type : 'string',
-								description : 'text description of the evaluation method'
-							},
-							EvaluationProcedure : {
-								type : 'string',
-								description : 'text description of procedure used to implement evaluation method'
+								MeasureLabel : {
+									type : 'string',
+									description : 'Text label for users to understand measure type'
+								},
+								MeasureDescription : {
+									type : 'string',
+									description : 'explanation of measureType'
+								}
 							}
 						}
-					},
-					QualityElementResult : {
-						properties : {
-							ResultScope : {
-								properties : {
-									ResultScopeLevel : {
-										type : {
-											$ref : '#/definitions/controlledConcept'
-										}
+					}, {
+						QualityEvaluation : {
+							properties : {
+								EvaluationType : {
+									type : {
+										$ref : '#/definitions/reference'
 									},
-									ResultExtent : {
-										type : {
-											$ref : '#/definitions/extent'
-										}
-									},
-									ResultScopeEnumeration : {
-										type : 'array',
-										items : {
-											$ref : '#/definitions/reference'
-										},
-										description : 'list of references to items that the result applies to'
-									}
+									description : 'links to reference docs for evaluation method should be in here'
+								},
+								EvaluationMethodDescription : {
+									type : 'string',
+									description : 'text description of the evaluation method'
+								},
+								EvaluationProcedure : {
+									type : 'string',
+									description : 'text description of procedure used to implement evaluation method'
 								}
-							},
-							// one of the following three elements is required
-							ResultValue : {
-								oneof : [
-									ConformanceResult : {
-										properties : {
-											ResultSpecification : {
-												type : {
-													$ref : '#/definitions/reference'
-												}
-											},
-											ResultExplanation : {
-												type : 'string',
-												description : 'text explanation of result'
-											},
-											ConformancePass : {
-												type : 'boolean'
+							}
+						}
+					}, {
+						QualityElementResult : {
+							properties : {
+								ResultScope : {
+									properties : {
+										ResultScopeLevel : {
+											type : {
+												$ref : '#/definitions/controlledConcept'
 											}
-										}
-									},
-									ResultDescription : {
-										type : 'string',
-										description : 'text description of test result'
-									},
-									QuantitativeResult : {
-										properties : {
-											ResultValue : {
-												type : 'string',
-												description : 'value may be single number or a list of numbers or strings'
-											},
-											ResultValueUnits : {
-												type : {
-													$ref : '#/definitions/controlledConcept'
-												}
-											},
-											ResultValueType : {
-												type : {
-													$ref : '#/definitions/controlledConcept'
-												},
-												description : 'if value is a record,link from concept URI should access a description of the record.'
+										},
+										ResultExtent : {
+											type : {
+												$ref : '#/definitions/extent'
 											}
+										},
+										ResultScopeEnumeration : {
+											type : 'array',
+											items : {
+												$ref : '#/definitions/reference'
+											},
+											description : 'list of references to items that the result applies to'
 										}
 									}
-								]
+								},
+								// one of the following three elements is required
+								ResultValue : {
+									oneof : [{
+											ConformanceResult : {
+												properties : {
+													ResultSpecification : {
+														type : {
+															$ref : '#/definitions/reference'
+														}
+													},
+													ResultExplanation : {
+														type : 'string',
+														description : 'text explanation of result'
+													},
+													ConformancePass : {
+														type : 'boolean'
+													}
+												}
+											}
+										}, {
+											ResultDescription : {
+												type : 'string',
+												description : 'text description of test result'
+											}
+										}, {
+											QuantitativeResult : {
+												properties : {
+													ResultValue : {
+														type : 'string',
+														description : 'value may be single number or a list of numbers or strings'
+													},
+													ResultValueUnits : {
+														type : {
+															$ref : '#/definitions/controlledConcept'
+														}
+													},
+													ResultValueType : {
+														type : {
+															$ref : '#/definitions/controlledConcept'
+														},
+														description : 'if value is a record,link from concept URI should access a description of the record.'
+													}
+												}
+											}
+										}
+									]
+								}
 							}
 						}
 					}
@@ -573,16 +583,18 @@ metadataSchema = {
 			},
 			Constraints : {
 				type : 'array',
-				items : [
-					ConstraintType : {
-						type : {
-							$ref : '#/definitions/controlledConcept'
-						},
-						description : 'e.g.security, access, usage'
-					},
-					ConstraintTerm : {
-						type : {
-							$ref : '#/definitions/controlledConcept'
+				items : [{
+						ConstraintType : {
+							type : {
+								$ref : '#/definitions/controlledConcept'
+							},
+							description : 'e.g.security, access, usage'
+						}
+					}, {
+						ConstraintTerm : {
+							type : {
+								$ref : '#/definitions/controlledConcept'
+							}
 						}
 					}
 				]
@@ -631,14 +643,16 @@ metadataSchema = {
 			},
 			DataSetEntites : {
 				type : 'array',
-				items : [
-					EntityCount : {
-						type : 'integer',
-						description : 'number of instances of this entity in a particular dataset instance'
-					},
-					EntityDescription : {
-						type : {
-							$ref : '#/entity'
+				items : [{
+						EntityCount : {
+							type : 'integer',
+							description : 'number of instances of this entity in a particular dataset instance'
+						}
+					}, {
+						EntityDescription : {
+							type : {
+								$ref : '#/entity'
+							}
 						}
 					}
 				]
@@ -673,12 +687,15 @@ metadataSchema = {
 			},
 			AltEntityName : {
 				type : 'array',
-				items : [AltEntityNameText : {
-						type : 'string'
-					},
-					AltEntityNameLanguage : {
-						type : 'string',
-						format : 'ISO three letter language code'
+				items : [{
+						AltEntityNameText : {
+							type : 'string'
+						}
+					}, {
+						AltEntityNameLanguage : {
+							type : 'string',
+							format : 'ISO three letter language code'
+						}
 					}
 				]
 			},
@@ -710,16 +727,16 @@ metadataSchema = {
 						}
 					},
 					SpatialTopologyType : {
-						$ref : _controlledConceptTemplate
+						$ref : '#/definitions/controlledConcept'
 					},
 					GeometryType : {
 						type : {
-							$ref : 'controlledConcept'
+							$ref : '#/definitions/controlledConcept'
 						}
 					},
 					SpatialReferenceSystem : {
 						type : {
-							$ref : 'reference'
+							$ref : '#/definitions/reference'
 						}
 					},
 					Resolution : {
@@ -734,7 +751,7 @@ metadataSchema = {
 									},
 									ResolutionUOM : {
 										type : {
-											$ref : 'controlledConcept'
+											$ref : '#/definitions/controlledConcept'
 										}
 									}
 								}
@@ -841,7 +858,7 @@ metadataSchema = {
 				description : 'free text description of what operation does'
 			},
 			InvocationLink : {
-				description : 'one or more links for invoking operation. Suggest convention that in the link, strings that begin with $ and have names matching the InvocationName or a ParameterName can be treated as template slots that indicate where the invocation name and parameters should be inserted in the invocation URL.'
+				description : 'one or more links for invoking operation. Suggest convention that in the link, strings that begin with $ and have names matching the InvocationName or a ParameterName can be treated as template slots that indicate where the invocation name and parameters should be inserted in the invocation URL.',
 				$ref : '#/definitions/link'
 			},
 			OperationParameter : {
@@ -1103,10 +1120,10 @@ metadataSchema = {
 						Address : {
 							type : 'string',
 							description : 'postal address,ideally formatted appropriate to the target country. One field because there is no clear reason to disaggregate the address into street, city, country, postal code, etc...'
-						}
+						},
 						Links : {
 							type : 'array',
-							itmes : {
+							items : {
 								$ref : '#/definitions/link'
 							}
 
@@ -1126,7 +1143,7 @@ metadataSchema = {
 				Name : {
 					type : 'string',
 					description : 'format--Last Name,First name MI'
-				}
+				},
 				Position : {
 					type : 'string',
 					description : 'position of individual in context of an organization'
@@ -1174,7 +1191,7 @@ metadataSchema = {
 				},
 				ExtentURI : {
 					type : 'string',
-					description : 'give extent an identity, could create a catalog of extents'
+					description : 'give extent an identity, could create a catalog of extents',
 					format : 'uri'
 				},
 				ExtentReference : {
@@ -1307,7 +1324,7 @@ metadataSchema = {
 		referenceTemplate : {
 			id : '#reference',
 			description : '// use when another external linked data resource is intended to be the value of some element. The URI is proxy for that resource, such that text-based identifier comparison can be used when convienent. The associated links are for advertising specific representations or related resources. Some of these are likely to be accessible by dereferncing the URI, but the link elements allow explicit indication of the available representations and how to get them (with no URI redirection...)',
-			type : 'object'
+			type : 'object',
 			properties : {
 				URI : {
 					type : 'string',
@@ -1317,7 +1334,7 @@ metadataSchema = {
 				Links : {
 					type : 'array',
 					items : {
-						$ref : _linkTemplate
+						$ref : '#/definitions/link'
 					},
 					description : 'Links to representation of some referenced resource'
 
@@ -1349,7 +1366,7 @@ metadataSchema = {
 			oneOf : [{
 					NumericDomain : {
 						type : 'object',
-						properties {
+						properties : {
 							LowerBound : {
 								type : 'number'
 							},
