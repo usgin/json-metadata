@@ -193,8 +193,8 @@
             "Software": {"$ref": "#/software"}
         }
     }
-},
- "maintenanceTemplate": {
+}},
+    "maintenanceTemplate": {
         "id": "#maintenance",
         "type":"object",
         "properties": {
