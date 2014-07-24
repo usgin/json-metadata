@@ -2,155 +2,184 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "description": "A metadata record has two sections, one with information for management of the metadata itself, and one that describes some individual resource. Each metadata record describes exactly one resource. The metadata record can be considered a representation of the resource, but it has an identity that is distinct from the identity of the described resource.  There may be more than one metadata record in the system describing a single resource, these should have distinct metadata lineages. specifications followed here-  JSON pointer--http: tools.ietf.org/html/rfc6901",
     "id": "http://resources.usgin.org/uri-gin/usgin/schema/json",
-    "metadataRecord": {
+    "MetadataRecord": {
         "id": "#metadataRecord",
+        "description": "information about the metadata record and link to resourceDescription",
         "type": "object",
         "properties": {
-            "MetadataInfo": {
-                "description": "information about the metadata record",
-                "$ref": "#/metadataRecordInfo"
-            },
-            "DescribedResource": {
-                "description": "exactly 1. what the metadata record is about",
-                "$ref": "#/resourceDescription"
-            }
-        },
-        "required": [
-            "MetadataInfo",
-            "DescribedResource"
-        ]
-    },
-    "metadataRecordInfo": {
-        "id": "#metadataRecordInfo",
-        "type": "object",
-        "description": "these are data items for managing the metadata record as a resource.",
-        "properties": {
-            "MDRecordURI": {
+            "metadataRecordURI": {
                 "type": "string",
                 "format": "uri",
                 "description": "unique identifier for the metadata record (as distinct from the resource it describes)"
             },
-            "MDUpdateDate": {
+            "metadataUpdateDate": {
                 "type": "string",
                 "format": "date-time",
-                "description": "exactly 1. This is time stamp for most recent change to metadata content in this record. Update history should be in MDLineage; this is a convienence property"
+                "description": "exactly 1. This is time stamp for most recent change to metadata content in this record. Update history should be in metadataLineage; this is a convienence property"
             },
-            "MDSpecification": {
+            "metadataSpecification": {
                 "description": "Identifies the specification & profile for interpreting this document",
                 "$ref": "#/definitions/referenceTemplate"
             },
-            "MDMaintenance": {
-                "description": "this element provides contact information for metadata maintainer and information on the maintenance interval and frequency. See MDLineage for documentation of changes to the metadata record. ",
+            "metadataMaintenance": {
+                "description": "this element provides contact information for metadata maintainer and information on the maintenance interval and frequency. See metadataLineage for documentation of changes to the metadata record. ",
                 "$ref": "#/maintenance"
             },
-            "MDLanguage": {
+            "metadataLanguage": {
                 "type": "string",
                 "format": "ISO three letter language code",
                 "pattern": "/[a-zA-Z]{3}/",
                 "description": "Language of metadata content. Default is eng if no value is specified."
             },
-            "MDLineage": {
+            "metadataLineage": {
                 "description": "documentation of update history for this metadata record. In the CINERGI system, the lineage is externally maintained as provenance using PROV.",
                 "$ref": "#/lineage"
+            },
+            "metadataUsageConstraint": {
+                "description": "documentation of any restrictions on access to or usage of the metadata record.",
+                "$ref": "#/usageConstraint"
+            },
+            "describedResource": {
+                "description": "exactly 1. what the metadata record is about",
+                "$ref": "#/ResourceDescription"
             }
         },
         "required": [
-            "MDRecordURI",
-            "MDUpdateDate",
-            "MDSpecification",
-            "MDLanguage"
+            "metadataRecordURI",
+            "metadataUpdateDate",
+            "metadataSpecification",
+            "metadataLanguage",
+            "DescribedResource"
         ]
     },
-    "resourceDescription": {
+
+    "ResourceDescription": {
         "id": "#resourceDescription",
         "type": "object",
         "description": "basic metadata that might apply to any resource",
         "properties": {
-            "Title": {"type": "string"},
-            "Description": {"type": "string"},
-            "Originator": {
+            "resourceTitle": {
+                "description": "Title that identifies the resource for human users. Ideally the title would be unique to the described resource.",
+                "type": "string"
+            },
+            "description": {
+                "description": "Free text description of the resource. May summarize intellectual content, as well as describe various metadata aspects such as lineage, quality, use constraints, maintenance.",
+                "type": "string"
+            },
+            "resourceURI": {
+                "description": "Unique identifier conforming to IETF URI syntax (RFC 3986)",
+                "type": "string",
+                "format": "URI"
+            },
+            "resourceContact": {
+                "description": "link to party to contact for additional information about the resource. Each relatedAgent has an associated role; various parties may be associated with the resource in different roles.",
                 "type": "array",
-                "items": {"$ref": "#/definitions/party"}
+                "items": {
+                    "$ref": "#/definitions/RelatedAgent"
+                }
+            },
+            "resourceType": {
+                "description": "0..N.  ResourceType is a specially recognized keywordTheme that categorizes the resource; at least one type category should be specified, as the type will guide processing of other parts of the metadata record. Resource categorization can be done on many axes. Some example schemes include  Functional Requirements for Bibliographic Records (FRBR) entity, which include _work_,_expression_,_manifestation_, and _item_ (see http: en.wikipedia.org/wiki/Functional_Requirements_for_Bibliographic_Records#FRBR_Entities), frbr form here as well ( e.g., novel, play, poem, essay, biography, symphony, concerto, sonata, map, drawing, painting, photograph, etc.), ISO scopeCodes that type resources. The different category schmes can be disambiguated by their VocabularyURI values, but concepts in each should have URIs that are sufficient.",
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/ControlledConcept"
+                }
+            },
+            "status": {
+                "description": "Term that specifies the development status of the resource (in review, published, draft....)",
+                "$ref": "#/definitions/ControlledConcept"
+            },
+            "browseGraphic": {
+                "description": "Reference that specifies a graphic resource that provides a visualization of the resource, as well as a URL link that should access the graphic.",
+                "$ref": "#/defintions/reference"
+            },
+            "temporalExtent": {
+                "description": "This is the time instant or interval to which the resource content applies. Extent using named time ordinal eras (e.g. geologic time) should be specified using temporal keywords (vocabulary is a time scale). use ISO8601 encoding for intervals with the format <start>/<end> where start and end are 8601 dateTime strings. see http://en.wikipedia.org/wiki/ISO_8601",
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "format": "ISO8601"
+                }
+            },
+            "resourceLanguage": {
+                "description":"Language of resource content. Multiple languages may be specified. Use Nil not applicable if there is no text in the resource.",
+                "type": "string",
+                "format": "ISO three letter language code"
             },
             "OriginDate": {
                 "description": "Each date should scope a different origin event",
                 "type": "array",
-                "items": {"$ref": "#/definitions/eventDate"}
-            },
-            "ResourceURI": {
-                "type": "string",
-                "format": "URI"
+                "items": {
+                    "$ref": "#/definitions/eventDate"
+                }
             },
             "AlternateTitles": {
                 "type": "array",
-                "items": {"AltTitle": {
-                    "type": "object",
-                    "properties": {
-                        "AltTitleText": {"type": "string"},
-                        "AltTitleLanguage": {
-                            "type": "string",
-                            "format": "ISO three letter language code"
+                "items": {
+                    "AltTitle": {
+                        "type": "object",
+                        "properties": {
+                            "AltTitleText": {
+                                "type": "string"
+                            },
+                            "AltTitleLanguage": {
+                                "type": "string",
+                                "format": "ISO three letter language code"
+                            }
                         }
                     }
-                }}
+                }
             },
             "SpatialExtent": {
                 "description": "allow multiple bounding box extents for non contiguous resource, e.g. map of US coasts.",
                 "type": "array",
-                "items": {"$ref": "#/definitions/extent"}
-            },
-            "TemporalScope": {
-                "description": "0..N  scope using named time ordinal eras (e.g. geologic time) should be specified using temporal keywords (vocabulary is a time scale)",
-                "type": "array",
-                "items": {"timeInterval": {
-                    "type": "object",
-                    "properties": {
-                        "begin": {"$ref": "#/definitions/eventDate"},
-                        "end": {"$ref": "#/definitions/eventDate"}
-                    },
-                    "required": ["begin"]
-                }}
-            },
-            "ResourceType": {
-                "type": "array",
-                "items": {"$ref": "#/definitions/controlledConcept"},
-                "description": "0..N.  ResourceType is a specially recognized keywordTheme that categorizes the resource; at least one type category should be specified, as the type will guide processing of other parts of the metadata record. Resource categorization can be done on many axes. Some example schemes include  Functional Requirements for Bibliographic Records (FRBR) entity, which include _work_,_expression_,_manifestation_, and _item_ (see http: en.wikipedia.org/wiki/Functional_Requirements_for_Bibliographic_Records#FRBR_Entities), frbr form here as well (e.g. e.g., novel, play, poem, essay, biography, symphony, concerto, sonata, map, drawing, painting, photograph, etc.), ISO scopeCodes that type resources. The different category schmes can be disambiguated by their VocabularyURI values, but concepts in each should have URIs that are sufficient."
+                "items": {
+                    "$ref": "#/definitions/extent"
+                }
             },
             "Tags": {
                 "description": "0..N  free form keywords",
                 "type": "array",
-                "items": {"type": "string"}
+                "items": {
+                    "type": "string"
+                }
             },
             "KeywordGroup": {
                 "type": "object",
                 "properties": {
                     "KeywordTheme": {
                         "description": "typical themes might include place, temporal, thematic, ISO topic category etc...",
-                        "type": {"$ref": "#/definitions/controlledConcept"}
+                        "$ref": "#/definitions/ControlledConcept"
                     },
                     "Keywords": {
                         "type": "array",
-                        "items": {"type": "string"}
+                        "items": {
+                            "type": "string"
+                        }
                     },
-                    "Thesaurus": {"$ref": "#/defintions/reference"}
+                    "Thesaurus": {
+                        "$ref": "#/defintions/reference"
+                    }
                 }
-            },
-            "ResourceLanguage": {
-                "type": "string",
-                "format": "ISO three letter language code"
             },
             "Distribution": {
                 "type": "array",
                 "items": {
-                    "Distributor": {"$ref": "#/definitions/party"},
+                    "Distributor": {
+                        "$ref": "#/definitions/RelatedAgent"
+                    },
                     "OnlineAccess": {
                         "type": "array",
-                        "items": {"$ref": "#/definitions/link"}
+                        "items": {
+                            "$ref": "#/definitions/link"
+                        }
                     },
                     "OfflineAccess": {
                         "type": "object",
                         "properties": {
-                            "AccessInformation": {"type": "string"},
+                            "AccessInformation": {
+                                "type": "string"
+                            },
                             "Description": {
                                 "type": "string",
                                 "description": "free text description of how to get resource; only necessary for offline access, otherwise link.description provides details. The links here will be to frbr:expression of the resource. Include turnaround time and business hours information here"
@@ -158,8 +187,12 @@
                             "DistributionMedium": {
                                 "type": "object",
                                 "properties": {
-                                    "MediumType": {"$ref": "#/definitions/controlledConcept"},
-                                    "MediumFormat": {"$ref": "#/definitions/controlledConcept"}
+                                    "MediumType": {
+                                        "$ref": "#/definitions/ControlledConcept"
+                                    },
+                                    "MediumFormat": {
+                                        "$ref": "#/definitions/ControlledConcept"
+                                    }
                                 },
                                 "required": ["MediumType"]
                             },
@@ -171,36 +204,59 @@
                     }
                 }
             },
-        "RelatedResource": {
-            "type": "array",
-            "items": {"$ref": "#/definitions/reference"}
-        },
-        "Lineage": {"$ref": "#/lineage"},
-        "Quality": {"$ref": "#/resourceQuality"},
-        "UsageConstraint": {"$ref": "#/resourceUsageConstraint"},
-        "ResourceMaintenance": {
-            "$ref": "#/maintenanceTemplate",
-            "description": " only one here, because particular maintainence events that update the resource should be recorded in the lineage. This element provides information on how often maintenance is expected to occur and who is doing the maintenance. The resource maintenance contact will be the point of contact for reporting issues with the resource content."
-        },
-        "ResourceTypeDetails": {
-        "type":"object",
-        "properties": {
-            "Publication": {"$ref": "#/publicationDetails"},
-            "Dataset": {"$ref": "#/datasetDetails"},
-            "Service": {"$ref": "#/serviceDetails"},
-            "CoverageDataset": {"$ref": "#/coverageDetails"},
-            "EarthImageCoverage": {"$ref": "#/earthImage"},
-            "Software": {"$ref": "#/software"}
+            "RelatedResource": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/reference"
+                }
+            },
+            "Lineage": {
+                "$ref": "#/lineage"
+            },
+            "Quality": {
+                "$ref": "#/resourceQuality"
+            },
+            "ResourceUsageConstraint": {
+                "$ref": "#/usageConstraint"
+            },
+            "ResourceMaintenance": {
+                "$ref": "#/maintenanceTemplate",
+                "description": " only one here, because particular maintainence events that update the resource should be recorded in the lineage. This element provides information on how often maintenance is expected to occur and who is doing the maintenance. The resource maintenance contact will be the point of contact for reporting issues with the resource content."
+            },
+            "ResourceTypeDetails": {
+                "type": "object",
+                "properties": {
+                    "Publication": {
+                        "$ref": "#/publicationDetails"
+                    },
+                    "Dataset": {
+                        "$ref": "#/datasetDetails"
+                    },
+                    "Service": {
+                        "$ref": "#/serviceDetails"
+                    },
+                    "CoverageDataset": {
+                        "$ref": "#/coverageDetails"
+                    },
+                    "EarthImageCoverage": {
+                        "$ref": "#/earthImage"
+                    },
+                    "Software": {
+                        "$ref": "#/software"
+                    }
+                }
+            }
         }
-    }
-}},
+    },
     "maintenanceTemplate": {
         "id": "#maintenance",
-        "type":"object",
+        "type": "object",
         "properties": {
             "MaintenanceContact": {
                 "type": "array",
-                "items": {"$ref": "#/definitions/party"}
+                "items": {
+                    "$ref": "#/definitions/RelatedAgent"
+                }
             },
             "Note": {
                 "type": "string",
@@ -210,17 +266,21 @@
                 "type": "string",
                 "description": "time interval between planned maintenance events e.g. 6 months"
             },
-            "Frequency": {"$ref": "#/definitions/controlledConcept"},
+            "Frequency": {
+                "$ref": "#/definitions/ControlledConcept"
+            },
             "Date": {
                 "type": "array",
-                "items": {"$ref": "#/definitions/eventDate"},
+                "items": {
+                    "$ref": "#/definitions/eventDate"
+                },
                 "description": "0..N if nothing changes, can time-stamp to indicate maintenance check points. If record is updated, a process step in metadataLineage should be added."
             }
         }
     },
     "lineageTemplate": {
         "id": "#lineage",
-        "type":"object",
+        "type": "object",
         "properties": {
             "LineageStatement": {
                 "type": "string",
@@ -228,43 +288,57 @@
             },
             "History": {
                 "type": "array",
-                "items": {"$ref": "#/processStep"}
+                "items": {
+                    "$ref": "#/processStep"
+                }
             }
         }
     },
     "processStepTemplate": {
         "id": "#processStep",
-        "type":"object",
+        "type": "object",
         "properties": {
             "Label": {
                 "type": "string",
                 "description": "text to characterize,identify this step for user interface listing"
             },
-            "Party": {
+            "relatedAgent": {
                 "type": "array",
-                "items": {"$ref": "#/definitions/party"},
+                "items": {
+                    "$ref": "#/definitions/RelatedAgent"
+                },
                 "description": "0..N parties responsible for processing step"
             },
             "ProcessType": {
                 "type": "array",
-                "items": {"$ref": "#/definitions/controlledConcept"}
+                "items": {
+                    "$ref": "#/definitions/ControlledConcept"
+                }
             },
-            "ProcessDescription": {"type": "string"},
+            "ProcessDescription": {
+                "type": "string"
+            },
             "SequenceNo": {
                 "type": "integer",
                 "description": "number each step to all putting them in order. Order of listing is not significant"
             },
             "InputResource": {
                 "type": "array",
-                "items": {"$ref": "#/definitions/reference"}
+                "items": {
+                    "$ref": "#/definitions/reference"
+                }
             },
             "OutputResource": {
                 "type": "array",
-                "items": {"$ref": "#/definitions/reference"}
+                "items": {
+                    "$ref": "#/definitions/reference"
+                }
             },
             "Event": {
                 "type": "array",
-                "items": {"$ref": "#/definitions/eventDate"},
+                "items": {
+                    "$ref": "#/definitions/eventDate"
+                },
                 "description": "allow array, may have beginning, end, intermediate times..."
             },
             "Rationale": {
@@ -272,31 +346,42 @@
                 "description": "discussion of why the process step was done"
             },
             "ComputerProcessing": {
-            "type":"object",
-            "properties": {
-                "Software": {"$ref": "#/definitions/reference"},
-                "RunTimeParameters": {
-                    "type": "array",
-                    "items": [
-                        {"ProcessParameterName": {
-                            "type": "string",
-                            "description": "name of parameter"
-                        }},
-                        {"ProcessParameterValue": {
-                            "type": "string",
-                            "description": "parameter value"
-                        }}
+                "type": "object",
+                "properties": {
+                    "Software": {
+                        "$ref": "#/definitions/reference"
+                    },
+                    "RunTimeParameters": {
+                        "type": "array",
+                        "items": [
+                            {
+                                "ProcessParameterName": {
+                                    "type": "string",
+                                    "description": "name of parameter"
+                                }
+                            },
+                            {
+                                "ProcessParameterValue": {
+                                    "type": "string",
+                                    "description": "parameter value"
+                                }
+                            }
                     ]
+                    }
                 }
-            }},
+            },
             "ProcessExtent": {
                 "type": "array",
-                "items": {"$ref": "#/definitions/extent"},
+                "items": {
+                    "$ref": "#/definitions/extent"
+                },
                 "description": "0..N  scope process to a particular geographic location/locations"
             },
             "ProcessedElements": {
                 "type": "array",
-                "items": {"type": "string"},
+                "items": {
+                    "type": "string"
+                },
                 "description": "0..N, URIs for dataset, entity, attribute instances affected by this process"
             }
         }
@@ -310,107 +395,167 @@
                 "type": "string",
                 "description": "free text assessment of resource quality, including quantitative and qualitative measures"
             },
-            "QualityScope": {"properties": {
-                "ResultScopeLevel": {"$ref": "#/definitions/controlledConcept"},
-                "ResultExtent": {"$ref": "#/definitions/extent"},
-                "ResultScopeEnumeration": {
-                    "type": "array",
-                    "items": {"$ref": "#/definitions/reference"},
-                    "description": "list of references to items that the result applies to"
+            "QualityScope": {
+                "properties": {
+                    "ResultScopeLevel": {
+                        "$ref": "#/definitions/ControlledConcept"
+                    },
+                    "ResultExtent": {
+                        "$ref": "#/definitions/extent"
+                    },
+                    "ResultScopeEnumeration": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/reference"
+                        },
+                        "description": "list of references to items that the result applies to"
+                    }
                 }
-            }},
+            },
             "QualityReportElements": {
                 "type": "array",
                 "description": "each item in this list is a data quality element",
                 "items": [
-                    {"StandaloneReport": {
-                        "type": {"$ref": "#/definitions/reference"},
-                        "description": "URI for a group of elements that might be extracted as a stand alone object"
-                    }},
-                    {"ElementType": {"$ref": "#/definitions/controlledConcept"}},
-                    {"ElementConfidence": {
-                        "type": "string",
-                        "description": "general statement of confidence in this quality element assessment, guessing what the intention in 19157 is supposed to be"
-                    }},
-                    {"ElementHomogeneity": {
-                        "type": "string",
-                        "description": "how uniformly this element value applies across the assigned result scope"
-                    }},
-                    {"QualityMeasure": {
-                    "type":"object",
-                    "properties": {
-                        "MeasureType": {"$ref": "#/definitions/reference"},
-                        "MeasureLabel": {
-                            "type": "string",
-                            "description": "Text label for users to understand measure type"
-                        },
-                        "MeasureDescription": {
-                            "type": "string",
-                            "description": "explanation of measureType"
+                    {
+                        "StandaloneReport": {
+                            "type": {
+                                "$ref": "#/definitions/reference"
+                            },
+                            "description": "URI for a group of elements that might be extracted as a stand alone object"
                         }
-                    }}},
-                    {"QualityEvaluation": {
-                    "type":"object",
-                    "properties": {
-                        "EvaluationType": {
-                            "type": {"$ref": "#/definitions/reference"},
-                            "description": "links to reference docs for evaluation method should be in here"
-                        },
-                        "EvaluationMethodDescription": {
-                            "type": "string",
-                            "description": "text description of the evaluation method"
-                        },
-                        "EvaluationProcedure": {
-                            "type": "string",
-                            "description": "text description of procedure used to implement evaluation method"
+                    },
+                    {
+                        "ElementType": {
+                            "$ref": "#/definitions/ControlledConcept"
                         }
-                    }}},
-                    {"QualityElementResult": {
-                    "type":"object",
-                    "properties": {
-                        "ResultScope": {
-                        "type":"object",
-                        "properties": {
-                            "ResultScopeLevel": {"$ref": "#/definitions/controlledConcept"},
-                            "ResultExtent": {"$ref": "#/definitions/extent"},
-                            "ResultScopeEnumeration": {
-                                "type": "array",
-                                "items": {"$ref": "#/definitions/reference"},
-                                "description": "list of references to items that the result applies to"
-                            }
-                        }},
-                        "ResultValue": {"oneof": [
-                            {"ConformanceResult": {"properties": {
-                                "ResultSpecification": {"$ref": "#/definitions/reference"},
-                                "ResultExplanation": {
-                                    "type": "string",
-                                    "description": "text explanation of result"
+                    },
+                    {
+                        "ElementConfidence": {
+                            "type": "string",
+                            "description": "general statement of confidence in this quality element assessment, guessing what the intention in 19157 is supposed to be"
+                        }
+                    },
+                    {
+                        "ElementHomogeneity": {
+                            "type": "string",
+                            "description": "how uniformly this element value applies across the assigned result scope"
+                        }
+                    },
+                    {
+                        "QualityMeasure": {
+                            "type": "object",
+                            "properties": {
+                                "MeasureType": {
+                                    "$ref": "#/definitions/reference"
                                 },
-                                "ConformancePass": {"type": "boolean"}
-                            }}},
-                            {"ResultDescription": {
-                                "type": "string",
-                                "description": "text description of test result"
-                            }},
-                            {"QuantitativeResult": {"properties": {
-                                "ResultValue": {
+                                "MeasureLabel": {
                                     "type": "string",
-                                    "description": "value may be single number or a list of numbers or strings"
+                                    "description": "Text label for users to understand measure type"
                                 },
-                                "ResultValueUnits": {"$ref": "#/definitions/controlledConcept"},
-                                "ResultValueType": {
-                                    "type": {"$ref": "#/definitions/controlledConcept"},
-                                    "description": "if value is a record,link from concept URI should access a description of the record."
+                                "MeasureDescription": {
+                                    "type": "string",
+                                    "description": "explanation of measureType"
                                 }
-                            }}}
-                        ]}
-                    }}}
+                            }
+                        }
+                    },
+                    {
+                        "QualityEvaluation": {
+                            "type": "object",
+                            "properties": {
+                                "EvaluationType": {
+                                    "type": {
+                                        "$ref": "#/definitions/reference"
+                                    },
+                                    "description": "links to reference docs for evaluation method should be in here"
+                                },
+                                "EvaluationMethodDescription": {
+                                    "type": "string",
+                                    "description": "text description of the evaluation method"
+                                },
+                                "EvaluationProcedure": {
+                                    "type": "string",
+                                    "description": "text description of procedure used to implement evaluation method"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "QualityElementResult": {
+                            "type": "object",
+                            "properties": {
+                                "ResultScope": {
+                                    "type": "object",
+                                    "properties": {
+                                        "ResultScopeLevel": {
+                                            "$ref": "#/definitions/ControlledConcept"
+                                        },
+                                        "ResultExtent": {
+                                            "$ref": "#/definitions/extent"
+                                        },
+                                        "ResultScopeEnumeration": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/reference"
+                                            },
+                                            "description": "list of references to items that the result applies to"
+                                        }
+                                    }
+                                },
+                                "ResultValue": {
+                                    "oneof": [
+                                        {
+                                            "ConformanceResult": {
+                                                "properties": {
+                                                    "ResultSpecification": {
+                                                        "$ref": "#/definitions/reference"
+                                                    },
+                                                    "ResultExplanation": {
+                                                        "type": "string",
+                                                        "description": "text explanation of result"
+                                                    },
+                                                    "ConformancePass": {
+                                                        "type": "boolean"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "ResultDescription": {
+                                                "type": "string",
+                                                "description": "text description of test result"
+                                            }
+                                        },
+                                        {
+                                            "QuantitativeResult": {
+                                                "properties": {
+                                                    "ResultValue": {
+                                                        "type": "string",
+                                                        "description": "value may be single number or a list of numbers or strings"
+                                                    },
+                                                    "ResultValueUnits": {
+                                                        "$ref": "#/definitions/ControlledConcept"
+                                                    },
+                                                    "ResultValueType": {
+                                                        "type": {
+                                                            "$ref": "#/definitions/ControlledConcept"
+                                                        },
+                                                        "description": "if value is a record,link from concept URI should access a description of the record."
+                                                    }
+                                                }
+                                            }
+                                        }
+                        ]
+                                }
+                            }
+                        }
+                    }
                 ]
             }
         }
     },
-    "resourceUsageConstraintTemplate": {
-        "id": "#resourceUsageConstraint",
+    "usageConstraintTemplate": {
+        "id": "#usageConstraint",
         "type": "object",
         "properties": {
             "ConstraintsStatement": {
@@ -420,12 +565,18 @@
             "Constraints": {
                 "type": "array",
                 "items": [
-                    {"ConstraintType": {
-                        "type": {"$ref": "#/definitions/controlledConcept"},
-                        "description": "e.g.security, access, usage"
-                    }},
-                    {"ConstraintTerm": {"$ref": "#/definitions/controlledConcept"}}
-                ]
+                    {
+                        "Constraint": {
+                            "ConstraintType": {
+                                "$ref": "#/definitions/ControlledConcept",
+                                "description": "e.g.security, access, usage"
+                            },
+                            "ConstraintTerm": {
+                                "description": "a controlled concept that categorizes the constraint; may be a classificationCategory, accessConstraintCategory or useConstraintCategory",
+                                "$ref": "#/definitions/ControlledConcept"
+                            }
+                        }
+                    }]
             }
         }
     },
@@ -438,13 +589,19 @@
                 "type": "string",
                 "description": "identifier for edition"
             },
-            "EditionDate": {"$ref": "#/definitions/eventDate"},
-            "SeriesTitle": {"type": "string"},
+            "EditionDate": {
+                "$ref": "#/definitions/eventDate"
+            },
+            "SeriesTitle": {
+                "type": "string"
+            },
             "SeriesIssue": {
                 "type": "string",
                 "description": "identifier for issue in series"
             },
-            "Page": {"type": "string"},
+            "Page": {
+                "type": "string"
+            },
             "PublicationDescription": {
                 "type": "string",
                 "description": "free text with other details specific to this particular manifestation of the resource.might add physicalDistribution elements here for library usage..."
@@ -456,17 +613,25 @@
         "type": "object",
         "properties": {
             "DataSchema": {
-                "type": {"$ref": "#/definitions/reference"},
+                "type": {
+                    "$ref": "#/definitions/reference"
+                },
                 "description": "link to one or more resources describing the data schema"
             },
             "DataSetEntites": {
                 "type": "array",
                 "items": [
-                    {"EntityCount": {
-                        "type": "integer",
-                        "description": "number of instances of this entity in a particular dataset instance"
-                    }},
-                    {"EntityDescription": {"$ref": "#/entity"}}
+                    {
+                        "EntityCount": {
+                            "type": "integer",
+                            "description": "number of instances of this entity in a particular dataset instance"
+                        }
+                    },
+                    {
+                        "EntityDescription": {
+                            "$ref": "#/entity"
+                        }
+                    }
                 ]
             }
         }
@@ -482,11 +647,15 @@
                 "description": "allows this entity to be referenced externally"
             },
             "EntityReference": {
-                "type": {"$ref": "#/definitions/referenceTemplate"},
+                "type": {
+                    "$ref": "#/definitions/referenceTemplate"
+                },
                 "description": "an entity defintion my be include by reference to an external resource.If this is used, the rest of the elements in this object are not necessary and may be ignored in processing."
             },
             "EntityType": {
-                "type": {"$ref": "#/definitions/controlledConcept"},
+                "type": {
+                    "$ref": "#/definitions/ControlledConcept"
+                },
                 "description": "feature dataset(collection of related geographic entities unified by spatial reference), relational table, object..."
             },
             "EntityName": {
@@ -496,50 +665,77 @@
             "AltEntityName": {
                 "type": "array",
                 "items": [
-                    {"AltEntityNameText": {"type": "string"}},
-                    {"AltEntityNameLanguage": {
-                        "type": "string",
-                        "format": "ISO three letter language code"
-                    }}
+                    {
+                        "AltEntityNameText": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "AltEntityNameLanguage": {
+                            "type": "string",
+                            "format": "ISO three letter language code"
+                        }
+                    }
                 ]
             },
             "PartEntity": {
                 "type": "array",
-                "items": {"$ref": "#/entity"},
+                "items": {
+                    "$ref": "#/entity"
+                },
                 "description": "compound entity like a feature dataset may have several included entities(lines and polys that have topological relationships)"
             },
-            "EntityAttribute": {"properties": {
-                "LocalName": {
-                    "type": "string",
-                    "description": "name of attribute specific to context of this entity"
-                },
-                "Cardinality": {
-                    "type": "string",
-                    "enum": [
+            "EntityAttribute": {
+                "properties": {
+                    "LocalName": {
+                        "type": "string",
+                        "description": "name of attribute specific to context of this entity"
+                    },
+                    "Cardinality": {
+                        "type": "string",
+                        "enum": [
                         "1",
                         "0..1",
                         "1..N",
                         "0..N"
                     ]
-                },
-                "Attributes": {
-                    "type": "array",
-                    "items": {"$ref": "#/attributeTemplate"}
-                },
-                "SpatialTopologyType": {"$ref": "#/definitions/controlledConcept"},
-                "GeometryType": {"$ref": "#/definitions/controlledConcept"},
-                "SpatialReferenceSystem": {"$ref": "#/definitions/reference"},
-                "Resolution": {
-                "type":"object",
-                "properties": {
-                    "ResolutionDenominator": {"type": "integer"},
-                    "ResolutionDistance": {"type":"object",
-                    "properties": {
-                        "ResolutionDistValue": {"type": "float"},
-                        "ResolutionUOM": {"$ref": "#/definitions/controlledConcept"}
-                    }}
-                }}
-            }}
+                    },
+                    "Attributes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/attributeTemplate"
+                        }
+                    },
+                    "SpatialTopologyType": {
+                        "$ref": "#/definitions/ControlledConcept"
+                    },
+                    "GeometryType": {
+                        "$ref": "#/definitions/ControlledConcept"
+                    },
+                    "SpatialReferenceSystem": {
+                        "$ref": "#/definitions/reference"
+                    },
+                    "Resolution": {
+                        "type": "object",
+                        "properties": {
+                            "ResolutionDenominator": {
+                                "type": "integer"
+                            },
+                            "ResolutionDistance": {
+                                "type": "object",
+                                "properties": {
+                                    "ResolutionDistValue": {
+                                        "type": "float"
+                                    },
+                                    "ResolutionUOM": {
+                                        "$ref": "#/definitions/ControlledConcept"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "attributeTemplate": {
@@ -552,19 +748,29 @@
                 "description": "to allow reference to this attribute definition from other objects"
             },
             "AttributeReference": {
-                "type": {"$ref": "#/definitions/reference"},
+                "type": {
+                    "$ref": "#/definitions/reference"
+                },
                 "description": "attribute definition may be by reference, in which case rest of elements in this object are unnecessary."
             },
-            "PropertySpecified": {"$ref": "#/definitions/controlledConcept"},
+            "PropertySpecified": {
+                "$ref": "#/definitions/ControlledConcept"
+            },
             "ConceptualDimension": {
-                "type": {"$ref": "#/definitions/controlledConcept"},
+                "type": {
+                    "$ref": "#/definitions/ControlledConcept"
+                },
                 "description": "0..1 e.g.length, mass, concept, velocity.The value here will be related to the valid UOM for the value."
             },
             "DataType": {
-                "type": {"$ref": "#/definitions/controlledConcept"},
+                "type": {
+                    "$ref": "#/definitions/ControlledConcept"
+                },
                 "description": "0..1, integer, float, text, URI, reference..."
             },
-            "Domain": {"$ref": "#/definitions/valueDomain"}
+            "Domain": {
+                "$ref": "#/definitions/valueDomain"
+            }
         }
     },
     "serviceDetailsTemplate": {
@@ -572,22 +778,34 @@
         "description": "for metadata describing a service, the distribution section should include links to service end point URLs that will provide the service - specific self description document, e.g.THREDDS catalog, OGC GetCapabilities, OpenSearchDescription, WSDL, WADL, etc. This detail section allows linking to datasets exposed by the service, generic description of the operations provided by the service, and any important bindings between datasets and operations.It is anticipated that in most cases, this information will be gleaned from the service self - description document.Links to datasets are useful for discovery of services exposing particular datasets(which may be unknown to the dataset originator or metadata record creator",
         "type": "object",
         "properties": {
-            "ServiceType": {"$ref": "#/definitions/reference"},
-            "CouplingType": {"$ref": "#/definitions/controlledConcept"},
+            "ServiceType": {
+                "$ref": "#/definitions/reference"
+            },
+            "CouplingType": {
+                "$ref": "#/definitions/ControlledConcept"
+            },
             "Operations": {
                 "type": "array",
-                "items": {"$ref": "#/serviceOperation"}
+                "items": {
+                    "$ref": "#/serviceOperation"
+                }
             },
             "CoupledResources": {
                 "type": "array",
-                "items": {"coupledResource": {
-                    "type": "object",
-                    "properties": {
-                        "OperatesOn": {"$ref": "#/definitions/reference"},
-                        "CoupledOperation": {"$ref": "#/serviceOperation"}
-                    },
-                    "description": "operations specified in this section should not be duplicated in Operations section unless they may also be invoked in a loosely coupled mode"
-                }}
+                "items": {
+                    "coupledResource": {
+                        "type": "object",
+                        "properties": {
+                            "OperatesOn": {
+                                "$ref": "#/definitions/reference"
+                            },
+                            "CoupledOperation": {
+                                "$ref": "#/serviceOperation"
+                            }
+                        },
+                        "description": "operations specified in this section should not be duplicated in Operations section unless they may also be invoked in a loosely coupled mode"
+                    }
+                }
             }
         }
     },
@@ -599,7 +817,9 @@
                 "type": "string",
                 "format": "URI"
             },
-            "OperationType": {"$ref": "#/definitions/controlledConcept"},
+            "OperationType": {
+                "$ref": "#/definitions/ControlledConcept"
+            },
             "description": "operations can be categorized using standard vocabularies to assist search/discovery",
             "InvocationName": {
                 "type": "string",
@@ -640,8 +860,12 @@
                             "1..N",
                             "0..N"
                         ],
-                        "ParameterDataType": {"$ref": "#/definitions/controlledConcept"},
-                        "ParameterDomain": {"$ref": "#/definitions/valueDomainTemplate"}
+                        "ParameterDataType": {
+                            "$ref": "#/definitions/ControlledConcept"
+                        },
+                        "ParameterDomain": {
+                            "$ref": "#/definitions/valueDomainTemplate"
+                        }
                     }
                 }
             }
@@ -651,7 +875,9 @@
         "id": "#coverageDetails",
         "type": "object",
         "properties": {
-            "CoverageType": {"$ref": "#/definitions/controlledConcept"},
+            "CoverageType": {
+                "$ref": "#/definitions/ControlledConcept"
+            },
             "Portrayal": {
                 "$ref": "#/definitions/reference",
                 "description": "link to visualization of coverage, e.g. a browse graphic."
@@ -664,10 +890,14 @@
                 "type": "string",
                 "description": "text description of coverage gridding scheme"
             },
-            "NGridDimensions": {"type": "integer"},
+            "NGridDimensions": {
+                "type": "integer"
+            },
             "GridAxis": {
                 "type": "array",
-                "items": {"$ref": "#/gridAxis"},
+                "items": {
+                    "$ref": "#/gridAxis"
+                },
                 "minItems": 1,
                 "description": "1..N one instance for each grid dimension"
             },
@@ -677,7 +907,7 @@
             },
             "GeoreferenceStatus": {
                 "description": "Term to indicate the status of a coverage with respect to establishing georeferencing. Includes e.g. {georeferencable, georectified, georeferenced...}, for coverage that  could be georeferenced, coverage that is georectified such that grid points are regularly located in a geographic coordinate system, georefenced means that information is included with the coverage (e.g. file header or world file) that defines mapping between coverage grid and geographic location.",
-                "$ref": "#/definitions/controlledConcept"
+                "$ref": "#/definitions/ControlledConcept"
             }
         }
     },
@@ -685,16 +915,26 @@
         "id": "#gridAxis",
         "type": "object",
         "properties": {
-            "PointOrInterval": {"$ref": "#/definitions/controlledConcept"},
-            "RegularOrIrregular": {"$ref": "#/definitions/controlledConcept"},
+            "PointOrInterval": {
+                "$ref": "#/definitions/ControlledConcept"
+            },
+            "RegularOrIrregular": {
+                "$ref": "#/definitions/ControlledConcept"
+            },
             "Spacing": {
                 "type": "object",
                 "properties": {
-                    "CellLength": {"type": "number"},
-                    "CellUOM": {"$ref": "#/definitions/controlledConcept"}
+                    "CellLength": {
+                        "type": "number"
+                    },
+                    "CellUOM": {
+                        "$ref": "#/definitions/ControlledConcept"
+                    }
                 }
             },
-            "Property": {"$ref": "#/definitions/controlledConcept"},
+            "Property": {
+                "$ref": "#/definitions/ControlledConcept"
+            },
             "AxisDomain": {
                 "type": "string",
                 "description": "explanation of value domain for this axis"
@@ -705,17 +945,39 @@
         "id": "#earthImage",
         "type": "object",
         "properties": {
-            "IlluminationElevationAngle": {"type": "number"},
-            "IlluminationAzimuthAngle": {"type": "number"},
-            "ImagingCondition": {"$ref": "#/definitions/controlledConcept"},
-            "CloudCoverPercent": {"type": "number"},
-            "ProcessingLevel": {"$ref": "#/controllecConcept"},
-            "CompressionGenerationQuantity": {"type": "number"},
-            "TriangulationIndicator": {"type": "boolean"},
-            "RadiometricCalibration": {"$ref": "#/definitions/reference"},
-            "CameraCalibration": {"$ref": "#/definitions/reference"},
-            "FilmDistortionInformation": {"$ref": "#/definitions/reference"},
-            "LensDistortionInformation": {"$ref": "#/definitions/reference"}
+            "IlluminationElevationAngle": {
+                "type": "number"
+            },
+            "IlluminationAzimuthAngle": {
+                "type": "number"
+            },
+            "ImagingCondition": {
+                "$ref": "#/definitions/ControlledConcept"
+            },
+            "CloudCoverPercent": {
+                "type": "number"
+            },
+            "ProcessingLevel": {
+                "$ref": "#/controllecConcept"
+            },
+            "CompressionGenerationQuantity": {
+                "type": "number"
+            },
+            "TriangulationIndicator": {
+                "type": "boolean"
+            },
+            "RadiometricCalibration": {
+                "$ref": "#/definitions/reference"
+            },
+            "CameraCalibration": {
+                "$ref": "#/definitions/reference"
+            },
+            "FilmDistortionInformation": {
+                "$ref": "#/definitions/reference"
+            },
+            "LensDistortionInformation": {
+                "$ref": "#/definitions/reference"
+            }
         }
     },
     "softwareTemplate": {
@@ -723,8 +985,12 @@
         "type": "object",
         "description": "this should be considered a rough draft of what might be useful...",
         "properties": {
-            "ApplicationScheme": {"$ref": "#/definitions/reference"},
-            "OperatingSystem": {"$ref": "#/definitions/controlledConcept"},
+            "ApplicationScheme": {
+                "$ref": "#/definitions/reference"
+            },
+            "OperatingSystem": {
+                "$ref": "#/definitions/ControlledConcept"
+            },
             "HarwareRequirements": {
                 "type": "string",
                 "description": "text describing necessary hardware environment for software to execute"
@@ -736,8 +1002,8 @@
         }
     },
     "definitions": {
-        "controlledConceptTemplate": {
-            "id": "#controlledConcept",
+        "ControlledConceptTemplate": {
+            "id": "#ControlledConcept",
             "type": "object",
             "properties": {
                 "ConceptURI": {
@@ -750,20 +1016,24 @@
                 },
                 "AltLabels": {
                     "type": "array",
-                    "items": {"altLabel": {
-                        "type": "object",
-                        "properties": {
-                            "labelText": {"type": "string"},
-                            "language": {
-                                "type": "string",
-                                "format": "ISO three letter language code"
-                            },
-                            "locale": {
-                                "type": "string",
-                                "description": "text that defines a context for use of this label"
+                    "items": {
+                        "altLabel": {
+                            "type": "object",
+                            "properties": {
+                                "labelText": {
+                                    "type": "string"
+                                },
+                                "language": {
+                                    "type": "string",
+                                    "format": "ISO three letter language code"
+                                },
+                                "locale": {
+                                    "type": "string",
+                                    "description": "text that defines a context for use of this label"
+                                }
                             }
                         }
-                    }}
+                    }
                 },
                 "VocabularyURI": {
                     "type": "string",
@@ -771,24 +1041,32 @@
                 },
                 "ConceptLink": {
                     "type": "array",
-                    "items": {"$ref": "#/definitions/link"},
+                    "items": {
+                        "$ref": "#/definitions/link"
+                    },
                     "description": "0..N can provide various links to get related concepts, definitions, source, etc."
                 }
             }
         },
-        "partyTemplate": {
-            "id": "#party",
+        "RelatedAgentTemplate": {
+            "id": "#RelatedAgent",
             "type": "object",
             "properties": {
-                "Role": {"$ref": "#/definitions/controlledConcept"},
+                "Role": {
+                    "$ref": "#/definitions/ControlledConcept"
+                },
                 "Agent": {
                     "type": "object",
                     "properties": {
                         "Persons": {
                             "type": "array",
-                            "items": {"$ref": "#/definitions/individual"}
+                            "items": {
+                                "$ref": "#/definitions/individual"
+                            }
                         },
-                        "Organization": {"$ref": "#/definitions/organization"}
+                        "Organization": {
+                            "$ref": "#/definitions/organization"
+                        }
                     }
                 },
                 "ContactInformation": {
@@ -797,13 +1075,19 @@
                         "PhoneNumbers": {
                             "type": "array",
                             "description": "e.g.office, reception, fax, cel",
-                            "items": {"Phone": {
-                                "type": "object",
-                                "properties": {
-                                    "PhType": {"type": "string"},
-                                    "number": {"type": "string"}
+                            "items": {
+                                "Phone": {
+                                    "type": "object",
+                                    "properties": {
+                                        "PhType": {
+                                            "type": "string"
+                                        },
+                                        "number": {
+                                            "type": "string"
+                                        }
+                                    }
                                 }
-                            }}
+                            }
                         },
                         "Email": {
                             "type": "string",
@@ -815,7 +1099,9 @@
                         },
                         "Links": {
                             "type": "array",
-                            "items": {"$ref": "#/definitions/link"}
+                            "items": {
+                                "$ref": "#/definitions/link"
+                            }
                         }
                     }
                 }
@@ -839,7 +1125,9 @@
                 },
                 "IndividualInfo": {
                     "type": "array",
-                    "items": {"$ref": "#/definitions/link"}
+                    "items": {
+                        "$ref": "#/definitions/link"
+                    }
                 }
             }
         },
@@ -853,12 +1141,16 @@
                 },
                 "Name": {
                     "type": "array",
-                    "items": {"type": "string"},
+                    "items": {
+                        "type": "string"
+                    },
                     "minItems": 1
                 },
                 "Info": {
                     "type": "array",
-                    "items": {"$ref": "#/definitions/link"},
+                    "items": {
+                        "$ref": "#/definitions/link"
+                    },
                     "description": "one of these should be for an icon to represent the organization",
                     "minItems": 0
                 }
@@ -913,9 +1205,15 @@
                 "VerticalExtent": {
                     "type": "object",
                     "properties": {
-                        "VerticalMinimum": {"type": "number"},
-                        "VerticalMaximum": {"type": "number"},
-                        "VerticalCRS": {"$ref": "#/definitions/reference"}
+                        "VerticalMinimum": {
+                            "type": "number"
+                        },
+                        "VerticalMaximum": {
+                            "type": "number"
+                        },
+                        "VerticalCRS": {
+                            "$ref": "#/definitions/reference"
+                        }
                     }
                 }
             }
@@ -943,7 +1241,7 @@
                 },
                 "Function": {
                     "type": "array",
-                    "$ref": "#/definitions/controlledConcept"
+                    "$ref": "#/definitions/ControlledConcept"
                 },
                 "BaseProtocol": {
                     "type": "string",
@@ -959,20 +1257,22 @@
                 },
                 "AltTitles": {
                     "type": "array",
-                    "items": {"AltTitle": {
-                        "type": "object",
-                        "properties": {
-                            "AltTitleText": {
-                                "type": "string",
-                                "description": "string to display"
-                            },
-                            "AltTitleLanguage": {
-                                "type": "string",
-                                "format": "ISO three letter language code",
-                                "pattern": "/[a-zA-Z]{3}/"
+                    "items": {
+                        "AltTitle": {
+                            "type": "object",
+                            "properties": {
+                                "AltTitleText": {
+                                    "type": "string",
+                                    "description": "string to display"
+                                },
+                                "AltTitleLanguage": {
+                                    "type": "string",
+                                    "format": "ISO three letter language code",
+                                    "pattern": "/[a-zA-Z]{3}/"
+                                }
                             }
                         }
-                    }}
+                    }
                 },
                 "Description": {
                     "type": "string",
@@ -990,23 +1290,25 @@
                 },
                 "LinkModifier": {
                     "description": "term (controlled concept or URI?) that characterize the link or expected behavior, analogous to xlink:actuate. Some compiled terms include noFollow, new, replace, embed, onLoad, onRequest, noReferrer, prefetch //0..N",
-                    "$ref": "#/definitions/controlledConcept"
+                    "$ref": "#/definitions/ControlledConcept"
                 }
             }
         },
         "referenceTemplate": {
             "id": "#reference",
-            "description": "// use when another external linked data resource is intended to be the value of some element. The URI is proxy for that resource, such that text-based identifier comparison can be used when convienent. The associated links are for advertising specific representations or related resources. Some of these are likely to be accessible by dereferncing the URI, but the link elements allow explicit indication of the available representations and how to get them (with no URI redirection...)",
+            "description": "use when another external linked data resource is intended to be the value of some element. The URI is proxy for that resource, such that text-based identifier comparison can be used when convienent. The associated links are for advertising specific representations or related resources. Some of these are likely to be accessible by dereferncing the URI, but the link elements allow explicit indication of the available representations and how to get them (with no URI redirection...)",
             "type": "object",
             "properties": {
                 "URI": {
+                    "description": "identifier for referenced resource",
                     "type": "string",
-                    "format": "uri",
-                    "description": "identifier for referenced resource"
+                    "format": "uri"
                 },
                 "Links": {
                     "type": "array",
-                    "items": {"$ref": "#/definitions/link"},
+                    "items": {
+                        "$ref": "#/definitions/link"
+                    },
                     "description": "Links to representation of some referenced resource"
                 }
             }
@@ -1017,7 +1319,9 @@
             "properties": {
                 "EventType": {
                     "type": "array",
-                    "items": {"$ref": "#/definitions/controlledConcept"},
+                    "items": {
+                        "$ref": "#/definitions/ControlledConcept"
+                    },
                     "description": "0..N  event may be categorized in various ways..."
                 },
                 "Date": {
@@ -1032,25 +1336,37 @@
             "type": "object",
             "description": "choice of one of the following elements:",
             "oneOf": [
-                {"NumericDomain": {
-                    "type": "object",
-                    "properties": {
-                        "LowerBound": {"type": "number"},
-                        "UpperBound": {"type": "number"}
+                {
+                    "NumericDomain": {
+                        "type": "object",
+                        "properties": {
+                            "LowerBound": {
+                                "type": "number"
+                            },
+                            "UpperBound": {
+                                "type": "number"
+                            }
+                        }
                     }
-                }},
-                {"ControlledVocabulary": {
-                    "$ref": "#/definitions/reference",
-                    "description": "attribute value is restricted to terms from a vocabulary (pick list)"
-                }},
-                {"TargetEntity": {
-                    "$ref": "#/definitions/reference",
-                    "description": "if attribute value is link to another entity. The URI identifies an entity type definition, and the reference links should enable access to the linked resource in a specific instance."
-                }},
-                {"StringLength": {
-                    "type": "integer",
-                    "description": "if datatype is text, max lenght of text string"
-                }}
+                },
+                {
+                    "ControlledVocabulary": {
+                        "$ref": "#/definitions/reference",
+                        "description": "attribute value is restricted to terms from a vocabulary (pick list)"
+                    }
+                },
+                {
+                    "TargetEntity": {
+                        "$ref": "#/definitions/reference",
+                        "description": "if attribute value is link to another entity. The URI identifies an entity type definition, and the reference links should enable access to the linked resource in a specific instance."
+                    }
+                },
+                {
+                    "StringLength": {
+                        "type": "integer",
+                        "description": "if datatype is text, max lenght of text string"
+                    }
+                }
             ]
         }
     }
