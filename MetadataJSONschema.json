@@ -118,14 +118,23 @@
                 "description": "information to identify and locate published resources for which a formal bibliographic reference is appropriate.  Resource identifiers may include ISBN, ISSN, DeweyDecimal system numbers, or other URIs determined by the publishing authority.",
                 "type": "object",
                 "properties": {
+                    "jmd:citedSourceAgent": {
+                        "description": "intellectual originator of cited work that metadata record describes.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/RelatedAgent"
+                        }
+                    },
                     "jmd:citedResourceIdentifier": {
                         "description": "Other identifier(s) for the cited resource, e.g. ISBN, ISSN, Dewey Decimal system numbers, or other URIs determined by the publishing authority",
                         "type": "object",
                         "properties": {
                             "jmd:citationIdentifier": {
+                                "description": "Note citation it to a particular manifestation or expression of the resource; the citationIdentifier is bound to that resource. The resourceURI is intended to identify the resource at the work level.",
                                 "type": "string"
                             },
                             "jmd:citationIdAuthority": {
+                                "description": "an identifier for the authority or identifier scheme within which the citationIdentifier is defined.",
                                 "type": "string"
                             }
                         }
@@ -230,16 +239,23 @@
                         },
                             {
                                 "jmd:offlineAccess": {
+                                    "description": "information describing offline distribution, involving some sort of physical media",
                                     "type": "object",
                                     "properties": {
                                         "jmd:accessInstructions": {
                                             "type": "string",
                                             "description": "free text description of how to get resource;  Include turnaround time and business hours information, turnaround time, and any other necessary information, including density, density units, number of volumes, software or hardware requirements, etc."
                                         },
-                                        "jmd:mediumType": {
+                                        "jmd:offlineMediumType": {
+                                            "description": "specification of the physical media that contains the distribution of the resource. This may be one of a variety of digital media (magnetic tape, hard disk, CDROM, DVD, thumb drive), or various legacy physical media (paper sheet, book, film transparency, rock specimen...)",
                                             "$ref": "#/definitions/ControlledConcept"
                                         },
-                                        "jmd:mediumFormat": {
+                                        "jmd:offlineMediumFormat": {
+                                            "description": "Medium format is used in this scheme to specify the low-level formatting of information on a physical media.",
+                                            "$ref": "#/definitions/ControlledConcept"
+                                        },
+                                        "jmd:offlineFileFormat": {
+                                            "description": "File format is used in this scheme to specify file formatting analogoous to mime type for offline distributions. Formats are typically associated with particular applications that can open the file (e.g. .doc, .xls) or are generic file types that can be opened by various applicaitons (e.g. text, tiff, csv...). Specific community profiles are necessary to specify the syntax and vocabulary for file format information.",
                                             "$ref": "#/definitions/ControlledConcept"
                                         }
                                     }
@@ -293,7 +309,7 @@
                         "$ref": "#/ServiceDetails"
                     },
                     "jmd:coverageDataset": {
-                        "jmd:$ref": "#/CoverageDetails"
+                        "$ref": "#/CoverageDetails"
                     },
                     "jmd:earthImageCoverage": {
                         "$ref": "#/EarthImage"
@@ -890,6 +906,7 @@
                             "$ref": "#/definitions/Reference"
                         },
                         "jmd:coupledOperation": {
+                            "description": "specifies an operation that is tightly coupled to the dataset specified by serviceOperatesOn attribute in this coupled resource element.",
                             "$ref": "#/ServiceOperation"
                         }
                     }
@@ -1394,7 +1411,7 @@
         },
 
         "jmd:ExtentObject": {
-            "description": "schema for documenting geographic footprint of a described resource. Constraint: at least one of extentReference, boundingBoxWGS84, geometry or verticalExtent MUST have a valid value.",
+            "description": "schema for documenting geographic footprint of a described resource. Constraint: at least one of extentReference, boundingBoxWGS84, extentGeometry or verticalExtent MUST have a valid value.",
             "id": "#Extent",
             "type": "object",
             "properties": {
@@ -1451,19 +1468,20 @@
                     "items": {
                         "$ref": "https://raw.githubusercontent.com/fge/sample-json-schemas/master/geojson/geojson.json"
                     }
-                }
-            },
-            "jmd:verticalExtent": {
-                "type": "object",
-                "properties": {
-                    "jmd:verticalExtentMinimum": {
-                        "type": "number"
-                    },
-                    "jmd:verticalExtentMaximum": {
-                        "type": "number"
-                    },
-                    "jmd:verticalExtentCRS": {
-                        "$ref": "#/definitions/Reference"
+                },
+
+                "jmd:verticalExtent": {
+                    "type": "object",
+                    "properties": {
+                        "jmd:verticalExtentMinimum": {
+                            "type": "number"
+                        },
+                        "jmd:verticalExtentMaximum": {
+                            "type": "number"
+                        },
+                        "jmd:verticalExtentCRS": {
+                            "$ref": "#/definitions/Reference"
+                        }
                     }
                 }
             }
