@@ -75,7 +75,7 @@
                 "type": "string"
             },
             "jmd:resourceURI": {
-                "description": "Unique identifier conforming to IETF URI syntax (RFC 3986)",
+                "description": "Unique identifier conforming to IETF URI syntax (RFC 3986). Resource may have multiple identifiers; the identifier in this element is the preferred identifier recommended by the resource steward. The resourceURI is intended to identify the resource at the work level. Other identifiers are included in the citation section and typically identify particular manifestations or expressions.",
                 "type": "string",
                 "format": "URI"
             },
@@ -109,6 +109,10 @@
                     "format": "ISO8601"
                 }
             },
+            "jmd:resourceCharacterEncoding": {
+                "description": "character set for described resource content",
+                "type": "string"
+            },
             "jmd:resourceLanguage": {
                 "description": "Language of resource content. Multiple languages may be specified. Use Nil not applicable if there is no text in the resource.",
                 "type": "string",
@@ -126,16 +130,17 @@
                         }
                     },
                     "jmd:citedResourceIdentifier": {
-                        "description": "Other identifier(s) for the cited resource, e.g. ISBN, ISSN, Dewey Decimal system numbers, or other URIs determined by the publishing authority",
-                        "type": "object",
-                        "properties": {
+                        "description": "Identifier(s) for the cited resource, e.g. ISBN, ISSN, Dewey Decimal system numbers, or other URIs determined by the publishing authority",
+                        "type": "array",
+                        "required":["jmd:citationIdentifier"],
+                        "items": {
                             "jmd:citationIdentifier": {
-                                "description": "Note citation it to a particular manifestation or expression of the resource; the citationIdentifier is bound to that resource. The resourceURI is intended to identify the resource at the work level.",
+                                "description": "Note citation is to a particular manifestation or expression of the resource; the citationIdentifier is bound to that resource. The resourceURI is intended to identify the resource at the work level.",
                                 "type": "string"
                             },
                             "jmd:citationIdAuthority": {
                                 "description": "an identifier for the authority or identifier scheme within which the citationIdentifier is defined.",
-                                "type": "string"
+                                "$ref": "#/definitions/Reference"
                             }
                         }
                     },
@@ -288,7 +293,7 @@
                 "$ref": "#/jmd:Maintenance",
                 "description": " only one here, because particular maintainence events that update the resource should be recorded in the lineage. This element provides information on how often maintenance is expected to occur and who is doing the maintenance. The resource maintenance contact will be the point of contact for reporting issues with the resource content."
             },
-            "jmd:relatedResources": {
+            "jmd:relatedResource": {
                 "description": "links to related resources. The relation property on the link defines the association type, and the link label provides the related resource name",
                 "type": "array",
                 "items": {
@@ -407,12 +412,14 @@
                 "description": "number each step to put them in order. Order of listing in processing array is not significant"
             },
             "jmd:stepInputResource": {
+                "description": "reference that identifies the resource(s) that are input into the process step",
                 "type": "array",
                 "items": {
                     "$ref": "#/definitions/Reference"
                 }
             },
             "jmd:stepOutputResource": {
+                "description": "reference that identifies the resource(s) that are output from the process step",
                 "type": "array",
                 "items": {
                     "$ref": "#/definitions/Reference"
@@ -650,18 +657,20 @@
     },
 
     "jmd:UsageConstraintObject": {
+        "description": "properties for specifying legal, technical or security restrictions on the usage or distribution of a resource",
         "id": "#UsageConstraint",
         "type": "object",
         "properties": {
             "anyOf": [
                 {
                     "jmd:constraintsStatement": {
-                        "description": "free text description of legal or security related constraint on access oto or use of the described resource",
+                        "description": "free text description of legal, technical, and security-related constraint on access to or use of a resource",
                         "type": "string"
                     }
                 },
                 {
                     "jmd:constraints": {
+                        "description": "list of all constraints on usage, each categorized by type (security, legal, technical) and specific instance of that constraint type using a controlled vocabulary. Any necessary text elucidation of the constraints should be in the constraintsStatement element",
                         "type": "array",
                         "minItems": 1,
                         "items": {
@@ -669,11 +678,11 @@
                             "required": ["jmd:constraintType", "jmd:constraintTerm"],
                             "properties": {
                                 "jmd:constraintType": {
-                                    "$ref": "#/definitions/ControlledConcept",
-                                    "description": "e.g.security, access, usage"
+                                    "description": "category of constraint e.g.security, access, technical, usage",
+                                    "$ref": "#/definitions/ControlledConcept"
                                 },
                                 "jmd:constraintTerm": {
-                                    "description": "a controlled concept that categorizes the constraint; may be a classificationCategory, accessConstraintCategory or useConstraintCategory",
+                                    "description": "a controlled concept that specifies the particular constraint within the domain of constraints specified by the constraintType; e.g. ISO19115 codelists",
                                     "$ref": "#/definitions/ControlledConcept"
                                 }
                             }
@@ -857,11 +866,13 @@
                     "anyOf": [
                         {
                             "jmd:resolutionDenominator": {
+                                "description": "resolution of spatial data specified as the design scale denominator for protrayal of the data.",
                                 "type": "integer"
                             }
                         },
                         {
                             "jmd:resolutionDistance": {
+                                "description": "resolution of spatial data specified as the minimum distance between resolvable locations in the location data",
                                 "type": "object",
                                 "properties": {
                                     "jmd:resolutionDistValue": {
@@ -897,21 +908,35 @@
                 }
             },
             "jmd:operationCoupledResources": {
+                "description": "specification of binding between particular operations and particular datasets. If no operation is specified, the implication is that all operations can be targeted at the specified operatesOn resource. Operations specified in this section should generally be specified in the Operations section and included in this section by reference",
                 "type": "array",
                 "items": {
                     "type": "object",
-                    "required": ["jmd:serviceOperatesOn", "jmd:coupledOperation"],
+                    "required": ["jmd:serviceOperatesOn"],
                     "properties": {
                         "jmd:serviceOperatesOn": {
-                            "$ref": "#/definitions/Reference"
+                            "description": "specifies one or more resources that can be an input for the operation. In a tightly coupled service, this may be the only input resoruce that is available. For loosely coupled services, this element may identify one or more resources that can be used as input.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Reference"
+                            }
                         },
                         "jmd:coupledOperation": {
                             "description": "specifies an operation that is tightly coupled to the dataset specified by serviceOperatesOn attribute in this coupled resource element.",
-                            "$ref": "#/ServiceOperation"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/ServiceOperation"
+                            }
                         }
                     }
-                },
-                "description": "operations specified in this section should not be duplicated in Operations section unless they may also be invoked in a loosely coupled mode"
+                }
+            },
+            "jmd:serviceDescriptionLink": {
+                "description": "links to resources related to the service, typically should include a link to a service description document as specified by the service definition; this might be an OGC capabilities document, WSDL, WADL, Hydra, Siren etc. document.",
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/Link"
+                }
             }
         }
     },
@@ -1147,9 +1172,9 @@
                     "type": "string",
                     "format": "uri"
                 },
-                "jmd:relation": {
+                "jmd:linkRelation": {
                     "type": "array",
-                    "description": "Term from IANA rel vocabulary for consistency with IETF5988",
+                    "description": "Term from IANA rel vocabulary for consistency with IETF5988. Specifies relationship between resources and or ",
                     "items": {
                         "$ref": "#/definitions/Reference"
                     },
@@ -1221,7 +1246,7 @@
                     "type": "string",
                     "format": "uri"
                 },
-                "jmd:referenceLinks": {
+                "jmd:referenceLink": {
                     "description": "Links to representation of some referenced resource",
                     "type": "array",
                     "items": {
@@ -1341,6 +1366,7 @@
                             "description": "postal address,ideally formatted appropriate to the target country. One field because there is no clear reason to disaggregate the address into street, city, country, postal code, etc..."
                         },
                         "jmd:contactLinks": {
+                            "description": "one or more links to other resources related to the agent",
                             "type": "array",
                             "items": {
                                 "$ref": "#/definitions/Link"
@@ -1462,6 +1488,11 @@
                         }
                     }
                 },
+                "jmd:extentGeometryType": {
+                    "description": "category concept to specify the relationship of the extent to the geographic footprint of the resource, use to distinguish whether the geometry encompasses an area covered by the data or an area where data is not present, or if a point location is provided whether that is a centroid or actual resource location",
+
+                    "$ref": "#/definitions/ControlledConcept"
+                },
                 "jmd:extentGeometry": {
                     "description": "allow arbitrary geometry object to specify extent. Use GeoJSON encoding. Schema by fge on Github",
                     "type": "array",
@@ -1469,8 +1500,8 @@
                         "$ref": "https://raw.githubusercontent.com/fge/sample-json-schemas/master/geojson/geojson.json"
                     }
                 },
-
                 "jmd:verticalExtent": {
+                    "description": "Maximum and Minimum Elevations are relative to a datum elevation (based on vertical CRS), which will typically be the Earth surface at the location of the resource or sea level. Datum Elevation must be reported relative to mean sea level (MSL) in meters using EPSG::5714 geodetic parameters (WGS 84). Datum type must be a controlled vocabulary (Earth surface, MSL, Kelly bushing, etc.). The maximum is always numerically greater than the minimum elevation. For boreholes with datum at the earth surface, depth below surface is reported as a negative number.  *Vertical extent may be reported relative to different datum (e.g. sea level, Earth surface) in the same record.  Example: core from borehole at depths between 100 and 470 feet, borehole collar at 4787 feet above sea level.",
                     "type": "object",
                     "properties": {
                         "jmd:verticalExtentMinimum": {
