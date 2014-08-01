@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:DataServices m:DataServiceVersion="1.0" m:MaxDataServiceVersion="3.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <Schema Namespace="ResourceMvc.Models" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+            <EntityType Name="Domain">
+                <Key>
+                    <PropertyRef Name="DomainId" />
+                </Key>
+                <Property Name="DomainId" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+                <Property Name="Name" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="Description" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="LinkedDataUrl" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+            </EntityType>
+            
+            <EntityType Name="NamedLocation">
+                <Key>
+                    <PropertyRef Name="NamedLocationId" />
+                </Key>
+                <Property Name="NamedLocationId" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+                <Property Name="LinkedDataUrl" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="LocationName" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="West" Type="Edm.Double" Nullable="false" />
+                <Property Name="South" Type="Edm.Double" Nullable="false" />
+                <Property Name="North" Type="Edm.Double" Nullable="false" />
+                <Property Name="East" Type="Edm.Double" Nullable="false" />
+            </EntityType>
+            
+            <EntityType Name="Organization">
+                <Key>
+                    <PropertyRef Name="OrganizationId" />
+                </Key>
+                <Property Name="OrganizationId" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+                <Property Name="Acronym" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="Name" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="URL" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="LinkedDataUrl" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <NavigationProperty Name="DomainResources" Relationship="ResourceMvc.Models.Resource_Organization" ToRole="Resource_Organization_Source" FromRole="Resource_Organization_Target" />
+            </EntityType>
+            
+            <EntityType Name="Resource">
+                <Key>
+                    <PropertyRef Name="ResourceId" />
+                </Key>
+                <Property Name="ResourceId" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+                <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="Brief" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="URL" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="GranularityId" Type="Edm.Int32" />
+                <Property Name="UpdateFrequency" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="UsageIntensity" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="AbstractOrPurpose" Type="Edm.String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="BeginDate" Type="Edm.DateTime" />
+                <Property Name="EndDate" Type="Edm.DateTime" />
+                <Property Name="PresentEndDate" Type="Edm.Boolean" />
+                <Property Name="ServiceHelpUrl" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="ReadinessLevelId" Type="Edm.Int32" Nullable="false" />
+                <Property Name="DomainId" Type="Edm.Int32" Nullable="false" />
+                <Property Name="ResourceCategoryId" Type="Edm.Int32" />
+                <Property Name="OrganizationId" Type="Edm.Int32" Nullable="false" />
+                <Property Name="ParentResourceId" Type="Edm.Int32" />
+                <Property Name="isDataset" Type="Edm.Boolean" />
+                <Property Name="Created" Type="Edm.DateTime" />
+                <Property Name="CreatedByUsername" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <NavigationProperty Name="Granularity" Relationship="ResourceMvc.Models.Resource_Granularity" ToRole="Resource_Granularity_Target" FromRole="Resource_Granularity_Source" />
+                <NavigationProperty Name="ReadinessLevel" Relationship="ResourceMvc.Models.Resource_ReadinessLevel" ToRole="Resource_ReadinessLevel_Target" FromRole="Resource_ReadinessLevel_Source" />
+                <NavigationProperty Name="Readiness" Relationship="ResourceMvc.Models.Readiness_Resource" ToRole="Readiness_Resource_Source" FromRole="Readiness_Resource_Target" />
+                <NavigationProperty Name="PrimaryDomain" Relationship="ResourceMvc.Models.Resource_PrimaryDomain" ToRole="Resource_PrimaryDomain_Target" FromRole="Resource_PrimaryDomain_Source" />
+                <NavigationProperty Name="Domains" Relationship="ResourceMvc.Models.Resource_Domains" ToRole="Resource_Domains_Target" FromRole="Resource_Domains_Source" />
+                <NavigationProperty Name="NamedLocation" Relationship="ResourceMvc.Models.Resource_NamedLocation" ToRole="Resource_NamedLocation_Target" FromRole="Resource_NamedLocation_Source" />
+                <NavigationProperty Name="ResourceCategory" Relationship="ResourceMvc.Models.Resource_ResourceCategory" ToRole="Resource_ResourceCategory_Target" FromRole="Resource_ResourceCategory_Source" />
+                <NavigationProperty Name="Organization" Relationship="ResourceMvc.Models.Resource_Organization" ToRole="Resource_Organization_Target" FromRole="Resource_Organization_Source" />
+                <NavigationProperty Name="ResourceServices" Relationship="ResourceMvc.Models.Resource_ResourceServices" ToRole="Resource_ResourceServices_Target" FromRole="Resource_ResourceServices_Source" />
+                <NavigationProperty Name="ParentResource" Relationship="ResourceMvc.Models.Resource_ParentResource" ToRole="Resource_ParentResource_Target" FromRole="Resource_ParentResource_Source" />
+                <NavigationProperty Name="Favorites" Relationship="ResourceMvc.Models.Favorite_Resource" ToRole="Favorite_Resource_Source" FromRole="Favorite_Resource_Target" />
+            </EntityType>
+            
+            <EntityType Name="Granularity">
+                <Key>
+                    <PropertyRef Name="GranularityId" />
+                </Key>
+                <Property Name="GranularityId" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+                <Property Name="Name" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="Brief" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+            </EntityType>
+            
+            <EntityType Name="ReadinessLevel">
+                <Key>
+                    <PropertyRef Name="ReadinessLevelId" />
+                </Key>
+                <Property Name="ReadinessLevelId" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+                <Property Name="Level" Type="Edm.Int32" Nullable="false" />
+                <Property Name="Brief" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="Description" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+            </EntityType>
+            
+            <EntityType Name="Readiness">
+                <Key>
+                    <PropertyRef Name="ReadinessId" />
+                </Key>
+                <Property Name="ReadinessId" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+                <Property Name="ReviewedDate" Type="Edm.DateTime" p6:StoreGeneratedPattern="Computed" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+                <Property Name="Notes" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="ReadinessLevelId" Type="Edm.Int32" Nullable="false" />
+                <Property Name="ResourceId" Type="Edm.Int32" Nullable="false" />
+                <NavigationProperty Name="ReadinessLevel" Relationship="ResourceMvc.Models.Readiness_ReadinessLevel" ToRole="Readiness_ReadinessLevel_Target" FromRole="Readiness_ReadinessLevel_Source" />
+                <NavigationProperty Name="Resource" Relationship="ResourceMvc.Models.Readiness_Resource" ToRole="Readiness_Resource_Target" FromRole="Readiness_Resource_Source" />
+            </EntityType>
+            
+            <EntityType Name="ResourceCategory">
+                <Key>
+                    <PropertyRef Name="ResourceCategoryId" />
+                </Key>
+                <Property Name="ResourceCategoryId" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+                <Property Name="Code" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="Description" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+            </EntityType>
+            
+            <EntityType Name="ResourceServices">
+                <Key>
+                    <PropertyRef Name="ResourceServiceId" />
+                </Key>
+                <Property Name="ResourceServiceId" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+                <Property Name="ServiceUrl" Type="Edm.String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="Comment" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="ServiceTypeId" Type="Edm.Int32" Nullable="false" />
+                <NavigationProperty Name="ServiceType" Relationship="ResourceMvc.Models.ResourceServices_ServiceType" ToRole="ResourceServices_ServiceType_Target" FromRole="ResourceServices_ServiceType_Source" />
+            </EntityType>
+            
+            <EntityType Name="ServiceType">
+                <Key>
+                    <PropertyRef Name="ServiceTypeId" />
+                </Key>
+                <Property Name="ServiceTypeId" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+                <Property Name="Acronym" Type="Edm.String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="DescriptionUrl" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="InformationModel" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="DetailedDescription" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+            </EntityType>
+            
+            <EntityType Name="Favorite">
+                <Key>
+                    <PropertyRef Name="FavoriteId" />
+                </Key>
+                <Property Name="FavoriteId" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+                <Property Name="ResourceId" Type="Edm.Int32" Nullable="false" />
+                <Property Name="UserName" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                <Property Name="Upvote" Type="Edm.Boolean" Nullable="false" />
+                <NavigationProperty Name="Resource" Relationship="ResourceMvc.Models.Favorite_Resource" ToRole="Favorite_Resource_Target" FromRole="Favorite_Resource_Source" />
+            </EntityType>
+            
+            <Association Name="Resource_Organization">
+                <End Type="ResourceMvc.Models.Organization" Role="Resource_Organization_Target" Multiplicity="1" />
+                <End Type="ResourceMvc.Models.Resource" Role="Resource_Organization_Source" Multiplicity="*" />
+                <ReferentialConstraint>
+                    <Principal Role="Resource_Organization_Target">
+                        <PropertyRef Name="OrganizationId" />
+                    </Principal>
+                    <Dependent Role="Resource_Organization_Source">
+                        <PropertyRef Name="OrganizationId" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Resource_Granularity">
+                <End Type="ResourceMvc.Models.Granularity" Role="Resource_Granularity_Target" Multiplicity="0..1" />
+                <End Type="ResourceMvc.Models.Resource" Role="Resource_Granularity_Source" Multiplicity="*" />
+                <ReferentialConstraint>
+                    <Principal Role="Resource_Granularity_Target">
+                        <PropertyRef Name="GranularityId" />
+                    </Principal>
+                    <Dependent Role="Resource_Granularity_Source">
+                        <PropertyRef Name="GranularityId" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Resource_ReadinessLevel">
+                <End Type="ResourceMvc.Models.ReadinessLevel" Role="Resource_ReadinessLevel_Target" Multiplicity="1" />
+                <End Type="ResourceMvc.Models.Resource" Role="Resource_ReadinessLevel_Source" Multiplicity="*" />
+                <ReferentialConstraint>
+                    <Principal Role="Resource_ReadinessLevel_Target">
+                        <PropertyRef Name="ReadinessLevelId" />
+                    </Principal>
+                    <Dependent Role="Resource_ReadinessLevel_Source">
+                        <PropertyRef Name="ReadinessLevelId" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Readiness_Resource">
+                <End Type="ResourceMvc.Models.Resource" Role="Readiness_Resource_Target" Multiplicity="1" />
+                <End Type="ResourceMvc.Models.Readiness" Role="Readiness_Resource_Source" Multiplicity="*" />
+                <ReferentialConstraint>
+                    <Principal Role="Readiness_Resource_Target">
+                        <PropertyRef Name="ResourceId" />
+                    </Principal>
+                    <Dependent Role="Readiness_Resource_Source">
+                        <PropertyRef Name="ResourceId" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Resource_PrimaryDomain">
+                <End Type="ResourceMvc.Models.Domain" Role="Resource_PrimaryDomain_Target" Multiplicity="1" />
+                <End Type="ResourceMvc.Models.Resource" Role="Resource_PrimaryDomain_Source" Multiplicity="*" />
+                <ReferentialConstraint>
+                    <Principal Role="Resource_PrimaryDomain_Target">
+                        <PropertyRef Name="DomainId" />
+                    </Principal>
+                    <Dependent Role="Resource_PrimaryDomain_Source">
+                        <PropertyRef Name="DomainId" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Resource_Domains">
+                <End Type="ResourceMvc.Models.Domain" Role="Resource_Domains_Target" Multiplicity="*" />
+                <End Type="ResourceMvc.Models.Resource" Role="Resource_Domains_Source" Multiplicity="*" />
+            </Association>
+            <Association Name="Resource_NamedLocation">
+                <End Type="ResourceMvc.Models.NamedLocation" Role="Resource_NamedLocation_Target" Multiplicity="0..1" />
+                <End Type="ResourceMvc.Models.Resource" Role="Resource_NamedLocation_Source" Multiplicity="*" />
+            </Association>
+            <Association Name="Resource_ResourceCategory">
+                <End Type="ResourceMvc.Models.ResourceCategory" Role="Resource_ResourceCategory_Target" Multiplicity="0..1" />
+                <End Type="ResourceMvc.Models.Resource" Role="Resource_ResourceCategory_Source" Multiplicity="*" />
+                <ReferentialConstraint>
+                    <Principal Role="Resource_ResourceCategory_Target">
+                        <PropertyRef Name="ResourceCategoryId" />
+                    </Principal>
+                    <Dependent Role="Resource_ResourceCategory_Source">
+                        <PropertyRef Name="ResourceCategoryId" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Resource_ResourceServices">
+                <End Type="ResourceMvc.Models.ResourceServices" Role="Resource_ResourceServices_Target" Multiplicity="*" />
+                <End Type="ResourceMvc.Models.Resource" Role="Resource_ResourceServices_Source" Multiplicity="0..1" />
+            </Association>
+            <Association Name="Resource_ParentResource">
+                <End Type="ResourceMvc.Models.Resource" Role="Resource_ParentResource_Target" Multiplicity="0..1" />
+                <End Type="ResourceMvc.Models.Resource" Role="Resource_ParentResource_Source" Multiplicity="*" />
+                <ReferentialConstraint>
+                    <Principal Role="Resource_ParentResource_Target">
+                        <PropertyRef Name="ResourceId" />
+                    </Principal>
+                    <Dependent Role="Resource_ParentResource_Source">
+                        <PropertyRef Name="ParentResourceId" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Favorite_Resource">
+                <End Type="ResourceMvc.Models.Resource" Role="Favorite_Resource_Target" Multiplicity="1" />
+                <End Type="ResourceMvc.Models.Favorite" Role="Favorite_Resource_Source" Multiplicity="*" />
+                <ReferentialConstraint>
+                    <Principal Role="Favorite_Resource_Target">
+                        <PropertyRef Name="ResourceId" />
+                    </Principal>
+                    <Dependent Role="Favorite_Resource_Source">
+                        <PropertyRef Name="ResourceId" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Readiness_ReadinessLevel">
+                <End Type="ResourceMvc.Models.ReadinessLevel" Role="Readiness_ReadinessLevel_Target" Multiplicity="1" />
+                <End Type="ResourceMvc.Models.Readiness" Role="Readiness_ReadinessLevel_Source" Multiplicity="*" />
+                <ReferentialConstraint>
+                    <Principal Role="Readiness_ReadinessLevel_Target">
+                        <PropertyRef Name="ReadinessLevelId" />
+                    </Principal>
+                    <Dependent Role="Readiness_ReadinessLevel_Source">
+                        <PropertyRef Name="ReadinessLevelId" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ResourceServices_ServiceType">
+                <End Type="ResourceMvc.Models.ServiceType" Role="ResourceServices_ServiceType_Target" Multiplicity="1" />
+                <End Type="ResourceMvc.Models.ResourceServices" Role="ResourceServices_ServiceType_Source" Multiplicity="*" />
+                <ReferentialConstraint>
+                    <Principal Role="ResourceServices_ServiceType_Target">
+                        <PropertyRef Name="ServiceTypeId" />
+                    </Principal>
+                    <Dependent Role="ResourceServices_ServiceType_Source">
+                        <PropertyRef Name="ServiceTypeId" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ResourceMvcContext" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="Domains" EntityType="ResourceMvc.Models.Domain" />
+                <EntitySet Name="NamedLocations" EntityType="ResourceMvc.Models.NamedLocation" />
+                <EntitySet Name="Organizations" EntityType="ResourceMvc.Models.Organization" />
+                <EntitySet Name="Resources" EntityType="ResourceMvc.Models.Resource" />
+                <EntitySet Name="Granularities" EntityType="ResourceMvc.Models.Granularity" />
+                <EntitySet Name="ReadinessLevels" EntityType="ResourceMvc.Models.ReadinessLevel" />
+                <EntitySet Name="Readinesses" EntityType="ResourceMvc.Models.Readiness" />
+                <EntitySet Name="ResourceCategories" EntityType="ResourceMvc.Models.ResourceCategory" />
+                <EntitySet Name="ResourceServices" EntityType="ResourceMvc.Models.ResourceServices" />
+                <EntitySet Name="ServiceTypes" EntityType="ResourceMvc.Models.ServiceType" />
+                <EntitySet Name="Favorites" EntityType="ResourceMvc.Models.Favorite" />
+                <AssociationSet Name="Resource_Organization" Association="ResourceMvc.Models.Resource_Organization">
+                    <End Role="Resource_Organization_Target" EntitySet="Organizations" />
+                    <End Role="Resource_Organization_Source" EntitySet="Resources" />
+                </AssociationSet>
+                <AssociationSet Name="Resource_Granularity" Association="ResourceMvc.Models.Resource_Granularity">
+                    <End Role="Resource_Granularity_Source" EntitySet="Resources" />
+                    <End Role="Resource_Granularity_Target" EntitySet="Granularities" />
+                </AssociationSet>
+                <AssociationSet Name="Resource_ReadinessLevel" Association="ResourceMvc.Models.Resource_ReadinessLevel">
+                    <End Role="Resource_ReadinessLevel_Source" EntitySet="Resources" />
+                    <End Role="Resource_ReadinessLevel_Target" EntitySet="ReadinessLevels" />
+                </AssociationSet>
+                <AssociationSet Name="Readiness_Resource" Association="ResourceMvc.Models.Readiness_Resource">
+                    <End Role="Readiness_Resource_Target" EntitySet="Resources" />
+                    <End Role="Readiness_Resource_Source" EntitySet="Readinesses" />
+                </AssociationSet>
+                <AssociationSet Name="Resource_PrimaryDomain" Association="ResourceMvc.Models.Resource_PrimaryDomain">
+                    <End Role="Resource_PrimaryDomain_Source" EntitySet="Resources" />
+                    <End Role="Resource_PrimaryDomain_Target" EntitySet="Domains" />
+                </AssociationSet>
+                <AssociationSet Name="Resource_Domains" Association="ResourceMvc.Models.Resource_Domains">
+                    <End Role="Resource_Domains_Source" EntitySet="Resources" />
+                    <End Role="Resource_Domains_Target" EntitySet="Domains" />
+                </AssociationSet>
+                <AssociationSet Name="Resource_NamedLocation" Association="ResourceMvc.Models.Resource_NamedLocation">
+                    <End Role="Resource_NamedLocation_Source" EntitySet="Resources" />
+                    <End Role="Resource_NamedLocation_Target" EntitySet="NamedLocations" />
+                </AssociationSet>
+                <AssociationSet Name="Resource_ResourceCategory" Association="ResourceMvc.Models.Resource_ResourceCategory">
+                    <End Role="Resource_ResourceCategory_Source" EntitySet="Resources" />
+                    <End Role="Resource_ResourceCategory_Target" EntitySet="ResourceCategories" />
+                </AssociationSet>
+                <AssociationSet Name="Resource_ResourceServices" Association="ResourceMvc.Models.Resource_ResourceServices">
+                    <End Role="Resource_ResourceServices_Source" EntitySet="Resources" />
+                    <End Role="Resource_ResourceServices_Target" EntitySet="ResourceServices" />
+                </AssociationSet>
+                <AssociationSet Name="Resource_ParentResource" Association="ResourceMvc.Models.Resource_ParentResource">
+                    <End Role="Resource_ParentResource_Source" EntitySet="Resources" />
+                    <End Role="Resource_ParentResource_Target" EntitySet="Resources" />
+                </AssociationSet>
+                <AssociationSet Name="Favorite_Resource" Association="ResourceMvc.Models.Favorite_Resource">
+                    <End Role="Favorite_Resource_Target" EntitySet="Resources" />
+                    <End Role="Favorite_Resource_Source" EntitySet="Favorites" />
+                </AssociationSet>
+                <AssociationSet Name="Readiness_ReadinessLevel" Association="ResourceMvc.Models.Readiness_ReadinessLevel">
+                    <End Role="Readiness_ReadinessLevel_Source" EntitySet="Readinesses" />
+                    <End Role="Readiness_ReadinessLevel_Target" EntitySet="ReadinessLevels" />
+                </AssociationSet>
+                <AssociationSet Name="ResourceServices_ServiceType" Association="ResourceMvc.Models.ResourceServices_ServiceType">
+                    <End Role="ResourceServices_ServiceType_Source" EntitySet="ResourceServices" />
+                    <End Role="ResourceServices_ServiceType_Target" EntitySet="ServiceTypes" />
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
