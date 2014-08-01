@@ -1,0 +1,685 @@
+{
+   "type":"object",
+   "$schema": "http://json-schema.org/draft-03/schema",
+   "id": "http://jsonschema.net",
+   "required":false,
+   "properties":{
+      "gmd:MD_Metadata": {
+         "type":"object",
+         "id": "http://jsonschema.net/gmd:MD_Metadata",
+         "required":false,
+         "properties":{
+            "@xsi:schemaLocation": {
+               "type":"string",
+               "id": "http://jsonschema.net/gmd:MD_Metadata/@xsi:schemaLocation",
+               "required":false
+            },
+            "gmd:characterSet": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:characterSet",
+               "required":false,
+               "properties":{
+                  "gmd:MD_CharacterSetCode": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode",
+                     "required":false,
+                     "properties":{
+                        "@codeListValue": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode/@codeListValue",
+                           "required":false
+                        },
+                        "@codeList": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode/@codeList",
+                           "required":false
+                        },
+                        "_$": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode/_$",
+                           "required":false
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:contact": {
+               "type":"array",
+               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact",
+               "required":false,
+               "items":
+                  {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact/0",
+                     "required":false,
+                     "properties":{
+                        "gmd:CI_ResponsibleParty": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact/0/gmd:CI_ResponsibleParty",
+                           "required":false,
+                           "properties":{
+                              "gmd:contactInfo": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact/0/gmd:CI_ResponsibleParty/gmd:contactInfo",
+                                 "required":false,
+                                 "properties":{
+                                    "gmd:CI_Contact": {
+                                       "type":"object",
+                                       "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact/0/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact",
+                                       "required":false
+                                    }
+                                 }
+                              },
+                              "gmd:individualName": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact/0/gmd:CI_ResponsibleParty/gmd:individualName",
+                                 "required":false,
+                                 "properties":{
+                                    "gco:CharacterString": {
+                                       "type":"object",
+                                       "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact/0/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString",
+                                       "required":false,
+                                       "properties":{
+                                          "_$": {
+                                             "type":"string",
+                                             "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact/0/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString/_$",
+                                             "required":false
+                                          }
+                                       }
+                                    }
+                                 }
+                              },
+                              "gmd:organisationName": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact/0/gmd:CI_ResponsibleParty/gmd:organisationName",
+                                 "required":false,
+                                 "properties":{
+                                    "gco:CharacterString": {
+                                       "type":"object",
+                                       "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact/0/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString",
+                                       "required":false,
+                                       "properties":{
+                                          "_$": {
+                                             "type":"string",
+                                             "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact/0/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString/_$",
+                                             "required":false
+                                          }
+                                       }
+                                    }
+                                 }
+                              },
+                              "gmd:role": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact/0/gmd:CI_ResponsibleParty/gmd:role",
+                                 "required":false,
+                                 "properties":{
+                                    "gmd:CI_RoleCode": {
+                                       "type":"object",
+                                       "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact/0/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode",
+                                       "required":false,
+                                       "properties":{
+                                          "@codeListValue": {
+                                             "type":"string",
+                                             "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact/0/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue",
+                                             "required":false
+                                          },
+                                          "@codeList": {
+                                             "type":"string",
+                                             "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact/0/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeList",
+                                             "required":false
+                                          },
+                                          "_$": {
+                                             "type":"string",
+                                             "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:contact/0/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/_$",
+                                             "required":false
+                                          }
+                                       }
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               
+
+            },
+            "gmd:dataSetURI": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:dataSetURI",
+               "required":false,
+               "properties":{
+                  "gco:CharacterString": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:dataSetURI/gco:CharacterString",
+                     "required":false,
+                     "properties":{
+                        "_$": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:dataSetURI/gco:CharacterString/_$",
+                           "required":false
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:dateStamp": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:dateStamp",
+               "required":false,
+               "properties":{
+                  "gco:DateTime": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:dateStamp/gco:DateTime",
+                     "required":false,
+                     "properties":{
+                        "_$": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:dateStamp/gco:DateTime/_$",
+                           "required":false
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:distributionInfo": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo",
+               "required":false,
+               "properties":{
+                  "gmd:MD_Distribution": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution",
+                     "required":false,
+                     "properties":{
+                        "gmd:transferOptions": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions",
+                           "required":false,
+                           "properties":{
+                              "gmd:MD_DigitalTransferOptions": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions",
+                                 "required":false,
+                                 "properties":{
+                                    "gmd:onLine": {
+                                       "type":"array",
+                                       "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine",
+                                       "required":false,
+                                       "items":
+                                          {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0",
+                                             "required":false,
+                                             "properties":{
+                                                "gmd:CI_OnlineResource": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gmd:applicationProfile": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:applicationProfile",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "gco:CharacterString": {
+                                                               "type":"object",
+                                                               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:applicationProfile/gco:CharacterString",
+                                                               "required":false,
+                                                               "properties":{
+                                                                  "_$": {
+                                                                     "type":"string",
+                                                                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:applicationProfile/gco:CharacterString/_$",
+                                                                     "required":false
+                                                                  }
+                                                               }
+                                                            }
+                                                         }
+                                                      },
+                                                      "gmd:description": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:description",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "gco:CharacterString": {
+                                                               "type":"object",
+                                                               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:description/gco:CharacterString",
+                                                               "required":false,
+                                                               "properties":{
+                                                                  "_$": {
+                                                                     "type":"string",
+                                                                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:description/gco:CharacterString/_$",
+                                                                     "required":false
+                                                                  }
+                                                               }
+                                                            }
+                                                         }
+                                                      },
+                                                      "gmd:function": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:function",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "gmd:CI_OnLineFunctionCode": {
+                                                               "type":"object",
+                                                               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode",
+                                                               "required":false,
+                                                               "properties":{
+                                                                  "@codeListValue": {
+                                                                     "type":"string",
+                                                                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode/@codeListValue",
+                                                                     "required":false
+                                                                  },
+                                                                  "@codeList": {
+                                                                     "type":"string",
+                                                                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode/@codeList",
+                                                                     "required":false
+                                                                  },
+                                                                  "_$": {
+                                                                     "type":"string",
+                                                                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode/_$",
+                                                                     "required":false
+                                                                  }
+                                                               }
+                                                            }
+                                                         }
+                                                      },
+                                                      "gmd:linkage": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:linkage",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "gmd:URL": {
+                                                               "type":"object",
+                                                               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:linkage/gmd:URL",
+                                                               "required":false,
+                                                               "properties":{
+                                                                  "_$": {
+                                                                     "type":"string",
+                                                                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:linkage/gmd:URL/_$",
+                                                                     "required":false
+                                                                  }
+                                                               }
+                                                            }
+                                                         }
+                                                      },
+                                                      "gmd:name": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:name",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "gco:CharacterString": {
+                                                               "type":"object",
+                                                               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:name/gco:CharacterString",
+                                                               "required":false,
+                                                               "properties":{
+                                                                  "_$": {
+                                                                     "type":"string",
+                                                                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:name/gco:CharacterString/_$",
+                                                                     "required":false
+                                                                  }
+                                                               }
+                                                            }
+                                                         }
+                                                      },
+                                                      "gmd:protocol": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:protocol",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "gco:CharacterString": {
+                                                               "type":"object",
+                                                               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString",
+                                                               "required":false,
+                                                               "properties":{
+                                                                  "_$": {
+                                                                     "type":"string",
+                                                                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/0/gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString/_$",
+                                                                     "required":false
+                                                                  }
+                                                               }
+                                                            }
+                                                         }
+                                                      }
+                                                   }
+                                                }
+                                             }
+                                          }
+                                       
+
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:fileIdentifier": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:fileIdentifier",
+               "required":false,
+               "properties":{
+                  "gco:CharacterString": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:fileIdentifier/gco:CharacterString",
+                     "required":false,
+                     "properties":{
+                        "_$": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:fileIdentifier/gco:CharacterString/_$",
+                           "required":false
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:hierarchyLevelName": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:hierarchyLevelName",
+               "required":false,
+               "properties":{
+                  "gco:CharacterString": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:hierarchyLevelName/gco:CharacterString",
+                     "required":false,
+                     "properties":{
+                        "_$": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:hierarchyLevelName/gco:CharacterString/_$",
+                           "required":false
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:hierarchyLevel": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:hierarchyLevel",
+               "required":false,
+               "properties":{
+                  "gmd:MD_ScopeCode": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:hierarchyLevel/gmd:MD_ScopeCode",
+                     "required":false,
+                     "properties":{
+                        "@codeListValue": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue",
+                           "required":false
+                        },
+                        "@codeList": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeList",
+                           "required":false
+                        },
+                        "_$": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:hierarchyLevel/gmd:MD_ScopeCode/_$",
+                           "required":false
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:identificationInfo": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo",
+               "required":false,
+               "properties":{
+                  "gmd:MD_DataIdentification": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification",
+                     "required":false,
+                     "properties":{
+                        "gmd:abstract": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract",
+                           "required":false,
+                           "properties":{
+                              "gco:CharacterString": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract/gco:CharacterString",
+                                 "required":false,
+                                 "properties":{
+                                    "_$": {
+                                       "type":"string",
+                                       "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract/gco:CharacterString/_$",
+                                       "required":false
+                                    }
+                                 }
+                              }
+                           }
+                        },
+                        "gmd:citation": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation",
+                           "required":false,
+                           "properties":{
+                              "gmd:CI_Citation": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation",
+                                 "required":false,
+                                 "properties":{
+                                    "gmd:date": {
+                                       "type":"object",
+                                       "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date",
+                                       "required":false,
+                                       "properties":{
+                                          "gmd:CI_Date": {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date",
+                                             "required":false,
+                                             "properties":{
+                                                "gmd:dateType": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gmd:CI_DateTypeCode": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "@codeListValue": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode/@codeListValue",
+                                                               "required":false
+                                                            },
+                                                            "@codeList": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode/@codeList",
+                                                               "required":false
+                                                            },
+                                                            "_$": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode/_$",
+                                                               "required":false
+                                                            }
+                                                         }
+                                                      }
+                                                   }
+                                                },
+                                                "gmd:date": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gco:Date": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "_$": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date/_$",
+                                                               "required":false
+                                                            }
+                                                         }
+                                                      }
+                                                   }
+                                                }
+                                             }
+                                          }
+                                       }
+                                    },
+                                    "gmd:title": {
+                                       "type":"object",
+                                       "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title",
+                                       "required":false,
+                                       "properties":{
+                                          "gco:CharacterString": {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString",
+                                             "required":false,
+                                             "properties":{
+                                                "_$": {
+                                                   "type":"string",
+                                                   "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString/_$",
+                                                   "required":false
+                                                }
+                                             }
+                                          }
+                                       }
+                                    }
+                                 }
+                              }
+                           }
+                        },
+                        "gmd:language": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language",
+                           "required":false,
+                           "properties":{
+                              "gco:CharacterString": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language/gco:CharacterString",
+                                 "required":false,
+                                 "properties":{
+                                    "_$": {
+                                       "type":"string",
+                                       "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language/gco:CharacterString/_$",
+                                       "required":false
+                                    }
+                                 }
+                              }
+                           }
+                        },
+                        "gmd:topicCategory": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory",
+                           "required":false,
+                           "properties":{
+                              "gmd:MD_TopicCategoryCode": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode",
+                                 "required":false,
+                                 "properties":{
+                                    "_$": {
+                                       "type":"string",
+                                       "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode/_$",
+                                       "required":false
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:language": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:language",
+               "required":false,
+               "properties":{
+                  "gco:CharacterString": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:language/gco:CharacterString",
+                     "required":false,
+                     "properties":{
+                        "_$": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:language/gco:CharacterString/_$",
+                           "required":false
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:metadataConstraints": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:metadataConstraints",
+               "required":false,
+               "properties":{
+                  "gmd:MD_Constraints": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:metadataConstraints/gmd:MD_Constraints",
+                     "required":false,
+                     "properties":{
+                        "gmd:useLimitation": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:metadataConstraints/gmd:MD_Constraints/gmd:useLimitation",
+                           "required":false,
+                           "properties":{
+                              "gco:CharacterString": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:metadataConstraints/gmd:MD_Constraints/gmd:useLimitation/gco:CharacterString",
+                                 "required":false,
+                                 "properties":{
+                                    "_$": {
+                                       "type":"string",
+                                       "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:metadataConstraints/gmd:MD_Constraints/gmd:useLimitation/gco:CharacterString/_$",
+                                       "required":false
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:metadataStandardName": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:metadataStandardName",
+               "required":false,
+               "properties":{
+                  "gco:CharacterString": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString",
+                     "required":false,
+                     "properties":{
+                        "_$": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString/_$",
+                           "required":false
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:metadataStandardVersion": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:metadataStandardVersion",
+               "required":false,
+               "properties":{
+                  "gco:CharacterString": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:metadataStandardVersion/gco:CharacterString",
+                     "required":false,
+                     "properties":{
+                        "_$": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmd:MD_Metadata/gmd:metadataStandardVersion/gco:CharacterString/_$",
+                           "required":false
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}

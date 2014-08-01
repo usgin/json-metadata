@@ -1,0 +1,1394 @@
+{
+   "type":"object",
+   "$schema": "http://json-schema.org/draft-03/schema",
+   "id": "http://jsonschema.net",
+   "required":false,
+   "properties":{
+      "gmi:MI_Metadata": {
+         "type":"object",
+         "id": "http://jsonschema.net/gmi:MI_Metadata",
+         "required":false,
+         "properties":{
+            "@xsi:schemaLocation": {
+               "type":"string",
+               "id": "http://jsonschema.net/gmi:MI_Metadata/@xsi:schemaLocation",
+               "required":false
+            },
+            "gmd:characterSet": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:characterSet",
+               "required":false,
+               "properties":{
+                  "gmd:MD_CharacterSetCode": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode",
+                     "required":false,
+                     "properties":{
+                        "@codeListValue": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode/@codeListValue",
+                           "required":false
+                        },
+                        "@codeList": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode/@codeList",
+                           "required":false
+                        },
+                        "_$": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode/_$",
+                           "required":false
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:contact": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact",
+               "required":false,
+               "properties":{
+                  "gmd:CI_ResponsibleParty": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty",
+                     "required":false,
+                     "properties":{
+                        "gmd:contactInfo": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo",
+                           "required":false,
+                           "properties":{
+                              "gmd:CI_Contact": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact",
+                                 "required":false,
+                                 "properties":{
+                                    "gmd:address": {
+                                       "type":"object",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address",
+                                       "required":false,
+                                       "properties":{
+                                          "gmd:CI_Address": {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address",
+                                             "required":false,
+                                             "properties":{
+                                                "gmd:electronicMailAddress": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gco:CharacterString": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "_$": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString/_$",
+                                                               "required":false
+                                                            }
+                                                         }
+                                                      }
+                                                   }
+                                                }
+                                             }
+                                          }
+                                       }
+                                    },
+                                    "gmd:onlineResource": {
+                                       "type":"object",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource",
+                                       "required":false,
+                                       "properties":{
+                                          "gmd:CI_OnlineResource": {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource",
+                                             "required":false,
+                                             "properties":{
+                                                "gmd:applicationProfile": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:applicationProfile",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gco:CharacterString": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:applicationProfile/gco:CharacterString",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "_$": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:applicationProfile/gco:CharacterString/_$",
+                                                               "required":false
+                                                            }
+                                                         }
+                                                      }
+                                                   }
+                                                },
+                                                "gmd:description": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:description",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gco:CharacterString": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:description/gco:CharacterString",
+                                                         "required":false
+                                                      }
+                                                   }
+                                                },
+                                                "gmd:function": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:function",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gmd:CI_OnLineFunctionCode": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "@codeListValue": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode/@codeListValue",
+                                                               "required":false
+                                                            },
+                                                            "@codeList": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode/@codeList",
+                                                               "required":false
+                                                            },
+                                                            "_$": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode/_$",
+                                                               "required":false
+                                                            }
+                                                         }
+                                                      }
+                                                   }
+                                                },
+                                                "gmd:linkage": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gmd:URL": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "_$": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL/_$",
+                                                               "required":false
+                                                            }
+                                                         }
+                                                      }
+                                                   }
+                                                },
+                                                "gmd:name": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:name",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gco:CharacterString": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:name/gco:CharacterString",
+                                                         "required":false
+                                                      }
+                                                   }
+                                                },
+                                                "gmd:protocol": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:protocol",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gco:CharacterString": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "_$": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString/_$",
+                                                               "required":false
+                                                            }
+                                                         }
+                                                      }
+                                                   }
+                                                }
+                                             }
+                                          }
+                                       }
+                                    }
+                                 }
+                              }
+                           }
+                        },
+                        "gmd:individualName": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:individualName",
+                           "required":false,
+                           "properties":{
+                              "gco:CharacterString": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString",
+                                 "required":false,
+                                 "properties":{
+                                    "_$": {
+                                       "type":"string",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString/_$",
+                                       "required":false
+                                    }
+                                 }
+                              }
+                           }
+                        },
+                        "gmd:organisationName": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:organisationName",
+                           "required":false,
+                           "properties":{
+                              "gco:CharacterString": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString",
+                                 "required":false,
+                                 "properties":{
+                                    "_$": {
+                                       "type":"string",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString/_$",
+                                       "required":false
+                                    }
+                                 }
+                              }
+                           }
+                        },
+                        "gmd:role": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:role",
+                           "required":false,
+                           "properties":{
+                              "gmd:CI_RoleCode": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode",
+                                 "required":false,
+                                 "properties":{
+                                    "@codeListValue": {
+                                       "type":"string",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue",
+                                       "required":false
+                                    },
+                                    "@codeList": {
+                                       "type":"string",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeList",
+                                       "required":false
+                                    },
+                                    "_$": {
+                                       "type":"string",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/_$",
+                                       "required":false
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:contentInfo": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo",
+               "required":false,
+               "properties":{
+                  "gmi:MI_CoverageDescription": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription",
+                     "required":false,
+                     "properties":{
+                        "gmd:attributeDescription": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:attributeDescription",
+                           "required":false,
+                           "properties":{
+                              "@gco:nilReason": {
+                                 "type":"string",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:attributeDescription/@gco:nilReason",
+                                 "required":false
+                              }
+                           }
+                        },
+                        "gmd:contentType": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:contentType",
+                           "required":false,
+                           "properties":{
+                              "@gco:nilReason": {
+                                 "type":"string",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:contentType/@gco:nilReason",
+                                 "required":false
+                              }
+                           }
+                        },
+                        "gmd:dimension": {
+                           "type":"array",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension",
+                           "required":false,
+                           "items":
+                              {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0",
+                                 "required":false,
+                                 "properties":{
+                                    "gmd:MD_Band": {
+                                       "type":"object",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band",
+                                       "required":false,
+                                       "properties":{
+                                          "gmd:descriptor": {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band/gmd:descriptor",
+                                             "required":false,
+                                             "properties":{
+                                                "gco:CharacterString": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band/gmd:descriptor/gco:CharacterString",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "_$": {
+                                                         "type":"string",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band/gmd:descriptor/gco:CharacterString/_$",
+                                                         "required":false
+                                                      }
+                                                   }
+                                                }
+                                             }
+                                          },
+                                          "gmd:sequenceIdentifier": {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band/gmd:sequenceIdentifier",
+                                             "required":false,
+                                             "properties":{
+                                                "gco:MemberName": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band/gmd:sequenceIdentifier/gco:MemberName",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gco:aName": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band/gmd:sequenceIdentifier/gco:MemberName/gco:aName",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "gco:CharacterString": {
+                                                               "type":"object",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band/gmd:sequenceIdentifier/gco:MemberName/gco:aName/gco:CharacterString",
+                                                               "required":false,
+                                                               "properties":{
+                                                                  "_$": {
+                                                                     "type":"string",
+                                                                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band/gmd:sequenceIdentifier/gco:MemberName/gco:aName/gco:CharacterString/_$",
+                                                                     "required":false
+                                                                  }
+                                                               }
+                                                            }
+                                                         }
+                                                      },
+                                                      "gco:attributeType": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band/gmd:sequenceIdentifier/gco:MemberName/gco:attributeType",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "gco:TypeName": {
+                                                               "type":"object",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band/gmd:sequenceIdentifier/gco:MemberName/gco:attributeType/gco:TypeName",
+                                                               "required":false,
+                                                               "properties":{
+                                                                  "gco:aName": {
+                                                                     "type":"object",
+                                                                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band/gmd:sequenceIdentifier/gco:MemberName/gco:attributeType/gco:TypeName/gco:aName",
+                                                                     "required":false,
+                                                                     "properties":{
+                                                                        "gco:CharacterString": {
+                                                                           "type":"object",
+                                                                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band/gmd:sequenceIdentifier/gco:MemberName/gco:attributeType/gco:TypeName/gco:aName/gco:CharacterString",
+                                                                           "required":false,
+                                                                           "properties":{
+                                                                              "_$": {
+                                                                                 "type":"string",
+                                                                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band/gmd:sequenceIdentifier/gco:MemberName/gco:attributeType/gco:TypeName/gco:aName/gco:CharacterString/_$",
+                                                                                 "required":false
+                                                                              }
+                                                                           }
+                                                                        }
+                                                                     }
+                                                                  }
+                                                               }
+                                                            }
+                                                         }
+                                                      }
+                                                   }
+                                                }
+                                             }
+                                          },
+                                          "gmd:units": {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band/gmd:units",
+                                             "required":false,
+                                             "properties":{
+                                                "@xlink:href": {
+                                                   "type":"string",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:contentInfo/gmi:MI_CoverageDescription/gmd:dimension/0/gmd:MD_Band/gmd:units/@xlink:href",
+                                                   "required":false
+                                                }
+                                             }
+                                          }
+                                       }
+                                    }
+                                 }
+                              }
+                           
+
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:dataQualityInfo": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dataQualityInfo",
+               "required":false,
+               "properties":{
+                  "gmd:DQ_DataQuality": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality",
+                     "required":false,
+                     "properties":{
+                        "gmd:lineage": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage",
+                           "required":false,
+                           "properties":{
+                              "gmd:LI_Lineage": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage",
+                                 "required":false,
+                                 "properties":{
+                                    "gmd:statement": {
+                                       "type":"object",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage/gmd:statement",
+                                       "required":false,
+                                       "properties":{
+                                          "gco:CharacterString": {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage/gmd:statement/gco:CharacterString",
+                                             "required":false,
+                                             "properties":{
+                                                "_$": {
+                                                   "type":"string",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage/gmd:statement/gco:CharacterString/_$",
+                                                   "required":false
+                                                }
+                                             }
+                                          }
+                                       }
+                                    }
+                                 }
+                              }
+                           }
+                        },
+                        "gmd:scope": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope",
+                           "required":false,
+                           "properties":{
+                              "gmd:DQ_Scope": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope",
+                                 "required":false,
+                                 "properties":{
+                                    "gmd:level": {
+                                       "type":"object",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level",
+                                       "required":false,
+                                       "properties":{
+                                          "gmd:MD_ScopeCode": {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode",
+                                             "required":false,
+                                             "properties":{
+                                                "@codeListValue": {
+                                                   "type":"string",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode/@codeListValue",
+                                                   "required":false
+                                                },
+                                                "@codeList": {
+                                                   "type":"string",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode/@codeList",
+                                                   "required":false
+                                                },
+                                                "_$": {
+                                                   "type":"string",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode/_$",
+                                                   "required":false
+                                                }
+                                             }
+                                          }
+                                       }
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:dateStamp": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dateStamp",
+               "required":false,
+               "properties":{
+                  "gco:Date": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dateStamp/gco:Date",
+                     "required":false,
+                     "properties":{
+                        "_$": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:dateStamp/gco:Date/_$",
+                           "required":false
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:distributionInfo": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo",
+               "required":false,
+               "properties":{
+                  "gmd:MD_Distribution": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution",
+                     "required":false,
+                     "properties":{
+                        "gmd:distributor": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor",
+                           "required":false,
+                           "properties":{
+                              "gmd:MD_Distributor": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor",
+                                 "required":false,
+                                 "properties":{
+                                    "gmd:distributorContact": {
+                                       "type":"object",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact",
+                                       "required":false,
+                                       "properties":{
+                                          "gmd:CI_ResponsibleParty": {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty",
+                                             "required":false,
+                                             "properties":{
+                                                "gmd:contactInfo": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gmd:CI_Contact": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "gmd:address": {
+                                                               "type":"object",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address",
+                                                               "required":false,
+                                                               "properties":{
+                                                                  "gmd:CI_Address": {
+                                                                     "type":"object",
+                                                                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address",
+                                                                     "required":false,
+                                                                     "properties":{
+                                                                        "gmd:electronicMailAddress": {
+                                                                           "type":"object",
+                                                                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress",
+                                                                           "required":false,
+                                                                           "properties":{
+                                                                              "gco:CharacterString": {
+                                                                                 "type":"object",
+                                                                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString",
+                                                                                 "required":false,
+                                                                                 "properties":{
+                                                                                    "_$": {
+                                                                                       "type":"string",
+                                                                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString/_$",
+                                                                                       "required":false
+                                                                                    }
+                                                                                 }
+                                                                              }
+                                                                           }
+                                                                        }
+                                                                     }
+                                                                  }
+                                                               }
+                                                            },
+                                                            "gmd:onlineResource": {
+                                                               "type":"object",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource",
+                                                               "required":false,
+                                                               "properties":{
+                                                                  "gmd:CI_OnlineResource": {
+                                                                     "type":"object",
+                                                                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource",
+                                                                     "required":false,
+                                                                     "properties":{
+                                                                        "gmd:applicationProfile": {
+                                                                           "type":"object",
+                                                                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:applicationProfile",
+                                                                           "required":false,
+                                                                           "properties":{
+                                                                              "gco:CharacterString": {
+                                                                                 "type":"object",
+                                                                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:applicationProfile/gco:CharacterString",
+                                                                                 "required":false,
+                                                                                 "properties":{
+                                                                                    "_$": {
+                                                                                       "type":"string",
+                                                                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:applicationProfile/gco:CharacterString/_$",
+                                                                                       "required":false
+                                                                                    }
+                                                                                 }
+                                                                              }
+                                                                           }
+                                                                        },
+                                                                        "gmd:description": {
+                                                                           "type":"object",
+                                                                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:description",
+                                                                           "required":false,
+                                                                           "properties":{
+                                                                              "gco:CharacterString": {
+                                                                                 "type":"object",
+                                                                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:description/gco:CharacterString",
+                                                                                 "required":false,
+                                                                                 "properties":{
+                                                                                    "_$": {
+                                                                                       "type":"string",
+                                                                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:description/gco:CharacterString/_$",
+                                                                                       "required":false
+                                                                                    }
+                                                                                 }
+                                                                              }
+                                                                           }
+                                                                        },
+                                                                        "gmd:function": {
+                                                                           "type":"object",
+                                                                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:function",
+                                                                           "required":false,
+                                                                           "properties":{
+                                                                              "gmd:CI_OnLineFunctionCode": {
+                                                                                 "type":"object",
+                                                                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode",
+                                                                                 "required":false,
+                                                                                 "properties":{
+                                                                                    "@codeListValue": {
+                                                                                       "type":"string",
+                                                                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode/@codeListValue",
+                                                                                       "required":false
+                                                                                    },
+                                                                                    "@codeList": {
+                                                                                       "type":"string",
+                                                                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode/@codeList",
+                                                                                       "required":false
+                                                                                    },
+                                                                                    "_$": {
+                                                                                       "type":"string",
+                                                                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode/_$",
+                                                                                       "required":false
+                                                                                    }
+                                                                                 }
+                                                                              }
+                                                                           }
+                                                                        },
+                                                                        "gmd:linkage": {
+                                                                           "type":"object",
+                                                                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage",
+                                                                           "required":false,
+                                                                           "properties":{
+                                                                              "gmd:URL": {
+                                                                                 "type":"object",
+                                                                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL",
+                                                                                 "required":false,
+                                                                                 "properties":{
+                                                                                    "_$": {
+                                                                                       "type":"string",
+                                                                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL/_$",
+                                                                                       "required":false
+                                                                                    }
+                                                                                 }
+                                                                              }
+                                                                           }
+                                                                        },
+                                                                        "gmd:name": {
+                                                                           "type":"object",
+                                                                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:name",
+                                                                           "required":false,
+                                                                           "properties":{
+                                                                              "gco:CharacterString": {
+                                                                                 "type":"object",
+                                                                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:name/gco:CharacterString",
+                                                                                 "required":false,
+                                                                                 "properties":{
+                                                                                    "_$": {
+                                                                                       "type":"string",
+                                                                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:name/gco:CharacterString/_$",
+                                                                                       "required":false
+                                                                                    }
+                                                                                 }
+                                                                              }
+                                                                           }
+                                                                        },
+                                                                        "gmd:protocol": {
+                                                                           "type":"object",
+                                                                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:protocol",
+                                                                           "required":false,
+                                                                           "properties":{
+                                                                              "gco:CharacterString": {
+                                                                                 "type":"object",
+                                                                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString",
+                                                                                 "required":false,
+                                                                                 "properties":{
+                                                                                    "_$": {
+                                                                                       "type":"string",
+                                                                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString/_$",
+                                                                                       "required":false
+                                                                                    }
+                                                                                 }
+                                                                              }
+                                                                           }
+                                                                        }
+                                                                     }
+                                                                  }
+                                                               }
+                                                            }
+                                                         }
+                                                      }
+                                                   }
+                                                },
+                                                "gmd:individualName": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:individualName",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "@gco:nilReason": {
+                                                         "type":"string",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:individualName/@gco:nilReason",
+                                                         "required":false
+                                                      }
+                                                   }
+                                                },
+                                                "gmd:organisationName": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:organisationName",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gco:CharacterString": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "_$": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString/_$",
+                                                               "required":false
+                                                            }
+                                                         }
+                                                      }
+                                                   }
+                                                },
+                                                "gmd:role": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:role",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gmd:CI_RoleCode": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "@codeListValue": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue",
+                                                               "required":false
+                                                            },
+                                                            "@codeList": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeList",
+                                                               "required":false
+                                                            },
+                                                            "_$": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/_$",
+                                                               "required":false
+                                                            }
+                                                         }
+                                                      }
+                                                   }
+                                                }
+                                             }
+                                          }
+                                       }
+                                    },
+                                    "gmd:distributorFormat": {
+                                       "type":"object",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorFormat",
+                                       "required":false,
+                                       "properties":{
+                                          "gmd:MD_Format": {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorFormat/gmd:MD_Format",
+                                             "required":false,
+                                             "properties":{
+                                                "gmd:name": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorFormat/gmd:MD_Format/gmd:name",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gco:CharacterString": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorFormat/gmd:MD_Format/gmd:name/gco:CharacterString",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "_$": {
+                                                               "type":"string",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorFormat/gmd:MD_Format/gmd:name/gco:CharacterString/_$",
+                                                               "required":false
+                                                            }
+                                                         }
+                                                      }
+                                                   }
+                                                },
+                                                "gmd:version": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorFormat/gmd:MD_Format/gmd:version",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "@gco:nilReason": {
+                                                         "type":"string",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorFormat/gmd:MD_Format/gmd:version/@gco:nilReason",
+                                                         "required":false
+                                                      }
+                                                   }
+                                                }
+                                             }
+                                          }
+                                       }
+                                    },
+                                    "gmd:distributorTransferOptions": {
+                                       "type":"array",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions",
+                                       "required":false,
+                                       "items":
+                                          {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0",
+                                             "required":false,
+                                             "properties":{
+                                                "gmd:MD_DigitalTransferOptions": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "gmd:onLine": {
+                                                         "type":"object",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine",
+                                                         "required":false,
+                                                         "properties":{
+                                                            "gmd:CI_OnlineResource": {
+                                                               "type":"object",
+                                                               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource",
+                                                               "required":false,
+                                                               "properties":{
+                                                                  "gmd:description": {
+                                                                     "type":"object",
+                                                                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:description",
+                                                                     "required":false,
+                                                                     "properties":{
+                                                                        "gco:CharacterString": {
+                                                                           "type":"object",
+                                                                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:description/gco:CharacterString",
+                                                                           "required":false,
+                                                                           "properties":{
+                                                                              "_$": {
+                                                                                 "type":"string",
+                                                                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:description/gco:CharacterString/_$",
+                                                                                 "required":false
+                                                                              }
+                                                                           }
+                                                                        }
+                                                                     }
+                                                                  },
+                                                                  "gmd:function": {
+                                                                     "type":"object",
+                                                                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:function",
+                                                                     "required":false,
+                                                                     "properties":{
+                                                                        "gmd:CI_OnLineFunctionCode": {
+                                                                           "type":"object",
+                                                                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode",
+                                                                           "required":false,
+                                                                           "properties":{
+                                                                              "@codeListValue": {
+                                                                                 "type":"string",
+                                                                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode/@codeListValue",
+                                                                                 "required":false
+                                                                              },
+                                                                              "@codeList": {
+                                                                                 "type":"string",
+                                                                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode/@codeList",
+                                                                                 "required":false
+                                                                              },
+                                                                              "_$": {
+                                                                                 "type":"string",
+                                                                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode/_$",
+                                                                                 "required":false
+                                                                              }
+                                                                           }
+                                                                        }
+                                                                     }
+                                                                  },
+                                                                  "gmd:linkage": {
+                                                                     "type":"object",
+                                                                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage",
+                                                                     "required":false,
+                                                                     "properties":{
+                                                                        "gmd:URL": {
+                                                                           "type":"object",
+                                                                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage/gmd:URL",
+                                                                           "required":false,
+                                                                           "properties":{
+                                                                              "_$": {
+                                                                                 "type":"string",
+                                                                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage/gmd:URL/_$",
+                                                                                 "required":false
+                                                                              }
+                                                                           }
+                                                                        }
+                                                                     }
+                                                                  },
+                                                                  "gmd:name": {
+                                                                     "type":"object",
+                                                                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:name",
+                                                                     "required":false,
+                                                                     "properties":{
+                                                                        "gco:CharacterString": {
+                                                                           "type":"object",
+                                                                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:name/gco:CharacterString",
+                                                                           "required":false,
+                                                                           "properties":{
+                                                                              "_$": {
+                                                                                 "type":"string",
+                                                                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorTransferOptions/0/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:name/gco:CharacterString/_$",
+                                                                                 "required":false
+                                                                              }
+                                                                           }
+                                                                        }
+                                                                     }
+                                                                  }
+                                                               }
+                                                            }
+                                                         }
+                                                      }
+                                                   }
+                                                }
+                                             }
+                                          }
+                                       
+
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:fileIdentifier": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:fileIdentifier",
+               "required":false,
+               "properties":{
+                  "gco:CharacterString": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:fileIdentifier/gco:CharacterString",
+                     "required":false,
+                     "properties":{
+                        "_$": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:fileIdentifier/gco:CharacterString/_$",
+                           "required":false
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:hierarchyLevel": {
+               "type":"array",
+               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:hierarchyLevel",
+               "required":false,
+               "items":
+                  {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:hierarchyLevel/0",
+                     "required":false,
+                     "properties":{
+                        "gmd:MD_ScopeCode": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:hierarchyLevel/0/gmd:MD_ScopeCode",
+                           "required":false,
+                           "properties":{
+                              "@codeListValue": {
+                                 "type":"string",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:hierarchyLevel/0/gmd:MD_ScopeCode/@codeListValue",
+                                 "required":false
+                              },
+                              "@codeList": {
+                                 "type":"string",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:hierarchyLevel/0/gmd:MD_ScopeCode/@codeList",
+                                 "required":false
+                              },
+                              "_$": {
+                                 "type":"string",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:hierarchyLevel/0/gmd:MD_ScopeCode/_$",
+                                 "required":false
+                              }
+                           }
+                        }
+                     }
+                  }
+               
+
+            },
+            "gmd:identificationInfo": {
+               "type":"array",
+               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:identificationInfo",
+               "required":false,
+               "items":
+                  {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:identificationInfo/0",
+                     "required":false,
+                     "properties":{
+                        "gmd:MD_ScopeCode": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:identificationInfo/0/gmd:MD_ScopeCode",
+                           "required":false,
+                           "properties":{
+                              "@codeListValue": {
+                                 "type":"string",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:identificationInfo/0/gmd:MD_ScopeCode/@codeListValue",
+                                 "required":false
+                              },
+                              "@codeList": {
+                                 "type":"string",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:identificationInfo/0/gmd:MD_ScopeCode/@codeList",
+                                 "required":false
+                              },
+                              "_$": {
+                                 "type":"string",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:identificationInfo/0/gmd:MD_ScopeCode/_$",
+                                 "required":false
+                              }
+                           }
+                        }
+                     }
+                  }
+               
+
+            },
+            "gmd:language": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:language",
+               "required":false,
+               "properties":{
+                  "gmd:LanguageCode": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:language/gmd:LanguageCode",
+                     "required":false,
+                     "properties":{
+                        "@codeListValue": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:language/gmd:LanguageCode/@codeListValue",
+                           "required":false
+                        },
+                        "@codeList": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:language/gmd:LanguageCode/@codeList",
+                           "required":false
+                        },
+                        "_$": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:language/gmd:LanguageCode/_$",
+                           "required":false
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:metadataMaintenance": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:metadataMaintenance",
+               "required":false,
+               "properties":{
+                  "gmd:MD_MaintenanceInformation": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:metadataMaintenance/gmd:MD_MaintenanceInformation",
+                     "required":false,
+                     "properties":{
+                        "gmd:maintenanceAndUpdateFrequency": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:metadataMaintenance/gmd:MD_MaintenanceInformation/gmd:maintenanceAndUpdateFrequency",
+                           "required":false,
+                           "properties":{
+                              "@gco:nilReason": {
+                                 "type":"string",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:metadataMaintenance/gmd:MD_MaintenanceInformation/gmd:maintenanceAndUpdateFrequency/@gco:nilReason",
+                                 "required":false
+                              }
+                           }
+                        },
+                        "gmd:maintenanceNote": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:metadataMaintenance/gmd:MD_MaintenanceInformation/gmd:maintenanceNote",
+                           "required":false,
+                           "properties":{
+                              "gco:CharacterString": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:metadataMaintenance/gmd:MD_MaintenanceInformation/gmd:maintenanceNote/gco:CharacterString",
+                                 "required":false,
+                                 "properties":{
+                                    "_$": {
+                                       "type":"string",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:metadataMaintenance/gmd:MD_MaintenanceInformation/gmd:maintenanceNote/gco:CharacterString/_$",
+                                       "required":false
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:metadataStandardName": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:metadataStandardName",
+               "required":false,
+               "properties":{
+                  "gco:CharacterString": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:metadataStandardName/gco:CharacterString",
+                     "required":false,
+                     "properties":{
+                        "_$": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:metadataStandardName/gco:CharacterString/_$",
+                           "required":false
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:metadataStandardVersion": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:metadataStandardVersion",
+               "required":false,
+               "properties":{
+                  "gco:CharacterString": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:metadataStandardVersion/gco:CharacterString",
+                     "required":false,
+                     "properties":{
+                        "_$": {
+                           "type":"string",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:metadataStandardVersion/gco:CharacterString/_$",
+                           "required":false
+                        }
+                     }
+                  }
+               }
+            },
+            "gmd:spatialRepresentationInfo": {
+               "type":"object",
+               "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo",
+               "required":false,
+               "properties":{
+                  "gmd:MD_GridSpatialRepresentation": {
+                     "type":"object",
+                     "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation",
+                     "required":false,
+                     "properties":{
+                        "gmd:axisDimensionProperties": {
+                           "type":"array",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:axisDimensionProperties",
+                           "required":false,
+                           "items":
+                              {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:axisDimensionProperties/0",
+                                 "required":false,
+                                 "properties":{
+                                    "gmd:MD_Dimension": {
+                                       "type":"object",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:axisDimensionProperties/0/gmd:MD_Dimension",
+                                       "required":false,
+                                       "properties":{
+                                          "gmd:dimensionName": {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:axisDimensionProperties/0/gmd:MD_Dimension/gmd:dimensionName",
+                                             "required":false,
+                                             "properties":{
+                                                "gmd:MD_DimensionNameTypeCode": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:axisDimensionProperties/0/gmd:MD_Dimension/gmd:dimensionName/gmd:MD_DimensionNameTypeCode",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "@codeListValue": {
+                                                         "type":"string",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:axisDimensionProperties/0/gmd:MD_Dimension/gmd:dimensionName/gmd:MD_DimensionNameTypeCode/@codeListValue",
+                                                         "required":false
+                                                      },
+                                                      "@codeList": {
+                                                         "type":"string",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:axisDimensionProperties/0/gmd:MD_Dimension/gmd:dimensionName/gmd:MD_DimensionNameTypeCode/@codeList",
+                                                         "required":false
+                                                      },
+                                                      "_$": {
+                                                         "type":"string",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:axisDimensionProperties/0/gmd:MD_Dimension/gmd:dimensionName/gmd:MD_DimensionNameTypeCode/_$",
+                                                         "required":false
+                                                      }
+                                                   }
+                                                }
+                                             }
+                                          },
+                                          "gmd:dimensionSize": {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:axisDimensionProperties/0/gmd:MD_Dimension/gmd:dimensionSize",
+                                             "required":false,
+                                             "properties":{
+                                                "gco:Integer": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:axisDimensionProperties/0/gmd:MD_Dimension/gmd:dimensionSize/gco:Integer",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "_$": {
+                                                         "type":"string",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:axisDimensionProperties/0/gmd:MD_Dimension/gmd:dimensionSize/gco:Integer/_$",
+                                                         "required":false
+                                                      }
+                                                   }
+                                                }
+                                             }
+                                          },
+                                          "gmd:resolution": {
+                                             "type":"object",
+                                             "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:axisDimensionProperties/0/gmd:MD_Dimension/gmd:resolution",
+                                             "required":false,
+                                             "properties":{
+                                                "gco:Measure": {
+                                                   "type":"object",
+                                                   "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:axisDimensionProperties/0/gmd:MD_Dimension/gmd:resolution/gco:Measure",
+                                                   "required":false,
+                                                   "properties":{
+                                                      "@uom": {
+                                                         "type":"string",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:axisDimensionProperties/0/gmd:MD_Dimension/gmd:resolution/gco:Measure/@uom",
+                                                         "required":false
+                                                      },
+                                                      "_$": {
+                                                         "type":"string",
+                                                         "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:axisDimensionProperties/0/gmd:MD_Dimension/gmd:resolution/gco:Measure/_$",
+                                                         "required":false
+                                                      }
+                                                   }
+                                                }
+                                             }
+                                          }
+                                       }
+                                    }
+                                 }
+                              }
+                           
+
+                        },
+                        "gmd:cellGeometry": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:cellGeometry",
+                           "required":false,
+                           "properties":{
+                              "gmd:MD_CellGeometryCode": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:cellGeometry/gmd:MD_CellGeometryCode",
+                                 "required":false,
+                                 "properties":{
+                                    "@codeListValue": {
+                                       "type":"string",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:cellGeometry/gmd:MD_CellGeometryCode/@codeListValue",
+                                       "required":false
+                                    },
+                                    "@codeList": {
+                                       "type":"string",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:cellGeometry/gmd:MD_CellGeometryCode/@codeList",
+                                       "required":false
+                                    },
+                                    "_$": {
+                                       "type":"string",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:cellGeometry/gmd:MD_CellGeometryCode/_$",
+                                       "required":false
+                                    }
+                                 }
+                              }
+                           }
+                        },
+                        "gmd:numberOfDimensions": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:numberOfDimensions",
+                           "required":false,
+                           "properties":{
+                              "gco:Integer": {
+                                 "type":"object",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:numberOfDimensions/gco:Integer",
+                                 "required":false,
+                                 "properties":{
+                                    "_$": {
+                                       "type":"string",
+                                       "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:numberOfDimensions/gco:Integer/_$",
+                                       "required":false
+                                    }
+                                 }
+                              }
+                           }
+                        },
+                        "gmd:transformationParameterAvailability": {
+                           "type":"object",
+                           "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:transformationParameterAvailability",
+                           "required":false,
+                           "properties":{
+                              "@gco:nilReason": {
+                                 "type":"string",
+                                 "id": "http://jsonschema.net/gmi:MI_Metadata/gmd:spatialRepresentationInfo/gmd:MD_GridSpatialRepresentation/gmd:transformationParameterAvailability/@gco:nilReason",
+                                 "required":false
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}

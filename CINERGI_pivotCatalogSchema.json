@@ -1,0 +1,252 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "@context": {
+        "cin": "http://resources.usgin.org/uri-gin/cinergi/schema/catalog",
+        "@vocab": "http://json-schema.org/draft-04/schema",
+        "@base": "http://resources.usgin.org/uri-gin/cinergi/schema/catalog",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "dct": "http://purl.org/dc/terms/"
+    },
+    "title":"JSON schema derived from ODATA metadata XML for the Cinergi pivot viewer catalog",
+    "description": "",
+    "id": "http://resources.usgin.org/uri-gin/cinergi/schema/catalog",
+    "cin:Resource": {
+        "description": "",
+        "type": "object",
+        "properties": {
+            "cin:resourceID": {
+                "description": "",
+                "type": "integer"
+            },
+            "cin:title": {
+                "description": "",
+                "type": "string"
+            },
+            "cin:brief": {
+                "description": "",
+                "type": "string"
+            },
+            "cin:url": {
+                "description": "",
+                "type": "string",
+                "format": "uri"
+            },
+            "cin:granularity": {
+                "description": "",
+                "type": "string"
+            },
+            "cin:updateFrequency": {
+                "description": "",
+                "type": "string"
+            },
+            "cin:usageIntensity": {
+                "description": "",
+                "type": "string"
+            },
+            "cin:abstractOrPurpose": {
+                "description": "",
+                "type": "string"
+            },
+            "cin:beginDate": {
+                "description": "",
+                "type": "string",
+                "format": "date-time"
+            },
+            "cin:endDate": {
+                "description": "",
+                "type": "string",
+                "format": "date-time"
+            },
+            "cin:presentEndDate": {
+                "description": "",
+                "type": "boolean"
+            },
+            "cin:serviceHelpURL": {
+                "description": "",
+                "type": "string"
+            },
+            "cin:resourceService": {
+                "type": "array",
+                "items": {
+                    "cin:serviceURL": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "cin:serviceComment": {
+                        "type": "string"
+                    },
+                    "$ref": "#/ServiceType"
+                }
+            },
+            "cin:readinessLevel": {
+                "$ref": "#/Readiness"
+            },
+            "cin:domain": {
+                "description": "associate the resource with a particular scientific theme; map to a thematic keyword in ISO19115, qualified to CINERGI domain vocabulary thesaurus",
+                "type": "array",
+                "items": {
+                    "cin:domainName": {
+                        "type": "string"
+                    },
+                    "cin:domainDescription": {
+                        "type": "string"
+                    },
+                    "cin:domainLinkedDataURL": {
+                        "type": "string"
+                    }
+                }
+            },
+            "cin:resourceCategory": {
+                "description":"for CINERGI, use CINERGI resource category scheme, see spreadsheet in dropbox at https://www.dropbox.com/s/sb45352nm83cjw2/InventoryResourceCategories.xlsx",
+                "id": "#resourceCategory",
+                "type": "object",
+                "properties": {
+                    "cin:resourceCategoryCode": {
+                        "type": "string"
+                    },
+                    "cin:resourceCategoryDescription": {
+                        "type": "string"
+                    }
+                }
+            },
+            "cin:organization": {
+                "description": "This is the organization that is responsible for production and maintenance of the resource",
+                "type": "object",
+                "properties": {
+                    "cin:organizationAcronym": {
+                        "type": "string"
+                    },
+                    "cin:organizationName": {
+                        "type": "string"
+                    },
+                    "cin:organizationURL": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "cin:organizationLinkedDataURL": {
+                        "type": "string"
+                    }
+                }
+            },
+            "cin:parentResource": {
+                "description": "string that contains identifier for parent resource",
+                "type": "string"
+            },
+            "cin:isDataset": {
+                "description": "",
+                "type": "boolean"
+            },
+            "cin:created": {
+                "description": "is this the metadata created date, or resoruce created date? For the metadata, it would be more useful to track the date of most recent update to metadata.",
+                "type": "string",
+                "format": "date-time"
+            },
+            "cin:createdByUsername": {
+                "description": "",
+                "type": "string"
+            },
+            "cin:primaryDomain": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "cin:domainName": {
+                        "type": "string"
+                    },
+                    "cin:domainDescription": {
+                        "type": "string"
+                    },
+                    "cin:domainLinkedDataURL": {
+                        "type": "string"
+                    }
+                }
+            },
+            "cin:namedLocation": {
+                "description": "",
+                "type": "array",
+                "items": {
+                    "cin:locationLinkedDataURL": {
+                        "type": "string"
+                    },
+                    "cin:locationName": {
+                        "type": "string"
+                    },
+                    "cin:locationWest": {
+                        "type": "double"
+                    },
+                    "cin:locationEast": {
+                        "type": "double"
+                    },
+                    "cin:locationNorth": {
+                        "type": "double"
+                    },
+                    "cin:locationSouth": {
+                        "type": "double"
+                    }
+                }
+            },
+            "cin:favorites": {
+                "description": "",
+                "type": "array",
+                "items": {
+                    "cin:userName": {
+                        "type": "string"
+                    },
+                    "cin:upvote": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        }
+    },
+    "cin:Readiness": {
+        "id": "#Readiness",
+        "type": "object",
+        "properties": {
+            "cin:reviewedDate": {
+                "type": "integer"
+            },
+            "cin:notes": {
+                "type": "integer"
+            },
+            "cin:readinessLevel": {
+                "type": "object",
+                "properties": {
+                    "cin:readinessLevel": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "cin:readinessLevelBrief": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "cin:readinessLevelDescription": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "cin:ServiceType": {
+        "id": "#ServiceType",
+        "description": "",
+        "type": "object",
+        "properties": {
+            "cin:acronym": {
+                "type": "string"
+            },
+            "cin:serviceName": {
+                "type": "string"
+            },
+            "cin:serviceDescriptionURL": {
+                "type": "string"
+            },
+            "cin:serviceInformationModel": {
+                "type": "string"
+            },
+            "cin:serviceDetailedDescription": {
+                "type": "string"
+            }
+        }
+    }
+}
