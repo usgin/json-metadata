@@ -1,0 +1,105 @@
+{
+    conceptURI: '83747,Corning transparent pot',
+    prefLabel: 'an / VS-08/0.8L skillet,',
+    altLabel: [{
+            altConceptLabelText: 'another label',
+            altConceptLanguage: 'es',
+            altConceptContext: {
+                referenceLabel: 'Mexico'
+            }
+    }, {
+            altConceptLabelText: '不合理则返回',
+            altConceptLanguage: 'chi',
+            altConceptContext: {
+                referenceLabel: 'Chinese,Hong Kong',
+                referenceURI: 'http: //sqxpxzmp.gov/fwmw'
+            }
+    },
+        {
+            altConceptLabelText: 'aljh4pio5',
+            altConceptLanguage: 'idk',
+            altConceptContext: {
+                referenceLabel: 'random label',
+                referenceURI: 'http://sqddxaa.gov/fwd43'
+            }
+    }],
+    vocabularyURI: 'http://vocabulary.gov/potsandpans',
+    conceptLink: [{
+            link: 'http://shvfuaqv.net/bzskpi',
+            relation: [{
+                    referenceLabel: 'download'  },
+                       {
+                    referenceLabel: 'accessURL',
+                    referenceURI: 'http://schema.org/relations/accessURL'
+                }],
+            title: 'mp decorated romantic,Corning Glass cris',
+            resourceType: 'ter wash',
+            innerResourceType: 'il',
+            {
+                overlayAPI: {
+                    referenceLabel: 'wok,DJ Corning pot',
+                    referenceURI: 'http://zqsksa.io/wqtfkpeb'
+                },
+                profile: {
+                    referenceLabel: 'y balm (4 groups) H72388,',
+                    referenceURI: 'http://hohqdwvb.org/fkyqmm'
+                }}
+        },
+        {
+            link: 'http://mspzyqp.org/xsme',
+            relation: [Object],
+            title: 'h box cute student',
+            resourceType: 'd',
+            innerResourceType: 'h hood care agent J12731,Hea',
+            {
+                overlayAPI: {
+                    referenceLabel: 'wok,DJ Corning pot',
+                    referenceURI: 'http://zqsksa.io/wqtfkpeb'
+                },
+                profile: {
+                    referenceLabel: 'y balm (4 groups) H72388,',
+                    referenceURI: 'http://hohqdwvb.org/fkyqmm'
+                },
+                parameters: [{
+                    {
+                        linkParameterName: {
+                            referenceLabel: 'paramA',
+                            referenceURI: 'http://usgin.org/heat'
+                        }
+                    }, linkParameterValue: '2456'
+                }, {
+                    {
+                        linkParameterName: {
+                            referenceLabel: 'ParamB',
+                            referenceURI: 'http://cuahsi.org/vocab/energy'
+                        }
+                    }, linkParameterValue: '22 kwh'
+                }, {
+                    {
+                        linkParameterName: {
+                            referenceLabel: 'ParamC',
+                            referenceURI: 'http://xqq.org/hegklnxwk'
+                        }
+                    }, linkParameterValue: 'blue'
+                }]
+            }
+        },
+        {
+            link: 'http://kuv.gov/aaglswr',
+            relation: [Object],
+            title: 'rning Ware / one-piece cutlery Pink L',
+            resourceType: 'ft piece,Please modify the title, TAFUCO / Dy',
+            innerResourceType: 'h toilet ',
+            {
+                overlayAPI: {
+                    referenceLabel: 'wok,DJ Corning pot',
+                    referenceURI: 'http://zqsksa.io/wqtfkpeb'
+                },
+                profile: {
+                    referenceLabel: 'y balm (4 groups) H72388,',
+                    referenceURI: 'http://hohqdwvb.org/fkyqmm'
+                },
+                parameters: [{}, {}, {}, {}, {}]
+            }
+        }]
+}
