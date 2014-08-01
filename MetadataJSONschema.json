@@ -99,24 +99,33 @@
             },
             "jmd:resourceBrowseGraphic": {
                 "description": "Reference that specifies a graphic resource that provides a visualization of the resource, as well as a URL link that should access the graphic.",
-                "$ref": "#/defintions/reference"
+                "$ref": "#/definitions/reference"
             },
             "jmd:resourceTemporalExtent": {
                 "description": "This is the time instant or interval to which the resource content applies. Extent using named time ordinal eras (e.g. geologic time) should be specified using temporal keywords (vocabulary is a time scale). use ISO8601 encoding for intervals with the format <start>/<end> where start and end are 8601 dateTime strings. see http://en.wikipedia.org/wiki/ISO_8601",
-                "type": "array",
-                "items": {
-                    "type": "string",
-                    "format": "ISO8601"
-                }
+                "anyOf": [{
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "ISO-8601"
+                    }
+                }, {
+                    "$ref": "#/definitions/Reference"
+                }]
             },
             "jmd:resourceCharacterEncoding": {
                 "description": "character set for described resource content",
                 "type": "string"
             },
             "jmd:resourceLanguage": {
-                "description": "Language of resource content. Multiple languages may be specified. Use Nil not applicable if there is no text in the resource.",
-                "type": "string",
-                "format": "ISO three letter language code"
+                "description": "Language of resource content. Multiple languages may be specified. Use Nil not applicable if there is no text in the resource. Use ISO three letter language code; provide option to use a jmd:reference if need some other kind of language scoping",
+                "anyOf": [{
+                        "type": "string",
+                        "format": "ISO-639"
+            },
+                    {
+                        "$ref": "#/definitions/Reference"
+                    }]
             },
             "jmd:resourceCitation": {
                 "description": "information to identify and locate published resources for which a formal bibliographic reference is appropriate.  Resource identifiers may include ISBN, ISSN, DeweyDecimal system numbers, or other URIs determined by the publishing authority.",
@@ -132,7 +141,7 @@
                     "jmd:citedResourceIdentifier": {
                         "description": "Identifier(s) for the cited resource, e.g. ISBN, ISSN, Dewey Decimal system numbers, or other URIs determined by the publishing authority",
                         "type": "array",
-                        "required":["jmd:citationIdentifier"],
+                        "required": ["jmd:citationIdentifier"],
                         "items": {
                             "jmd:citationIdentifier": {
                                 "description": "Note citation is to a particular manifestation or expression of the resource; the citationIdentifier is bound to that resource. The resourceURI is intended to identify the resource at the work level.",
@@ -172,16 +181,17 @@
                     }
                 }
             },
+            "jmd:resourceExtent": {
+                "description": "specification of the geographic footprint of the described resource content",
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/Extent"
+                }
+            },
             "jmd:resourceSpatialDescription": {
                 "description": "Properties characterizing the spatial aspects of the resource, if applicable. Allow multiple extents for non contiguous resource, e.g. map of US coasts.",
                 "type": "object",
                 "properties": {
-                    "jmd:resourceExtent": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/Extent"
-                        }
-                    },
                     "jmd:resourceSpatialRepresentationType": {
                         "description": "term specifying the nature of the geometric representation, e.g. vector, grid, tin, voxel. More complete information on spatial representation (like ISO19115 spatial representation package) is not included here; use extensions in the description details group",
                         "$ref": "#/definitions/ControlledConcept"
@@ -190,7 +200,6 @@
                         "description": "identifier and link to definition of spatial reference system used for location information contained in the resource content",
                         "$ref": "#/definitions/Reference"
                     }
-
                 }
             },
             "jmd:resourceIndexTerms": {
@@ -204,7 +213,7 @@
                             "$ref": "#/definitions/ControlledConcept"
                         },
                         "jmd:keywords": {
-                            "description": "words associated with the resource to improve search accuracy. if no keywordReference is provided, these will be treated as tags",
+                            "description": "words associated with the resource to improve search accuracy. if no keywordReference is provided, these will be treated as tags. The keyword reference should provide a mapping from the labels that appear as strings in the keywords array here to URIs that uniquely identify the keyword (if such URIs are defined)",
                             "type": "array",
                             "minItems": 1,
                             "items": {
@@ -516,148 +525,152 @@
                     }
                 },
                 {
-                    "jmd:qualityReport": {
-                        "description": "a collection of quality elements that apply to the specified scope. ",
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "required": ["jmd:qualityElementType", "jmd:qualityElementResult"],
-                            "properties": {
-                                "jmd:qualityElementType": {
-                                    "description": "good starting point for this vocabulary is the subtypes of DQ_Element in ISO 19157: Completeness, conceptualConsistency, DomainConsistency, formatConsistency, topologicalConsistency,ThematicAccuracy, TemporalQuality, PositionalAccuracy (and subtypes of these...)",
-                                    "$ref": "#/definitions/ControlledConcept"
-
-                                },
-                                "jmd:qualityElementConfidence": {
-                                    "type": "string",
-                                    "description": "general statement of confidence in this quality element assessment, guessing what the intention in 19157 is supposed to be"
-
-                                },
-                                "jmd:qualityElementHomogeneity": {
-                                    "type": "string",
-                                    "description": "how uniformly this element value applies across the assigned result scope"
-
-                                },
-                                "jmd:qualityElementRepresentativity": {
-                                    "description": "degree to which the sample used has produced a result which is representative of the data within the data quality scope",
-                                    "type": "string"
-
-                                },
-                                "jmd:qualityMeasureIdentifier": {
-                                    "description": "Identifier of the measure, value uniquely identifying the measure within a namespace",
-                                    "$ref": "#/definitions/Reference"
-
-                                },
-                                "jmd:qualityMeasureLabel": {
-                                    "type": "string",
-                                    "description": "Text label for users to understand measure type"
-                                },
-                                "jmd:qualityMeasureDescription": {
-                                    "type": "string",
-                                    "description": "explanation of measureType"
-                                },
-                                "jmd:qualityEvaluationType": {
-                                    "type": {
-                                        "$ref": "#/definitions/Reference"
-                                    },
-                                    "description": "links to reference docs for evaluation method should be in here. The methods should be mapped to the ISO19157 Evaluation method subtypes if possible; these include AggregationDerivation, IndirectEvaluation, SampleBAsedInspection, and FullInspection"
-                                },
-                                "jmd:qualityEvaluationMethodDescription": {
-                                    "type": "string",
-                                    "description": "text description of the evaluation method"
-                                },
-                                "jmd:qualityEvaluationProcedure": {
-                                    "type": "string",
-                                    "description": "text description of procedure used to implement evaluation method"
-                                },
-                                "jmd:qualityElementResult": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "required": ["resultValue"],
-                                        "properties": {
-                                            "qualityElementResultScope": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "qualityElementResultDateTime": {
-                                                        "$ref": "#/definitions/EventTime"
-                                                    },
-                                                    "qualityElementResultScopeTerm": {
-                                                        "$ref": "#/definitions/ControlledConcept"
-                                                    },
-                                                    "qualityElementResultExtent": {
-                                                        "$ref": "#/definitions/Extent"
-                                                    },
-                                                    "qualityElementResultScopeEnumeration": {
-                                                        "type": "array",
-                                                        "items": {
-                                                            "$ref": "#/definitions/Reference"
-                                                        },
-                                                        "description": "list of references to items that the result applies to"
-                                                    }
-                                                }
-                                            },
-                                            "qualityElementResultValue": {
-                                                "anyOf": [
-                                                    {
-                                                        "qualityElementConformanceResult": {
-                                                            "type": "object",
-                                                            "required": ["qualityResultSpecification", "qualityConformancePass"],
-                                                            "properties": {
-                                                                "qualityElementResultSpecification": {
-                                                                    "$ref": "#/definitions/Reference"
-                                                                },
-                                                                "qualityElementResultExplanation": {
-                                                                    "type": "string",
-                                                                    "description": "text explanation of result"
-                                                                },
-                                                                "qualityElementConformancePass": {
-                                                                    "type": "boolean"
-                                                                }
-                                                            }
-                                                        }
-                                        },
-                                                    {
-                                                        "descriptiveResult": {
-                                                            "type": "string",
-                                                            "description": "text description of test result"
-                                                        }
-                                        },
-                                                    {
-                                                        "quantitativeResult": {
-                                                            "type": "object",
-                                                            "required": ["resultValue", "resultValueUnits"],
-                                                            "properties": {
-                                                                "resultValue": {
-                                                                    "type": "string",
-                                                                    "description": "value may be single number or a list of numbers or strings"
-                                                                },
-                                                                "resultValueUnits": {
-                                                                    "$ref": "#/definitions/ControlledConcept"
-                                                                },
-                                                                "resultValueType": {
-                                                                    "type": {
-                                                                        "$ref": "#/definitions/ControlledConcept"
-                                                                    },
-                                                                    "description": "if value is a structured text string (implementing a record structure),link from concept URI should access a description of the record."
-                                                                }
-                                                            }
-                                                        }
-                                        }
-                        ]
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    "$ref": "#/QualityReport"
                 }]
         }
     },
 
+    "jmd:QualityReportObject": {
+        "id": "#QualityReport",
+        "description": "a collection of quality elements that apply to the specified scope. ",
+        "type": "array",
+        "items": {
+            "type": "object",
+            "required": ["jmd:qualityElementType", "jmd:qualityElementResult"],
+            "properties": {
+                "jmd:qualityReportURI": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "jmd:qualityElementType": {
+                    "description": "good starting point for this vocabulary is the subtypes of DQ_Element in ISO 19157: Completeness, conceptualConsistency, DomainConsistency, formatConsistency, topologicalConsistency,ThematicAccuracy, TemporalQuality, PositionalAccuracy (and subtypes of these...)",
+                    "$ref": "#/definitions/ControlledConcept"
+
+                },
+                "jmd:qualityElementConfidence": {
+                    "type": "string",
+                    "description": "general statement of confidence in this quality element assessment, guessing what the intention in 19157 is supposed to be"
+
+                },
+                "jmd:qualityElementHomogeneity": {
+                    "type": "string",
+                    "description": "how uniformly this element value applies across the assigned result scope"
+
+                },
+                "jmd:qualityElementRepresentativity": {
+                    "description": "degree to which the sample used has produced a result which is representative of the data within the data quality scope",
+                    "type": "string"
+
+                },
+                "jmd:qualityMeasureIdentifier": {
+                    "description": "Identifier of the measure, value uniquely identifying the measure within a namespace",
+                    "$ref": "#/definitions/Reference"
+
+                },
+                "jmd:qualityMeasureLabel": {
+                    "type": "string",
+                    "description": "Text label for users to understand measure type"
+                },
+                "jmd:qualityMeasureDescription": {
+                    "type": "string",
+                    "description": "explanation of measureType"
+                },
+                "jmd:qualityEvaluationType": {
+                    "type": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "description": "links to reference docs for evaluation method should be in here. The methods should be mapped to the ISO19157 Evaluation method subtypes if possible; these include AggregationDerivation, IndirectEvaluation, SampleBAsedInspection, and FullInspection"
+                },
+                "jmd:qualityEvaluationMethodDescription": {
+                    "type": "string",
+                    "description": "text description of the evaluation method"
+                },
+                "jmd:qualityEvaluationProcedure": {
+                    "type": "string",
+                    "description": "text description of procedure used to implement evaluation method"
+                },
+                "jmd:qualityElementResult": {
+                    "type": "array",
+                        "required": ["jmd:qualityElementResultValue"],
+                    "items": {
+                            "jmd:qualityElementResultScope": {
+                                "type": "object",
+                                "properties": {
+                                    "qualityElementResultDateTime": {
+                                        "$ref": "#/definitions/EventTime"
+                                    },
+                                    "qualityElementResultScopeTerm": {
+                                        "$ref": "#/definitions/ControlledConcept"
+                                    },
+                                    "qualityElementResultExtent": {
+                                        "$ref": "#/definitions/Extent"
+                                    },
+                                    "qualityElementResultScopeEnumeration": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/Reference"
+                                        },
+                                        "description": "list of references to items that the result applies to"
+                                    }
+                                }
+                            },
+                            "jmd:qualityElementResultValue": {
+                                "anyOf": [
+                                    {
+                                        "jmd:qualityElementConformanceResult": {
+                                            "type": "object",
+                                            "required": ["jmd:qualityResultSpecification", "jmd:qualityConformancePass"],
+                                            "properties": {
+                                                "jmd:qualityElementResultSpecification": {
+                                                    "$ref": "#/definitions/Reference"
+                                                },
+                                                "jmd:qualityElementResultExplanation": {
+                                                    "type": "string",
+                                                    "description": "text explanation of result"
+                                                },
+                                                "jmd:qualityElementConformancePass": {
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        }
+                                        },
+                                    {
+                                        "jmd:descriptiveResult": {
+                                            "type": "string",
+                                            "description": "text description of test result"
+                                        }
+                                        },
+                                    {
+                                        "jmd:quantitativeResult": {
+                                            "type": "object",
+                                            "required": ["jmd:resultValue", "jmd:resultValueUnits"],
+                                            "properties": {
+                                                "jmd:quantitativeResultValue": {
+                                                    "type": "string",
+                                                    "description": "value may be single number or a list of numbers or strings"
+                                                },
+                                                "jmd:quantitativeResultUnits": {
+                                                    "$ref": "#/definitions/ControlledConcept"
+                                                },
+                                                "jmd:quantitativeResultType": {
+                                                    "description": "if value is a structured text string (implementing a record structure),link from concept URI should access a description of the record.",
+                                                    "type": {
+                                                        "$ref": "#/definitions/ControlledConcept"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        }
+                        ]
+                            }
+                    }
+                }
+            }
+        }
+    },
+
     "jmd:UsageConstraintObject": {
-        "description": "properties for specifying legal, technical or security restrictions on the usage or distribution of a resource",
+        "description": "properties for specifying legal, technical or security restrictions on the usage or distribution of a resource. Use for DPLA rights properties.",
         "id": "#UsageConstraint",
         "type": "object",
         "properties": {
@@ -1159,11 +1172,10 @@
         }
     },
 
-
     "definitions": {
         "jmd:LinkObject": {
             "id": "#Link",
-            "description": "used for situations that need a link (hypermedia affordance) to an online resource, typically for navigating linked data space.",
+            "description": "used for situations that need a link (hypermedia affordance) to an online resource, typically for navigating linked data space.  The link is a locator--an identifier for a location that can provide a digital object.",
             "type": "object",
             "required": ["jmd:link", "jmd:relation"],
             "properties": {
@@ -1189,8 +1201,8 @@
                     "description": "typically use MIME type string from IANA registry http : //www.iana.org/assignments/media-types/application/index.html. This is the type of the file that will be accessed directly by the link URL; if this is a container file (e.g. zip archive), the innerResourceType property is used to specify the type of file with actual resource content."
                 },
                 "jmd:linkContentResourceType": {
-                    "type": "string",
-                    "description": "File type for the actual resource content. Typically use MIME type string from IANA registry http : //www.iana.org/assignments/media-types/application/index.html"
+                    "description": "File type for the actual resource content. Typically use MIME type string from IANA registry http : //www.iana.org/assignments/media-types/application/index.html",
+                    "type": "string"
                 },
                 "jmd:linkOverlayAPI": {
                     "$ref": "#/definitions/Reference",
@@ -1227,13 +1239,17 @@
                 "jmd:linkModifier": {
                     "description": "term (controlled concept or URI?) that characterize the link or expected behavior, analogous to xlink:actuate. Some compiled terms include noFollow, new, replace, embed, onLoad, onRequest, noReferrer, prefetch //0..N",
                     "$ref": "#/definitions/ControlledConcept"
+                },
+                "jmd:linkTargetConstraints": {
+                    "description": "specification of any rights or constraints that need to be understood to utilize the link.",
+                    "$ref": "#/UsageConstraint"
                 }
             }
         },
 
         "jmd:ReferenceObject": {
             "id": "#Reference",
-            "description": "use when another external linked data resource is intended to be the value of some element. The URI is proxy for that resource, such that text-based identifier comparison can be used when convienent. The associated links are for advertising specific representations or related resources. Some of these are likely to be accessible by dereferncing the URI, but the link elements allow explicit indication of the available representations and how to get them (with no URI redirection...)",
+            "description": "Use when a linked resource is intended to be the value of some element; The URI is proxy for that resource, such that text-based identifier comparison can be used to test equivalence. The associated links are for advertising specific representations and other related resources. Some of these are likely to be accessible by dereferencing the URI, but the link elements allow explicit indication of the available representations and how to get them (with no URI redirection...)",
             "type": "object",
             "required": ["jmd:referenceURI"],
             "properties": {
@@ -1293,11 +1309,12 @@
                     "format": "URI"
                 },
                 "jmd:conceptLink": {
+                    "description": "0..N can provide various links to get related concepts, definitions, source, etc. Link/linkRelation properties can encode the standard SKOS type relationships between concepts.",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Link"
-                    },
-                    "description": "0..N can provide various links to get related concepts, definitions, source, etc."
+                    }
+
                 }
             }
         },
@@ -1314,6 +1331,11 @@
                 "jmd:agent": {
                     "type": "object",
                     "properties": {
+                        "jmd:agentURI": {
+                            "description": "identifier for this collection of persons, organization and contactInformation",
+                            "type": "string",
+                            "format": "uri"
+                        },
                         "anyOf": [
                             {
                                 "jmd:person": {
@@ -1327,49 +1349,49 @@
                                 "jmd:organization": {
                                     "$ref": "#/definitions/Organization"
                                 }
-                            }]
-                    }
-                },
-                "jmd:contactInformation": {
-                    "description": "one of phone number or e-mail to provide means to contact the agent. e-mail maps to foaf:mbox...",
-                    "type": "object",
-                    "properties": {
-                        "anyOf": [
-                            {
-                                "jmd:contactPhoneNumber": {
-                                    "type": "array",
-                                    "description": "e.g.office, reception, fax, cel",
-                                    "required": "jmd:phoneNumber",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "jmd:phoneNumberType": {
-                                                "type": "string"
-                                            },
-                                            "jmd:phoneNumber": {
-                                                "description": "use registered tel URI scheme for encoding. See http://tools.ietf.org/html/rfc3966",
-                                                "type": "string"
+                            }],
+                        "jmd:contactInformation": {
+                            "description": "one of phone number or e-mail to provide means to contact the agent. e-mail maps to foaf:mbox...",
+                            "type": "object",
+                            "properties": {
+                                "anyOf": [
+                                    {
+                                        "jmd:contactPhoneNumber": {
+                                            "type": "array",
+                                            "description": "e.g.office, reception, fax, cel",
+                                            "required": "jmd:phoneNumber",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "jmd:phoneNumberType": {
+                                                        "type": "string"
+                                                    },
+                                                    "jmd:phoneNumber": {
+                                                        "description": "use registered tel URI scheme for encoding. See http://tools.ietf.org/html/rfc3966",
+                                                        "type": "string"
+                                                    }
+                                                }
                                             }
                                         }
+                            },
+                                    {
+                                        "jmd:contactEmail": {
+                                            "description": "map to foaf:mbox",
+                                            "type": "string",
+                                            "format": "email"
+                                        }
+                            }],
+                                "jmd:contactAddress": {
+                                    "type": "string",
+                                    "description": "postal address,ideally formatted appropriate to the target country. One field because there is no clear reason to disaggregate the address into street, city, country, postal code, etc..."
+                                },
+                                "jmd:contactLinks": {
+                                    "description": "one or more links to other resources related to the agent",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Link"
                                     }
                                 }
-                            },
-                            {
-                                "jmd:contactEmail": {
-                                    "description": "map to foaf:mbox",
-                                    "type": "string",
-                                    "format": "email"
-                                }
-                            }],
-                        "jmd:contactAddress": {
-                            "type": "string",
-                            "description": "postal address,ideally formatted appropriate to the target country. One field because there is no clear reason to disaggregate the address into street, city, country, postal code, etc..."
-                        },
-                        "jmd:contactLinks": {
-                            "description": "one or more links to other resources related to the agent",
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Link"
                             }
                         }
                     }
@@ -1449,72 +1471,74 @@
                     "type": "string",
                     "description": "free text description of extent"
                 },
-                "jmd:extentURI": {
-                    "description": "identifier for this extent object; should be populated if this object defines an extent that will be reused.",
-                    "type": "string",
-                    "format": "uri"
-                },
-                "jmd:extentReference": {
-                    "description": "extent could be associated by reference (i.e. by providing its URI), but only useful in a system that could follow links to access the actual geometry.",
-                    "$ref": "#/definitions/Reference"
-                },
-                "jmd:boundingBoxWGS84": {
-                    "description": "simplest representation of geographic extent using latitude and longitude coordinates. Points are represented as degenerate boxes (east = west, north = south bound). Mandate WGS 84 for interoperability. For boxes in polar regions, recommend using geometry property, which allows specification of other SRS appropriate to polar region.",
-                    "type": "array",
-                    "minItems": 1,
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "jmd:northBoundLatitude": {
-                                "type": "number",
-                                "minimum": -90,
-                                "maximum": 90
-                            },
-                            "jmd:southBoundLatitude": {
-                                "type": "number",
-                                "minimum": -90,
-                                "maximum": 90
-                            },
-                            "jmd:eastBoundLongitude": {
-                                "type": "number",
-                                "minimum": -180,
-                                "maximum": 180
-                            },
-                            "jmd:westBoundLongitude": {
-                                "type": "number",
-                                "minimum": -180,
-                                "maximum": 180
+                "anyOf": [
+                    {
+                        "description": "extent could be referenced, but only useful in a system that could follow links to access the actual geometry, or for which the URI is sufficient to match locations.",
+                        "$ref": "#/definitions/Reference"
+                        },
+                    {
+                        "jmd:boundingBoxWGS84": {
+                            "description": "simplest representation of geographic extent using latitude and longitude coordinates. Points are represented as degenerate boxes (east = west, north = south bound). Mandate WGS 84 for interoperability. For boxes in polar regions, recommend using geometry property, which allows specification of other SRS appropriate to polar region.",
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "jmd:northBoundLatitude": {
+                                        "type": "number",
+                                        "minimum": -90,
+                                        "maximum": 90
+                                    },
+                                    "jmd:southBoundLatitude": {
+                                        "type": "number",
+                                        "minimum": -90,
+                                        "maximum": 90
+                                    },
+                                    "jmd:eastBoundLongitude": {
+                                        "type": "number",
+                                        "minimum": -180,
+                                        "maximum": 180
+                                    },
+                                    "jmd:westBoundLongitude": {
+                                        "type": "number",
+                                        "minimum": -180,
+                                        "maximum": 180
+                                    }
+                                }
                             }
                         }
-                    }
-                },
-                "jmd:extentGeometryType": {
-                    "description": "category concept to specify the relationship of the extent to the geographic footprint of the resource, use to distinguish whether the geometry encompasses an area covered by the data or an area where data is not present, or if a point location is provided whether that is a centroid or actual resource location",
+               },
+                    {
+                        "jmd:extentGeometryType": {
+                            "description": "category concept to specify the relationship of the extent to the geographic footprint of the resource, use to distinguish whether the geometry encompasses an area covered by the data or an area where data is not present, or if a point location is provided whether that is a centroid or actual resource location",
 
-                    "$ref": "#/definitions/ControlledConcept"
-                },
-                "jmd:extentGeometry": {
-                    "description": "allow arbitrary geometry object to specify extent. Use GeoJSON encoding. Schema by fge on Github",
-                    "type": "array",
-                    "items": {
-                        "$ref": "https://raw.githubusercontent.com/fge/sample-json-schemas/master/geojson/geojson.json"
-                    }
-                },
-                "jmd:verticalExtent": {
-                    "description": "Maximum and Minimum Elevations are relative to a datum elevation (based on vertical CRS), which will typically be the Earth surface at the location of the resource or sea level. Datum Elevation must be reported relative to mean sea level (MSL) in meters using EPSG::5714 geodetic parameters (WGS 84). Datum type must be a controlled vocabulary (Earth surface, MSL, Kelly bushing, etc.). The maximum is always numerically greater than the minimum elevation. For boreholes with datum at the earth surface, depth below surface is reported as a negative number.  *Vertical extent may be reported relative to different datum (e.g. sea level, Earth surface) in the same record.  Example: core from borehole at depths between 100 and 470 feet, borehole collar at 4787 feet above sea level.",
-                    "type": "object",
-                    "properties": {
-                        "jmd:verticalExtentMinimum": {
-                            "type": "number"
+                            "$ref": "#/definitions/ControlledConcept"
                         },
-                        "jmd:verticalExtentMaximum": {
-                            "type": "number"
-                        },
-                        "jmd:verticalExtentCRS": {
-                            "$ref": "#/definitions/Reference"
+                        "jmd:extentGeometry": {
+                            "description": "allow arbitrary geometry object to specify extent. Use GeoJSON encoding. Schema by fge on Github",
+                            "type": "array",
+                            "items": {
+                                "$ref": "https://raw.githubusercontent.com/fge/sample-json-schemas/master/geojson/geojson.json"
+                            }
                         }
-                    }
-                }
+               },
+                    {
+                        "jmd:verticalExtent": {
+                            "description": "Maximum and Minimum Elevations are relative to a datum elevation (based on vertical CRS), which will typically be the Earth surface at the location of the resource or sea level. Datum Elevation must be reported relative to mean sea level (MSL) in meters using EPSG::5714 geodetic parameters (WGS 84). Datum type must be a controlled vocabulary (Earth surface, MSL, Kelly bushing, etc.). The maximum is always numerically greater than the minimum elevation. For boreholes with datum at the earth surface, depth below surface is reported as a negative number.  *Vertical extent may be reported relative to different datum (e.g. sea level, Earth surface) in the same record.  Example: core from borehole at depths between 100 and 470 feet, borehole collar at 4787 feet above sea level.",
+                            "type": "object",
+                            "properties": {
+                                "jmd:verticalExtentMinimum": {
+                                    "type": "number"
+                                },
+                                "jmd:verticalExtentMaximum": {
+                                    "type": "number"
+                                },
+                                "jmd:verticalExtentCRS": {
+                                    "$ref": "#/definitions/Reference"
+                                }
+                            }
+                        }
+                      }]
             }
         },
 
