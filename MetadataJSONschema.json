@@ -75,9 +75,25 @@
                 "type": "string"
             },
             "jmd:resourceURI": {
-                "description": "Unique identifier conforming to IETF URI syntax (RFC 3986). Resource may have multiple identifiers; the identifier in this element is the preferred identifier recommended by the resource steward. The resourceURI is intended to identify the resource at the work level. Other identifiers are included in the citation section and typically identify particular manifestations or expressions.",
-                "type": "string",
-                "format": "URI"
+                "description": "Unique identifier conforming to IETF URI syntax (RFC 3986). Resource may have multiple identifiers; the identifier in this element is the preferred identifier recommended by the resource steward. The resourceURI is intended to identify the resource at the FRBR work level. Identifier may be a sinle URI or an array of scoped identifiers with an optional authority associated with each identifier",
+                "anyOf": [{
+                    "type": "string",
+                    "format": "URI"
+            }, {
+                    "description": "scoped Identifier(s) for the resource, e.g. ISBN, ISSN, Dewey Decimal system numbers, or other URIs determined by the publishing authority",
+                    "type": "array",
+                    "required": ["jmd:ScopedIdentifier"],
+                    "items": {
+                        "jmd:citationIdentifier": {
+                            "description": "Note citation is to a particular manifestation or expression of the resource; the citationIdentifier is bound to that resource. The resourceURI is intended to identify the resource at the work level.",
+                            "type": "string"
+                        },
+                        "jmd:scopedIdentifierAuthority": {
+                            "description": "an identifier for the authority or identifier scheme within which the citationIdentifier is defined.",
+                            "$ref": "#/definitions/Reference"
+                        }
+                    }
+                    }]
             },
             "jmd:resourceContact": {
                 "description": "link to party to contact for additional information about the resource. Each relatedAgent has an associated role; various parties may be associated with the resource in different roles.",
@@ -128,29 +144,14 @@
                     }]
             },
             "jmd:resourceCitation": {
-                "description": "information to identify and locate published resources for which a formal bibliographic reference is appropriate.  Resource identifiers may include ISBN, ISSN, DeweyDecimal system numbers, or other URIs determined by the publishing authority.",
+                "description": "Citation information for the resource, including contributing agents (author, publisher, editor, compiler, etc., pertinent dates that may be useful in searches for the resource or for identifying it, alternate titles, and a recommended full citation text to use for citing the resource. Also information to identify and locate published resources for which a formal bibliographic reference is appropriate.",
                 "type": "object",
                 "properties": {
                     "jmd:citedSourceAgent": {
-                        "description": "intellectual originator of cited work that metadata record describes.",
+                        "description": "intellectual originator and contributors of the resource that metadata record describes.",
                         "type": "array",
                         "items": {
                             "$ref": "#/definitions/RelatedAgent"
-                        }
-                    },
-                    "jmd:citedResourceIdentifier": {
-                        "description": "Identifier(s) for the cited resource, e.g. ISBN, ISSN, Dewey Decimal system numbers, or other URIs determined by the publishing authority",
-                        "type": "array",
-                        "required": ["jmd:citationIdentifier"],
-                        "items": {
-                            "jmd:citationIdentifier": {
-                                "description": "Note citation is to a particular manifestation or expression of the resource; the citationIdentifier is bound to that resource. The resourceURI is intended to identify the resource at the work level.",
-                                "type": "string"
-                            },
-                            "jmd:citationIdAuthority": {
-                                "description": "an identifier for the authority or identifier scheme within which the citationIdentifier is defined.",
-                                "$ref": "#/definitions/Reference"
-                            }
                         }
                     },
                     "jmd:citationDate": {
@@ -175,9 +176,13 @@
                             }
                         }
                     },
-                    "jmd:fullCitation": {
+                    "jmd:recommendedCitation": {
                         "description": "a suggested full text citation to use when citing the resource; include standard bibliographic content like edition, publisher, series title, series issue, page numbers, other information appropriate to the described resource",
                         "type": "string"
+                    },
+                    "jmd:publicationInfo": {
+                        "description": "if the resource is a published work, other standard bibliographic information goes here",
+                        "$ref": "#/PublicationDetails"
                     }
                 }
             },
@@ -243,7 +248,7 @@
                         },
                         "anyOf": [
                             {
-                                "jmd:accessURL": {
+                                "jmd:accessLink": {
                                     "description": "online location that provides some kind of access to the described resource. The link properties are used to characterize the nature of the resource at the specified location",
                                     "type": "array",
                                     "items": {
@@ -313,9 +318,6 @@
                 "description": "container for extension objects that define resource or domain-specific properties. Some basic examples are provided here",
                 "type": "object",
                 "properties": {
-                    "jmd:publication": {
-                        "$ref": "#/PublicationDetails"
-                    },
                     "jmd:dataset": {
                         "$ref": "#/DatasetDetails"
                     },
@@ -394,8 +396,12 @@
     "jmd:ProcessStepObject": {
         "id": "#ProcessStep",
         "type": "object",
-        "required": ["stepLabel", "sequence"],
+        "required": ["stepSequence", "stepLabel"],
         "properties": {
+            "jmd:stepSequence": {
+                "type": "integer",
+                "description": "number each step to put them in order. Order of listing in processing array is not significant"
+            },
             "jmd:stepLabel": {
                 "type": "string",
                 "description": "text to characterize,identify this step for user interface listing"
@@ -414,11 +420,8 @@
                 }
             },
             "jmd:stepProcessDescription": {
+                "description": "free text description of what processing was done",
                 "type": "string"
-            },
-            "jmd:stepSequence": {
-                "type": "integer",
-                "description": "number each step to put them in order. Order of listing in processing array is not significant"
             },
             "jmd:stepInputResource": {
                 "description": "reference that identifies the resource(s) that are input into the process step",
@@ -591,78 +594,78 @@
                 },
                 "jmd:qualityElementResult": {
                     "type": "array",
-                        "required": ["jmd:qualityElementResultValue"],
+                    "required": ["jmd:qualityElementResultValue"],
                     "items": {
-                            "jmd:qualityElementResultScope": {
-                                "type": "object",
-                                "properties": {
-                                    "qualityElementResultDateTime": {
-                                        "$ref": "#/definitions/EventTime"
+                        "jmd:qualityElementResultScope": {
+                            "type": "object",
+                            "properties": {
+                                "qualityElementResultDateTime": {
+                                    "$ref": "#/definitions/EventTime"
+                                },
+                                "qualityElementResultScopeTerm": {
+                                    "$ref": "#/definitions/ControlledConcept"
+                                },
+                                "qualityElementResultExtent": {
+                                    "$ref": "#/definitions/Extent"
+                                },
+                                "qualityElementResultScopeEnumeration": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Reference"
                                     },
-                                    "qualityElementResultScopeTerm": {
-                                        "$ref": "#/definitions/ControlledConcept"
-                                    },
-                                    "qualityElementResultExtent": {
-                                        "$ref": "#/definitions/Extent"
-                                    },
-                                    "qualityElementResultScopeEnumeration": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "#/definitions/Reference"
-                                        },
-                                        "description": "list of references to items that the result applies to"
-                                    }
+                                    "description": "list of references to items that the result applies to"
                                 }
-                            },
-                            "jmd:qualityElementResultValue": {
-                                "anyOf": [
-                                    {
-                                        "jmd:qualityElementConformanceResult": {
-                                            "type": "object",
-                                            "required": ["jmd:qualityResultSpecification", "jmd:qualityConformancePass"],
-                                            "properties": {
-                                                "jmd:qualityElementResultSpecification": {
-                                                    "$ref": "#/definitions/Reference"
-                                                },
-                                                "jmd:qualityElementResultExplanation": {
-                                                    "type": "string",
-                                                    "description": "text explanation of result"
-                                                },
-                                                "jmd:qualityElementConformancePass": {
-                                                    "type": "boolean"
-                                                }
+                            }
+                        },
+                        "jmd:qualityElementResultValue": {
+                            "anyOf": [
+                                {
+                                    "jmd:qualityElementConformanceResult": {
+                                        "type": "object",
+                                        "required": ["jmd:qualityResultSpecification", "jmd:qualityConformancePass"],
+                                        "properties": {
+                                            "jmd:qualityElementResultSpecification": {
+                                                "$ref": "#/definitions/Reference"
+                                            },
+                                            "jmd:qualityElementResultExplanation": {
+                                                "type": "string",
+                                                "description": "text explanation of result"
+                                            },
+                                            "jmd:qualityElementConformancePass": {
+                                                "type": "boolean"
                                             }
                                         }
+                                    }
                                         },
-                                    {
-                                        "jmd:descriptiveResult": {
-                                            "type": "string",
-                                            "description": "text description of test result"
-                                        }
+                                {
+                                    "jmd:descriptiveResult": {
+                                        "type": "string",
+                                        "description": "text description of test result"
+                                    }
                                         },
-                                    {
-                                        "jmd:quantitativeResult": {
-                                            "type": "object",
-                                            "required": ["jmd:resultValue", "jmd:resultValueUnits"],
-                                            "properties": {
-                                                "jmd:quantitativeResultValue": {
-                                                    "type": "string",
-                                                    "description": "value may be single number or a list of numbers or strings"
-                                                },
-                                                "jmd:quantitativeResultUnits": {
+                                {
+                                    "jmd:quantitativeResult": {
+                                        "type": "object",
+                                        "required": ["jmd:resultValue", "jmd:resultValueUnits"],
+                                        "properties": {
+                                            "jmd:quantitativeResultValue": {
+                                                "type": "string",
+                                                "description": "value may be single number or a list of numbers or strings"
+                                            },
+                                            "jmd:quantitativeResultUnits": {
+                                                "$ref": "#/definitions/ControlledConcept"
+                                            },
+                                            "jmd:quantitativeResultType": {
+                                                "description": "if value is a structured text string (implementing a record structure),link from concept URI should access a description of the record.",
+                                                "type": {
                                                     "$ref": "#/definitions/ControlledConcept"
-                                                },
-                                                "jmd:quantitativeResultType": {
-                                                    "description": "if value is a structured text string (implementing a record structure),link from concept URI should access a description of the record.",
-                                                    "type": {
-                                                        "$ref": "#/definitions/ControlledConcept"
-                                                    }
                                                 }
                                             }
                                         }
+                                    }
                                         }
                         ]
-                            }
+                        }
                     }
                 }
             }
@@ -691,13 +694,31 @@
                             "required": ["jmd:constraintType", "jmd:constraintTerm"],
                             "properties": {
                                 "jmd:constraintType": {
-                                    "description": "category of constraint e.g.security, access, technical, usage",
+                                    "description": "category of constraint e.g.security, access, technical, usage. The controlled concept might",
                                     "$ref": "#/definitions/ControlledConcept"
                                 },
                                 "jmd:constraintTerm": {
                                     "description": "a controlled concept that specifies the particular constraint within the domain of constraints specified by the constraintType; e.g. ISO19115 codelists",
                                     "$ref": "#/definitions/ControlledConcept"
                                 }
+                            }
+                        }
+                    }
+                },
+                {
+                    "jmd:license": {
+                        "description": "specification of one or more licenses that applies to the resource. Complete statement of license should be put in the constraintsStatement key if it is desired to include in the metadata",
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                            "jmd:licenseURI": {
+                                "description": "identifier for the license. should derfenrnce to some kind of statement of license",
+                                "type": "string",
+                                "format": "URI"
+                            },
+                            "jmd:licenseName": {
+                                "description": "Name used to identify the license to users",
+                                "type": "string"
                             }
                         }
                     }
@@ -764,7 +785,7 @@
     },
 
     "jmd:EntityObject": {
-        "description": "entity and attributes in the entity; ISO19110, ISO11179, FGDC entity - attribute information. Construct here describes concrete entities only.",
+        "description": "entity and attributes in the entity; ISO19110, ISO11179, FGDC entity - attribute information. Construct here describes concrete entities only.  NOTE: see also JSON Table Schema spec at http://dataprotocols.org/json-table-schema/#schema (TBD)",
         "id": "#Entity",
         "type": "object",
         "properties": {
@@ -955,9 +976,10 @@
     },
 
     "jmd:ServiceOperationObject": {
+        "description": "properties to sepcify the operations offered by a service",
         "id": "#ServiceOperation",
         "type": "object",
-        "required": ["jmd:operationInvocationName", "jmd:serviceOperationInvocationLink"],
+        "required": ["jmd:serviceOperationInvocationName", "jmd:serviceOperationInvocationLink"],
         "properties": {
             "jmd:serviceOperation": {
                 "description": "name, identifier and links to registered operation; identifies the operation for interoperabiltiy and service composition workflows",
@@ -979,7 +1001,7 @@
                 "description": "free text description of what operation does"
             },
             "jmd:serviceOperationInvocationLink": {
-                "description": "one or more links for invoking operation. Suggest convention that in the link, strings that begin with $ and have names matching the InvocationName or a ParameterName can be treated as template slots that indicate where the invocation name and parameters should be inserted in the invocation URL.",
+                "description": "one or more links for invoking operation. For metadata describing a service instance this would be an actual link template. For a generic description of a service, it might be a template for the URL segment after the host name. REcommended practice is to construct as a URI template (see http://tools.ietf.org/html/rfc6570).",
                 "$ref": "#/definitions/Link"
             },
             "jmd:serviceOperationParameters": {
@@ -1177,9 +1199,9 @@
             "id": "#Link",
             "description": "used for situations that need a link (hypermedia affordance) to an online resource, typically for navigating linked data space.  The link is a locator--an identifier for a location that can provide a digital object.",
             "type": "object",
-            "required": ["jmd:link", "jmd:relation"],
+            "required": ["jmd:url", "jmd:linkRelation"],
             "properties": {
-                "jmd:link": {
+                "jmd:url": {
                     "description": "a web-derferencable identifier that locates the link target; typically an HTTP URI. URI syntax specifies that the identifier string includes a prefix that specifies the base protocol for the identifier",
                     "type": "string",
                     "format": "uri"
@@ -1408,7 +1430,7 @@
                     "type": "string",
                     "format": "uri"
                 },
-                "anyof": [{
+                "anyOf": [{
                         "jmd:personName": {
                             "type": "string",
                             "description": "format--Last Name,First name MI"
@@ -1473,8 +1495,10 @@
                 },
                 "anyOf": [
                     {
-                        "description": "extent could be referenced, but only useful in a system that could follow links to access the actual geometry, or for which the URI is sufficient to match locations.",
-                        "$ref": "#/definitions/Reference"
+                        "jmd:extentReference": {
+                            "description": "extent could be referenced, but only useful in a system that could follow links to access the actual geometry, or for which the URI is sufficient to match locations.",
+                            "$ref": "#/definitions/Reference"
+                        }
                         },
                     {
                         "jmd:boundingBoxWGS84": {
@@ -1509,19 +1533,21 @@
                         }
                },
                     {
-                        "jmd:extentGeometryType": {
-                            "description": "category concept to specify the relationship of the extent to the geographic footprint of the resource, use to distinguish whether the geometry encompasses an area covered by the data or an area where data is not present, or if a point location is provided whether that is a centroid or actual resource location",
+                        "jmd:geoJSONgeometry": {
+                            "jmd:extentGeometryType": {
+                                "description": "category concept to specify the relationship of the extent to the geographic footprint of the resource, use to distinguish whether the geometry encompasses an area covered by the data or an area where data is not present, or if a point location is provided whether that is a centroid or actual resource location",
 
-                            "$ref": "#/definitions/ControlledConcept"
-                        },
-                        "jmd:extentGeometry": {
-                            "description": "allow arbitrary geometry object to specify extent. Use GeoJSON encoding. Schema by fge on Github",
-                            "type": "array",
-                            "items": {
-                                "$ref": "https://raw.githubusercontent.com/fge/sample-json-schemas/master/geojson/geojson.json"
+                                "$ref": "#/definitions/ControlledConcept"
+                            },
+                            "jmd:extentGeometry": {
+                                "description": "allow arbitrary geometry object to specify extent. Use GeoJSON encoding. Schema by fge on Github",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "https://raw.githubusercontent.com/fge/sample-json-schemas/master/geojson/geojson.json"
+                                }
                             }
                         }
-               },
+                    },
                     {
                         "jmd:verticalExtent": {
                             "description": "Maximum and Minimum Elevations are relative to a datum elevation (based on vertical CRS), which will typically be the Earth surface at the location of the resource or sea level. Datum Elevation must be reported relative to mean sea level (MSL) in meters using EPSG::5714 geodetic parameters (WGS 84). Datum type must be a controlled vocabulary (Earth surface, MSL, Kelly bushing, etc.). The maximum is always numerically greater than the minimum elevation. For boreholes with datum at the earth surface, depth below surface is reported as a negative number.  *Vertical extent may be reported relative to different datum (e.g. sea level, Earth surface) in the same record.  Example: core from borehole at depths between 100 and 470 feet, borehole collar at 4787 feet above sea level.",
