@@ -1,0 +1,42 @@
+{
+    "jmd:RelatedAgentObject": {
+        "jmd:organizationName": ["USGS", "United States Geological Survey", "US Geological Survey"],
+        "jmd:contactEmail": "someEmail@usgs.gov"
+    },
+    
+    "jmd:RelatedAgentObject": {
+        "jmd:agentRole": {
+            "jmd:conceptPrefLabel": "a label term for the role"
+        },
+        "jmd:individual": {
+            "jmd:personName": "Adrian Whaothea"
+        },
+        "jmd:contactPhoneNumber": "520-888-0000",
+        "jmd:contactEmail": "someEmail@emial.com"
+    },
+
+    "jmd:RelatedAgentObject": {
+        "jmd:agentRole": {
+            "jmd:conceptPrefLabel": "a label term for the role"
+        },
+        "jmd:individual": {
+            "jmd:personName": "Adrian Whaothea"
+        },
+        "jmd:contactPhoneNumber": "520-888-0000",
+        "jmd:contactEmail": "someEmail@emial.com"
+    },
+    
+    "jmd:RelatedAgentObject": {
+        "jmd:agentRole": {
+            "jmd:conceptPrefLabel": "a label term for the role"
+        },
+        "jmd:individual": {
+            "jmd:personURI": "usgin:personIdentifer",
+            "jmd:personName": "Adrian the Great",
+            "jmd:personName": "theOther Author"
+        },
+        "jmd:organizationName": ["The Fabulous Company", "TFC"],
+        "jmd:contactPhoneNumber": "520-888-0000",
+        "jmd:contactEmail": "someEmail@fabulous.com"
+    }
+}

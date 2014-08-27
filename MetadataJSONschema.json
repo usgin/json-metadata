@@ -11,7 +11,7 @@
     "id": "http://resources.usgin.org/uri-gin/usgin/schema/json",
     "jmd:MetadataRecord": {
         "id": "#metadataRecord",
-        "description": "information about the metadata record and a link to resourceDescription",
+        "description": "information about the metadata record followed by a resourceDescription section",
         "type": "object",
         "required": [
             "jmd:metadataRecordURI",
@@ -36,7 +36,7 @@
                 "$ref": "#/definitions/Reference"
             },
             "jmd:metadataMaintenance": {
-                "description": "this element provides contact information for metadata maintainer and information on the maintenance interval and frequency. See metadataLineage for documentation of changes to the metadata record. ",
+                "description": "this element provides contact information for metadata maintainer and information on the maintenance interval and frequency. See metadataLineage for documentation of changes to the metadata record. jmd:metadataMaintenance/jmd:maintainanceContacts maps to ISO19115 metadataContact",
                 "$ref": "#/Maintenance"
             },
             "jmd:metadataLanguage": {
@@ -95,7 +95,7 @@
                     }
                     }]
             },
-            "jmd:resourceContact": {
+            "jmd:resourceContacts": {
                 "description": "link to party to contact for additional information about the resource. Each relatedAgent has an associated role; various parties may be associated with the resource in different roles.",
                 "type": "array",
                 "items": {
@@ -147,7 +147,7 @@
                 "description": "Citation information for the resource, including contributing agents (author, publisher, editor, compiler, etc., pertinent dates that may be useful in searches for the resource or for identifying it, alternate titles, and a recommended full citation text to use for citing the resource. Also information to identify and locate published resources for which a formal bibliographic reference is appropriate.",
                 "type": "object",
                 "properties": {
-                    "jmd:citedSourceAgent": {
+                    "jmd:citedSourceAgents": {
                         "description": "intellectual originator and contributors of the resource that metadata record describes.",
                         "type": "array",
                         "items": {
@@ -322,6 +322,7 @@
                         "$ref": "#/DatasetDetails"
                     },
                     "jmd:service": {
+                        "description": "if metadata record is about a service, details of service operation are included here. Note that if the metadata record is about a dataset, access to the data set through a service is indicated through the accessOptions section of the metadata.",
                         "$ref": "#/ServiceDetails"
                     },
                     "jmd:coverageDataset": {
@@ -343,7 +344,7 @@
         "id": "#Maintenance",
         "type": "object",
         "properties": {
-            "jmd:maintenanceContact": {
+            "jmd:maintenanceContacts": {
                 "description": "contact information for the agent responsible for maintenance of the resource",
                 "type": "array",
                 "items": {
@@ -406,7 +407,7 @@
                 "type": "string",
                 "description": "text to characterize,identify this step for user interface listing"
             },
-            "jmd:stepProcessor": {
+            "jmd:stepProcessors": {
                 "description": "0..N parties responsible for processing step",
                 "type": "array",
                 "items": {
@@ -1271,7 +1272,7 @@
 
         "jmd:ReferenceObject": {
             "id": "#Reference",
-            "description": "Use when a linked resource is intended to be the value of some element; The URI is proxy for that resource, such that text-based identifier comparison can be used to test equivalence. The associated links are for advertising specific representations and other related resources. Some of these are likely to be accessible by dereferencing the URI, but the link elements allow explicit indication of the available representations and how to get them (with no URI redirection...)",
+            "description": "Use when a linked resource is intended to be the value of some element; The URI is proxy for that resource and is thus required. Text-based comparison of identifiers can be used to test equivalence. Use when a global identifier is required for interoperability. The associated links are for advertising specific representations and other related resources. Some of these are likely to be accessible by dereferencing the URI, but the link elements allow explicit indication of the available representations and how to get them (with no URI redirection...)",
             "type": "object",
             "required": ["jmd:referenceURI"],
             "properties": {
@@ -1295,7 +1296,7 @@
         },
 
         "jmd:ControlledConceptObject": {
-            "description": "element to provide link to a concept that is defined in some vocabulary. A conceptURI value is hightly recommended, but in the name of keepign things simple, only a prefLabel is required.",
+            "description": "element to provide link to a concept that is defined in some vocabulary. A conceptURI value is hightly recommended, but in the name of keeping things simple, only a prefLabel is required. This is basically equivalent to a reference to a concept that allows a lazy approach simply providing a word (the prefLabel). If a vocabularyURI is provided, the prefLabel should be unique within that vocabulary, so the vocabularyURI and PrefLabel provide a unique compound identifier",
             "id": "#ControlledConcept",
             "type": "object",
             "required": ["jmd:conceptPrefLabel"],
@@ -1342,73 +1343,34 @@
         },
 
         "jmd:RelatedAgentObject": {
-            "description": "this needs to be updated to use FOAF agent, with an associated role; have to figure out how to do with JSON-LD in JSON schema...",
+            "description": "this needs to be updated to use FOAF agent, with an associated role; have to figure out how to do with JSON-LD in JSON schema. Role may be implicit in the context that this object is used (e.g. distributor contact), so the agentRole property is optional. Each agent object has at least one individual object (at least a name is required) or one organizationName. Individual in an AgentObject instance are bound to organizations that are specified in the same object.  Multiple individuals associated with a single organization, with the same contact information can be specified in a single AgentObject.",
             "id": "#RelatedAgent",
             "type": "object",
-            "required": ["jmd:agentRole", "jmd:agent"],
             "properties": {
                 "jmd:agentRole": {
                     "$ref": "#/definitions/ControlledConcept"
                 },
-                "jmd:agent": {
-                    "type": "object",
-                    "properties": {
-                        "jmd:agentURI": {
-                            "description": "identifier for this collection of persons, organization and contactInformation",
-                            "type": "string",
-                            "format": "uri"
-                        },
-                        "anyOf": [
-                            {
-                                "jmd:person": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Individual"
-                                    }
-                                }
-                            },
-                            {
-                                "jmd:organization": {
-                                    "$ref": "#/definitions/Organization"
-                                }
-                            }],
-                        "jmd:contactInformation": {
-                            "description": "one of phone number or e-mail to provide means to contact the agent. e-mail maps to foaf:mbox...",
+                "anyOf": [
+                    {
+                        "jmd:individual": {
+                            "description": "object for describing an individual person; a name is required, object sets up binding of name, position, URI and links. Binding with organization is in the context of the agent object",
                             "type": "object",
+                            "required": ["jmd:personName"],
                             "properties": {
-                                "anyOf": [
-                                    {
-                                        "jmd:contactPhoneNumber": {
-                                            "type": "array",
-                                            "description": "e.g.office, reception, fax, cel",
-                                            "required": "jmd:phoneNumber",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "jmd:phoneNumberType": {
-                                                        "type": "string"
-                                                    },
-                                                    "jmd:phoneNumber": {
-                                                        "description": "use registered tel URI scheme for encoding. See http://tools.ietf.org/html/rfc3966",
-                                                        "type": "string"
-                                                    }
-                                                }
-                                            }
-                                        }
-                            },
-                                    {
-                                        "jmd:contactEmail": {
-                                            "description": "map to foaf:mbox",
-                                            "type": "string",
-                                            "format": "email"
-                                        }
-                            }],
-                                "jmd:contactAddress": {
+                                "jmd:personURI": {
                                     "type": "string",
-                                    "description": "postal address,ideally formatted appropriate to the target country. One field because there is no clear reason to disaggregate the address into street, city, country, postal code, etc..."
+                                    "format": "uri"
                                 },
-                                "jmd:contactLinks": {
-                                    "description": "one or more links to other resources related to the agent",
+                                "jmd:personName": {
+                                    "type": "string",
+                                    "description": "format--Last Name,First name MI"
+                                },
+                                "jmd:personPosition": {
+                                    "type": "string",
+                                    "description": "identifies an individual who currently holds the named position in context of an organization"
+                                },
+                                "jmd:personLinks": {
+                                    "description": "additional details about an individual are in linked resources; this spec makes no provision, but suggest using FOAF properties",
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/definitions/Link"
@@ -1416,62 +1378,50 @@
                                 }
                             }
                         }
-                    }
-                }
-            }
-        },
-
-        "jmd:IndividualObject": {
-            "description": "object for describing an individual person, ideally through a URI, with either a name or a position title",
-            "id": "#Individual",
-            "type": "object",
-            "properties": {
-                "jmd:individualURI": {
-                    "type": "string",
-                    "format": "uri"
-                },
-                "anyOf": [{
-                        "jmd:personName": {
-                            "type": "string",
-                            "description": "format--Last Name,First name MI"
-                        }
-                    },
+                        },
                     {
-                        "jmd:personPosition": {
-                            "type": "string",
-                            "description": "identifies an individual who currently holds the named position in context of an organization"
+                        "jmd:organizationName": {
+                            "description": "an array of synonyms used to identify an organization; put alternate spellings, abbreviations, and acronyms here",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "minItems": 1
                         }
-                    }],
-                "jmd:individualLinks": {
-                    "description": "additional details about an individual are in linked resources; this spec makes no provision, but suggest using FOAF properties",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Link"
-                    }
-                }
-            }
-        },
-
-        "jmd:OrganizationObject": {
-            "id": "#Organization",
-            "type": "object",
-            "required": ["jmd:organizationName"],
-            "properties": {
+                            }],
                 "jmd:organizationURI": {
                     "description": "unique identifier for organization",
                     "type": "string",
                     "format": "uri"
                 },
-                "jmd:organizationName": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "minItems": 1
-                },
                 "jmd:organizationLinks": {
                     "description": "Links to additional information about the organization, e.g. a home page; one of these should be for an icon to represent the organization",
                     "minItems": 0,
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "anyOf": [
+                    {
+                        "jmd:phoneNumber": {
+                            "description": "use registered tel URI scheme for encoding. See http://tools.ietf.org/html/rfc3966",
+                            "type": "string"
+                        }
+                        },
+                    {
+                        "jmd:contactEmail": {
+                            "description": "map to foaf:mbox",
+                            "type": "string",
+                            "format": "email"
+                        }
+                        }],
+                "jmd:contactAddress": {
+                    "type": "string",
+                    "description": "postal address,ideally formatted appropriate to the target country. One field because there is no clear reason to disaggregate the address into street, city, country, postal code, etc..."
+                },
+                "jmd:contactLinks": {
+                    "description": "one or more links to other resources related to the agent",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Link"
