@@ -1,0 +1,84 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "@context": {
+        "jmd": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata",
+        "@vocab": "http://json-schema.org/draft-04/schema",
+        "@base": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "dct": "http://purl.org/dc/terms/"
+    },
+    "description": "this needs to be updated to use FOAF agent, with an associated role; have to figure out how to do with JSON-LD in JSON schema. The scheme has been worked over to minimize nesting and simplify.",
+    "id": "#RelatedAgent",
+    "type": "object",
+    "properties": {
+        "jmd:agentRole": {
+            "description": "slightly simplified view of controlled concept element",
+            "type": "object",
+            "properties": {
+                "jmd:conceptURI": {
+                    "description": "string to uniquely indentify concept for interperability",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "jmd:conceptPrefLabel": {
+                    "type": "string",
+                    "description": "string that users will understand to present role"
+                }
+            }
+        },
+        "anyOf": [
+            {
+                "jmd:individual": {
+                    "description": "object for describing an individual person, ideally through a URI, with either a name or a position title",
+                    "type": "object",
+                    "required": ["jmd:personName"],
+                    "properties": {
+                        "jmd:personURI": {
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "jmd:personName": {
+                            "type": "string",
+                            "description": "format--Last Name,First name MI"
+                        },
+                        "jmd:personPosition": {
+                            "type": "string",
+                            "description": "identifies an individual who currently holds the named position in context of an organization"
+                        }
+                    }
+                }
+                        },
+            {
+                "jmd:organizationName": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1
+                }
+                        }],
+        "jmd:organizationURI": {
+            "description": "unique identifier for organization",
+            "type": "string",
+            "format": "uri"
+        },
+        "anyOf": [
+            {
+                "jmd:phoneNumber": {
+                    "description": "use registered tel URI scheme for encoding. See http://tools.ietf.org/html/rfc3966",
+                    "type": "string"
+                }
+                        },
+            {
+                "jmd:contactEmail": {
+                    "description": "map to foaf:mbox",
+                    "type": "string",
+                    "format": "email"
+                }
+                        }],
+        "jmd:contactAddress": {
+            "type": "string",
+            "description": "postal address,ideally formatted appropriate to the target country. One field because there is no clear reason to disaggregate the address into street, city, country, postal code, etc..."
+        }
+    }
+}
