@@ -82,7 +82,7 @@
             }, {
                     "description": "scoped Identifier(s) for the resource, e.g. ISBN, ISSN, Dewey Decimal system numbers, or other URIs determined by the publishing authority",
                     "type": "array",
-                    "required": ["jmd:ScopedIdentifier"],
+                    "required": ["jmd:citationIdentifier"],
                     "items": {
                         "jmd:citationIdentifier": {
                             "description": "Note citation is to a particular manifestation or expression of the resource; the citationIdentifier is bound to that resource. The resourceURI is intended to identify the resource at the work level.",
@@ -144,7 +144,7 @@
                     }]
             },
             "jmd:resourceCitation": {
-                "description": "Citation information for the resource, including contributing agents (author, publisher, editor, compiler, etc., pertinent dates that may be useful in searches for the resource or for identifying it, alternate titles, and a recommended full citation text to use for citing the resource. Also information to identify and locate published resources for which a formal bibliographic reference is appropriate.",
+                "description": "Citation information for the resource, including contributing agents (author, publisher, editor, compiler, etc., pertinent dates that may be useful in searches for the resource or for identifying it, alternate titles, and a recommended full citation text to use for citing the resource. Also information to identify and locate published resources for which a formal bibliographic reference is appropriate. Links are not included here under the interpretation that since the citation is to the described resource, links should be in either relatedResource section or in the accessOptions section, depending on what they point to.",
                 "type": "object",
                 "properties": {
                     "jmd:citedSourceAgents": {
@@ -180,9 +180,32 @@
                         "description": "a suggested full text citation to use when citing the resource; include standard bibliographic content like edition, publisher, series title, series issue, page numbers, other information appropriate to the described resource",
                         "type": "string"
                     },
-                    "jmd:publicationInfo": {
-                        "description": "if the resource is a published work, other standard bibliographic information goes here",
-                        "$ref": "#/PublicationDetails"
+                    "jmd:publicationDetails": {
+                        "description": "if the resource is a published work, other standard bibliographic information goes here. Publication details will only apply if the describe resource is an frbr:expression or frbr:item. Linkage to online items should still be through distribution linkage elements.If the resource is a work or manifestation,then expressions and items will be distributions of that resource. Tricky...",
+                        "properties": {
+                            "jmd:edition": {
+                                "type": "string",
+                                "description": "identifier for edition"
+                            },
+                            "jmd:editionDate": {
+                                "$ref": "#/definitions/EventDate"
+                            },
+                            "jmd:series": {
+                                "description": "identifier (with other reference properties that specifies the series within which the described resource is published, e.d.g a DOI for the journal",
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "jmd:seriesIssue": {
+                                "type": "string",
+                                "description": "identifier for issue in series; syntax should follow some bibliographic standard, but depends somewhat on the kind of series."
+                            },
+                            "jmd:page": {
+                                "type": "string"
+                            },
+                            "jmd:publicationDescription": {
+                                "type": "string",
+                                "description": "free text with other details specific to this particular manifestation of the resource. might add physicalDistribution and physical extent (dimensions) elements here for library usage..."
+                            }
+                        }
                     }
                 }
             },
@@ -208,6 +231,7 @@
                 }
             },
             "jmd:resourceIndexTerms": {
+                "description": "an array of objects, each of which is a set of keywords scoped to a particular keywordType or keywordReference value. Only one object in the array should have neither keywordType or keywordReference, and keywords in this element will be treated as free-form tags.",
                 "type": "array",
                 "required": ["jmd:keywords"],
                 "items": {
@@ -497,6 +521,7 @@
         "properties": {
             "jmd:qualityScope": {
                 "type": "object",
+                "description": "identifies the part of the resource that the quality assessment applies to. This allows quality statements scoped to the entire resource, some spatial extent within the extent covered by the resource, or to particular entities (records, features) within a collection resource. Optional, default is dataset.",
                 "properties": {
                     "jmd:qualityResultScopeLevel": {
                         "$ref": "#/definitions/ControlledConcept"
@@ -724,35 +749,6 @@
                         }
                     }
                 }]
-        }
-    },
-
-    "jmd:PublicationDetailsObject": {
-        "id": "#PublicationDetails",
-        "description": "title, date, identifier are inherited from context.Publication details will only apply if the describe resource is an frbr:expression or frbr:item. Linkage to online items should still be through distribution linkage elements.If the resource is a work or manifestation,then expressions and items will be distributions of that resource. Tricky...",
-        "type": "object",
-        "properties": {
-            "jmd:edition": {
-                "type": "string",
-                "description": "identifier for edition"
-            },
-            "jmd:editionDate": {
-                "$ref": "#/definitions/EventDate"
-            },
-            "jmd:seriesTitle": {
-                "type": "string"
-            },
-            "jmd:seriesIssue": {
-                "type": "string",
-                "description": "identifier for issue in series"
-            },
-            "jmd:page": {
-                "type": "string"
-            },
-            "jmd:publicationDescription": {
-                "type": "string",
-                "description": "free text with other details specific to this particular manifestation of the resource.might add physicalDistribution elements here for library usage..."
-            }
         }
     },
 
