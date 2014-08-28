@@ -1,10 +1,10 @@
 {
-    "$schema": "http://json-schema.org/draft-03/schema",
+    "$schema": "http://json-schema.org/draft-04/schema",
     "id": "http://resources.usgin.org/uri-gin/okfn/ckandemoschema/json",
     "description": "SMR 2014-08.  reverse engineered from OKFN CKAN demo site with CKAN api call to get a JSON package, may not be complete. remove help and success keys that are part of the CKAN GET response JSON.  This is the metadata associated with a CKAN package, which we are thinking of in USGIN as a repository object that may be compound, i.e. include more than one file as separate part files of the resource.  A repository object may have multiple distributions; in the case of a compound resource that would equate to different servers providing download access to the various part files. For datasets, the distributions might use different protocols, e.g. file download, WMS, WFS, OData, ESRI map service etc. The component parts and distributions are represented in CKAN-land as 'resources' (an unfortunate choice of language on their part...).  Element descriptions are from http://docs.ckan.org/en/ckan-1.8/domain-model-dataset.html.  See the schema in code (see default_package_schema): https://github.com/okfn/ckan/blob/master/ckan/logic/schema.py",
     "ckanpackage": {
         "type": "object",
-        "description": "metadata elements for describing a repository objecte (package, dataset) in CKAN. Compiled 2014-08-28",
+        "description": "metadata elements for describing a repository object (package, dataset) in CKAN. Compiled 2014-08-28",
         "required": ["id", "name"],
         "properties": {
             "author_email": {
@@ -38,7 +38,7 @@
             },
             "groups": {
                 "type": "array",
-                "description": "list of [[Domain Model/Group|Groups]] this dataset is a member of [v1.8]",
+                "description": "list of [[Domain Model/Group|Groups]] that this dataset (resource) is a member of [v1.8]",
                 "items": {
                     "type": "object",
                     "properties": {
