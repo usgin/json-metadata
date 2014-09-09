@@ -1,0 +1,852 @@
+{
+    "description": "Documents matching 'Arizona' and published on or after 08/01/2014. Harvested from federal register. See 'next_page_url below for the full URL pattern.  First record edited by SMR to map into ISO metadata. NOte we could get the mods url (see mods_url key), which returns XML and transform that, but my tests in a browser get 404's from some of those ",
+    "count": 53,
+    "total_pages": 6,
+    "next_page_url": "https://www.federalregister.gov/api/v1/articles.json?conditions%5Bpublication_date%5D%5Bgte%5D=2014-08-01&conditions%5Bterm%5D=Arizona&fields%5B%5D=abstract&fields%5B%5D=abstract_html_url&fields%5B%5D=action&fields%5B%5D=agencies&fields%5B%5D=agency_names&fields%5B%5D=body_html_url&fields%5B%5D=cfr_references&fields%5B%5D=citation&fields%5B%5D=comments_close_on&fields%5B%5D=correction_of&fields%5B%5D=corrections&fields%5B%5D=dates&fields%5B%5D=docket_id&fields%5B%5D=docket_ids&fields%5B%5D=document_number&fields%5B%5D=effective_on&fields%5B%5D=end_page&fields%5B%5D=excerpts&fields%5B%5D=executive_order_notes&fields%5B%5D=executive_order_number&fields%5B%5D=full_text_xml_url&fields%5B%5D=html_url&fields%5B%5D=json_url&fields%5B%5D=mods_url&fields%5B%5D=page_length&fields%5B%5D=pdf_url&fields%5B%5D=president&fields%5B%5D=public_inspection_pdf_url&fields%5B%5D=publication_date&fields%5B%5D=raw_text_url&fields%5B%5D=regulation_id_number_info&fields%5B%5D=regulation_id_numbers&fields%5B%5D=regulations_dot_gov_info&fields%5B%5D=regulations_dot_gov_url&fields%5B%5D=significant&fields%5B%5D=signing_date&fields%5B%5D=start_page&fields%5B%5D=subtype&fields%5B%5D=title&fields%5B%5D=toc_doc&fields%5B%5D=toc_subject&fields%5B%5D=topics&fields%5B%5D=type&fields%5B%5D=volume&order=relevance&page=2&per_page=10",
+    "results": [
+        {
+            "type": "gmd:hierarchyLevelName.  This is a resource type category.",
+            "toc_doc": "not sure what this is supposed to be. They seem to put ageny names in it. ",
+            "title": "gmd:citation//gmd:title/gco:CharacgterString.  Title for the resource",
+            "page_length": 1,
+            "SMRdocumentation":"not sure what page_length is",
+            "docket_id": "gmd:citation//gmd:identifier/gmd:code.  codespace= federalregister docket ID",
+            "body_html_url": "distribution, gmd:CI_OnlineResource//gmd:URL, gmd:linkage/gmd:name is 'federal register body html link, protocol is http, function is download.",
+            "agency_names": [
+                "gmd:citation//gmd:responsibleParty//gmd:organization.  concatenate multiple values with comma delimiter",
+                "second part of org name, see above"
+            ],
+            "start_page": 52763,
+            "SMRdocumentation":"for start_page, gmd:citation//gmd:series//gmd:page/gco:CharacterString; concatenate 'start_page' & '-' & 'end_page' to form the characgter string",
+            "regulation_id_number_info": {"documentation":"this is not used in many records; need more explanation to understand.  (http://www.whitehouse.gov/sites/default/files/omb/assets/inforeg/IncreasingOpenness_04072010.pdf) Executive Order 12866, Sec. 4(b) requires each regulatory action in the Unified Regulatory Agenda—a semiannual compendium of all regulations under development or review—to contain, among other things, a RIN. The RIN should be used on documents including, but not limited to, notices of proposed rulemaking, final rules, and (to the extent that they are associated with a rulemaking) notices, guidances, environmental impact statements, regulatory impact analyses, information collections, and supporting materials. The RIN should be carried throughout the process, including in the metadata/text when documents are published in the Federal Register and on Regulations.gov. "},
+            "effective_on": null,
+            "SMRdocumentation":"assume effective_on is a date..., put in gmd:citation//gmd:date@role='effective_date' @codespace='federal_register')"
+            "citation": "example: '79 FR 52763'  SMRdocumentation: this is how things in the federal register are cited; another gmd:citation//gmd:identifier//gmd:code@codespace='federal register identifier'",
+            "subtype": null,
+            "SMRdocumentation":"no explanation of what this is...",
+            "president": {
+                "identifier": "barack-obama",
+                "name": "Barack Obama",
+                "SMRdocumentation":"this could be a keyword, with thesaurus = 'us presidents', but I don't think we need to carry this info"
+            },
+            "json_url": "e.g. https://www.federalregister.gov/api/v1/articles/2014-21083.json.  Distribution, gmd:name='json metadata', protocol = http",
+            "dates": "e.g. 'This rule is effective on October 3, 2014.' SMRdocumentation: looks like free text, explanation of dateType and then a free-form calendar data.  This would have to be parsed by a person to encode gmd:citation//gmd:date@dateType",
+            "cfr_references": ["SMRdocumentation":"The Code of Federal Regulations (CFR) provides a listing of the rules and regulations of the Federal Government. The CFR is divided into 50 broad titles that are then split into chapters and sections. Follow these guidelines to cite the Code of Federal Regulations in a document: http://www.wikihow.com/Cite-the-Code-of-Federal-Regulations. Examples in this document have a 'title' and a 'part' property in this object."],
+            "abstract": "SMRdocumentation free text summary of the notification",
+            "toc_subject": "e.g.: 'Importers of Controlled Substances; Registrations:' SMRdocumentation: gmd:keyword, thesaurus 'federal register toc subject'. ",
+            "executive_order_number": "SMRdocumentation: identifier number for executive order related to this notification; if the entry is a bout the executive order, this is another gmd:citation//gmd:identifier//gmd:code@codspace='us presidential executive order number'",
+            "signing_date": "SMRdocumentation: assume this is an ISO 8601 YYYY-MM-DD date when the exectutive order was signed",
+            "pdf_url": "e.g. 'http://www.gpo.gov/fdsys/pkg/FR-2014-09-04/pdf/2014-21083.pdf'  another distribution for the notice, gmd:name/gco:CharacterSting='adobe acrobate version of notification'",
+            "executive_order_notes": "SMRdocumentation: assume this is free text about the executive order?",
+            "agencies": [
+                {
+                    "parent_id": "SMRdocumentation: integer value, id for parent agency if it exists. not clear where the registry of agencies resides...",
+                    "raw_name": "e.g. 'DEPARTMENT OF JUSTICE' SMRdocumentation: skos:prefLabel, put in gmd:organisationName/gco:CharacterSting",
+                    "json_url": "e.g. 'https://www.federalregister.gov/api/v1/agencies/268.json' gmd:CI_ResponsibleParty//gmd:onlineresource//gmd://URL, gmd:name = 'json representation of organization'",
+                    "name": "e.g. Justice Department; put in gmd:oranisationName@xlink:title",
+                    "id": 268,
+                    "SMRdocumentation":"id integer scoped to federal register; not sure what to do with this, but its in the json_url, so that may have to do.",
+                    "url": "e.g. 'https://www.federalregister.gov/agencies/justice-department' This looks suspiciously like its supposed to be an organization URI. put in gmd:oranisationName@xlink:href "
+                },
+                {
+                    "parent_id": 268,
+                    "raw_name": "Drug Enforcement Administration",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/116.json",
+                    "name": "Drug Enforcement Administration",
+                    "id": 116,
+                    "url": "https://www.federalregister.gov/agencies/drug-enforcement-administration"
+                }
+            ],
+            "SMRdocumentation":"'agencies' apparently extends the 'agency_name' element (above) with some duplication of content. The 'agencies.name'seems to be same as the 'agency_name' json key. Looks like some legacy baggage here.",
+            "volume": 79,
+            "SMRdocumentation":"looks like the first part of the Citation ID string. redundant, don't map",
+            "regulation_id_numbers": [],
+            "SMRdocumentation":"Assume put regulation ID number values here, with comments in regulation_id_info containing generic free text about the id.",
+            "document_number": "2014-21083",
+            "SMRdocumentation":"another gmd:citation//gmd:identifier/gmd:code value for the notification",
+            "corrections": [],
+            "SMRdocumentation":"no explanation of how this is supposed to get used...",
+            "action": "e.g. 'Notice of registration.'  gmd:keyword, with thesaurus = 'federal register actions'",
+            "regulations_dot_gov_url": null,
+            "docket_ids": [
+                "Docket No. DEA-392"
+            ],
+            "SMRdocumentation":"another gmd:citation//gmd:identifier/gmd:code; codespace = 'federal register docketID'",
+            "topics": [],
+            "SMRdocumentation":"topics go in gmd:keyword, with thesaurus = 'federal register topics'",
+            "significant": false,
+            "SMRdocumentation":"we can leave this one out (unless someone says we need it)",
+            "public_inspection_pdf_url": "e.g. 'https://s3.amazonaws.com/public-inspection.federalregister.gov/2014-21083.pdf?1409748481'  Another distribution//gmd:CI_onlineResource//gmd:URL, with gmd:name= 'federal register public inspection document'",
+            "end_page": 52763,
+            "SMRdocumentation":"gmd:citation//gmd:series//gmd:page/gco:CharacterString; concatenate 'start_page' & '-' & 'end_page' to form the characgter string",
+            "full_text_xml_url": "e.g. 'https://www.federalregister.gov/articles/xml/201/421/083.xml' another distribuion, with gmd:name='XML representation of notification'",
+            "correction_of": null,
+            "SMRdocumentation":"no idea how this is supposed to be used. If its a link to a record that this one supersedes, gmd:aggregationInfo relationship would make the most sense.",
+            "comments_close_on": "SMRdocumentation: date for comment closing; important for NRRC notification system; put in gmd:citation//gmd:date with @dateType = 'comment closing date'",
+            "regulations_dot_gov_info": {
+                "title": "Designation of Areas for Air Quality Planning Purposes; State of Arizona; Pinal County and Gila County; Pb",
+                "docket_id": "EPA-R09-OAR-2014-0266",
+                "regulation_id_number": null,
+                "supporting_documents_count": 37,
+                "metadata": {
+                    "Type": "Rulemaking",
+                    "Subtype": "Peer Review",
+                    "Disposition": "Pending",
+                    "Action Office": "HCC-10"
+                    "Location": "HQ-OAR",
+                    "Keyword(s)": "truck, Carbon Dioxide, CO2",
+                    "Short Title": "Ozone NAAQS Docket"
+                },
+                "SMRdocumentation":"'metadata' object value example is compilied from keys seen in results from federal register API",
+                "comments_count": 1
+            },
+            "SMRdocumentation":"'regulations_dot_gov_info' value object is from another record; not entierly clear what this is supposed to be, but looks like a way to link in comments somehow; need more info.",
+            "raw_text_url": "e.g. 'https://www.federalregister.gov/articles/text/raw_text/201/421/083.txt'  yet another distribution, with gmd:CI_OnlineResource//gmd:name = 'federal register notification raw text'",
+            "html_url": "'https://www.federalregister.gov/articles/2014/09/04/2014-21083/importer-of-controlled-substances-registration-arizona-department-of-corrections-aspc-florence'. Yet another distribution, with gmd:CI_OnlineResource//gmd:name = 'federal register html page for notification'",
+            "excerpts": "e.g. ' &#8230; ACTION: \nNotice of registration. \nSUMMARY: \n<span class=\"match\">Arizona</span> Department of Corrections, ASPC-Florence &#8230;  controlled substance. The DEA grants <span class=\"match\">Arizona</span> Department of Corrections, ASPC-Florence &#8230; , <span class=\"match\">Arizona</span> Department of Corrections, ASPC-Florence, 1305 E. Butte Avenue, Florence, <span class=\"match\">Arizona</span> &#8230; '  SMRdocumentation: looks like html; append to the abstract?",
+            "abstract_html_url": "e.g. 'https://www.federalregister.gov/articles/html/abstract/201/421/083.html' Another distribution, with gmd:CI_OnlineResource//gmd:name = 'federal register notification html abstract'",
+            "publication_date": "e.g. '2014-09-04' gmd:CI_Citation//gmd:date, dateType = 'publication' ",
+            "mods_url": "e.g. 'http://www.gpo.gov/fdsys/granule/FR-2014-09-04/2014-21083/mods.xml' Another distribution, with gmd:CI_OnlineResource//gmd:name = 'federal register notification MODS xml metadata'"
+        },
+
+        {
+            "type": "Notice",
+            "toc_doc": "Arizona Department of Corrections, ASPC  Florence, AZ",
+            "title": "Importer of Controlled Substances Registration: Arizona Department of Corrections, Aspc-Florence",
+            "page_length": 1,
+            "docket_id": "Docket No. DEA-392",
+            "body_html_url": "https://www.federalregister.gov/articles/html/full_text/201/421/083.html",
+            "agency_names": [
+                "Justice Department",
+                "Drug Enforcement Administration"
+            ],
+            "start_page": 52763,
+            "regulation_id_number_info": {},
+            "effective_on": null,
+            "citation": "79 FR 52763",
+            "subtype": null,
+            "president": {
+                "identifier": "barack-obama",
+                "name": "Barack Obama"
+            },
+            "json_url": "https://www.federalregister.gov/api/v1/articles/2014-21083.json",
+            "dates": null,
+            "cfr_references": [],
+            "abstract": "Arizona Department of Corrections, ASPC-Florence applied to be registered as an importer of a certain basic class of controlled substance. The DEA grants Arizona Department of Corrections, ASPC- Florence registration as an importer of this controlled substance.",
+            "toc_subject": "Importers of Controlled Substances; Registrations:",
+            "executive_order_number": null,
+            "signing_date": null,
+            "pdf_url": "http://www.gpo.gov/fdsys/pkg/FR-2014-09-04/pdf/2014-21083.pdf",
+            "executive_order_notes": null,
+            "agencies": [
+                {
+                    "parent_id": null,
+                    "raw_name": "DEPARTMENT OF JUSTICE",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/268.json",
+                    "name": "Justice Department",
+                    "id": 268,
+                    "url": "https://www.federalregister.gov/agencies/justice-department"
+                },
+                {
+                    "parent_id": 268,
+                    "raw_name": "Drug Enforcement Administration",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/116.json",
+                    "name": "Drug Enforcement Administration",
+                    "id": 116,
+                    "url": "https://www.federalregister.gov/agencies/drug-enforcement-administration"
+                }
+            ],
+            "volume": 79,
+            "regulation_id_numbers": [],
+            "document_number": "2014-21083",
+            "corrections": [],
+            "action": "Notice of registration.",
+            "regulations_dot_gov_url": null,
+            "docket_ids": [
+                "Docket No. DEA-392"
+            ],
+            "topics": [],
+            "significant": false,
+            "public_inspection_pdf_url": "https://s3.amazonaws.com/public-inspection.federalregister.gov/2014-21083.pdf?1409748481",
+            "end_page": 52763,
+            "full_text_xml_url": "https://www.federalregister.gov/articles/xml/201/421/083.xml",
+            "correction_of": null,
+            "comments_close_on": null,
+            "regulations_dot_gov_info": null,
+            "raw_text_url": "https://www.federalregister.gov/articles/text/raw_text/201/421/083.txt",
+            "html_url": "https://www.federalregister.gov/articles/2014/09/04/2014-21083/importer-of-controlled-substances-registration-arizona-department-of-corrections-aspc-florence",
+            "excerpts": " &#8230; ACTION: \nNotice of registration. \nSUMMARY: \n<span class=\"match\">Arizona</span> Department of Corrections, ASPC-Florence &#8230;  controlled substance. The DEA grants <span class=\"match\">Arizona</span> Department of Corrections, ASPC-Florence &#8230; , <span class=\"match\">Arizona</span> Department of Corrections, ASPC-Florence, 1305 E. Butte Avenue, Florence, <span class=\"match\">Arizona</span> &#8230; ",
+            "abstract_html_url": "https://www.federalregister.gov/articles/html/abstract/201/421/083.html",
+            "publication_date": "2014-09-04",
+            "mods_url": "http://www.gpo.gov/fdsys/granule/FR-2014-09-04/2014-21083/mods.xml"
+        },
+        {
+            "type": "Rule",
+            "toc_doc": "Arizona; Regional Haze and Interstate Visibility Transport Federal Implementation Plan",
+            "title": "Promulgation of Air Quality Implementation Plans; Arizona; Regional Haze and Interstate Visibility Transport Federal Implementation Plan",
+            "page_length": 80,
+            "docket_id": "EPA-R09-OAR-2013-0588",
+            "body_html_url": "https://www.federalregister.gov/articles/html/full_text/201/415/895.html",
+            "agency_names": [
+                "Environmental Protection Agency"
+            ],
+            "start_page": 52419,
+            "regulation_id_number_info": {},
+            "effective_on": null,
+            "citation": "79 FR 52419",
+            "subtype": null,
+            "president": {
+                "identifier": "barack-obama",
+                "name": "Barack Obama"
+            },
+            "json_url": "https://www.federalregister.gov/api/v1/articles/2014-15895.json",
+            "dates": null,
+            "cfr_references": [
+                {
+                    "title": 40,
+                    "part": 52
+                }
+            ],
+            "abstract": "This final action promulgates a Federal Implementation Plan (FIP) addressing the requirements of the Regional Haze Rule (RHR) and interstate visibility transport for the disapproved portions of Arizona's Regional Haze (RH) State Implementation Plan (SIP) as described in a final rule published in the Federal Register on July 30, 2013. In that action, we partially approved and partially disapproved the State's plan to implement the regional haze program for the first planning period. This final action includes our responses to comments on our proposed FIP published in the Federal Register on February 18, 2014. This final rule, together with a final rule published in the Federal Register on December 5, 2012, completes our FIP for the disapproved portions of Arizona's RH SIP. This final rule addresses the RHR's requirements for Best Available Retrofit Technology (BART), Reasonable Progress (RP), and a Long-term Strategy (LTS) as well as the interstate visibility transport requirements of the Clean Air Act (CAA) for pollutants that affect visibility in Arizona's 12 Class I areas and areas in nearby states. The BART sources addressed in this final FIP are Tucson Electric Power (TEP) Sundt Generating Station Unit 4, Lhoist North America (LNA) Nelson Lime Plant Kilns 1 and 2, ASARCO Incorporated Hayden Smelter, and Freeport-McMoRan Incorporated (FMMI) Miami Smelter. The reasonable progress sources addressed in the FIP are Phoenix Cement Company (PCC) Clarkdale Plant Kiln 4 and CalPortland Cement (CPC) Rillito Plant Kiln 4. EPA is prepared to work with the State on a SIP revision that would replace some or all elements of the FIP.",
+            "toc_subject": "Air Quality State Implementation Plans; Approvals and Promulgations:",
+            "executive_order_number": null,
+            "signing_date": null,
+            "pdf_url": "http://www.gpo.gov/fdsys/pkg/FR-2014-09-03/pdf/2014-15895.pdf",
+            "executive_order_notes": null,
+            "agencies": [
+                {
+                    "parent_id": null,
+                    "raw_name": "ENVIRONMENTAL PROTECTION AGENCY",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/145.json",
+                    "name": "Environmental Protection Agency",
+                    "id": 145,
+                    "url": "https://www.federalregister.gov/agencies/environmental-protection-agency"
+                }
+            ],
+            "volume": 79,
+            "regulation_id_numbers": [],
+            "document_number": "2014-15895",
+            "corrections": [],
+            "action": "Final rule.",
+            "regulations_dot_gov_url": "http://www.regulations.gov/#!documentDetail;D=EPA-R09-OAR-2013-0588-0072",
+            "docket_ids": [
+                "EPA-R09-OAR-2013-0588",
+                "FRL-9912-97-OAR"
+            ],
+            "topics": [
+                "Air pollution control",
+                "Environmental protection",
+                "Intergovernmental relations",
+                "Nitrogen oxides",
+                "Particulate matter",
+                "Reporting and recordkeeping requirements",
+                "Volatile organic compounds"
+            ],
+            "significant": false,
+            "public_inspection_pdf_url": "https://s3.amazonaws.com/public-inspection.federalregister.gov/2014-15895.pdf?1409662064",
+            "end_page": 52498,
+            "full_text_xml_url": "https://www.federalregister.gov/articles/xml/201/415/895.xml",
+            "correction_of": null,
+            "comments_close_on": null,
+            "regulations_dot_gov_info": {
+                "comments_count": 0,
+                "title": "Arizona Regional Haze and Interstate Visibility Transport Federal Implementation Plan (FIP), Proposed Rule Phase III",
+                "docket_id": "EPA-R09-OAR-2013-0588",
+                "regulation_id_number": null,
+                "supporting_documents_count": 8,
+                "metadata": {
+                    "Type": "Rulemaking",
+                    "Location": "R09-OAR"
+                }
+            },
+            "raw_text_url": "https://www.federalregister.gov/articles/text/raw_text/201/415/895.txt",
+            "html_url": "https://www.federalregister.gov/articles/2014/09/03/2014-15895/promulgation-of-air-quality-implementation-plans-arizona-regional-haze-and-interstate-visibility",
+            "excerpts": " &#8230;  regional haze program in <span class=\"match\">Arizona</span>, EPA and the <span class=\"match\">Arizona</span> Department of Environmental &#8230;  Energy \n• ADEQ—<span class=\"match\">Arizona</span> Department of Environmental Quality \n• AMA—<span class=\"match\">Arizona</span> Mining Association \n• ANGA &#8230;  our proposal on the <span class=\"match\">Arizona</span> RH SIP, “<span class=\"match\">Arizona</span> consulted with other states &#8230; ",
+            "abstract_html_url": "https://www.federalregister.gov/articles/html/abstract/201/415/895.html",
+            "publication_date": "2014-09-03",
+            "mods_url": "http://www.gpo.gov/fdsys/granule/FR-2014-09-03/2014-15895/mods.xml"
+        },
+        {
+            "type": "Rule",
+            "toc_doc": "State of Arizona; Pinal County and Gila County; Pb",
+            "title": "Designation of Areas for Air Quality Planning Purposes; State of Arizona; Pinal County and Gila County; Pb",
+            "page_length": 6,
+            "docket_id": "EPA-R09-OAR-2014-0266",
+            "body_html_url": "https://www.federalregister.gov/articles/html/full_text/201/420/920.html",
+            "agency_names": [
+                "Environmental Protection Agency"
+            ],
+            "start_page": 52205,
+            "regulation_id_number_info": {},
+            "effective_on": "2014-10-03",
+            "citation": "79 FR 52205",
+            "subtype": null,
+            "president": {
+                "identifier": "barack-obama",
+                "name": "Barack Obama"
+            },
+            "json_url": "https://www.federalregister.gov/api/v1/articles/2014-20920.json",
+            "dates": "This rule is effective on October 3, 2014.",
+            "cfr_references": [
+                {
+                    "title": 40,
+                    "part": 81
+                }
+            ],
+            "abstract": "In accordance with section 107(d)of the Clean Air Act (CAA), the Environmental Protection Agency (EPA) is redesignating the Hayden area, which encompasses portions of southern Gila and eastern Pinal counties, Arizona, from ``unclassifiable'' to ``nonattainment'' for the 2008 national ambient air quality standards (``NAAQS'' or ``standards'') for lead (Pb). EPA's redesignation of the Hayden area is based on recorded violations of the Pb standards at the Arizona Department of Environmental Quality's (ADEQ's) Globe Highway monitoring site, located near the towns of Hayden and Winkleman, Arizona, and additional relevant air quality information. The effect of this action will be to redesignate the Hayden area to nonattainment for the Pb standards and thereby to impose certain planning requirements on the State of Arizona to reduce Pb concentrations within the Hayden area, including, but not limited to, the requirement to submit, within 18 months of redesignation, a revision to the Arizona state implementation plan (SIP) that provides for attainment of the Pb standards as expeditiously as practicable, but no later than five years after the effective date of this redesignation.",
+            "toc_subject": "Designation of Areas for Air Quality Planning Purposes:",
+            "executive_order_number": null,
+            "signing_date": null,
+            "pdf_url": "http://www.gpo.gov/fdsys/pkg/FR-2014-09-03/pdf/2014-20920.pdf",
+            "executive_order_notes": null,
+            "agencies": [
+                {
+                    "parent_id": null,
+                    "raw_name": "ENVIRONMENTAL PROTECTION AGENCY",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/145.json",
+                    "name": "Environmental Protection Agency",
+                    "id": 145,
+                    "url": "https://www.federalregister.gov/agencies/environmental-protection-agency"
+                }
+            ],
+            "volume": 79,
+            "regulation_id_numbers": [],
+            "document_number": "2014-20920",
+            "corrections": [],
+            "action": "Final rule.",
+            "regulations_dot_gov_url": "http://www.regulations.gov/#!documentDetail;D=EPA-R09-OAR-2014-0266-0041",
+            "docket_ids": [
+                "EPA-R09-OAR-2014-0266",
+                "FRL-9916-11-Region 9"
+            ],
+            "topics": [
+                "Air pollution control",
+                "Environmental protection",
+                "Intergovernmental relations",
+                "Lead"
+            ],
+            "significant": false,
+            "public_inspection_pdf_url": "https://s3.amazonaws.com/public-inspection.federalregister.gov/2014-20920.pdf?1409662682",
+            "end_page": 52210,
+            "full_text_xml_url": "https://www.federalregister.gov/articles/xml/201/420/920.xml",
+            "correction_of": null,
+            "comments_close_on": null,
+            "regulations_dot_gov_info": {
+                "comments_count": 1,
+                "title": "Designation of Areas for Air Quality Planning Purposes; State of Arizona; Pinal County and Gila County; Pb",
+                "docket_id": "EPA-R09-OAR-2014-0266",
+                "regulation_id_number": null,
+                "supporting_documents_count": 37,
+                "metadata": {}
+            },
+            "raw_text_url": "https://www.federalregister.gov/articles/text/raw_text/201/420/920.txt",
+            "html_url": "https://www.federalregister.gov/articles/2014/09/03/2014-20920/designation-of-areas-for-air-quality-planning-purposes-state-of-arizona-pinal-county-and-gila-county",
+            "excerpts": " &#8230;  Gila and eastern Pinal counties, <span class=\"match\">Arizona</span>, from “unclassifiable” to “nonattainment” for &#8230;  redesignation, a revision to the <span class=\"match\">Arizona</span> state implementation plan (SIP) that &#8230;  Pb standards. 1 \nMost of <span class=\"match\">Arizona</span> was designated unclassifiable/attainment for &#8230;  Hayden area, with the boundaries <span class=\"match\">Arizona</span> recommended, 2 \nas unclassifiable because &#8230; ",
+            "abstract_html_url": "https://www.federalregister.gov/articles/html/abstract/201/420/920.html",
+            "publication_date": "2014-09-03",
+            "mods_url": "http://www.gpo.gov/fdsys/granule/FR-2014-09-03/2014-20920/mods.xml"
+        },
+        {
+            "type": "Notice",
+            "toc_doc": "Authorized Program Revision Approval, Arizona",
+            "title": "Cross-Media Electronic Reporting: Authorized Program Revision Approval, State of Arizona",
+            "page_length": 2,
+            "docket_id": "FRL-9916-18-OEI",
+            "body_html_url": "https://www.federalregister.gov/articles/html/full_text/201/420/894.html",
+            "agency_names": [
+                "Environmental Protection Agency"
+            ],
+            "start_page": 52318,
+            "regulation_id_number_info": {},
+            "effective_on": "2014-10-03",
+            "citation": "79 FR 52318",
+            "subtype": null,
+            "president": {
+                "identifier": "barack-obama",
+                "name": "Barack Obama"
+            },
+            "json_url": "https://www.federalregister.gov/api/v1/articles/2014-20894.json",
+            "dates": "EPA's approval is effective October 3, 2014 for the State of Arizona's National Primary Drinking Water Regulations Implementation program, if no timely request for a public hearing is received and accepted by the Agency, and on September 3, 2014 for the State of Arizona's National Pollutant Discharge Elimination System program.",
+            "cfr_references": [],
+            "abstract": "This notice announces the Environmental Protection Agency (EPA's) approval of the State of Arizona's request to revise/modify certain of its EPA-authorized programs to allow electronic reporting.",
+            "toc_subject": "Cross-Media Electronic Reporting:",
+            "executive_order_number": null,
+            "signing_date": null,
+            "pdf_url": "http://www.gpo.gov/fdsys/pkg/FR-2014-09-03/pdf/2014-20894.pdf",
+            "executive_order_notes": null,
+            "agencies": [
+                {
+                    "parent_id": null,
+                    "raw_name": "ENVIRONMENTAL PROTECTION AGENCY",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/145.json",
+                    "name": "Environmental Protection Agency",
+                    "id": 145,
+                    "url": "https://www.federalregister.gov/agencies/environmental-protection-agency"
+                }
+            ],
+            "volume": 79,
+            "regulation_id_numbers": [],
+            "document_number": "2014-20894",
+            "corrections": [],
+            "action": "Notice.",
+            "regulations_dot_gov_url": "http://www.regulations.gov/#!documentDetail;D=EPA_FRDOC_0001-16193",
+            "docket_ids": [
+                "FRL-9916-18-OEI"
+            ],
+            "topics": [],
+            "significant": false,
+            "public_inspection_pdf_url": "https://s3.amazonaws.com/public-inspection.federalregister.gov/2014-20894.pdf?1409662693",
+            "end_page": 52319,
+            "full_text_xml_url": "https://www.federalregister.gov/articles/xml/201/420/894.xml",
+            "correction_of": null,
+            "comments_close_on": null,
+            "regulations_dot_gov_info": {
+                "comments_count": 1,
+                "title": "Recently Posted EPA Rules and Notices from FR Feed.",
+                "docket_id": "EPA_FRDOC_0001",
+                "regulation_id_number": null,
+                "supporting_documents_count": 7,
+                "metadata": {}
+            },
+            "raw_text_url": "https://www.federalregister.gov/articles/text/raw_text/201/420/894.txt",
+            "html_url": "https://www.federalregister.gov/articles/2014/09/03/2014-20894/cross-media-electronic-reporting-authorized-program-revision-approval-state-of-arizona",
+            "excerpts": " &#8230; ) approval of the State of <span class=\"match\">Arizona</span>'s request to revise/modify &#8230; , 2014 for the State of <span class=\"match\">Arizona</span>'s National Primary Drinking Water &#8230; , 2014 for the State of <span class=\"match\">Arizona</span>'s National Pollutant Discharge Elimination &#8230; . \nOn January 14, 2010, the <span class=\"match\">Arizona</span> Department of Environmental Quality (ADEQ &#8230; ",
+            "abstract_html_url": "https://www.federalregister.gov/articles/html/abstract/201/420/894.html",
+            "publication_date": "2014-09-03",
+            "mods_url": "http://www.gpo.gov/fdsys/granule/FR-2014-09-03/2014-20894/mods.xml"
+        },
+        {
+            "type": "Proposed Rule",
+            "toc_doc": "Arizona; Nogales Nonattainment Area; Fine Particulate Matter Emissions Inventories",
+            "title": "Approval and Promulgation of Implementation Plans; Arizona; Nogales Nonattainment Area; Fine Particulate Matter Emissions Inventories",
+            "page_length": 4,
+            "docket_id": "EPA-R09-OAR-2014-0450",
+            "body_html_url": "https://www.federalregister.gov/articles/html/full_text/201/420/787.html",
+            "agency_names": [
+                "Environmental Protection Agency"
+            ],
+            "start_page": 51923,
+            "regulation_id_number_info": {},
+            "effective_on": null,
+            "citation": "79 FR 51923",
+            "subtype": null,
+            "president": {
+                "identifier": "barack-obama",
+                "name": "Barack Obama"
+            },
+            "json_url": "https://www.federalregister.gov/api/v1/articles/2014-20787.json",
+            "dates": "Any comments must arrive by October 2, 2014.",
+            "cfr_references": [
+                {
+                    "title": 40,
+                    "part": 52
+                }
+            ],
+            "abstract": "The Environmental Protection Agency (EPA) is proposing to approve revisions to the Arizona State Implementation Plan (SIP) concerning 2008 and 2010 emissions inventories for the 2006 24-hour fine particle (PM<INF>2.5</INF>) National Ambient Air Quality Standard (NAAQS) for the Nogales PM<INF>2.5</INF> nonattainment area. We are approving these annual emissions inventories under the Clean Air Act (CAA or the Act).",
+            "toc_subject": "Air Quality State Implementation Plans; Approvals and Promulgations:",
+            "executive_order_number": null,
+            "signing_date": null,
+            "pdf_url": "http://www.gpo.gov/fdsys/pkg/FR-2014-09-02/pdf/2014-20787.pdf",
+            "executive_order_notes": null,
+            "agencies": [
+                {
+                    "parent_id": null,
+                    "raw_name": "ENVIRONMENTAL PROTECTION AGENCY",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/145.json",
+                    "name": "Environmental Protection Agency",
+                    "id": 145,
+                    "url": "https://www.federalregister.gov/agencies/environmental-protection-agency"
+                }
+            ],
+            "volume": 79,
+            "regulation_id_numbers": [],
+            "document_number": "2014-20787",
+            "corrections": [],
+            "action": "Proposed rule.",
+            "regulations_dot_gov_url": "http://www.regulations.gov/#!documentDetail;D=EPA-R09-OAR-2014-0450-0001",
+            "docket_ids": [
+                "EPA-R09-OAR-2014-0450",
+                "FRL-9916-05-Region 9"
+            ],
+            "topics": [
+                "Air pollution control",
+                "Environmental protection",
+                "Intergovernmental relations",
+                "Nitrogen dioxide",
+                "Particulate matter",
+                "Reporting and recordkeeping requirements",
+                "Sulfur oxides",
+                "Volatile organic compounds"
+            ],
+            "significant": false,
+            "public_inspection_pdf_url": "https://s3.amazonaws.com/public-inspection.federalregister.gov/2014-20787.pdf?1409316484",
+            "end_page": 51926,
+            "full_text_xml_url": "https://www.federalregister.gov/articles/xml/201/420/787.xml",
+            "correction_of": null,
+            "comments_close_on": "2014-10-02",
+            "regulations_dot_gov_info": null,
+            "raw_text_url": "https://www.federalregister.gov/articles/text/raw_text/201/420/787.txt",
+            "html_url": "https://www.federalregister.gov/articles/2014/09/02/2014-20787/approval-and-promulgation-of-implementation-plans-arizona-nogales-nonattainment-area-fine",
+            "excerpts": " &#8230;  this determination, the requirements for <span class=\"match\">Arizona</span> to submit an attainment demonstration &#8230;  our determination of attainment. Consequently, <span class=\"match\">Arizona</span> has submitted the Nogales area &#8230;  the Nogales nonattainment area titled “<span class=\"match\">Arizona</span> State Implementation Plan Revision for &#8230; ",
+            "abstract_html_url": "https://www.federalregister.gov/articles/html/abstract/201/420/787.html",
+            "publication_date": "2014-09-02",
+            "mods_url": "http://www.gpo.gov/fdsys/granule/FR-2014-09-02/2014-20787/mods.xml"
+        },
+        {
+            "type": "Proposed Rule",
+            "toc_doc": "Arizona State Plan for Occupational Safety and Health",
+            "title": "Arizona State Plan for Occupational Safety and Health",
+            "page_length": 5,
+            "docket_id": "Docket ID. OSHA 2014-0019",
+            "body_html_url": "https://www.federalregister.gov/articles/html/full_text/201/419/781.html",
+            "agency_names": [
+                "Labor Department",
+                "Occupational Safety and Health Administration"
+            ],
+            "start_page": 49465,
+            "regulation_id_number_info": {
+                "1218-AC92": null
+            },
+            "effective_on": null,
+            "citation": "79 FR 49465",
+            "subtype": null,
+            "president": {
+                "identifier": "barack-obama",
+                "name": "Barack Obama"
+            },
+            "json_url": "https://www.federalregister.gov/api/v1/articles/2014-19781.json",
+            "dates": "Comments and requests for a hearing must be received by September 25, 2014.",
+            "cfr_references": [
+                {
+                    "title": 29,
+                    "part": 1952
+                }
+            ],
+            "abstract": "The Occupational Safety and Health Act requires state plans to provide safety standards ``at least as effective as'' those of Federal OSHA. The legislature of Arizona enacted a fall protection standard for residential roofing that provides fall protection at heights above 15 feet, while that of OSHA provides protection to workers at 6 feet. OSHA is proposing to take action to require Arizona to revise its standard to provide equivalent protection. OSHA is initiating two concurrent administrative proceedings which would officially reject Arizona's fall protection standard, and rescind the ``final approval'' status of the Arizona state plan in the construction industry, to allow OSHA to enforce Federal construction safety standards pending enactment by Arizona of an ``at least as effective'' fall protection standard. OSHA is soliciting written comments to ensure that all relevant information, views and data are available to the Assistant Secretary. If requested, a public hearing may be held on these issues.",
+            "toc_subject": null,
+            "executive_order_number": null,
+            "signing_date": null,
+            "pdf_url": "http://www.gpo.gov/fdsys/pkg/FR-2014-08-21/pdf/2014-19781.pdf",
+            "executive_order_notes": null,
+            "agencies": [
+                {
+                    "parent_id": null,
+                    "raw_name": "DEPARTMENT OF LABOR",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/271.json",
+                    "name": "Labor Department",
+                    "id": 271,
+                    "url": "https://www.federalregister.gov/agencies/labor-department"
+                },
+                {
+                    "parent_id": 271,
+                    "raw_name": "Occupational Safety and Health Administration",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/386.json",
+                    "name": "Occupational Safety and Health Administration",
+                    "id": 386,
+                    "url": "https://www.federalregister.gov/agencies/occupational-safety-and-health-administration"
+                }
+            ],
+            "volume": 79,
+            "regulation_id_numbers": [
+                "1218-AC92"
+            ],
+            "document_number": "2014-19781",
+            "corrections": [],
+            "action": "Proposed rejection of State initiated plan change; reconsideration of final approval of State plan; and request for written comments.",
+            "regulations_dot_gov_url": "http://www.regulations.gov/#!documentDetail;D=OSHA-2014-0019-0001",
+            "docket_ids": [
+                "Docket ID. OSHA 2014-0019"
+            ],
+            "topics": [],
+            "significant": false,
+            "public_inspection_pdf_url": "https://s3.amazonaws.com/public-inspection.federalregister.gov/2014-19781.pdf?1408539949",
+            "end_page": 49469,
+            "full_text_xml_url": "https://www.federalregister.gov/articles/xml/201/419/781.xml",
+            "correction_of": null,
+            "comments_close_on": null,
+            "regulations_dot_gov_info": null,
+            "raw_text_url": "https://www.federalregister.gov/articles/text/raw_text/201/419/781.txt",
+            "html_url": "https://www.federalregister.gov/articles/2014/08/21/2014-19781/arizona-state-plan-for-occupational-safety-and-health",
+            "excerpts": " &#8230; .gov . \nSUPPLEMENTARY INFORMATION: \nBackground \n<span class=\"match\">Arizona</span> State Plan \n<span class=\"match\">Arizona</span> administers an OSHA-approved &#8230;  calls with <span class=\"match\">Arizona</span> stakeholders, ADOSH and the Industrial Commission of <span class=\"match\">Arizona</span>, which &#8230;  OSHA and <span class=\"match\">Arizona</span>'s Residential Construction Fall Protection Standards: How <span class=\"match\">Arizona</span> Is &#8230; ",
+            "abstract_html_url": "https://www.federalregister.gov/articles/html/abstract/201/419/781.html",
+            "publication_date": "2014-08-21",
+            "mods_url": "http://www.gpo.gov/fdsys/granule/FR-2014-08-21/2014-19781/mods.xml"
+        },
+        {
+            "type": "Notice",
+            "toc_doc": "Arizona Resource Advisory Council",
+            "title": "State of Arizona Resource Advisory Council Meeting",
+            "page_length": 2,
+            "docket_id": "LLAZ910000.14X.L12100000.XP0000.6100.241A",
+            "body_html_url": "https://www.federalregister.gov/articles/html/full_text/201/418/595.html",
+            "agency_names": [
+                "Interior Department",
+                "Land Management Bureau"
+            ],
+            "start_page": 45842,
+            "regulation_id_number_info": {},
+            "effective_on": null,
+            "citation": "79 FR 45842",
+            "subtype": null,
+            "president": {
+                "identifier": "barack-obama",
+                "name": "Barack Obama"
+            },
+            "json_url": "https://www.federalregister.gov/api/v1/articles/2014-18595.json",
+            "dates": "The Arizona RAC Business meeting will take place September 10, 2014, from 8:30 a.m. to 3:30 p.m.",
+            "cfr_references": [],
+            "abstract": "In accordance with the Federal Land Policy and Management Act of 1976 and the Federal Advisory Committee Act of 1972, the U.S. Department of the Interior, Bureau of Land Management (BLM), Arizona Resource Advisory Council (RAC) will meet in Phoenix, Arizona, as indicated below.",
+            "toc_subject": "Meetings:",
+            "executive_order_number": null,
+            "signing_date": null,
+            "pdf_url": "http://www.gpo.gov/fdsys/pkg/FR-2014-08-06/pdf/2014-18595.pdf",
+            "executive_order_notes": null,
+            "agencies": [
+                {
+                    "parent_id": null,
+                    "raw_name": "DEPARTMENT OF THE INTERIOR",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/253.json",
+                    "name": "Interior Department",
+                    "id": 253,
+                    "url": "https://www.federalregister.gov/agencies/interior-department"
+                },
+                {
+                    "parent_id": 253,
+                    "raw_name": "Bureau of Land Management",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/275.json",
+                    "name": "Land Management Bureau",
+                    "id": 275,
+                    "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+                }
+            ],
+            "volume": 79,
+            "regulation_id_numbers": [],
+            "document_number": "2014-18595",
+            "corrections": [],
+            "action": "Notice of public meetings.",
+            "regulations_dot_gov_url": null,
+            "docket_ids": [
+                "LLAZ910000.14X.L12100000.XP0000.6100.241A"
+            ],
+            "topics": [],
+            "significant": false,
+            "public_inspection_pdf_url": "https://s3.amazonaws.com/public-inspection.federalregister.gov/2014-18595.pdf?1407243001",
+            "end_page": 45843,
+            "full_text_xml_url": "https://www.federalregister.gov/articles/xml/201/418/595.xml",
+            "correction_of": null,
+            "comments_close_on": null,
+            "regulations_dot_gov_info": null,
+            "raw_text_url": "https://www.federalregister.gov/articles/text/raw_text/201/418/595.txt",
+            "html_url": "https://www.federalregister.gov/articles/2014/08/06/2014-18595/state-of-arizona-resource-advisory-council-meeting",
+            "excerpts": " &#8230;  (BLM), <span class=\"match\">Arizona</span> Resource Advisory Council (RAC) will meet in Phoenix, <span class=\"match\">Arizona</span>, as &#8230;  indicated below. \nDATES: \nThe <span class=\"match\">Arizona</span> RAC Business meeting &#8230; , Phoenix, <span class=\"match\">Arizona</span> 85004. \nFOR FURTHER INFORMATION CONTACT: \nDorothea Boothe, <span class=\"match\">Arizona</span> RAC Coordinator &#8230; ",
+            "abstract_html_url": "https://www.federalregister.gov/articles/html/abstract/201/418/595.html",
+            "publication_date": "2014-08-06",
+            "mods_url": "http://www.gpo.gov/fdsys/granule/FR-2014-08-06/2014-18595/mods.xml"
+        },
+        {
+            "type": "Notice",
+            "toc_doc": "Arizona Advisory Committee",
+            "title": "Agenda and Notice of Public Meeting of the Arizona Advisory Committee",
+            "page_length": 1,
+            "docket_id": null,
+            "body_html_url": "https://www.federalregister.gov/articles/html/full_text/201/419/193.html",
+            "agency_names": [
+                "Civil Rights Commission"
+            ],
+            "start_page": 47614,
+            "regulation_id_number_info": {},
+            "effective_on": null,
+            "citation": "79 FR 47614",
+            "subtype": null,
+            "president": {
+                "identifier": "barack-obama",
+                "name": "Barack Obama"
+            },
+            "json_url": "https://www.federalregister.gov/api/v1/articles/2014-19193.json",
+            "dates": null,
+            "cfr_references": [],
+            "abstract": "SMRdocumentation free text summary of the notification",
+            "toc_subject": "Meetings:",
+            "SMRdocumentation":"toc_subject has no explanation, don't know what this is supposed to be",
+            "executive_order_number": null,
+            "signing_date": null,
+            "pdf_url": "http://www.gpo.gov/fdsys/pkg/FR-2014-08-14/pdf/2014-19193.pdf",
+            "executive_order_notes": null,
+            "agencies": [
+                {
+                    "parent_id": null,
+                    "raw_name": "COMMISSION ON CIVIL RIGHTS",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/52.json",
+                    "name": "Civil Rights Commission",
+                    "id": 52,
+                    "url": "https://www.federalregister.gov/agencies/civil-rights-commission"
+                }
+            ],
+            "volume": 79,
+            "regulation_id_numbers": [],
+            "document_number": "2014-19193",
+            "corrections": [],
+            "action": null,
+            "regulations_dot_gov_url": "http://www.regulations.gov/#!documentDetail;D=CRC-2014-0055-0001",
+            "docket_ids": [],
+            "topics": [],
+            "significant": false,
+            "public_inspection_pdf_url": "https://s3.amazonaws.com/public-inspection.federalregister.gov/2014-19193.pdf?1407934052",
+            "end_page": 47614,
+            "full_text_xml_url": "https://www.federalregister.gov/articles/xml/201/419/193.xml",
+            "correction_of": null,
+            "comments_close_on": null,
+            "regulations_dot_gov_info": null,
+            "raw_text_url": "https://www.federalregister.gov/articles/text/raw_text/201/419/193.txt",
+            "html_url": "https://www.federalregister.gov/articles/2014/08/14/2014-19193/agenda-and-notice-of-public-meeting-of-the-arizona-advisory-committee",
+            "excerpts": " &#8230; ) that a planning meeting the <span class=\"match\">Arizona</span> Advisory Committee (Committee) to the &#8230; ",
+            "abstract_html_url": "https://www.federalregister.gov/articles/html/abstract/201/419/193.html",
+            "publication_date": "2014-08-14",
+            "mods_url": "http://www.gpo.gov/fdsys/granule/FR-2014-08-14/2014-19193/mods.xml"
+        },
+        {
+            "type": "Notice",
+            "toc_doc": "Apple Inc./GTAT Corp., Foreign-Trade Zone 221, Mesa, AZ",
+            "title": "Foreign-Trade Zone (FTZ) 221-Mesa, Arizona; Notification of Proposed Production Activity; Apple Inc./GTAT Corp. (Components for Consumer Electronics); Mesa, Arizona",
+            "page_length": 2,
+            "docket_id": "B-55-2014",
+            "body_html_url": "https://www.federalregister.gov/articles/html/full_text/201/419/053.html",
+            "agency_names": [
+                "Commerce Department",
+                "Foreign-Trade Zones Board"
+            ],
+            "start_page": 47088,
+            "regulation_id_number_info": {},
+            "effective_on": null,
+            "citation": "79 FR 47088",
+            "subtype": null,
+            "president": {
+                "identifier": "barack-obama",
+                "name": "Barack Obama"
+            },
+            "json_url": "https://www.federalregister.gov/api/v1/articles/2014-19053.json",
+            "dates": null,
+            "cfr_references": [],
+            "abstract": null,
+            "toc_subject": "Proposed Production Activities:",
+            "executive_order_number": null,
+            "signing_date": null,
+            "pdf_url": "http://www.gpo.gov/fdsys/pkg/FR-2014-08-12/pdf/2014-19053.pdf",
+            "executive_order_notes": null,
+            "agencies": [
+                {
+                    "parent_id": null,
+                    "raw_name": "DEPARTMENT OF COMMERCE",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/54.json",
+                    "name": "Commerce Department",
+                    "id": 54,
+                    "url": "https://www.federalregister.gov/agencies/commerce-department"
+                },
+                {
+                    "parent_id": 54,
+                    "raw_name": "Foreign-Trade Zones Board",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/208.json",
+                    "name": "Foreign-Trade Zones Board",
+                    "id": 208,
+                    "url": "https://www.federalregister.gov/agencies/foreign-trade-zones-board"
+                }
+            ],
+            "volume": 79,
+            "regulation_id_numbers": [],
+            "document_number": "2014-19053",
+            "corrections": [],
+            "action": null,
+            "regulations_dot_gov_url": null,
+            "docket_ids": [
+                "B-55-2014"
+            ],
+            "topics": [],
+            "significant": false,
+            "public_inspection_pdf_url": "https://s3.amazonaws.com/public-inspection.federalregister.gov/2014-19053.pdf?1407761371",
+            "end_page": 47089,
+            "full_text_xml_url": "https://www.federalregister.gov/articles/xml/201/419/053.xml",
+            "correction_of": null,
+            "comments_close_on": null,
+            "regulations_dot_gov_info": null,
+            "raw_text_url": "https://www.federalregister.gov/articles/text/raw_text/201/419/053.txt",
+            "html_url": "https://www.federalregister.gov/articles/2014/08/12/2014-19053/foreign-trade-zone-ftz-221-mesa-arizona-notification-of-proposed-production-activity-apple-incgtat",
+            "excerpts": " &#8230; . (Project Cascade), located in Mesa, <span class=\"match\">Arizona</span>, within Subzone 221A. The notification &#8230; ",
+            "abstract_html_url": "https://www.federalregister.gov/articles/html/abstract/201/419/053.html",
+            "publication_date": "2014-08-12",
+            "mods_url": "http://www.gpo.gov/fdsys/granule/FR-2014-08-12/2014-19053/mods.xml"
+        },
+        {
+            "type": "Notice",
+            "toc_doc": "National Park System Advisory Board",
+            "title": "Notice of October 23-24, 2014, Meeting of the National Park System Advisory Board",
+            "page_length": 2,
+            "docket_id": "NPS-WASO-DPOL-16474",
+            "body_html_url": "https://www.federalregister.gov/articles/html/full_text/201/419/975.html",
+            "agency_names": [
+                "Interior Department",
+                "National Park Service"
+            ],
+            "start_page": 49803,
+            "regulation_id_number_info": {},
+            "effective_on": null,
+            "citation": "79 FR 49803",
+            "subtype": null,
+            "president": {
+                "identifier": "barack-obama",
+                "name": "Barack Obama"
+            },
+            "json_url": "https://www.federalregister.gov/api/v1/articles/2014-19975.json",
+            "dates": "(a) Written comments regarding any proposed National Historic Landmarks matter or National Natural Landmarks matter listed in this notice will be accepted by the National Park Service until October 21, 2014. (b) The Board will meet on October 23-24, 2014.",
+            "cfr_references": [],
+            "abstract": "Notice is hereby given in accordance with the Federal Advisory Committee Act, 5 U.S.C. Appendix 1-16, and Parts 62 and 65 of title 36 of the Code of Federal Regulations that the National Park System Advisory Board will meet October 23-24, 2014, in Grand Canyon, Arizona. The agenda will include the review of proposed actions regarding the National Historic Landmarks (NHL) Program and the National Natural Landmarks (NNL) Program. Interested parties are encouraged to submit written comments and recommendations that will be presented to the Board. Interested parties also may attend the board meeting and upon request may address the Board concerning an area's national significance.",
+            "toc_subject": "Meetings:",
+            "executive_order_number": null,
+            "signing_date": null,
+            "pdf_url": "http://www.gpo.gov/fdsys/pkg/FR-2014-08-22/pdf/2014-19975.pdf",
+            "executive_order_notes": null,
+            "agencies": [
+                {
+                    "parent_id": null,
+                    "raw_name": "DEPARTMENT OF THE INTERIOR",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/253.json",
+                    "name": "Interior Department",
+                    "id": 253,
+                    "url": "https://www.federalregister.gov/agencies/interior-department"
+                },
+                {
+                    "parent_id": 253,
+                    "raw_name": "National Park Service",
+                    "json_url": "https://www.federalregister.gov/api/v1/agencies/362.json",
+                    "name": "National Park Service",
+                    "id": 362,
+                    "url": "https://www.federalregister.gov/agencies/national-park-service"
+                }
+            ],
+            "volume": 79,
+            "regulation_id_numbers": [],
+            "document_number": "2014-19975",
+            "corrections": [],
+            "action": "Meeting notice.",
+            "regulations_dot_gov_url": null,
+            "docket_ids": [
+                "NPS-WASO-DPOL-16474",
+                "PPWODIREP0",
+                "PPMPSPD1Y.YM0000"
+            ],
+            "topics": [],
+            "significant": false,
+            "public_inspection_pdf_url": "https://s3.amazonaws.com/public-inspection.federalregister.gov/2014-19975.pdf?1408652843",
+            "end_page": 49804,
+            "full_text_xml_url": "https://www.federalregister.gov/articles/xml/201/419/975.xml",
+            "correction_of": null,
+            "comments_close_on": "2014-10-23",
+            "regulations_dot_gov_info": null,
+            "raw_text_url": "https://www.federalregister.gov/articles/text/raw_text/201/419/975.txt",
+            "html_url": "https://www.federalregister.gov/articles/2014/08/22/2014-19975/notice-of-october-23-24-2014-meeting-of-the-national-park-system-advisory-board",
+            "excerpts": " &#8230; -24, 2014, in Grand Canyon, <span class=\"match\">Arizona</span>. The agenda will include the &#8230; , 1 Albright Avenue, Grand Canyon, <span class=\"match\">Arizona</span> 86023, telephone (928) 638-7981 &#8230; ",
+            "abstract_html_url": "https://www.federalregister.gov/articles/html/abstract/201/419/975.html",
+            "publication_date": "2014-08-22",
+            "mods_url": "http://www.gpo.gov/fdsys/granule/FR-2014-08-22/2014-19975/mods.xml"
+        }
+    ]
+}
