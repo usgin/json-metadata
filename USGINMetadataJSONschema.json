@@ -41,9 +41,10 @@
             },
             "jmd:metadataLanguage": {
                 "type": "string",
+                "description": "Language of metadata content. Default is eng if no value is specified.",
+                "skos:closeMatch": "dc:language",
                 "format": "ISO three letter language code",
-                "pattern": "/[a-zA-Z]{3}/",
-                "description": "Language of metadata content. Default is eng if no value is specified."
+                "pattern": "/[a-zA-Z]{3}/"
             },
             "jmd:metadataLineage": {
                 "description": "documentation of update history for this metadata record. In the CINERGI system, the lineage is externally maintained as provenance using PROV.",
@@ -52,6 +53,39 @@
             "jmd:metadataUsageConstraint": {
                 "description": "documentation of any restrictions on access to or usage of the metadata record.",
                 "$ref": "#/UsageConstraint"
+            },
+            "jmd:harvestInformation": {
+                "type": "object",
+                "required": ["jmd:harvestRecordID", "jmd:harvestURL", "jmd:harvesteDate"],
+                "properties": {
+                    "OriginalFileIdentifier": {
+                        "type": "string"
+                    },
+                    "OriginalFormat": {
+                        "type": "string"
+                    },
+                    "HarvestRecordId": {
+                        "type": "string"
+                    },
+                    "HarvestURL": {
+                        "type": "string"
+                    },
+                    "HarvestDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "jmd:collections": {
+                "type": "array",
+                "description": "list of collection identifiers that this resource is a member of",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "jmd:published": {
+                "description": "true if the metadata record should be visible in the catalog; probably need to generalize to a policy object (like Fedora) to allow more granular access control",
+                "type": "boolean"
             },
             "jmd:describedResource": {
                 "description": "exactly 1. what the metadata record is about",
@@ -134,7 +168,9 @@
                 "type": "string"
             },
             "jmd:resourceLanguage": {
-                "description": "Language of resource content. Multiple languages may be specified. Use Nil not applicable if there is no text in the resource. Use ISO three letter language code; provide option to use a jmd:reference if need some other kind of language scoping",
+                "description": "Language of resource content. Multiple languages may be specified. Use Nil not applicable if there is no text in the resource. Use ISO three letter language code (Each language SHOULD be expressed as a language tag, as defined by RFC 3066); provide option to use a jmd:reference if need some other kind of language scoping",
+                "skos:exactMatch": "dc:language",
+                "type": "array",
                 "anyOf": [{
                         "type": "string",
                         "format": "ISO-639"
@@ -1173,6 +1209,7 @@
         "id": "#Software",
         "type": "object",
         "description": "this should be considered a rough draft of what might be useful...",
+        "skos:relatedMatch": "prov:softwareAgent",
         "properties": {
             "jmd:softwareApplicationScheme": {
                 "$ref": "#/definitions/Reference"
@@ -1352,14 +1389,17 @@
                             "description": "object for describing an individual person; a name is required, object sets up binding of name, position, URI and links. Binding with organization is in the context of the agent object",
                             "type": "object",
                             "required": ["jmd:personName"],
+                            "skos:closeMatch": "foaf:person",
                             "properties": {
                                 "jmd:personURI": {
                                     "type": "string",
-                                    "format": "uri"
+                                    "format": "uri",
+                                    "skos:relatedMatch": "foaf:openID"
                                 },
                                 "jmd:personName": {
                                     "type": "string",
-                                    "description": "format--Last Name,First name MI"
+                                    "description": "format--Last Name,First name MI",
+                                    "skos:exactMatch": "foaf:name"
                                 },
                                 "jmd:personPosition": {
                                     "type": "string",
@@ -1378,6 +1418,7 @@
                     {
                         "jmd:organizationName": {
                             "description": "an array of synonyms used to identify an organization; put alternate spellings, abbreviations, and acronyms here",
+                            "skos:relatedMatch": "foaf:name",
                             "type": "array",
                             "items": {
                                 "type": "string"
@@ -1409,7 +1450,8 @@
                         "jmd:contactEmail": {
                             "description": "map to foaf:mbox",
                             "type": "string",
-                            "format": "email"
+                            "format": "email",
+                            "skos:closeMatch": "foaf:mbox"
                         }
                         }],
                 "jmd:contactAddress": {
