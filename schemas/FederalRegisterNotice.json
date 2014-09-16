@@ -20,7 +20,7 @@
             "SMRdocumentation":"for start_page, gmd:citation//gmd:series//gmd:page/gco:CharacterString; concatenate 'start_page' & '-' & 'end_page' to form the characgter string",
             "regulation_id_number_info": {"documentation":"this is not used in many records; need more explanation to understand.  (http://www.whitehouse.gov/sites/default/files/omb/assets/inforeg/IncreasingOpenness_04072010.pdf) Executive Order 12866, Sec. 4(b) requires each regulatory action in the Unified Regulatory Agenda—a semiannual compendium of all regulations under development or review—to contain, among other things, a RIN. The RIN should be used on documents including, but not limited to, notices of proposed rulemaking, final rules, and (to the extent that they are associated with a rulemaking) notices, guidances, environmental impact statements, regulatory impact analyses, information collections, and supporting materials. The RIN should be carried throughout the process, including in the metadata/text when documents are published in the Federal Register and on Regulations.gov. "},
             "effective_on": null,
-            "SMRdocumentation":"assume effective_on is a date..., put in gmd:citation//gmd:date@role='effective_date' @codespace='federal_register')"
+            "SMRdocumentation":"assume effective_on is a date..., put in gmd:citation//gmd:date@role='effective_date' @codespace='federal_register')",
             "citation": "example: '79 FR 52763'  SMRdocumentation: this is how things in the federal register are cited; another gmd:citation//gmd:identifier//gmd:code@codespace='federal register identifier'",
             "subtype": null,
             "SMRdocumentation":"no explanation of what this is...",
@@ -31,7 +31,7 @@
             },
             "json_url": "e.g. https://www.federalregister.gov/api/v1/articles/2014-21083.json.  Distribution, gmd:name='json metadata', protocol = http",
             "dates": "e.g. 'This rule is effective on October 3, 2014.' SMRdocumentation: looks like free text, explanation of dateType and then a free-form calendar data.  This would have to be parsed by a person to encode gmd:citation//gmd:date@dateType",
-            "cfr_references": ["SMRdocumentation":"The Code of Federal Regulations (CFR) provides a listing of the rules and regulations of the Federal Government. The CFR is divided into 50 broad titles that are then split into chapters and sections. Follow these guidelines to cite the Code of Federal Regulations in a document: http://www.wikihow.com/Cite-the-Code-of-Federal-Regulations. Examples in this document have a 'title' and a 'part' property in this object."],
+            "cfr_references": [{"SMRdocumentation":"The Code of Federal Regulations (CFR) provides a listing of the rules and regulations of the Federal Government. The CFR is divided into 50 broad titles that are then split into chapters and sections. Follow these guidelines to cite the Code of Federal Regulations in a document: http://www.wikihow.com/Cite-the-Code-of-Federal-Regulations. Examples in this document have a 'title' and a 'part' property in this object."}],
             "abstract": "SMRdocumentation free text summary of the notification",
             "toc_subject": "e.g.: 'Importers of Controlled Substances; Registrations:' SMRdocumentation: gmd:keyword, thesaurus 'federal register toc subject'. ",
             "executive_order_number": "SMRdocumentation: identifier number for executive order related to this notification; if the entry is a bout the executive order, this is another gmd:citation//gmd:identifier//gmd:code@codspace='us presidential executive order number'",
@@ -92,7 +92,7 @@
                     "Type": "Rulemaking",
                     "Subtype": "Peer Review",
                     "Disposition": "Pending",
-                    "Action Office": "HCC-10"
+                    "Action Office": "HCC-10",
                     "Location": "HQ-OAR",
                     "Keyword(s)": "truck, Carbon Dioxide, CO2",
                     "Short Title": "Ozone NAAQS Docket"

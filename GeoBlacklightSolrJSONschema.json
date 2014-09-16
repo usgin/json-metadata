@@ -1,0 +1,102 @@
+{
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "properties": {
+        "dc_description_s": {
+            "type": "string"
+        },
+        "dc_format_s": {
+            "type": "string"
+        },
+        "dc_identifier_s": {
+            "type": "string"
+        },
+        "dc_language_s": {
+            "type": "string"
+        },
+        "dc_publisher_s": {
+            "type": "string"
+        },
+        "dc_rights_s": {
+            "type": "string"
+        },
+        "dc_subject_sm": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "dc_title_s": {
+            "type": "string"
+        },
+        "dc_type_s": {
+            "type": "string"
+        },
+        "dct_issued_s": {
+            "type": "string"
+        },
+        "dct_provenance_s": {
+            "type": "string"
+        },
+        "dct_references_s": {
+            "type": "string"
+        },
+        "dct_spatial_sm": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "dct_temporal_sm": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "georss_box_s": {
+            "type": "string"
+        },
+        "georss_polygon_s": {
+            "type": "string"
+        },
+        "layer_geom_type_s": {
+            "type": "string"
+        },
+        "layer_id_s": {
+            "type": "string"
+        },
+        "layer_modified_dt": {
+            "type": "string"
+        },
+        "layer_slug_s": {
+            "type": "string"
+        },
+        "solr_bbox": {
+            "type": "string"
+        },
+        "solr_geom": {
+            "type": "string"
+        },
+        "solr_issued_dt": {
+            "type": "string"
+        },
+        "solr_ne_pt": {
+            "type": "string"
+        },
+        "solr_sw_pt": {
+            "type": "string"
+        },
+        "solr_wfs_url": {
+            "type": "string"
+        },
+        "solr_wms_url": {
+            "type": "string"
+        },
+        "solr_year_i": {
+            "type": "string"
+        },
+        "uuid": {
+            "type": "string"
+        }
+    }
+}
