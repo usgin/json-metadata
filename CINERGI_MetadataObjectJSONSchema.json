@@ -2,11 +2,11 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "@context": {
         "cmd": "http://resources.usgin.org/uri-gin/cinergi/schema/metadataobjectschema",
-        "jmd": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata",
         "@vocab": "http://json-schema.org/draft-04/schema",
         "@base": "http://resources.usgin.org/uri-gin/cinergi/schema/metadataobjectschema",
         "foaf": "http://xmlns.com/foaf/0.1/",
-        "dct": "http://purl.org/dc/terms/"
+        "dct": "http://purl.org/dc/terms/",
+        "skos": "http://www.w3.org/2004/02/skos/core#"
     },
     "description": "JSON schema for use in a MongoDb for metadata management. Includes metadata elements as well as some management models. The root object is an input metadata record, that has a sourceID",
     "id": "http://resources.usgin.org/uri-gin/cinergi/metadataobjectschema/json",
@@ -14,7 +14,7 @@
         "id": "#CINERGIobject",
         "description": "root element; consists of wrapper for archived JSONized version of the initally harvested record and for the metadata content using the CINERGI metadata Object model, along with some data management overhead",
         "type": "object",
-        "required": ["cmd:metadataProperties", "cmd:resourceDescription"],
+        "required": ["cmd:CINERGI_ID", "cmd:metadataProperties", "cmd:resourceDescription"],
         "properties": {
             "cmd:CINERGI_ID": {
                 "description": "primaryKey from Burak's original wrapper implementation. CINERGI_ID, a UUID generated using a UUID v5 hash based on the identifier for the harvestSource (sourceID), and some harvest-endpoint specific content extracted from the harvested record. Each harvest configuration needs to specify what content in the metadata record is used to generate the CINERGI_ID",
@@ -37,13 +37,13 @@
                         "type": "string",
                         "format": "ISO8601"
                     },
-                    "jmd:originalFileIdentifier": {
+                    "cmd:originalFileIdentifier": {
                         "type": "string"
                     },
-                    "jmd:originalFormat": {
+                    "cmd:originalFormat": {
                         "type": "string"
                     },
-                    "jmd:harvestURL": {
+                    "cmd:harvestURL": {
                         "type": "string"
                     },
                     "cmd:sourceInfo": {
@@ -68,7 +68,7 @@
             },
             "cmd:originalHarvestedDoc": {
                 "description": "<original doc as JSON>. A JSON blob will get added, we don't know what the schema for that will be--its an open world",
-                "type": "Object",
+                "type": "object",
                 "properties": {}
             },
             "cmd:processingStatus": {
@@ -78,6 +78,7 @@
             "cmd:metadataProperties": {
                 "type": "object",
                 "description": "properties for the metadata record content, should be obtained from the harvest source",
+                "required": ["cmd:metadataUpdateDate"],
                 "properties": {
                     "cmd:metadataContact": {
                         "description": "contact information to report problems with the resource description content",
@@ -86,13 +87,13 @@
                             "$ref": "definitions/#RelatedAgent"
                         }
                     },
-                    "jmd:metadataUpdateDate": {
+                    "cmd:metadataUpdateDate": {
                         "type": "string",
                         "format": "date-time",
                         "description": "exactly 1. This is time stamp for most recent change to metadata content in this record. Update history should be in metadataLineage; this is a convienence property"
                     },
                     "cmd:metadataRecordHistory": {
-                        "description": "<provenance records in PROV-DM JSON format for the document ingestion and processing>",
+                        "description": "summary statements for processing steps in the document ingestion and processing; detailed provenance history will be recorded in the provenance database; a link is provided to access this history",
                         "type": "array",
                         "items": {
                             "type": "object",
@@ -106,6 +107,10 @@
                                 "cmd:batchId": {
                                     "description": "identifier for a particular source metadata record ID harvested as part of a particular harvest batch run. If a new harvest completely replaces the existing harvested record, the processing steps should logically be imported as part of the harvest to replace the existing sequence of steps, starting the version sequence again",
                                     "type": "string"
+                                },
+                                "cmd:provenanceLink": {
+                                    "description": "a URL that will retrieve the complete provenance trace for this record from the PROV service",
+                                    "$ref": "#/definitions/Link"
                                 }
                             }
                         }
@@ -117,15 +122,15 @@
                 "type": "object",
                 "required": ["cmd:resourceAccessOptions"],
                 "properties": {
-                    "jmd:resourceTitle": {
+                    "cmd:resourceTitle": {
                         "description": "Title that identifies the resource for human users. Ideally the title would be unique to the described resource.",
                         "type": "string"
                     },
-                    "jmd:resourceDescription": {
+                    "cmd:resourceDescription": {
                         "description": "Free text description of the resource. May summarize intellectual content, as well as describe various metadata aspects such as lineage, quality, use constraints, maintenance.",
                         "type": "string"
                     },
-                    "jmd:resourceURI": {
+                    "cmd:resourceURI": {
                         "description": "Unique identifier conforming to IETF URI syntax (RFC 3986). Resource may have multiple identifiers; the identifier in this element is the preferred identifier recommended by the resource steward. The resourceURI is intended to identify the resource at the FRBR work level. Identifier may be a sinle URI or an array of scoped identifiers with an optional authority associated with each identifier",
                         "anyOf": [{
                             "type": "string",
@@ -133,11 +138,11 @@
             }, {
                             "description": "scoped Identifier(s) for the resource, e.g. ISBN, ISSN, Dewey Decimal system numbers, or other URIs determined by the publishing authority",
                             "type": "array",
-                            "required": ["jmd:citationIdentifier"],
+                            "required": ["cmd:citationIdentifier"],
                             "items": {
                                 "type": "object",
                                 "properties": {
-                                    "jmd:citationIdentifier": {
+                                    "cmd:citationIdentifier": {
                                         "description": "Note citation is to a particular manifestation or expression of the resource; the citationIdentifier is bound to that resource. The resourceURI is intended to identify the resource at the work level.",
                                         "type": "string"
                                     },
@@ -161,25 +166,25 @@
                             }
                 }]
                     },
-                    "jmd:citedSourceAgents": {
+                    "cmd:citedSourceAgents": {
                         "description": "intellectual originator and contributors of the resource that metadata record describes.",
                         "type": "array",
                         "items": {
                             "$ref": "#/definitions/RelatedAgent"
                         }
                     },
-                    "jmd:citationDates": {
+                    "cmd:citationDates": {
                         "description": "Each date should scope a different origin event",
                         "type": "array",
                         "items": {
                             "$ref": "#/definitions/EventDate"
                         }
                     },
-                    "jmd:recommendedCitation": {
+                    "cmd:recommendedCitation": {
                         "description": "a suggested full text citation to use when citing the resource; include standard bibliographic content like edition, publisher, series title, series issue, page numbers, other information appropriate to the described resource",
                         "type": "string"
                     },
-                    "jmd:resourceContacts": {
+                    "cmd:resourceContacts": {
                         "description": "link to party to contact for additional information about the resource. Each relatedAgent has an associated role; various parties may be associated with the resource in different roles.",
                         "type": "array",
                         "items": {
@@ -191,13 +196,13 @@
                         "type": "array",
                         "items": {
                             "type": "object",
-                            "required": ["jmd:accessLinks"],
+                            "required": ["cmd:accessLinks"],
                             "properties": {
-                                "jmd:distributor": {
+                                "cmd:distributor": {
                                     "description": "agent responsible for making the resources accessible at the associated URLs or offline locations",
                                     "$ref": "#/definitions/RelatedAgent"
                                 },
-                                "jmd:accessLinks": {
+                                "cmd:accessLinks": {
                                     "description": "online location that provides some kind of access to the described resource. The link properties are used to characterize the nature of the resource at the specified location",
                                     "type": "array",
                                     "items": {
@@ -213,17 +218,17 @@
                         "id": "#Extent",
                         "type": "object",
                         "properties": {
-                            "jmd:extentLabel": {
+                            "cmd:extentLabel": {
                                 "type": "string",
                                 "description": "string to label this extent in UI"
                             },
-                            "jmd:extentStatement": {
+                            "cmd:extentStatement": {
                                 "type": "string",
                                 "description": "free text description of extent"
                             },
                             "anyOf": [
                                 {
-                                    "jmd:extentReference": {
+                                    "cmd:extentReference": {
                                         "description": "extent could be referenced, but only useful in a system that could follow links to access the actual geometry, or for which the URI is sufficient to match locations.",
                                         "type": "object",
                                         "required": ["cmd:referencedExtentLabel"],
@@ -246,29 +251,29 @@
                                     }
                         },
                                 {
-                                    "jmd:boundingBoxWGS84": {
+                                    "cmd:boundingBoxWGS84": {
                                         "description": "simplest representation of geographic extent using latitude and longitude coordinates. Points are represented as degenerate boxes (east = west, north = south bound). Mandate WGS 84 for interoperability. For boxes in polar regions, recommend using geometry property, which allows specification of other SRS appropriate to polar region.",
                                         "type": "array",
                                         "minItems": 1,
                                         "items": {
                                             "type": "object",
                                             "properties": {
-                                                "jmd:northBoundLatitude": {
+                                                "cmd:northBoundLatitude": {
                                                     "type": "number",
                                                     "minimum": -90,
                                                     "maximum": 90
                                                 },
-                                                "jmd:southBoundLatitude": {
+                                                "cmd:southBoundLatitude": {
                                                     "type": "number",
                                                     "minimum": -90,
                                                     "maximum": 90
                                                 },
-                                                "jmd:eastBoundLongitude": {
+                                                "cmd:eastBoundLongitude": {
                                                     "type": "number",
                                                     "minimum": -180,
                                                     "maximum": 180
                                                 },
-                                                "jmd:westBoundLongitude": {
+                                                "cmd:westBoundLongitude": {
                                                     "type": "number",
                                                     "minimum": -180,
                                                     "maximum": 180
@@ -278,8 +283,8 @@
                                     }
                             },
                                 {
-                                    "jmd:geoJSONgeometry": {
-                                        "jmd:extentGeometryType": {
+                                    "cmd:geoJSONgeometry": {
+                                        "cmd:extentGeometryType": {
                                             "description": "category concept to specify the relationship of the extent to the geographic footprint of the resource, use to distinguish whether the geometry encompasses an area covered by the data or an area where data is not present, or if a point location is provided whether that is a centroid or actual resource location",
 
                                             "type": "object",
@@ -300,7 +305,7 @@
                                                 }
 
                                             },
-                                            "jmd:extentGeometry": {
+                                            "cmd:extentGeometry": {
                                                 "description": "allow arbitrary geometry object to specify extent. Use GeoJSON encoding. Schema by fge on Github",
                                                 "type": "array",
                                                 "items": {
@@ -311,17 +316,17 @@
                                     }
                         },
                                 {
-                                    "jmd:verticalExtent": {
+                                    "cmd:verticalExtent": {
                                         "description": "Maximum and Minimum Elevations are relative to a datum elevation (based on vertical CRS), which will typically be the Earth surface at the location of the resource or sea level. Datum Elevation must be reported relative to mean sea level (MSL) in meters using EPSG::5714 geodetic parameters (WGS 84). Datum type must be a controlled vocabulary (Earth surface, MSL, Kelly bushing, etc.). The maximum is always numerically greater than the minimum elevation. For boreholes with datum at the earth surface, depth below surface is reported as a negative number.  *Vertical extent may be reported relative to different datum (e.g. sea level, Earth surface) in the same record.  Example: core from borehole at depths between 100 and 470 feet, borehole collar at 4787 feet above sea level.",
                                         "type": "object",
                                         "properties": {
-                                            "jmd:verticalExtentMinimum": {
+                                            "cmd:verticalExtentMinimum": {
                                                 "type": "number"
                                             },
-                                            "jmd:verticalExtentMaximum": {
+                                            "cmd:verticalExtentMaximum": {
                                                 "type": "number"
                                             },
-                                            "jmd:verticalExtentCRS": {
+                                            "cmd:verticalExtentCRS": {
                                                 "type": "object",
                                                 "properties": {
                                                     "cmd:verticalCRSLabel": {
@@ -345,28 +350,34 @@
                     }]
                         }
                     },
-                    "jmd:resourceTemporalExtent": {
-                        "description": "This is the time instant or interval to which the resource content applies. Extent using named time ordinal eras (e.g. geologic time) should be specified using temporal keywords (vocabulary is a time scale). use ISO8601 encoding for intervals with the format <start>/<end> where start and end are 8601 dateTime strings. see http://en.wikipedia.org/wiki/ISO_8601",
+                    "cmd:resourceTemporalExtent": {
+                        "description": "This is the time instant or interval to which the resource content applies. Extent using named time ordinal eras (e.g. geologic time) should be specified using temporal keywords (vocabulary is a time scale). use ISO8601 encoding begin and end are 8601 dateTime strings. see http://en.wikipedia.org/wiki/ISO_8601",
                         "type": "array",
                         "items": {
-                            "type": "string",
-                            "format": "ISO-8601"
+                            "temporalExtentBegin": {
+                                "type": "string",
+                                "format": "ISO-8601"
+                            },
+                            "temporalExtentEnd": {
+                                "type": "string",
+                                "format": "ISO-8601"
+                            }
                         }
                     },
-                    "jmd:resourceUsageConstraints": {
+                    "cmd:resourceUsageConstraints": {
                         "description": "properties for specifying legal, technical or security restrictions on the usage or distribution of a resource. Use for DPLA rights properties.",
                         "id": "#UsageConstraint",
                         "type": "array",
                         "items": {
                             "anyOf": [
                                 {
-                                    "jmd:constraintsStatement": {
+                                    "cmd:constraintsStatement": {
                                         "description": "free text description of legal, technical, and security-related constraint on access to or use of a resource",
                                         "type": "string"
                                     }
                         },
                                 {
-                                    "jmd:constraints": {
+                                    "cmd:constraintTerms": {
                                         "description": "list of all constraints on usage, each categorized by type (security, legal, technical) and specific instance of that constraint type using a controlled vocabulary. Any necessary text elucidation of the constraints should be in the constraintsStatement element",
                                         "type": "array",
                                         "minItems": 1,
@@ -408,17 +419,17 @@
                                     }
                         },
                                 {
-                                    "jmd:license": {
+                                    "cmd:license": {
                                         "description": "specification of one or more licenses that applies to the resource. Complete statement of license should be put in the constraintsStatement key if it is desired to include in the metadata",
                                         "type": "array",
                                         "minItems": 1,
                                         "items": {
-                                            "jmd:licenseURI": {
+                                            "cmd:licenseURI": {
                                                 "description": "identifier for the license. should derfenrnce to some kind of statement of license",
                                                 "type": "string",
                                                 "format": "URI"
                                             },
-                                            "jmd:licenseName": {
+                                            "cmd:licenseName": {
                                                 "description": "Name used to identify the license to users",
                                                 "type": "string"
                                             }
@@ -427,17 +438,17 @@
                         }]
                         }
                     },
-                    "jmd:resourceBrowseGraphic": {
+                    "cmd:resourceBrowseGraphic": {
                         "description": "Reference that specifies a graphic resource that provides a visualization of the resource, as well as a URL link that should access the graphic.",
                         "type": "object",
-                        "required": ["jmd:url"],
+                        "required": ["cmd:url"],
                         "properties": {
-                            "jmd:url": {
+                            "cmd:url": {
                                 "description": "a web-derferencable identifier that locates the link target; typically an HTTP URI. URI syntax specifies that the identifier string includes a prefix that specifies the base protocol for the identifier",
                                 "type": "string",
                                 "format": "uri"
                             },
-                            "jmd:linkRelation": {
+                            "cmd:linkRelation": {
                                 "type": "array",
                                 "description": "Term from IANA rel vocabulary for consistency with IETF5988. Specifies relationship between resources and or ",
                                 "items": {
@@ -445,18 +456,18 @@
                                 },
                                 "minItems": 1
                             },
-                            "jmd:linkTitle": {
+                            "cmd:linkTitle": {
                                 "type": "string",
                                 "description": "text to label this link in a UI"
                             },
-                            "jmd:linkContentResourceType": {
+                            "cmd:linkContentResourceType": {
                                 "description": "File type for the actual resource content. Typically use MIME type string from IANA registry http : //www.iana.org/assignments/media-types/application/index.html",
                                 "type": "string"
                             }
                         }
                     },
-                    "jmd:resourceLanguage": {
-                        "description": "Language of resource content. Multiple languages may be specified. Use Nil not applicable if there is no text in the resource. Use ISO three letter language code (Each language SHOULD be expressed as a language tag, as defined by RFC 3066); provide option to use a jmd:reference if need some other kind of language scoping",
+                    "cmd:resourceLanguage": {
+                        "description": "Language of resource content. Multiple languages may be specified. Use Nil not applicable if there is no text in the resource. Use ISO three letter language code (Each language SHOULD be expressed as a language tag, as defined by RFC 3066); provide option to use a cmd:reference if need some other kind of language scoping",
                         "skos:exactMatch": "dc:language",
                         "type": "array",
                         "anyOf": [{
@@ -467,11 +478,11 @@
                                 "$ref": "#/definitions/Reference"
                     }]
                     },
-                    "jmd:resourceSpatialDescription": {
+                    "cmd:resourceSpatialDescription": {
                         "description": "Properties characterizing the spatial aspects of the resource, if applicable. Allow multiple extents for non contiguous resource, e.g. map of US coasts.",
                         "type": "object",
                         "properties": {
-                            "jmd:resourceSpatialRepresentationType": {
+                            "cmd:resourceSpatialRepresentationType": {
                                 "description": "term specifying the nature of the geometric representation, e.g. vector, grid, tin, voxel. More complete information on spatial representation (like ISO19115 spatial representation package) is not included here; use extensions in the description details group",
                                 "type": "object",
                                 "properties": {
@@ -492,7 +503,7 @@
                                     }
                                 }
                             },
-                            "jmd:resourceSpatialReferenceSystem": {
+                            "cmd:resourceSpatialReferenceSystem": {
                                 "description": "identifier and link to definition of spatial reference system used for location information contained in the resource content",
                                 "type": "object",
                                 "properties": {
@@ -515,7 +526,7 @@
                             }
                         }
                     },
-                    "jmd:relatedResources": {
+                    "cmd:relatedResources": {
                         "description": "links to related resources. The relation property on the link defines the association type, and the link label provides the related resource name",
                         "type": "array",
                         "items": {
@@ -523,6 +534,11 @@
                         }
                     }
                 }
+            },
+            "cmd:extras": {
+                "type": "object",
+                "description": "this is a wrapper element for content from source documents that does not map to the CINERGI metadata Object but that the harvest configuration designer wants to systematically include in the MongoDB records. any properties can be added here",
+                "properties": {}
             }
         }
     },
@@ -550,20 +566,20 @@
                 },
                 "anyOf": [
                     {
-                        "jmd:individual": {
+                        "cmd:individual": {
                             "description": "object for describing an individual person, ideally through a URI, with either a name or a position title",
                             "type": "object",
-                            "required": ["jmd:personName"],
+                            "required": ["cmd:personName"],
                             "properties": {
-                                "jmd:personURI": {
+                                "cmd:personURI": {
                                     "type": "string",
                                     "format": "uri"
                                 },
-                                "jmd:personName": {
+                                "cmd:personName": {
                                     "type": "string",
                                     "description": "format--Last Name,First name MI"
                                 },
-                                "jmd:personPosition": {
+                                "cmd:personPosition": {
                                     "type": "string",
                                     "description": "identifies an individual who currently holds the named position in context of an organization"
                                 }
@@ -571,7 +587,7 @@
                         }
                         },
                     {
-                        "jmd:organizationName": {
+                        "cmd:organizationName": {
                             "type": "array",
                             "items": {
                                 "type": "string"
@@ -579,43 +595,43 @@
                             "minItems": 1
                         }
                         }],
-                "jmd:organizationURI": {
+                "cmd:organizationURI": {
                     "description": "unique identifier for organization",
                     "type": "string",
                     "format": "uri"
                 },
                 "anyOf": [
                     {
-                        "jmd:phoneNumber": {
+                        "cmd:phoneNumber": {
                             "description": "use registered tel URI scheme for encoding. See http://tools.ietf.org/html/rfc3966",
                             "type": "string"
                         }
                         },
                     {
-                        "jmd:contactEmail": {
+                        "cmd:contactEmail": {
                             "description": "map to foaf:mbox",
                             "type": "string",
                             "format": "email"
                         }
                         }],
-                "jmd:contactAddress": {
+                "cmd:contactAddress": {
                     "type": "string",
                     "description": "postal address,ideally formatted appropriate to the target country. One field because there is no clear reason to disaggregate the address into street, city, country, postal code, etc..."
                 }
             }
         },
-        "jmd:LinkObject": {
+        "cmd:LinkObject": {
             "id": "#Link",
             "description": "used for situations that need a link (hypermedia affordance) to an online resource, typically for navigating linked data space.  The link is a locator--an identifier for a location that can provide a digital object.",
             "type": "object",
-            "required": ["jmd:url"],
+            "required": ["cmd:url"],
             "properties": {
-                "jmd:url": {
+                "cmd:url": {
                     "description": "a web-derferencable identifier that locates the link target; typically an HTTP URI. URI syntax specifies that the identifier string includes a prefix that specifies the base protocol for the identifier",
                     "type": "string",
                     "format": "uri"
                 },
-                "jmd:linkRelation": {
+                "cmd:linkRelation": {
                     "type": "array",
                     "description": "Term from IANA rel vocabulary for consistency with IETF5988. Specifies relationship between resources",
                     "required": ["cmd:relLabel"],
@@ -635,15 +651,15 @@
                         }
                     }
                 },
-                "jmd:linkTitle": {
+                "cmd:linkTitle": {
                     "type": "string",
                     "description": "text to label this link in a UI"
                 },
-                "jmd:linkTargetResourceType": {
+                "cmd:linkTargetResourceType": {
                     "type": "string",
                     "description": "typically use MIME type string from IANA registry http : //www.iana.org/assignments/media-types/application/index.html. This is the type of the file that will be accessed directly by the link URL; if this is a container file (e.g. zip archive), the innerResourceType property is used to specify the type of file with actual resource content."
                 },
-                "jmd:linkContentResourceType": {
+                "cmd:linkContentResourceType": {
                     "description": "File type for the actual resource content. Typically use MIME type string from IANA registry http : //www.iana.org/assignments/media-types/application/index.html",
                     "type": "string"
                 },
@@ -693,26 +709,26 @@
                                 "type": "string",
                                 "format": "uri"
                             },
-                            "jmd:linkParameterValue": {
+                            "cmd:linkParameterValue": {
                                 "type": "string"
                             }
                         }
                     }
                 },
-                "jmd:linkDescription": {
+                "cmd:linkDescription": {
                     "type": "string",
                     "description": "free text description of the target to help UI"
                 },
-                "jmd:linkTransferSize": {
+                "cmd:linkTransferSize": {
                     "type": "integer",
                     "description": "advisory length of the linked content in octets"
                 }
             }
         },
-        "jmd:EventDateObject": {
+        "cmd:EventDateObject": {
             "id": "#EventDate",
             "type": "object",
-            "required": ["jmd:dateTime"],
+            "required": ["cmd:dateTime"],
             "properties": {
                 "cmd:eventType": {
                     "description": "0..N  event may be categorized in various ways...",
@@ -737,7 +753,7 @@
                         }
                     }
                 },
-                "jmd:dateTime": {
+                "cmd:dateTime": {
                     "type": "string",
                     "format": "date-time",
                     "description": "Use ISO 8601: 2011-10-11T14:30"
