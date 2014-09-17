@@ -58,19 +58,19 @@
                 "type": "object",
                 "required": ["jmd:harvestRecordID", "jmd:harvestURL", "jmd:harvesteDate"],
                 "properties": {
-                    "OriginalFileIdentifier": {
+                    "jmd:originalFileIdentifier": {
                         "type": "string"
                     },
-                    "OriginalFormat": {
+                    "jmd:originalFormat": {
                         "type": "string"
                     },
-                    "HarvestRecordId": {
+                    "jmd:harvestRecordId": {
                         "type": "string"
                     },
-                    "HarvestURL": {
+                    "jmd:harvestURL": {
                         "type": "string"
                     },
-                    "HarvestDate": {
+                    "jmd:harvestDate": {
                         "type": "string",
                         "format": "date-time"
                     }
@@ -190,7 +190,7 @@
                             "$ref": "#/definitions/RelatedAgent"
                         }
                     },
-                    "jmd:citationDate": {
+                    "jmd:citationDates": {
                         "description": "Each date should scope a different origin event",
                         "type": "array",
                         "items": {
@@ -308,7 +308,7 @@
                         },
                         "anyOf": [
                             {
-                                "jmd:accessLink": {
+                                "jmd:accessLinks": {
                                     "description": "online location that provides some kind of access to the described resource. The link properties are used to characterize the nature of the resource at the specified location",
                                     "type": "array",
                                     "items": {
