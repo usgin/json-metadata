@@ -32,6 +32,10 @@
                         "type": "",
                         "format": "ISO8601"
                     },
+                    "cmd:batchId": {
+                        "description": "identifier for a particular source metadata record ID harvested as part of a particular harvest batch run. If a new harvest completely replaces the existing harvested record, the processing steps should logically be imported as part of the harvest to replace the existing sequence of steps, starting the version sequence again",
+                        "type": "string"
+                    },
                     "cmd:indexDate": {
                         "description": "data of most recent indexing run executed on this record",
                         "type": "string",
@@ -104,16 +108,35 @@
                                 "cmd:processStepStatement": {
                                     "type": "string"
                                 },
-                                "cmd:batchId": {
-                                    "description": "identifier for a particular source metadata record ID harvested as part of a particular harvest batch run. If a new harvest completely replaces the existing harvested record, the processing steps should logically be imported as part of the harvest to replace the existing sequence of steps, starting the version sequence again",
-                                    "type": "string"
-                                },
                                 "cmd:provenanceLink": {
                                     "description": "a URL that will retrieve the complete provenance trace for this record from the PROV service",
                                     "$ref": "#/definitions/Link"
                                 }
                             }
                         }
+                    },
+                    "cmd:metadataConformanceTests": {
+                       "type": "array",
+                       "description": "an array of test names and results, used to indicate quality of record",
+                       "items": {
+                           "type": "object",
+                           "properties": {
+                               "cmd:conformanceTestName": {
+                                   "type": "string"
+                               },
+                               "cmd:conformanceTestURI": {
+                                   "type": "string",
+                                   "format": "URI"
+                               },
+                               "cmd:conformanceResult": {
+                                   "type": "string",
+                                   "description": "either Pass or Fail"
+                               },
+                               "cmd:conformanceTestNote": {
+                                   "type": "string",
+                                   "description": "output from conformance test; if test fails this should provide information about what went wrong"
+                               }
+                           }                    }
                     }
                 }
             },
