@@ -116,27 +116,29 @@
                         }
                     },
                     "cmd:metadataConformanceTests": {
-                       "type": "array",
-                       "description": "an array of test names and results, used to indicate quality of record",
-                       "items": {
-                           "type": "object",
-                           "properties": {
-                               "cmd:conformanceTestName": {
-                                   "type": "string"
-                               },
-                               "cmd:conformanceTestURI": {
-                                   "type": "string",
-                                   "format": "URI"
-                               },
-                               "cmd:conformanceResult": {
-                                   "type": "string",
-                                   "description": "either Pass or Fail"
-                               },
-                               "cmd:conformanceTestNote": {
-                                   "type": "string",
-                                   "description": "output from conformance test; if test fails this should provide information about what went wrong"
-                               }
-                           }                    }
+                        "type": "array",
+                        "description": "an array of test names and results, used to indicate quality of record",
+                        "items": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                                "cmd:conformanceTestName": {
+                                    "type": "string"
+                                },
+                                "cmd:conformanceTestURI": {
+                                    "type": "string",
+                                    "format": "URI"
+                                },
+                                "cmd:conformanceResult": {
+                                    "type": "string",
+                                    "description": "either Pass or Fail"
+                                },
+                                "cmd:conformanceTestNote": {
+                                    "type": "string",
+                                    "description": "output from conformance test; if test fails this should provide information about what went wrong"
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -188,6 +190,61 @@
                                 }
                             }
                 }]
+                    },
+                    "jmd:resourceIndexTerms": {
+                        "description": "an array of objects, each of which is a set of keywords scoped to a particular keywordType or keywordReference value. Only one object in the array should have neither keywordType or keywordReference, and keywords in this element will be treated as free-form tags.",
+                        "type": "array",
+                        "required": ["jmd:keywords"],
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "jmd:keywordType": {
+                                    "description": "Categorize this group of keywords; corresponds to CSDGM and ISO19115 theme. Typical values: include place, temporal, thematic, ISO topic category etc...",
+                                    "type": "object",
+                                    "required":["cmd:keywordTypeLabel"],
+                                    "properties": {
+                                        "cmd:keywordTypeLabel": {
+                                            "description": "label to identify the keyword type in a user interface",
+                                            "type": "string"
+                                        },
+                                        "cmd:keywordTypeURI": {
+                                            "description": "identifier for referenced resource",
+                                            "type": "string",
+                                            "format": "uri"
+                                        },
+                                        "cmd:keywordTypeVocabularyURI": {
+                                            "description": "identifier for the containing vocabulary (thesaurus, ontology...). Analogous to codelist in ISO19115 or codespace in GML.",
+                                            "type": "string",
+                                            "format": "URI"
+                                        }
+                                    }
+                                },
+                                "jmd:keywords": {
+                                    "description": "words associated with the resource to improve search accuracy. if no keywordReference is provided, these will be treated as tags. The keyword reference should provide a mapping from the labels that appear as strings in the keywords array here to URIs that uniquely identify the keyword (if such URIs are defined)",
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "jmd:keywordSourceReference": {
+                                    "description": "identifies a thesaurus, controlled vocabulary, ontology, etc. in which the assigned keywords are defined for people and/or machines",
+                                    "type": "object",
+                                    "required":["cmd:keywordSourceLabel"],
+                                    "properties": {
+                                        "cmd:keywordSourceLabel": {
+                                            "description": "label to identify the keyword type in a user interface",
+                                            "type": "string"
+                                        },
+                                        "cmd:keywordSourceURI": {
+                                            "description": "identifier for referenced resource",
+                                            "type": "string",
+                                            "format": "uri"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
                     "cmd:citedSourceAgents": {
                         "description": "intellectual originator and contributors of the resource that metadata record describes.",
@@ -475,7 +532,23 @@
                                 "type": "array",
                                 "description": "Term from IANA rel vocabulary for consistency with IETF5988. Specifies relationship between resources and or ",
                                 "items": {
-                                    "$ref": "#/definitions/Reference"
+                                    "type": "object",
+                                 "properties":   {
+                            "cmd:linkRelationLabel": {
+                                "description": "label to identify the link relation in a user interface",
+                                "type": "string"
+                            },
+                            "cmd:linkRelationURI": {
+                                "description": "identifier for referenced resource",
+                                "type": "string",
+                                "format": "uri"
+                            },
+                            "cmd:linkRelationVocabularyURI": {
+                                "description": "identifier for the containing vocabulary (thesaurus, ontology...). Analogous to codelist in ISO19115 or codespace in GML.",
+                                "type": "string",
+                                "format": "URI"
+                            }
+                        }
                                 },
                                 "minItems": 1
                             },
@@ -498,7 +571,23 @@
                                 "format": "ISO-639"
             },
                             {
-                                "$ref": "#/definitions/Reference"
+                                "type":"object",
+                                "properties":{
+                            "cmd:resourceLanguageLabel": {
+                                "description": "label to identify the language of resource content in a user interface",
+                                "type": "string"
+                            },
+                            "cmd:resourceLanguageURI": {
+                                "description": "identifier for referenced resource",
+                                "type": "string",
+                                "format": "uri"
+                            },
+                            "cmd:resourceLanguageVocabularyURI": {
+                                "description": "identifier for the containing vocabulary (thesaurus, ontology...). Analogous to codelist in ISO19115 or codespace in GML.",
+                                "type": "string",
+                                "format": "URI"
+                            }
+                        }
                     }]
                     },
                     "cmd:resourceSpatialDescription": {
@@ -572,91 +661,95 @@
             "id": "#RelatedAgent",
             "type": "object",
             "properties": {
-                "cmd:agentRole": {
-                    "description": "slightly simplified view of controlled concept element",
+                "cmd:agentRoleURI": {
+                    "description": "string to uniquely indentify the agent role for interperability",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "cmd:agentRoleLabel": {
+                    "type": "string",
+                    "description": "string that users will understand to present role"
+                },
+                "cmd:agentRoleVocabularyURI":{
+                                "description": "identifier for vocabulary in which the agent role is defined.",
+                                "type": "string",
+                                "format": "uri"
+                            },
+                "cmd:agent": {
+                    "description": "Agent as an identifiable object; could be just an organization, or an individual who may or may not be assoicated with an organization. If the Agent is a person, this should be the same as the PersonURI",
                     "type": "object",
                     "properties": {
-                        "cmd:agentRoleURI": {
-                            "description": "string to uniquely indentify the agent role for interperability",
+                        "cmd:agentURI": {
+                            "description": "If we have an external URI for the agent, that should go here; otherwise this should be a unique identifier assigned in the CINERGI namespace. At least follow URI syntax (e.g. a prefix for the 'protocol'), even if they are local identifiers.",
                             "type": "string",
                             "format": "uri"
                         },
-                        "cmd:agentRoleLabel": {
-                            "type": "string",
-                            "description": "string that users will understand to present role"
-                        }
-                    }
-                },
-                "anyOf": [
-                    {
-                        "cmd:individual": {
-                            "description": "object for describing an individual person, ideally through a URI, with either a name or a position title",
-                            "type": "object",
-                            "required": ["cmd:personName"],
-                            "properties": {
-                                "cmd:personURI": {
-                                    "type": "string",
-                                    "format": "uri"
-                                },
+                        "anyOf": [
+                            {
                                 "cmd:personName": {
                                     "type": "string",
-                                    "description": "format--Last Name,First name MI"
-                                },
+                                    "description": "The name of an individualformat--Last Name,First name MI"
+                                }
+                            },
+                            {
                                 "cmd:personPosition": {
                                     "type": "string",
                                     "description": "identifies an individual who currently holds the named position in context of an organization"
                                 }
-                            }
-                        }
-                        },
-                    {
-                        "cmd:organizationName": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            },
-                            "minItems": 1
-                        }
+                                    },
+                            {
+                                "cmd:organizationName": {
+                                    "type": "array",
+                                    "description":"this is an array to allow synonyms to be included (acronyms, abbreviations).",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "minItems": 1
+                                }
                         }],
-                "cmd:organizationURI": {
-                    "description": "unique identifier for organization",
-                    "type": "string",
-                    "format": "uri"
-                },
-                "anyOf": [
-                    {
-                        "cmd:phoneNumber": {
-                            "description": "use registered tel URI scheme for encoding. See http://tools.ietf.org/html/rfc3966",
-                            "type": "string"
-                        }
-                        },
-                    {
-                        "cmd:contactEmail": {
-                            "description": "map to foaf:mbox",
+                        "cmd:organizationLink": {
+                            "description": "unique identifier for organization; use to link to the organization that the person is affiliated with, in the case that the AgentURI is for the person and they have an organization affiliation. In this case the organizationName is equivalent to the linkLabel property",
                             "type": "string",
-                            "format": "email"
+                            "format": "uri"
+                        },
+                        "anyOf": [
+                            {
+                                "cmd:phoneNumber": {
+                                    "description": "use registered tel URI scheme for encoding. See http://tools.ietf.org/html/rfc3966",
+                                    "type": "string"
+                                }
+                        },
+                            {
+                                "cmd:contactEmail": {
+                                    "description": "map to foaf:mbox",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "format": "email"
+                                    }
+                                }
+                    }],
+                        "cmd:contactAddress": {
+                            "type": "string",
+                            "description": "postal address,ideally formatted appropriate to the target country. One field because there is no clear reason to disaggregate the address into street, city, country, postal code, etc..."
                         }
-                        }],
-                "cmd:contactAddress": {
-                    "type": "string",
-                    "description": "postal address,ideally formatted appropriate to the target country. One field because there is no clear reason to disaggregate the address into street, city, country, postal code, etc..."
+                    }
                 }
             }
-        },
-        "cmd:LinkObject": {
+        },        "cmd:LinkObject": {
             "id": "#Link",
             "description": "used for situations that need a link (hypermedia affordance) to an online resource, typically for navigating linked data space.  The link is a locator--an identifier for a location that can provide a digital object.",
             "type": "object",
             "required": ["cmd:url"],
             "properties": {
-                "cmd:url": {
+                "cmd:linkURL": {
                     "description": "a web-derferencable identifier that locates the link target; typically an HTTP URI. URI syntax specifies that the identifier string includes a prefix that specifies the base protocol for the identifier",
                     "type": "string",
                     "format": "uri"
                 },
                 "cmd:linkRelation": {
                     "type": "array",
-                    "description": "Term from IANA rel vocabulary for consistency with IETF5988. Specifies relationship between resources",
+                    "description": "Term from IANA rel vocabulary for consistency with IETF5988. Specifies relationship between resources. Use to assign semantics to the relationship between the linked resources.",
                     "required": ["cmd:relLabel"],
                     "minItems": 1,
                     "items": {
@@ -667,7 +760,12 @@
                                 "type": "string"
                             },
                             "cmd:relURI": {
-                                "description": "identifier for referenced resource",
+                                "description": "identifier for the reltaion type.",
+                                "type": "string",
+                                "format": "uri"
+                            },
+                            "cmd:relVocabularyURI": {
+                                "description": "identifier for vocabulary in which the relLabel is defined.",
                                 "type": "string",
                                 "format": "uri"
                             }
@@ -719,6 +817,7 @@
                 },
                 "cmd:linkParameters": {
                     "type": "array",
+                    "description":"a dictionary (key-value pairs) of other paramters or properties that need to be associated with the link, e.g. WFS feature typeNames, WMS layer names",
                     "items": {
                         "type": "object",
                         "required": ["cmd:linkParameterLabel", "cmd:linkParameterValue"],
@@ -782,6 +881,5 @@
                     "description": "Use ISO 8601: 2011-10-11T14:30"
                 }
             }
-        }
-    }
+        }    }
 }
