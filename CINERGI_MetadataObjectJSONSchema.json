@@ -191,17 +191,17 @@
                             }
                 }]
                     },
-                    "jmd:resourceIndexTerms": {
+                    "cmd:resourceIndexTerms": {
                         "description": "an array of objects, each of which is a set of keywords scoped to a particular keywordType or keywordReference value. Only one object in the array should have neither keywordType or keywordReference, and keywords in this element will be treated as free-form tags.",
                         "type": "array",
-                        "required": ["jmd:keywords"],
+                        "required": ["cmd:keywords"],
                         "items": {
                             "type": "object",
                             "properties": {
-                                "jmd:keywordType": {
+                                "cmd:keywordType": {
                                     "description": "Categorize this group of keywords; corresponds to CSDGM and ISO19115 theme. Typical values: include place, temporal, thematic, ISO topic category etc...",
                                     "type": "object",
-                                    "required":["cmd:keywordTypeLabel"],
+                                    "required": ["cmd:keywordTypeLabel"],
                                     "properties": {
                                         "cmd:keywordTypeLabel": {
                                             "description": "label to identify the keyword type in a user interface",
@@ -219,7 +219,7 @@
                                         }
                                     }
                                 },
-                                "jmd:keywords": {
+                                "cmd:keywords": {
                                     "description": "words associated with the resource to improve search accuracy. if no keywordReference is provided, these will be treated as tags. The keyword reference should provide a mapping from the labels that appear as strings in the keywords array here to URIs that uniquely identify the keyword (if such URIs are defined)",
                                     "type": "array",
                                     "minItems": 1,
@@ -227,10 +227,10 @@
                                         "type": "string"
                                     }
                                 },
-                                "jmd:keywordSourceReference": {
+                                "cmd:HcImkeywordSourceReference": {
                                     "description": "identifies a thesaurus, controlled vocabulary, ontology, etc. in which the assigned keywords are defined for people and/or machines",
                                     "type": "object",
-                                    "required":["cmd:keywordSourceLabel"],
+                                    "required": ["cmd:keywordSourceLabel"],
                                     "properties": {
                                         "cmd:keywordSourceLabel": {
                                             "description": "label to identify the keyword type in a user interface",
@@ -533,22 +533,22 @@
                                 "description": "Term from IANA rel vocabulary for consistency with IETF5988. Specifies relationship between resources and or ",
                                 "items": {
                                     "type": "object",
-                                 "properties":   {
-                            "cmd:linkRelationLabel": {
-                                "description": "label to identify the link relation in a user interface",
-                                "type": "string"
-                            },
-                            "cmd:linkRelationURI": {
-                                "description": "identifier for referenced resource",
-                                "type": "string",
-                                "format": "uri"
-                            },
-                            "cmd:linkRelationVocabularyURI": {
-                                "description": "identifier for the containing vocabulary (thesaurus, ontology...). Analogous to codelist in ISO19115 or codespace in GML.",
-                                "type": "string",
-                                "format": "URI"
-                            }
-                        }
+                                    "properties": {
+                                        "cmd:linkRelationLabel": {
+                                            "description": "label to identify the link relation in a user interface",
+                                            "type": "string"
+                                        },
+                                        "cmd:linkRelationURI": {
+                                            "description": "identifier for referenced resource",
+                                            "type": "string",
+                                            "format": "uri"
+                                        },
+                                        "cmd:linkRelationVocabularyURI": {
+                                            "description": "identifier for the containing vocabulary (thesaurus, ontology...). Analogous to codelist in ISO19115 or codespace in GML.",
+                                            "type": "string",
+                                            "format": "URI"
+                                        }
+                                    }
                                 },
                                 "minItems": 1
                             },
@@ -571,23 +571,23 @@
                                 "format": "ISO-639"
             },
                             {
-                                "type":"object",
-                                "properties":{
-                            "cmd:resourceLanguageLabel": {
-                                "description": "label to identify the language of resource content in a user interface",
-                                "type": "string"
-                            },
-                            "cmd:resourceLanguageURI": {
-                                "description": "identifier for referenced resource",
-                                "type": "string",
-                                "format": "uri"
-                            },
-                            "cmd:resourceLanguageVocabularyURI": {
-                                "description": "identifier for the containing vocabulary (thesaurus, ontology...). Analogous to codelist in ISO19115 or codespace in GML.",
-                                "type": "string",
-                                "format": "URI"
-                            }
-                        }
+                                "type": "object",
+                                "properties": {
+                                    "cmd:resourceLanguageLabel": {
+                                        "description": "label to identify the language of resource content in a user interface",
+                                        "type": "string"
+                                    },
+                                    "cmd:resourceLanguageURI": {
+                                        "description": "identifier for referenced resource",
+                                        "type": "string",
+                                        "format": "uri"
+                                    },
+                                    "cmd:resourceLanguageVocabularyURI": {
+                                        "description": "identifier for the containing vocabulary (thesaurus, ontology...). Analogous to codelist in ISO19115 or codespace in GML.",
+                                        "type": "string",
+                                        "format": "URI"
+                                    }
+                                }
                     }]
                     },
                     "cmd:resourceSpatialDescription": {
@@ -670,11 +670,11 @@
                     "type": "string",
                     "description": "string that users will understand to present role"
                 },
-                "cmd:agentRoleVocabularyURI":{
-                                "description": "identifier for vocabulary in which the agent role is defined.",
-                                "type": "string",
-                                "format": "uri"
-                            },
+                "cmd:agentRoleVocabularyURI": {
+                    "description": "identifier for vocabulary in which the agent role is defined.",
+                    "type": "string",
+                    "format": "uri"
+                },
                 "cmd:agent": {
                     "description": "Agent as an identifiable object; could be just an organization, or an individual who may or may not be assoicated with an organization. If the Agent is a person, this should be the same as the PersonURI",
                     "type": "object",
@@ -700,7 +700,7 @@
                             {
                                 "cmd:organizationName": {
                                     "type": "array",
-                                    "description":"this is an array to allow synonyms to be included (acronyms, abbreviations).",
+                                    "description": "this is an array to allow synonyms to be included (acronyms, abbreviations).",
                                     "items": {
                                         "type": "string"
                                     },
@@ -736,7 +736,8 @@
                     }
                 }
             }
-        },        "cmd:LinkObject": {
+        },
+        "cmd:LinkObject": {
             "id": "#Link",
             "description": "used for situations that need a link (hypermedia affordance) to an online resource, typically for navigating linked data space.  The link is a locator--an identifier for a location that can provide a digital object.",
             "type": "object",
@@ -817,7 +818,7 @@
                 },
                 "cmd:linkParameters": {
                     "type": "array",
-                    "description":"a dictionary (key-value pairs) of other paramters or properties that need to be associated with the link, e.g. WFS feature typeNames, WMS layer names",
+                    "description": "a dictionary (key-value pairs) of other paramters or properties that need to be associated with the link, e.g. WFS feature typeNames, WMS layer names",
                     "items": {
                         "type": "object",
                         "required": ["cmd:linkParameterLabel", "cmd:linkParameterValue"],
@@ -881,5 +882,6 @@
                     "description": "Use ISO 8601: 2011-10-11T14:30"
                 }
             }
-        }    }
+        }
+    }
 }
