@@ -8,7 +8,7 @@
         "dct": "http://purl.org/dc/terms/",
         "skos": "http://www.w3.org/2004/02/skos/core#"
     },
-    "description": "JSON schema for use in a MongoDb for metadata management. Includes metadata elements as well as some management models. The root object is an input metadata record, that has a sourceID",
+    "description": "JSON schema for use in a MongoDb for metadata management. Includes metadata elements as well as some management models. The root object is an input metadata record, that has a sourceID.  Default mapping to various input schems will be documented in a defaultMapping file.",
     "id": "http://resources.usgin.org/uri-gin/cinergi/metadataobjectschema/json",
     "cmd:CINERGI_MetadataObject": {
         "id": "#CINERGIobject",
@@ -42,6 +42,7 @@
                         "format": "ISO8601"
                     },
                     "cmd:originalFileIdentifier": {
+                        "description":"URL or resolvable URI for the harvested source doc",
                         "type": "string"
                     },
                     "cmd:originalFormat": {
@@ -227,8 +228,8 @@
                                         "type": "string"
                                     }
                                 },
-                                "cmd:HcImkeywordSourceReference": {
-                                    "description": "identifies a thesaurus, controlled vocabulary, ontology, etc. in which the assigned keywords are defined for people and/or machines",
+                                "cmd:keywordSourceReference": {
+                                    "description": "identifies a thesaurus, controlled vocabulary, ontology, etc. in which the assigned keywords are defined for people and/or machines; ****need to account for keywords added by enhancement workflow**",
                                     "type": "object",
                                     "required": ["cmd:keywordSourceLabel"],
                                     "properties": {
@@ -243,6 +244,7 @@
                                         }
                                     }
                                 }
+                                
                             }
                         }
                     },
