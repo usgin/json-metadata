@@ -3,23 +3,26 @@
  */
 var fs = require('fs'),
     path = require('path'),
-    validate = require('E:\\GitHub\\json-schema\\lib\\validate.js');
+    validate = require('/home/ubuntu/workspace/validate.js');
 
-var inputFile = 'E:\\GitHub\\USGIN\\json-metadata\\CINERGI_MetadataObjectJSONSchema.json',
-    schemaFile = 'E:\\GitHub\\json-schema\\draft-04\\schema',
-    resultFile = 'E:\\GitHub\\USGIN\\json-metadata\\validationResult.json',
+var inputFile = '/home/ubuntu/workspace/json-metadata/CINERGI_MetadataObjectJSONSchema.json',
+    schemaFile = '/home/ubuntu/workspace/json-schema/draft-04/schema',
+    resultFile = '/home/ubuntu/workspace/json-metadata/validationResult.json',
     inputjson, schemajson;
 
-fs.readFile(inputFile, 'utf8', function (err, data) {
-    if (err) console.log(err);
-    inputjson = JSON.parse(data)
-});
+function loadinput(inputFile) {
+    var data = fs.readFileSync(inputFile, 'utf-8');
+    var inputjson = JSON.parse(data);
+    return inputjson;
+}
 
-fs.readFile(schemaFile, 'utf8', function (err, data) {
-    if (err) console.log(err);
-    schemajson = JSON.parse(data)
-});
+function loadschema(schemaFile) {
+    var data = fs.readFileSync(schemaFile, 'utf-8');
+    var schemajson = JSON.parse(data);
+    return schemajson;
+}
 
-fs.appendFile(resultFile, validate.validate(inputjson,schemajson), function (err) {
-                        if (err) console.log(err)
-                    });
+console.log(validate.validate(loadinput(inputFile),loadschema(schemaFile)));
+
+fs.writeFile(resultFile, validate.validate(loadinput(inputFile),loadschema(schemaFile)), function (err) {
+                        if (err) console.log(err)});
