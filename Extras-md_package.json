@@ -1,0 +1,107 @@
+{
+    "harvestInformation": {
+        "originalFileIdentifier": "eaf12e0c53a4222440a8b343a2154726",
+        "crawlDate": "",
+        "sourceInfo": {
+            "harvestSourceID": "",
+            "viewID": "",
+            "harvestSourceName": ""
+        },
+        "indexDate": "2015-05-13T00:00:00",
+        "version": "1.2",
+        "originalFormat": "ISO - USGIN",
+        "harvestURL": ""
+    },
+    "metadataProperties": {
+        "metadataContact": {
+            "relatedAgent": {
+                "agentRole": {
+                    "organizationURI": "",
+                    "organizationName": "AZGS",
+                    "agentRoleURI": "",
+                    "contactEmail": "christy.caudill@ azgs.az.gov",
+                    "individual": {
+                        "personName": "",
+                        "personPosition": "",
+                        "personURI": ""
+                    },
+                    "phoneNumber": "",
+                    "agentRoleLabel": "",
+                    "contactAddress": ""
+                }
+            }
+        }
+    },
+    "resourceDescription": {
+        "citationDates": {
+            "EventDateObject": {
+                "dateTime": "2015-06-16T16:48:16Z"
+            }
+        },
+        "resourceAccessOptions": {
+            "accessLinks": [{
+                "linkObject": {
+                    "description": "null",
+                    "url": "http: //repository.stategeothermaldata.org/metadata/record/eaf12e0c53a4222440a8b343a2154726/file/nvpowerplantsfacilities.csv",
+                    "linkTargetResourceType": "",
+                    "linkContentResourceType": "",
+                    "ogc_layer": null,
+                    "linkTitle": "NGDS Tier 3 Data, csv format: nvpowerplantsfacilities.csv"
+                }
+            }],
+            "distributors": [{
+                "relatedAgent": {
+                    "agentRole": {
+                        "contactEmail": "glj@unr.edu",
+                        "contactAddress": null,
+                        "individual": {
+                            "personName": "",
+                            "personPosition": "",
+                            "personRole": "distributor"
+                        },
+                        "organizationName": ""
+                    }
+                }
+            }]
+        },
+        "usginContentModelLayer": "PowerPlantFacility",
+        "geographicExtent": [{
+            "westBoundLongitude": "-120.1762669375",
+            "northBoundLatitude": "42.128538042738",
+            "eastBoundLongitude": "-113.89208725001",
+            "southBoundLatitude": "34.702962396249"
+        }],
+        "resourceContact": [{
+            "relatedAgent": {
+                "agentRole": {
+                    "contactEmail": "christy.caudill@azgs.az.gov",
+                    "contactAddress": null,
+                    "individual": {
+                        "personName": "Christy Caudill",
+                        "personPosition": "",
+                        "personRole": "pointOfContact"
+                    },
+                    "organizationName": "AZGS"
+                }
+            }
+        }],
+        "usginContentModelVersion": "http://stategeothermaldata.org/uri-gin/aasg/xmlschema/PowerPlantFacility/0.2",
+        "usginContentModel": "http://stategeothermaldata.org/uri-gin/aasg/xmlschema/PowerPlantFacility/",
+        "citedSourceAgents": [{
+            "relatedAgent": {
+                "agentRole": {
+                    "contactEmail": "glj@unr.edu",
+                    "contactAddress": null,
+                    "individual": {
+                        "personName": "",
+                        "personPosition": "",
+                        "personRole": "originator"
+                    },
+                    "organizationName": ""
+                }
+            }
+        }],
+        "resourceDescription": "This resource is a compilation of Well Log observation data from oil and gas wells in the state of Alabama, compiled by the Geological Survey of Alabama. The data are available in the following formats: web feature service, web map service, ESRI service endpoint, and an Excel workbook for download. The workbook contains 4 worksheets, including the data, resource provider information, a field list (data mapping view) and notes related to revisions of the template. This resource was provided by the Geological Survey of Alabama and made available for distribution through the National Geothermal Data System.",
+        "resourceTitle": "Nevada Power Plant Facilities test"
+    }
+}

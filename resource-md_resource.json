@@ -1,0 +1,26 @@
+{
+    "accessLink": {
+        "linkObject": {
+            "description": null,
+            "url": "http://repository.stategeothermaldata.org/metadata/record/eaf12e0c53a4222440a8b343a2154726/file/nvpowerplantsfacilities.csv",
+            "linkTargetResourceType": "",
+            "linkContentResourceType": "",
+            "ogc_layer": null,
+            "linkTitle": "NGDS Tier 3 Data, csv format: nvpowerplantsfacilities.csv"
+        }
+    },
+    "distributors": [{
+        "relatedAgent": {
+            "agentRole": {
+                "contactEmail": "glj@unr.edu",
+                "contactAddress": null,
+                "individual": {
+                    "personName": "",
+                    "personPosition": "",
+                    "personRole": "distributor"
+                },
+                "organizationName": ""
+            }
+        }
+    }]
+}
