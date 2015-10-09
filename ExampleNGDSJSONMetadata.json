@@ -59,36 +59,36 @@
             }
         },
         "jmd:describedResource": {
-           "jmd:resourceTitle": "Title that identifies the resource for human users.",
-           "jmd:resourceDescription": "Free text description of the resource.",
-           "jmd:resourceURI": "example:FreestandingURI",
-           "jmd:resourceURI": {
-               "jmd:citationIdentifier": "usgin:dlio2011-13",
-               "jmd:scopedIdentifierAuthority": {
-                   "jmd:referenceLabel": "USGIN metadata 1.3",
-                   "jmd:referenceURI": "http://usgin.org/specs/dummyURI/metadata"
-               }
-           },
-           "jmd:resourceContact": {
-               "jmd:agentRole": {
-                   "jmd:conceptPrefLabel": "compiler"
-               },
-               "jmd:individual": {
-                   "jmd:personURI": "usgin:personIdentifer",
-                   "jmd:personName": "Adrian the Great",
-                   "jmd:personName": "theOther Author"
-               },
-               "jmd:organizationName": ["The Research Giant Company", "RGC"],
-               "jmd:contactPhoneNumber": "520-888-0000",
-               "jmd:contactEmail": "someEmail@researchgiant.com"
-           },
+            "jmd:resourceTitle": "Title that identifies the resource for human users.",
+            "jmd:resourceDescription": "Free text description of the resource.",
+            "jmd:resourceURI": "example:FreestandingURI",
+            "jmd:resourceURI": {
+                "jmd:citationIdentifier": "usgin:dlio2011-13",
+                "jmd:scopedIdentifierAuthority": {
+                    "jmd:referenceLabel": "USGIN metadata 1.3",
+                    "jmd:referenceURI": "http://usgin.org/specs/dummyURI/metadata"
+                }
+            },
+            "jmd:resourceContact": {
+                "jmd:agentRole": {
+                    "jmd:conceptPrefLabel": "compiler"
+                },
+                "jmd:individual": {
+                    "jmd:personURI": "usgin:personIdentifer",
+                    "jmd:personName": "Adrian the Great",
+                    "jmd:personName": "theOther Author"
+                },
+                "jmd:organizationName": ["The Research Giant Company", "RGC"],
+                "jmd:contactPhoneNumber": "520-888-0000",
+                "jmd:contactEmail": "someEmail@researchgiant.com"
+            },
             "jmd:resourceType": [{
-                "jmd:conceptURI": "ResourceCategory1URI",
-                "jmd:conceptPrefLabel": "category1 label "
-                    }, 
-                                 {
-                "jmd:conceptURI": "resourceCategory2URI",
-                "jmd:conceptPrefLabel": "category label"
+                    "jmd:conceptURI": "ResourceCategory1URI",
+                    "jmd:conceptPrefLabel": "category1 label "
+                    },
+                {
+                    "jmd:conceptURI": "resourceCategory2URI",
+                    "jmd:conceptPrefLabel": "category label"
                     }],
             "jmd:resourceStatus": {
                 "jmd:conceptURI": "resourceStatusTermURI",
@@ -368,7 +368,7 @@
                         "jmd:dateTime": "R2014-01-01T07:30Z"
                     },
                     "jmd:distributor": {
-                        
+
                         "jmd:individual": {
                             "jmd:personName": "Joe Postalserv",
                             "jmd:personPosition": "Orders fullfillment"
@@ -376,7 +376,7 @@
                         "jmd:organizationName": ["The Offline Company"],
                         "jmd:phoneNumber": "520-888-0000",
                         "jmd:contactEmail": "someEmail@toc.com"
-                    
+
                     },
                     "jmd:offlineAccess": {
                         "jmd:accessInstructions": "free text description of how to get resource;  Include turnaround time and business hours information, turnaround time, and any other necessary information, including density, density units, number of volumes, software or hardware requirements, etc.",
