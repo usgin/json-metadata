@@ -1,0 +1,244 @@
+{
+    "help":"Return the metadata of a dataset (package) and its resources.... most of the package content (in result key) is assembled by spatial\harvesters\base.py\get_package_dict, then extras added by spatial\harvesters\base.py\get_package_dict and then more added by ckanext\harvest\usgin.py\get_package_dict",
+    "success": true,
+    "result": {
+        "license_title": null,
+        "maintainer": null,
+        "relationships_as_object": [],
+        "private": false,
+        "maintainer_email": null,
+        "revision_timestamp": "2015-09-29T21:51:21.081349",
+        "id": "f7f953ca-68f1-4ea4-aa02-0d5696db6b88",
+        "metadata_created": "2015-09-29T21:51:21.081349",
+        "metadata_modified": "2015-10-08T20:43:17.457389",
+        "author": null,
+        "author_email": null,
+        "state": "active",
+        "version": null,
+        "creator_user_id": "6aca0ef1-1b83-4e14-a188-8356ec784348",
+        "type": "dataset",
+        "resources": [{
+            "resource_group_id": "7af07877-a221-4046-a5e1-decc32e2a329",
+            "cache_last_updated": null,
+            "revision_timestamp": "2015-10-08T20:43:17.449213",
+            "webstore_last_updated": null,
+            "datastore_active": true,
+            "id": "7a65216f-7192-4797-859b-2a769b125e54",
+            "size": null,
+            "state": "active",
+            "resource_locator_function": "375",
+            "hash": "",
+            "description": "",
+            "format": "CSV",
+            "tracking_summary": {
+                "total": 0,
+                "recent": 0
+            },
+            "mimetype_inner": null,
+            "url_type": null,
+            "resource_locator_protocol": "",
+            "mimetype": null,
+            "cache_url": null,
+            "name": "NGDS Tier 3 Data, csv format: nvpowerplantsfacilities.csv",
+            "created": "2015-10-08T13:43:17.506618",
+            "url": "http://repository.stategeothermaldata.org/metadata/record/eaf12e0c53a4222440a8b343a2154726/file/nvpowerplantsfacilities.csv",
+            "webstore_url": null,
+            "last_modified": null,
+            "md_resource": "{\"accessLink\": {\"linkObject\": {\"description\": null, \"url\": \"http://repository.stategeothermaldata.org/metadata/record/eaf12e0c53a4222440a8b343a2154726/file/nvpowerplantsfacilities.csv\", \"linkTargetResourceType\": \"\", \"linkContentResourceType\": \"\", \"ogc_layer\": null, \"linkTitle\": \"NGDS Tier 3 Data, csv format: nvpowerplantsfacilities.csv\"}}, \"distributors\": [{\"relatedAgent\": {\"agentRole\": {\"contactEmail\": \"glj@unr.edu\", \"contactAddress\": null, \"individual\": {\"personName\": \"\", \"personPosition\": \"\", \"personRole\": \"distributor\"}, \"organizationName\": \"\"}}}]}",
+            "position": 0,
+            "revision_id": "667dbc56-4c60-49e2-8b81-a8f7876bc4f2",
+            "resource_type": null
+        }],
+        "num_resources": 1,
+        "tags": [{
+                "vocabulary_id": null,
+                "display_name": "Temp GDR Integration Test",
+                "name": "Temp GDR Integration Test",
+                "revision_timestamp": "2015-09-29T21:51:21.081349",
+                "state": "active",
+                "id": "098b1a29-5dcc-469b-a6f2-12b2789c39d8"
+        },
+            {
+                "vocabulary_id": null,
+                "display_name": "usgincm:geothermal power plant facility",
+                "name": "usgincm:geothermal power plant facility",
+                "revision_timestamp": "2015-09-29T21:51:21.081349",
+                "state": "active",
+                "id": "3a916f4a-bb49-474c-b81b-a6ce51b79d7b"
+        }],
+        "tracking_summary": {
+            "total": 0,
+            "recent": 0
+        },
+        "groups": [],
+        "license_id": null,
+        "relationships_as_subject": [],
+        "num_tags": 2,
+        "organization": null,
+        "name": "nevada-power-plant-facilities-test",
+        "isopen": false,
+        "url": null,
+        "notes": "This resource is a compilation of Well Log observation data from oil and gas wells in the state of Alabama, compiled by the Geological Survey of Alabama. The data are available in the following formats: web feature service, web map service, ESRI service endpoint, and an Excel workbook for download. The workbook contains 4 worksheets, including the data, resource provider information, a field list (data mapping view) and notes related to revisions of the template. This resource was provided by the Geological Survey of Alabama and made available for distribution through the National Geothermal Data System.",
+        "owner_org": null,
+        "extras": [
+            {
+                "key": "access_constraints",
+                "value": "[]",
+                "check": "spatial/harvesters/base.py, line 288"
+        },
+            {
+                "key": "authors",
+                "value": "[{\"relatedAgent\": {\"agentRole\": {\"contactEmail\": \"glj@unr.edu\", \"contactAddress\": null, \"individual\": {\"personName\": \"\", \"personPosition\": \"\", \"personRole\": \"originator\"}, \"organizationName\": \"\"}}}]",
+                "check": "usgin.py, line 151"
+        },
+            {
+                "key": "bbox-east-long",
+                "value": "-113.89208725001",
+                "check": "spatial/harvesters/base.py, line 318"
+        },
+            {
+                "key": "bbox-north-lat",
+                "value": "42.128538042738",
+                "check": "spatial/harvesters/base.py, line 319"
+        },
+            {
+                "key": "bbox-south-lat",
+                "value": "34.702962396249",
+                "check": "spatial/harvesters/base.py, line 320"
+        },
+            {
+                "key": "bbox-west-long",
+                "value": "-120.1762669375",
+                "check": "spatial/harvesters/base.py, line 321"
+        },
+            {
+                "key": "contact-email",
+                "value": "christy.caudill@azgs.az.gov",
+                "check": "spatial/harvesters/base.py, line 258"
+        },
+            {
+                "key": "coupled-resource",
+                "value": "[]",
+                "check": "spatial/harvesters/base.py, line 257"
+        },
+            {
+                "key": "dataset-reference-date",
+                "value": "[{\"type\": \"publication\", \"value\": \"2015-05-13T00:00:00\"}]",
+                "check": "spatial/harvesters/base.py, line 254"
+        },
+            {
+                "key": "dataset_category",
+                "value": "{Dataset}",
+                "check": "usgin.py, line 126"
+        },
+            {
+                "key": "frequency-of-update",
+                "value": "",
+                "check": "spatial/harvesters/base.py, line 259"
+        },
+            {
+                "key": "graphi-preview-file",
+                "key": "graphic-preview-description",
+                "key": "graphic-preview-type",
+                "check": "spatial/harvesters/base.py, line293"
+            },
+
+            {
+                "key": "guid",
+                "value": "eaf12e0c53a4222440a8b343a2154726",
+                "check": "spatial/harvesters/base.py, line 244"
+        },
+            {
+                "key": "licence",
+                "value": "[]",
+                "check": "spatial/harvesters/base.py, line 274"
+        },
+            {
+                "key": "lineage",
+                "value": "",
+                "check": "usgin.py, line 159"
+        },
+            {
+                "key": "maintainers",
+                "value": "[{\"relatedAgent\": {\"agentRole\": {\"contactEmail\": \"christy.caudill@azgs.az.gov\", \"contactAddress\": null, \"individual\": {\"personName\": \"Christy Caudill\", \"personPosition\": \"\", \"personRole\": \"pointOfContact\"}, \"organizationName\": \"AZGS\"}}}]",
+                "check": "usgin.py, line 143"
+        },
+            {
+                "key": "md_package",
+                "value": "{\"harvestInformation\": {\"originalFileIdentifier\": \"eaf12e0c53a4222440a8b343a2154726\", \"crawlDate\": \"\", \"sourceInfo\": {\"harvestSourceID\": \"\", \"viewID\": \"\", \"harvestSourceName\": \"\"}, \"indexDate\": \"2015-05-13T00:00:00\", \"version\": \"1.2\", \"originalFormat\": \"ISO-USGIN\", \"harvestURL\": \"\"}, \"metadataProperties\": {\"metadataContact\": {\"relatedAgent\": {\"agentRole\": {\"organizationURI\": \"\", \"organizationName\": \"AZGS\", \"agentRoleURI\": \"\", \"contactEmail\": \"christy.caudill@azgs.az.gov\", \"individual\": {\"personName\": \"\", \"personPosition\": \"\", \"personURI\": \"\"}, \"phoneNumber\": \"\", \"agentRoleLabel\": \"\", \"contactAddress\": \"\"}}}}, \"resourceDescription\": {\"citationDates\": {\"EventDateObject\": {\"dateTime\": \"2015-06-16T16:48:16Z\"}}, \"resourceAccessOptions\": {\"accessLinks\": [{\"linkObject\": {\"description\": null, \"url\": \"http://repository.stategeothermaldata.org/metadata/record/eaf12e0c53a4222440a8b343a2154726/file/nvpowerplantsfacilities.csv\", \"linkTargetResourceType\": \"\", \"linkContentResourceType\": \"\", \"ogc_layer\": null, \"linkTitle\": \"NGDS Tier 3 Data, csv format: nvpowerplantsfacilities.csv\"}}], \"distributors\": [{\"relatedAgent\": {\"agentRole\": {\"contactEmail\": \"glj@unr.edu\", \"contactAddress\": null, \"individual\": {\"personName\": \"\", \"personPosition\": \"\", \"personRole\": \"distributor\"}, \"organizationName\": \"\"}}}]}, \"usginContentModelLayer\": \"PowerPlantFacility\", \"geographicExtent\": [{\"westBoundLongitude\": \"-120.1762669375\", \"northBoundLatitude\": \"42.128538042738\", \"eastBoundLongitude\": \"-113.89208725001\", \"southBoundLatitude\": \"34.702962396249\"}], \"resourceContact\": [{\"relatedAgent\": {\"agentRole\": {\"contactEmail\": \"christy.caudill@azgs.az.gov\", \"contactAddress\": null, \"individual\": {\"personName\": \"Christy Caudill\", \"personPosition\": \"\", \"personRole\": \"pointOfContact\"}, \"organizationName\": \"AZGS\"}}}], \"usginContentModelVersion\": \"http://stategeothermaldata.org/uri-gin/aasg/xmlschema/PowerPlantFacility/0.2\", \"usginContentModel\": \"http://stategeothermaldata.org/uri-gin/aasg/xmlschema/PowerPlantFacility/\", \"citedSourceAgents\": [{\"relatedAgent\": {\"agentRole\": {\"contactEmail\": \"glj@unr.edu\", \"contactAddress\": null, \"individual\": {\"personName\": \"\", \"personPosition\": \"\", \"personRole\": \"originator\"}, \"organizationName\": \"\"}}}], \"resourceDescription\": \"This resource is a compilation of Well Log observation data from oil and gas wells in the state of Alabama, compiled by the Geological Survey of Alabama. The data are available in the following formats: web feature service, web map service, ESRI service endpoint, and an Excel workbook for download. The workbook contains 4 worksheets, including the data, resource provider information, a field list (data mapping view) and notes related to revisions of the template. This resource was provided by the Geological Survey of Alabama and made available for distribution through the National Geothermal Data System.\", \"resourceTitle\": \"Nevada Power Plant Facilities test\"}}",
+                "check": "usgin.py line 236"
+        },
+            {
+                "key": "metadata-date",
+                "value": "2015-06-16T16:48:16Z",
+                "check": "spatial/harvesters/base.py, line 256"
+        },
+            {
+                "key": "metadata-language",
+                "value": "",
+                "check": "spatial/harvesters/base.py, line 255"
+        },
+            {
+                "key": "other_id",
+                "value": "[\"\"]",
+                "check": "usgin.py, line 122"
+        },
+            {
+                "key": "progress",
+                "value": "completed",
+                "check": "spatial/harvesters/base.py, line 265"
+        },
+            {
+                "key": "publication_date",
+                "value": "2015-05-13 00:00:00",
+                "check": "usgin.py, line 135"
+        },
+            {
+                "key": "quality",
+                "value": "{}",
+                "check": "usgin.py, line 155"
+        },
+            {
+                "key": "resource-type",
+                "value": "Dataset",
+                "check": "spatial/harvesters/base.py, line 270"
+        },
+            {
+                "key": "responsible-party",
+                "value": "[{\"name\": \"AZGS\", \"roles\": [\"pointOfContact\"]}]",
+                "check": "spatial/harvesters/base.py, line 314"
+        },
+            {
+                "key": "spatial",
+                "value": "{\"type\": \"Polygon\", \"coordinates\": [[[-120.176266938, 34.7029623962], [-113.89208725, 34.7029623962], [-113.89208725, 42.1285380427], [-120.176266938, 42.1285380427], [-120.176266938, 34.7029623962]]]}",
+                "check": "spatial/harvesters/base.py, line 347"
+        },
+            {
+                "key": "spatial-data-service-type",
+                "value": "",
+                "check": "spatial/harvesters/base.py, line 260"
+        },
+            {
+                "key": "spatial-reference-system",
+                "value": "",
+                "check": "spatial/harvesters/base.py, line 251"
+        },
+            {
+                "key": "spatial_harvester",
+                "value": "true"
+        },
+            {
+                "key": "status",
+                "value": "completed",
+                "check": "usgin.py, line 163"
+        },
+            {
+                "key": "temporal-extent-begin",
+                "key": "temporal-extent-end",
+                "check": "spatial/harvesters/base.py, line 303"
+            }
+        ],
+        "title": "Nevada Power Plant Facilities test",
+        "revision_id": "bfdeaeff-1292-476b-a978-6ff357ff6a3b"
+    }
+}

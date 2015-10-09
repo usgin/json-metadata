@@ -1,5 +1,7 @@
 ## USGIN
 archive/
+node_modules/
+.idea/
 
 
 #################
@@ -217,3 +219,7 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+validationResult_bk.json
+KeysDescriptions-output.txt
+KeysDescriptions-output_jmd-v1.xlsx
+KeysDescriptions-output.xlsx
