@@ -1,0 +1,312 @@
+  {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "@context": {
+          "jmd": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/2.0",
+          "@vocab": "http://json-schema.org/draft-04/schema",
+          "@base": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/2.0",
+          "foaf": "http://xmlns.com/foaf/0.1/",
+          "dct": "http://purl.org/dc/terms/"
+      },
+      "description": "",
+      "properties": {
+          "jmd:resourceTemporalExtent": {
+              "description": "This is the time instant or interval to which the resource content applies. Extent using named time ordinal eras (e.g. geologic time) should be specified using temporal keywords (vocabulary is a time scale). use ISO8601 encoding for intervals with the format <start>/<end> where start and end are 8601 dateTime strings. see http://en.wikipedia.org/wiki/ISO_8601",
+              "type": "array",
+              "items": {
+                  "type": "object",
+                  "description": "each extent array element is only one of an instant, a period, or a reference",
+                  "properties": {
+                      "jmd:timeInstant": {
+                          "type": "object",
+                          "required": ["jmd:timeInstantTimePosition"],
+                          "additionalProperties": true,
+                          "properties": {
+                              "jmd:timeInstantId": {
+                                  "type": "string",
+                                  "description": "A unique identifier for the timeInstant.",
+                                  "translation": {
+                                      "ISO 19115-2": ["EX_TemporalExtent > extent > TimeInstant @id"]
+                                  }
+                              },
+                              "jmd:timeInstantDescription": {
+                                  "type": "string",
+                                  "description": "A brief description providing relevant information about the date and time.",
+                                  "translation": {
+                                      "ISO 19115-2": ["EX_TemporalExtent > extent > TimeInstant > description"]
+                                  }
+                              },
+                              "jmd:timeInstantTimePosition": {
+                                  "translation": {
+                                      "ISO 19115-2": ["EX_TemporalExtent > extent > TimeInstant > timePosition"]
+                                  },
+                                  "$ref": "#/definitions/jmd:date"
+                              }
+                          }
+                      },
+                      "jmd:timePeriod": {
+                          "type": "object",
+                          "description": "A span of time represented by a starting date-time and an ending date-time.",
+                          "additionalProperties": true,
+                          "properties": {
+                              "jmd:timePeriodId": {
+                                  "type": "string",
+                                  "description": "A unique identifier for a time period.",
+                                  "translation": {
+                                      "ISO 19115-2": ["EX_TemporalExtent > extent > TimePeriod @id"]
+                                  }
+                              },
+                              "jmd:timePeriodDescription": {
+                                  "type": "string",
+                                  "description": "A brief description providing relevant information about the time period.",
+                                  "translation": {
+                                      "ISO 19115-2": ["EX_TemporalExtent > extent > TimePeriod > description "]
+                                  }
+                              },
+                              "jmd:timePeriodBeginPosition": {
+                                  "description": "Starting date, or date and time.",
+                                  "translation": {
+                                      "ISO 19115-2": ["EX_TemporalExtent > extent > TimePeriod > beginPosition "],
+                                      "FGDC CSDGM": ["idinfo > timeperd > rngdates > begdate"]
+                                  },
+                                  "$ref": "#/definitions/jmd:date"
+                              },
+                              "jmd:timePeriodEndPosition": {
+                                  "description": "Ending date, or date and time.",
+                                  "translation": {
+                                      "ISO 19115-2": ["EX_TemporalExtent > extent > TimePeriod > endPosition"],
+                                      "FGDC CSDGM": ["idinfo > timeperd > rngdates > enddate"]
+                                  },
+                                  "$ref": "#/definitions/jmd:date"
+                              }
+                          },
+                          "allOf": [
+                              {
+                                  "title": "beginPosition required",
+                                  "required": ["jmd:timePeriodBeginPosition"]
+        }, {
+                                  "title": "endPosition required",
+                                  "required": ["jmd:timePeriodEndPosition"]
+        }
+      ]
+                      },
+                      "jmd:temporalExtentReference": {
+                          "description": "reference to a temporal extent defined in some register",
+                          "$ref": "#/definitions/jmd:ReferenceObject"
+                      }
+                  },
+                  "oneOf": [
+                      {
+                          "required": ["jmd:timeInstant"]
+                            },
+                      {
+                          "required": ["jmd:timePeriod"]
+                            },
+                      {
+                          "required": ["jmd:temporalExtentReference"]
+                            }]
+              }
+          }
+      },
+      "definitions": {
+          "jmd:date": {
+              "type": "string",
+              "description": "An ISO 8601 date/timestamp.",
+              "pattern": "^(\\d{4}(-\\d{2})?(-\\d{2})?$)|(^\\d{4}-\\d{2}-\\d{2}(T\\d{2})?(\\:\\d{2}(\\:\\d{2}(\\.\\d+)?)?|Z)?(Z|(-|\\+)\\d{2}(:\\d{2})?)?$)"
+          },
+          "jmd:LinkObject": {
+              "id": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/2.0/Link",
+              "description": "used for situations that need a link (hypermedia affordance) to an online resource, typically for navigating linked data space.  The link is a locator--an identifier for a location that can provide a digital object.",
+              "type": "object",
+              "required": ["jmd:linkURL"],
+              "properties": {
+                  "jmd:linkURL": {
+                      "description": "a web-derferencable identifier that locates the link target; typically an HTTP URI. URI syntax specifies that the identifier string includes a prefix that specifies the base protocol for the identifier",
+                      "type": "string",
+                      "format": "uri"
+                  },
+                  "jmd:linkRelation": {
+                      "type": "array",
+                      "description": "Term from IANA rel vocabulary for consistency with IETF5988. Specifies relationship between resources. Use to assign semantics to the relationship between the linked resources.",
+                      "required": ["jmd:relLabel"],
+                      "minItems": 1,
+                      "items": {
+                          "type": "object",
+                          "properties": {
+                              "jmd:relLabel": {
+                                  "description": "text to identify the reference in a UI",
+                                  "type": "string"
+                              },
+                              "jmd:relURI": {
+                                  "description": "identifier for the reltaion type.",
+                                  "type": "string",
+                                  "format": "uri"
+                              },
+                              "jmd:relVocabularyURI": {
+                                  "description": "identifier for vocabulary in which the relLabel is defined.",
+                                  "type": "string",
+                                  "format": "uri"
+                              }
+                          }
+                      }
+                  },
+                  "jmd:linkTitle": {
+                      "type": "string",
+                      "description": "text to label this link in a UI"
+                  },
+                  "jmd:linkTargetResourceType": {
+                      "type": "string",
+                      "description": "typically use MIME type string from IANA registry http : //www.iana.org/assignments/media-types/application/index.html. This is the type of the file that will be accessed directly by the link URL; if this is a container file (e.g. zip archive), the innerResourceType property is used to specify the type of file with actual resource content."
+                  },
+                  "jmd:linkContentResourceType": {
+                      "description": "File type for the actual resource content. Typically use MIME type string from IANA registry http : //www.iana.org/assignments/media-types/application/index.html",
+                      "type": "string"
+                  },
+                  "jmd:linkOverlayAPI": {
+                      "description": "Reference that identifies the API for messages tunneled to a component on the target server.  Optional, provide if such scheme or protocol is necessary to utilize the link. The URI should be defined by the service specification for the protocol or service type; version information should be included if applicable.  E.g. OGC WMS, WS-services. This property is typically used for services that encode remote procedure calls using identifiers dereferenced using standard HTTP methods (GET, POST).",
+                      "type": "object",
+                      "required": ["jmd:APILabel"],
+                      "properties": {
+                          "jmd:APILabel": {
+                              "description": "text to identify the overlay API in a UI",
+                              "type": "string"
+                          },
+                          "jmd:API-URI": {
+                              "description": "identifier for overly API",
+                              "type": "string",
+                              "format": "uri"
+                          }
+                      }
+                  },
+                  "jmd:linkProfile": {
+                      "description": "Identifier for profile of specifications identified by type, overlayAPI, and template attributes. Optional, provide if additional conventions are necessary for content contained in messages through this link. Note that the same output scheme might be encoded using different types. Profiles typically add usage conventions when the interchange scheme offers alternate approaches, restrict cardinality for elements in the interchange format, or specify usage of particular vocabularies.",
+                      "required": ["jmd:profileLabel"],
+                      "properties": {
+                          "jmd:profileLabel": {
+                              "description": "text to identify the profile in a UI",
+                              "type": "string"
+                          },
+                          "jmd:profileURI": {
+                              "description": "identifier for the profile",
+                              "type": "string",
+                              "format": "uri"
+                          }
+                      }
+                  },
+                  "jmd:linkParameters": {
+                      "type": "array",
+                      "description": "a dictionary (key-value pairs) of other paramters or properties that need to be associated with the link, e.g. WFS feature typeNames, WMS layer names",
+                      "items": {
+                          "type": "object",
+                          "required": ["jmd:linkParameterLabel", "jmd:linkParameterValue"],
+                          "properties": {
+                              "jmd:linkParameterLabel": {
+                                  "type": "string",
+                                  "description": "string to display, and identifier to link parameter to registry"
+                              },
+                              "jmd:linkParameterURI": {
+                                  "description": "identifier for the parameter from a controlled vocabulary",
+                                  "type": "string",
+                                  "format": "uri"
+                              },
+                              "jmd:linkParameterValue": {
+                                  "type": "string"
+                              }
+                          }
+                      }
+                  },
+                  "jmd:linkDescription": {
+                      "type": "string",
+                      "description": "free text description of the target to help UI"
+                  },
+                  "jmd:linkTransferSize": {
+                      "type": "integer",
+                      "description": "advisory length of the linked content in octets"
+                  }
+              }
+          },
+
+          "jmd:ReferenceObject": {
+              "id": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/2.0/Reference",
+              "description": "Use when a linked resource is intended to be the value of some element; The URI is proxy for that resource and is thus required. Text-based comparison of identifiers can be used to test equivalence. Use when a global identifier is required for interoperability. The associated links are for advertising specific representations and other related resources. Some of these are likely to be accessible by dereferencing the URI, but the link elements allow explicit indication of the available representations and how to get them (with no URI redirection...)",
+              "type": "object",
+              "required": ["jmd:referenceURI"],
+              "properties": {
+                  "jmd:referenceLabel": {
+                      "description": "text to identify the reference in a UI",
+                      "type": "string"
+                  },
+                  "jmd:referenceURI": {
+                      "description": "identifier for referenced resource",
+                      "type": "string",
+                      "format": "uri"
+                  },
+                  "jmd:referenceLink": {
+                      "description": "Links to representation of some referenced resource",
+                      "type": "array",
+                      "items": {
+                          "$ref": "#/definitions/jmd:LinkObject"
+                      }
+                  }
+              }
+          },
+
+          "jmd:ControlledConceptObject": {
+              "description": "element to provide link to a concept that is defined in some vocabulary. A conceptURI value is hightly recommended, but in the name of keeping things simple, only a prefLabel is required. This is basically equivalent to a reference to a concept that allows a lazy approach simply providing a word (the prefLabel). If a vocabularyURI is provided, the prefLabel should be unique within that vocabulary, so the vocabularyURI and PrefLabel provide a unique compound identifier.  For ISO19115 codelist values, the prefLabel is the codeListValue, vocabularyURI is the codelist, and conceptAltLabel is the element value text (if you want something different than the codelist value.",
+              "id": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/2.0/ControlledConcept",
+              "type": "object",
+              "required": ["jmd:conceptPrefLabel"],
+              "properties": {
+                  "jmd:conceptURI": {
+                      "type": "string",
+                      "format": "URI"
+                  },
+                  "jmd:conceptPrefLabel": {
+                      "type": "string",
+                      "description": "This should be in the language specified by metadataLanguage",
+                      "translation": {
+                          "ISO 19115-2": ["[CodeElement] / @codeListValue"],
+                          "ISO 19115-1": ["[CodeElement] / @codeListValue"]
+                      }
+                  },
+                  "jmd:conceptAltLabel": {
+                      "description": "alternate labels for the concept. Use JSON-LD language encoding for differrnt languages. The contexct property defines a scope or application for which the label is more appropriate. Use to customize labeling for particular interfaces and communities.",
+                      "translation": {
+                          "ISO 19115-2": ["[CodeElement]"],
+                          "ISO 19115-1": ["[CodeElement]"]
+                      },
+                      "type": "array",
+                      "items": {
+                          "type": "object",
+                          "properties": {
+
+                              "jmd:conceptAltLabelText": {
+                                  "type": "string"
+                              },
+                              "jmd:conceptAltLabelContext": {
+                                  "$ref": "#/definitions/jmd:ReferenceObject",
+                                  "description": "text that defines a context for use of this label"
+                              }
+                          }
+                      }
+                  },
+                  "jmd:vocabularyURI": {
+                      "description": "identifier for the containing vocabulary (thesaurus, ontology...). Analogous to codelist in ISO19115 or codespace in GML.",
+                      "type": "string",
+                      "format": "URI",
+                      "translation": {
+                          "ISO 19115-2": ["[CodeElement] / @codeList"],
+                          "ISO 19115-1": ["[CodeElement] / @codeList"]
+                      }
+                  },
+                  "jmd:conceptLink": {
+                      "description": "0..N can provide various links to get related concepts, definitions, source, etc. Link/linkRelation properties can encode the standard SKOS type relationships between concepts.",
+                      "type": "array",
+                      "items": {
+                          "$ref": "#/definitions/jmd:LinkObject"
+                      }
+
+                  }
+              }
+          }
+      }
+  }

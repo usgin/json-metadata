@@ -1,0 +1,312 @@
+{
+    "jmd:metadataRecordURI": "urn:uuid:7c0bb5a0-2c9c-11e4-8c21-0800200c9a66",
+    "jmd:metadataUpdateDate": "2015-10-10T12:12:12Z",
+    "jmd:metadataLanguage": {
+        "jmd:languageCode": "eng"
+    },
+    "jmd:metadataContacts": [
+        {
+            "jmd:agentRole": {
+                "jmd:conceptPrefLabel": "pointOfContact",
+                "jmd:conceptAltLabels": [{
+                    "jmd:conceptAltLabelText": "metadata point of contact"
+            }],
+                "jmd:vocabularyURI": "http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+            },
+            "jmd:agents": [{
+                    "jmd:organizationNames": ["USGS", "United States Geological Survey", "US Geological Survey"],
+                    "jmd:contactEmails": ["someEmail@usgs.gov"]
+                            }
+                        ]
+        },
+        {
+            "jmd:agentRole": {
+                "jmd:conceptPrefLabel": "originator",
+                "jmd:conceptAltLabels": [{
+                    "jmd:conceptAltLabelText": "metadata originator"
+            }],
+                "jmd:vocabularyURI": "http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+            },
+            "jmd:agents": [{
+                    "jmd:organizationNames": ["AZGS", "Arizona Geological Survey"],
+                    "jmd:contactEmails": ["metadata@azgs.gov"]
+                            },
+                {
+                    "jmd:personName": "M.A. Editana",
+                    "jmd:phoneContacts": [{
+                            "jmd:phoneLabel": "office switchboard",
+                            "jmd:phoneNumber": "520-770-3500"
+                        },
+                        {
+                            "jmd:phoneLabel": "direct line",
+                            "jmd:phoneNumber": "520-209-4842"
+                        }
+                                           ]
+
+                       }
+                        ]
+        }
+                            ],
+    "jmd:metadataSpecification": {
+        "jmd:referenceURI": "http://resources.usgin.org/uri-gin/usgin/schema/json/2.0/metadata"
+    },
+    "jmd:metadataMaintenance": {
+        "jmd:maintenanceNote": "this is a testing record, will be modified periodically during testing and debugging",
+        "jmd:maintenanceInterval": "irregular",
+        "jmd:maintenanceFrequency": {
+            "jmd:conceptPrefLabel": "unknown"
+        }
+    },
+    "jmd:metadataRecordLineageItems": [
+        {
+            "jmd:stepSequenceNo": 1,
+            "jmd:processStep": {
+                "jmd:stepLabel": "thestatemen"
+            }
+  },
+        {
+            "jmd:stepSequenceNo": 2,
+            "jmd:provenanceLink": {
+                "jmd:linkURL": "http://thelink.org/264"
+            }
+  }
+],
+    "jmd:metadataConformanceTests": [{
+        "jmd:conformanceTestName": "ISO19115 schematron rules for USGIN validation",
+        "jmd:conformanceTestResult": "pass"
+    }],
+    "jmd:metadataUsageConstraint": {
+        "jmd:constraintsStatement": "no constraints on use of metadata",
+        "jmd:constraints": [
+            {
+                "jmd:constraintType": {
+                    "jmd:conceptPrefLabel": "usage"
+                },
+                "jmd:constraintTerm": {
+                    "jmd:conceptURI": "http://energistics.org/resource/constraint/43637",
+                    "jmd:conceptPrefLabel": "no restrictions"
+                }
+        }],
+        "jmd:licenses": [{
+            "jmd:licenseName": "CC0"
+        }]
+    },
+    "jmd:harvestInformation": {
+        "jmd:harvestURL": "http://catalog.usgs.gov/csw",
+        "jmd:originalFileIdentifier": "urn:uuid:8b0bb5a0-2c9c-11e4-8c91-0999200c9add",
+        "jmd:harvestDate": "2014-10-22T08:15:45Z"
+    },
+    "jmd:collections": ["geologic maps", "AZGS products"],
+    "jmd:published": false,
+
+    "jmd:describedResource": {
+        "jmd:resourceTitle": "Geologic map of the Wildhorse Meadow quadrangle",
+        "jmd:resourceDescription": "full on abstract summarizing the geology and digitization/compilation process",
+        "jmd:resourceIdentifiers": [
+            {
+                "jmd:resourceURI": "http://resource.usgin.org/uri-gin/resource/437257"
+            },
+            {
+                "jmd:scopedIdentifier": {
+                    "jmd:identifierCodeString": "377",
+                    "jmd:identifierCodespace": "azgs.az.gov.resource"
+                }
+            }
+            ],
+        "jmd:citationResponsibleParties": [
+            {
+                "jmd:agentRole": {
+                    "jmd:conceptPrefLabel": "originator"
+                },
+                "jmd:agents": [
+                    {
+                        "jmd:personName": "Leah Mapwizard",
+                        "jmd:organizationNames": ["azgs", "AZGS", "Az. Geol. Surv.", "Arizona Geological Survey"],
+                        "jmd:phoneContacts": [
+                            {
+                                "jmd:phoneNumber": "520-770-3500",
+                                "jmd:phoneLabel": "Main switchboard"
+            }, {
+                                "jmd:phoneNumber": "520-770-3505",
+                                "jmd:phoneServices": ["fax"]
+            }],
+                        "jmd:contactEmails": ["mapwizard@azgs.az.gov"],
+                        "jmd:organizationLinks": [{
+                                "jmd:linkURL": "http://azgs.az.gov",
+                                "jmd:linkLabel": "AZGS home page"
+                }
+                        ]
+        }]
+    }
+            ],
+        "jmd:citationDates": [
+            {
+                "jmd:eventTypes": [{
+                    "jmd:conceptPrefLabel": "field work",
+                    "jmd:conceptURI": "http://resource.usgin.org/classifier/34637"
+            }],
+                "jmd:eventTimePeriod": {
+                    "jmd:timePeriodBeginPosition": "2012-10-09",
+                    "jmd:timePeriodEndPosition": "2014-04-30"
+                }
+               },
+            {
+                "jmd:eventTypes": [{
+                    "jmd:conceptPrefLabel": "publication",
+                    "jmd:vocabularyURI": "http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode"
+                    }],
+                "jmd:eventDateTime": "2015-04-27"
+            }
+            ],
+        "jmd:citationAlternateTitles": [{
+            "jmd:altTitleText": "Map showing the rocks near Wildhorse Meadow",
+            "jmd:altTitleContext": {
+                "jmd:referenceLabel": "Non technical",
+                "jmd:referenceURI": "http://resource.usgin.org/classifier/context/nontechnical"
+            }
+        }],
+        "jmd:citationRecommendation": "Mapwizard,Leah, 2014, Geologic Map of Wildhorse Meadow: Arizona Geological Survey Map 98, 1 sheet, scale 1:24000.",
+        "jmd:citationDetails": {
+            "jmd:edition": "edition id",
+            "jmd:editionDate": {
+                "jmd:eventTypes": [{
+                    "jmd:conceptPrefLabel": "revision",
+                    "jmd:conceptURI": "http://oclc.org/libraryterms/2465373"
+             }],
+                "jmd:eventDateTime": "2015-09-01"
+            },
+            "jmd:series": {
+                "jmd:referenceLabel": "Statemap products",
+                "jmd:referenceURI": "http://azgs.az.gov/products/statemap"
+            }
+        },
+
+        "jmd:resourceTypes": [
+            {
+                "jmd:conceptPrefLabel": "dataset",
+                "jmd:conceptURI": "http://resource.usgin.org/classifier/3246437"
+            },
+            {
+                "jmd:conceptPrefLabel": "geologicMap",
+                "jmd:conceptURI": "http://resource.usgin.org/classifier/2346600"
+    }
+],
+        "jmd:resourceStatus": {
+            "jmd:conceptPrefLabel": "complete"
+        },
+        "jmd:resourceContacts": [
+            {
+                "jmd:agentRole": {
+                    "jmd:conceptPrefLabel": "author"
+                },
+                "jmd:agents": [{
+                        "jmd:personName": "Adrian Whaothea",
+                        "jmd:phoneContacts": [{
+                            "jmd:phoneNumber": "520-888-0000"
+                }],
+                        "jmd:contactEmails": ["someEmail@email.com"]
+        },
+                    {
+                        "jmd:personName": "tom",
+                        "jmd:contactEmails": ["tom@email.com"]
+            }]
+    }, {
+                "jmd:agentRole": {
+                    "jmd:conceptPrefLabel": "contributor"
+                },
+                "jmd:agents": [{
+                        "jmd:personURI": "usgin:personIdentifer",
+                        "jmd:personName": "Adrian the Great",
+                        "jmd:personName": "theOther Author",
+                        "jmd:contactEmails": ["joe@somewhere.com"]
+        },
+                    {
+                        "jmd:organizationNames": ["The Fabulous Company", "TFC"],
+                        "jmd:phoneContacts": [{
+                            "jmd:phoneNumber": "520-888-0000"
+                        }],
+                        "jmd:contactEmails": ["dataQuestions@fabulous.com"]
+            }]
+    }
+    ],
+        "jmd:resourceBrowseGraphic": {
+            "jmd:linkTitle": "300 by 300 pixel image",
+            "jmd:linkRelations": [{
+                "jmd:relLabel": "download"
+            }],
+            "jmd:linkURL": "http://resource.usgin.org/images/366356"
+        },
+        "jmd:resourceTemporalExtents": [
+            {
+                "jmd:timeInstant": {
+                    "jmd:timeInstantTimePosition": "2015-10-22T12:20:15Z"
+                }
+    },
+            {
+                "jmd:timePeriod": {
+                    "jmd:timePeriodBeginPosition": "1929-10-12T22:09:11Z",
+                    "jmd:timePeriodEndPosition": "1934-12"
+                }
+    },
+            {
+                "jmd:temporalExtentReference": {
+                    "jmd:referenceURI": "http://resource.energistics.org/register/time/245436"
+                }
+    }
+],
+        "jmd:resourceCharacterEncoding": "UTF8",
+        "jmd:resourceLanguages": [
+            {
+                "jmd:languageCode": "eng"
+            },
+            {
+                "jmd:languageReference": {
+                    "jmd:referenceLabel": "USA southern colloquial english",
+                    "jmd:referenceURI": "http://loc.gov/languages/eng/dialect/346"
+                }
+            }
+            ],
+        "jmd:resourceSpatialExtents": [
+            {
+                "jmd:extentLabel": "Wildhorse Meadow 7.5 min quadrangle",
+                "jmd:boundingBoxesWGS84": [{
+                    "jmd:northBoundLatitude": 34.5,
+                    "jmd:southBoundLatitude": 34.25,
+                    "jmd:eastBoundLongitude": -112.00,
+                    "jmd:westBoundLongitude": -112.25
+                }],
+                "jmd:extentReference": {
+                    "jmd:referenceURI": "http://usgs.gov/quads/34112.5"
+                }
+            },
+            {
+                "jmd:geoJSONgeometryItems": [{
+                    "type": "Polygon",
+                    "coordinates": [
+      [[34.5, -112], [34.5, -112.25], [34.25, -112.25], [34.25, -112.0], [34.5, -112]]
+      ]
+                }]
+            },
+            {
+                "jmd:extentGeometryTypes": [{
+                    "jmd:conceptPrefLabel": "centroid",
+                    "jmd:conceptURI": "http://resource.usgin.org/classifier/243656"
+                }],
+                "jmd:geoJSONgeometryItems": [{
+                    "type": "Point",
+                    "coordinates": [34.375, -112.124]
+                }]
+            }
+        ],
+
+        "jmd:resourceAccessOptions": [
+            {
+                "jmd:accessLinks": [
+                    {
+                        "jmd:linkURL": "http://usgin.org/resource/121461"
+          }
+        ]
+      }
+    ]
+    }
+}
