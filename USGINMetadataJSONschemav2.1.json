@@ -1559,7 +1559,6 @@
                     "items": {
                         "type": "object",
                         "properties": {
-
                             "jmd:conceptAltLabelText": {
                                 "type": "string"
                             },

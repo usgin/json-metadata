@@ -1,0 +1,93 @@
+{
+    "_id": "a748ce233a25e3e0dd00c9865d1a22aa",
+    "_rev": "1-04798de88e1f22fdbf2c20e91afc2958",
+    "Description": "1:24,000 scale Geologic Map of the North Half of the Fourth of July Mountain Quadrangle, Clark County, Nevada. Nevada Bureau of Mines and Geology Open File Report 12-8. Detailed geologic mapping by Nicholas H. Hinz, James E. Faulds, and Alan R. Ramelli in 2012. Map includes description of 44 geologic units. The GIS work was in support of the U. S. Geological Survey COGEOMAP program. The Geodatabase specifies feature datasets and feature classes, together with feature attributes, subtypes and domains, suitable for the printed geologic map. In addition to basic geology (lithology, contacts and faults, etc.), the maps may include metamorphic overprints, cross-sections, and explanatory legend-graphics such as correlation charts, used to supplement columnar legends. Includes results of geochemical analyses and age determinations of igneous rocks.\n\n",
+    "GeographicExtent": {
+        "EastBound": -114.70972601031,
+        "NorthBound": 35.642698265942,
+        "WestBound": -114.88550726032,
+        "SouthBound": 35.510898507838
+    },
+    "Title": "Geologic Map of the North Half of the Fourth of July Mountain Quadrangle, Clark County, Nevada, NBMG OFR12-8",
+    "ResourceId": "",
+    "Published": true,
+    "Links": [{
+        "URL": "http://www.nbmg.unr.edu/dox/of128.pdf",
+        "Distributor": "Nevada Bureau of Mines and Geology",
+        "schemaName": "link",
+        "Name": "North Half of Fourth of July Mountain PDF file",
+        "Description": "North Half of Fourth of July Mountain PDF file"
+    }],
+    "Collections": ["6e84ef507102d99c8d5b44d3c22b407a"],
+    "PublicationDate": "2012",
+    "Authors": [{
+        "ContactInformation": {
+            "Phone": "(775) 784-4151 ",
+            "email": "ramelli@unr.edu",
+            "Address": {
+                "City": "Reno",
+                "State": "NV",
+                "Street": "UNR MS 178",
+                "Zip": "89557"
+            }
+        },
+        "OrganizationName": "Nevada Bureau of Mines and Geology",
+        "Name": "Alan R. Ramelli"
+    }, {
+        "ContactInformation": {
+            "Phone": "(775) 682-8751",
+            "email": "jfaulds@unr.edu",
+            "Address": {
+                "City": "Reno",
+                "State": "NV",
+                "Street": "UNR MS 178",
+                "Zip": "89557"
+            }
+        },
+        "OrganizationName": "Nevada Bureau of Mines and Geology",
+        "Name": "James E. Faulds"
+    }, {
+        "ContactInformation": {
+            "Phone": "(775) 784-1446 ",
+            "email": "nhinz@unr.edu",
+            "Address": {
+                "City": "Reno",
+                "State": "NV",
+                "Street": "UNR MS 178",
+                "Zip": "89557"
+            }
+        },
+        "OrganizationName": "Nevada Bureau of Mines and Geology",
+        "Name": "Nicholas H. Hinz"
+    }],
+    "Keywords": ["nbmg", "contacts", "faults", "cross-section", "forth of july mountain", "clark county", "nevada", "usa", "2012", "united states"],
+    "Distributors": [{
+        "ContactInformation": {
+            "Phone": "775-784-6691",
+            "email": "nbmg@unr.edu",
+            "Address": {
+                "City": "Reno",
+                "State": "NV",
+                "Street": "UNR MS 178",
+                "Zip": "89557"
+            }
+        },
+        "OrganizationName": "NBMG",
+        "Name": "Nevada Bureau of Mines and Geology"
+    }],
+    "MetadataContact": {
+        "ContactInformation": {
+            "Phone": "775-7846691",
+            "email": "selenalarge@yahoo.com",
+            "Address": {
+                "City": "Reno",
+                "State": "NV",
+                "Street": "UNR, MS178",
+                "Zip": "89557"
+            }
+        },
+        "OrganizationName": "NBMG",
+        "Name": "Selena Large"
+    },
+    "ModifiedDate": "2014-01-15T17:25:43Z"
+}

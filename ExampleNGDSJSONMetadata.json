@@ -2,21 +2,21 @@
     "jmd:MetadataRecord": {
         "jmd:metadataRecordURI": "7c0bb5a0-2c9c-11e4-8c21-0800200c9a66",
         "jmd:metadataUpdateDate": "2014-08-25T14:12:22",
+        "jmd:metadataContacts": [{
+            "jmd:agentRole": {
+                "jmd:conceptPrefLabel": "curator"
+            },
+            "jmd:individual": {
+                "jmd:personName": "Adrian Whaothea"
+            },
+            "jmd:contactPhoneNumber": "520-888-0000",
+            "jmd:contactEmail": "someEmail@emial.com"
+            }],
         "jmd:metadataSpecification": {
             "jmd:referenceLabel": "USGIN metadata 1.3",
             "jmd:referenceURI": "http://usgin.org/specs/dummyURI/metadata"
         },
         "jmd:metadataMaintenance": {
-            "jmd:maintenanceContacts": [{
-                "jmd:agentRole": {
-                    "jmd:conceptPrefLabel": "curator"
-                },
-                "jmd:individual": {
-                    "jmd:personName": "Adrian Whaothea"
-                },
-                "jmd:contactPhoneNumber": "520-888-0000",
-                "jmd:contactEmail": "someEmail@emial.com"
-            }],
             "jmd:maintenanceNote": "free text information about maintenance plans, workflow, process..."
         },
         "jmd:metadataLanguage": "eng",

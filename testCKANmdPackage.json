@@ -1,0 +1,190 @@
+{
+    "resourceDescription": {
+        "resourceSpatialExtents": [],
+        "resourceIndexTerms": [],
+        "resourceStatus": "",
+        "resourceQualityItems": [],
+        "resourceUsageConstraints": [],
+        "resourceIdentifiers": ["https://www.sciencebase.gov/catalog/item/dataseURI", "ISBN ID", "ISSN ID"],
+        "resourceSpecificUsage": [],
+        "resourceTemporalExtents": "",
+        "resourceTitle": "citation title, ",
+        "topicCategory": [],
+        "resourceCredit": "",
+        "resourcePurpose": "",
+        "citationDetails": ["environment:", "presentation form:", "presentFormCode1", "presFormCode1"],
+        "resourceSpatialDescription": {},
+        "resourceDetails": {
+            "service": {},
+            "dataset": {}
+        },
+        "resourceMaintenance": {},
+        "resourceLineageItems": [],
+        "resourceCharacterSet": "",
+        "citationDates": [{
+            "eventTypes": [{
+                "conceptURI": "Publication, Publication, ",
+                "conceptPrefLabel": "Publication, Publication, ",
+                "vocabularyURI": "https://www.sciencebase.gov/vocab/category/4f4e475de4b07f02db47ded1, "
+            }],
+            "eventDateTime": "1996-10-20T15:33:32.56, "
+        }, {
+            "eventTypes": [{
+                "conceptURI": "Revision, date2 revison, ",
+                "conceptPrefLabel": "Revision, date2 revison, ",
+                "vocabularyURI": "https://www.sciencebase.gov/vocab/category/4f4e475de4b07f02db47ded1, "
+            }],
+            "eventDateTime": "1997-11-20T17:22:00, "
+        }],
+        "resourceAbstract": "The Upper Mississippi Valley zinc-lead district is hosted by Ordovician carbonate rocks at the northern margin of the Illinois Basin. Fluid inclusion temperature measurements on Early Permian sphalerite ore from the district are predominantly between 90?C and I50?C. These temperatures are greater than can be explained by their reconstructed burial depth, which was a maximum of approximately 1 km at the time of mineralization. In contrast to the temperatures of mineral formation derived from fluid inclusions, biomarker maturities in the Upper Mississippi Valley district give an estimate of total thermal exposure integrated over time. Temperatures from fluid inclusions trapped during ore genesis with biomarker maturities were combined to construct an estimate of the district's overall thermal history and, by inference, the late Paleozoic thermal and hydrologic history of the Illinois Basin. Circulation of groundwater through regional aquifers, given sufficient flow rates, can redistribute heat from deep in a sedimentary basin to its shallower margins. Evidence for regional-scale circulation of fluids is provided by paleomagnetic studies, regionally correlated zoned dolomite, fluid inclusions, and thermal maturity of organic matter. Evidence for igneous acti vity contemporaneous with mineralization in the vicinity of the Upper Mississippi Valley district is absent. Regional fluid and heat circulation is the most likely explanation for the elevated fluid inclusion temperatures (relative to maximum estimated burial depth) in the Upper Mississippi Valley district. One plausible driving mechanism and flow path for the ore-forming fluids is groundwater recharge in the late Paleozoic Appalachian-Ouachita mountain belt and northward flow through the Reelfoot rift and the proto- Illinois Basin to the Upper Mississippi Valley district. Warm fluid flowing laterally through Cambrian and Ordovician aquifers would then move vertically upward through the fractures that control sphalerite mineralization in the Upper Mississippi Valley district. Biomarker reactant-product measurements on rock extracts from the Upper Mississippi Valley district define a relatively low level ofthermal maturity for the district, 0.353 for sterane and 0.577 for hopane. Recently published kinetic constants permit a time-temperature relationship to be determined from these biomarker maturities. Numerical calculations were made to simulate fluid heat flow through the fracture-controlled ore zones of the Thompson-Temperly mine and heat transfer to the adjacent rocks where biomarker samples were collected. Calculations that combine the fluid inclusion temperatures and the biomarker constraints on thermal maturity indicate that the time interval during which mineralizing fluids circulated through the Upper Mississippi Valley district is on the order of 200,000 years. Fluid inclusion measurements and thermal maturities from biomarkers in the district reflect the duration of peak temperatures resulting from regional fluid circulation. On the basis of thermal considerations, the timing of fluorite mineralization in southern Illinois, and the northward-decreasing pattern of fluorine enrichment in sediments, we hypothesize that the principal flow direction was northward through the Cambrian and Ordovician aquifers of the Illinois Basin. A basin-scale flow system would result in mass transport (hydrocarbon migration, transport of metals in solution) and energy (heat) transport, which would in turn drive chemical reactions (for example, maturation of organic matter, mineralization, diagenetic reactions) within the Illinois Basin and at its margins., Data Identification supplemental information, ",
+        "resourceAccessOptions": [],
+        "relatedResources": [],
+        "resourceLanguages": [],
+        "resourceTypes": [null],
+        "resourceEnvironmentDescription": "",
+        "citationAlternateTitles": ["alt title 1", "alt title 2"],
+        "citationResponsibleParties": [{
+            "agent": {
+                "personName": "citation individName1, ",
+                "contactEmails": [[]],
+                "personPosition": "citation posName1, ",
+                "organizationLinks": [""],
+                "organizationNames": [""],
+                "contactAddress": "\"",
+                "phoneContacts": []
+            },
+            "agentRole": {
+                "conceptURI": "author, ",
+                "conceptPrefLabel": "citRespParty1 author, ",
+                "vocabularyURI": ""
+            }
+        }, {
+            "agent": {
+                "personName": "citation individName2, ",
+                "contactEmails": [["cit.respParty2.email"]],
+                "personPosition": "",
+                "organizationLinks": [""],
+                "organizationNames": ["cit2 orgName, "],
+                "contactAddress": "\"",
+                "phoneContacts": []
+            },
+            "agentRole": {
+                "conceptURI": "editor, ",
+                "conceptPrefLabel": "citRespParty2 editor, ",
+                "vocabularyURI": ""
+            }
+        }],
+        "citationRecommendation": "citation individName1, citation individName2, 1996-10-20T15:33:32.56, citation title, the citation edition, 1997-11-20T17:22:00, SeriesName, seriesIssueID, seriesPage, Other citation Details, collective titel, ",
+        "resourceBrowseGraphic": "",
+        "resourceContacts": []
+    },
+    "metadataProperties": {
+        "metadataContacts": [{
+            "agent": {
+                "personName": "contact individual name, ",
+                "contactEmails": [["e-mail for metadata contact"]],
+                "personPosition": "",
+                "organizationLinks": [""],
+                "organizationNames": ["contact org name, "],
+                "contactAddress": "\"",
+                "phoneContacts": []
+            },
+            "agentRole": {
+                "conceptURI": "Point Of Contact, ",
+                "conceptPrefLabel": "Point Of Contact, ",
+                "vocabularyURI": ""
+            }
+        }, {}, {}, {}, {}, {}, {}, {
+            "agent": {
+                "personName": "md contact4 Goldhaber, Martin B., ",
+                "contactEmails": [[]],
+                "personPosition": "",
+                "organizationLinks": [""],
+                "organizationNames": ["md org4 Unknown, "],
+                "contactAddress": "\"",
+                "phoneContacts": []
+            },
+            "agentRole": {
+                "conceptURI": "Point Of Contact, ",
+                "conceptPrefLabel": "md4 Point Of Contact, ",
+                "vocabularyURI": ""
+            }
+        }, {
+            "agent": {
+                "personName": "md indiv5 U.S. G.P.O.,, ",
+                "contactEmails": [[]],
+                "personPosition": "",
+                "organizationLinks": [""],
+                "organizationNames": ["md org5 Unknown, "],
+                "contactAddress": "\"",
+                "phoneContacts": [{
+                    "phoneLabel": "voice",
+                    "phoneNumber": "md5 voiceTel 222"
+                }]
+            },
+            "agentRole": {
+                "conceptURI": "Point Of Contact, ",
+                "conceptPrefLabel": "md5 Point Of Contact, ",
+                "vocabularyURI": ""
+            }
+        }],
+        "harvestInformation": {
+            "harvestedFileIdentifier": "4f4e49d6e4b07f02db5de6c7, ",
+            "harvestedMetadataFormat": {
+                "referenceLabel": "standard name ISO19115, ",
+                "version": "standard version 1.0, "
+            },
+            "harvestDate": "",
+            "harvestURL": ""
+        },
+        "metadataUsageConstraint": [
+            [
+                {
+            "legalAccessRestrictionCode": [],
+            "securityHandlingDescription": "",
+            "useLimitation": ["metadata Constraints use limitation"],
+            "securityUserNote": "",
+            "securityClassificationSystem": "",
+            "legalUseLimitation": [],
+            "constraintRestrictionCodelist": [],
+            "legalOtherRestrictionConstraints": [],
+            "securityClassificationCode": "",
+            "securityUseLimitation": [],
+            "legalUseRestrictionCode": []
+        }]],
+        "metadataSpecification": {
+            "referenceLabel": "USGIN JSON metadata v3.0",
+            "referenceURI": "http://resources.usgin.org/uri-gin/usgin/schema/json/3.0/metadata"
+        },
+        "metadataRecordLineageItems": [],
+        "metadataLanguage": {
+            "languageCode": "eng, ",
+            "languageReference": {
+                "referenceURI": ""
+            }
+        },
+        "metadataIdentifier": "4f4e49d6e4b07f02db5de6c7, ",
+        "parentMetadata": {
+            "referenceURI": "yo mama parent identifier, "
+        },
+        "metadataLastUpdate": "2013-05-15T16:57:31Z, ",
+        "metadataMaintenance": {
+            "maintenanceContacts": [{
+                "agentRolePrefLabel": "metadata mainteancne contact role, ",
+                "agentRoleConceptURI": "metaMaintRoleCodeValue, ",
+                "contact": {
+                    "personName": "",
+                    "personPosition": "metadata maintenance position name, ",
+                    "organizationNames": "",
+                    "contact-info": ""
+                },
+                "agentRoleVocabularyURI": ""
+            }],
+            "MaintenanceNote": ["metadata maintenance note1", "metadata maintenance note2"],
+            "maintenanceInterval": "",
+            "maintenanceFrequencyURI": "metadataMaintFreqCodeVAl, mainatenance and update frequency, ",
+            "maintenanceFrequencyVocabularyURI": "metadataMaintFreqCodeList, ",
+            "dateNextUpdate": ""
+        }
+    }
+}
