@@ -2,9 +2,9 @@
 	"$schema" : "http://json-schema.org/draft-04/schema#",
 	"comment" : "this section is start at making compatible with JSON-LD. see https://www.w3.org/TR/json-ld",
 	"@context" : {
-		"jmd" : "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/2.1",
+		"jmd" : "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/3.0",
 		"@vocab" : "http://json-schema.org/draft-04/schema",
-		"@base" : "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/2.1",
+		"@base" : "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/3.0",
 		"foaf" : "http://xmlns.com/foaf/0.1/",
 		"dct" : "http://purl.org/dc/terms/",
 		"skos" : "http://www.w3.org/2004/02/skos/core#"
@@ -34,20 +34,19 @@
 				"ISO 19115-3" : ["Contact > CI_Responsibility"],
 				"FGDC CSDGM" : ["[single member of array] = cntinfo"]
 			},
+            "required":["jmd:contactID", "jmd:agent"],
 			"items" : {
 				"type" : "object",
 				"properties" : {
 					"jmd:contactID" : {
-						"description" : "integer used for references to the Agent elemetn from within this document",
+						"description" : "integer used for references to the Agent element from within this document",
 						"type" : "number"
 					},
-					"allOf" : [{
+					"jmd:agent" : {
 							"$ref" : "#/definitions/jmd:AgentObject"
 						}
-					]
-				}
+					}
 			}
-
 		},
 		"jmd:metadataInfo" : {
 			"type" : "object",
@@ -249,6 +248,12 @@
 					"type" : "array",
 					"items" : {
 						"type" : "object",
+						"oneOf" : [{
+								"required" : ["jmd:resourceURI"]
+							}, {
+								"required" : ["jmd:scopedIdentifier"]
+							}
+						],
 						"properties" : {
 							"jmd:resourceURI" : {
 								"description" : "identifier string that conforms to RFC 3986. If identifier uses different syntax or conveintions use scopedIdetifier. Unique identifier conforming to IETF URI syntax (RFC 3986). Resource may have multiple identifiers; the identifier in this element is the preferred identifier recommended by the resource steward. The resourceURI is intended to identify the resource at the FRBR work level.",
@@ -274,13 +279,7 @@
 									}
 								}
 							}
-						},
-						"oneOf" : [{
-								"required" : ["jmd:resourceURI"]
-							}, {
-								"required" : ["jmd:scopedIdentifier"]
-							}
-						]
+						}
 					}
 
 				},
@@ -391,6 +390,14 @@
 					"items" : {
 						"type" : "object",
 						"description" : "each extent array element is only one of an instant, a period, or a reference",
+						"oneOf" : [{
+								"required" : ["jmd:timeInstant"]
+							}, {
+								"required" : ["jmd:timePeriod"]
+							}, {
+								"required" : ["jmd:temporalExtentReference"]
+							}
+						],
 						"properties" : {
 							"jmd:timeInstant" : {
 								"type" : "object",
@@ -468,15 +475,7 @@
 								"description" : "reference to a temporal extent defined in some register",
 								"$ref" : "#/definitions/jmd:ReferenceObject"
 							}
-						},
-						"oneOf" : [{
-								"required" : ["jmd:timeInstant"]
-							}, {
-								"required" : ["jmd:timePeriod"]
-							}, {
-								"required" : ["jmd:temporalExtentReference"]
-							}
-						]
+						}
 					}
 				},
 				"jmd:resourceCharacterSet" : {
@@ -896,7 +895,7 @@
 
 		"jmd:contactRef" : {
 			"description" : "This object represents one person-organization affiliation, can be used with just organization. Requirement that can't be enforced via json schema is that there must be at least one personName, personPosition or organizationName, and there must be at least one phoneNumber or contactEmail.",
-			"id" : "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/3.0/agentrole",
+			"id" : "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/3.0/contactref",
 			"type" : "object",
 			"required":["jmd:agentRole"],
 			"oneOf" : [{
@@ -1418,6 +1417,12 @@
 			"id" : "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/3.0/EventDate",
 			"description" : "this is a base data type for calendar dates; may be used as the value for various properties. Extensions may define other schems for recording calendar, e.g. Julian, other calendars, etc.",
 			"type" : "object",
+			"oneOf" : [{
+					"required" : ["jmd:eventDateTime"]
+				}, {
+					"required" : ["jmd:eventTimePeriod"]
+				}
+			],
 			"properties" : {
 				"jmd:eventTypes" : {
 					"description" : "0..N  event may be categorized in various ways...",
@@ -1433,13 +1438,7 @@
 				"jmd:eventTimePeriod" : {
 					"$ref" : "#/definitions/jmd:TimePeriodObject"
 				}
-			},
-			"oneOf" : [{
-					"required" : ["jmd:eventDateTime"]
-				}, {
-					"required" : ["jmd:eventTimePeriod"]
-				}
-			]
+			}
 		},
 
 		"jmd:ExtentObject" : {
@@ -1452,8 +1451,6 @@
 					"required" : ["jmd:boundingBoxesWGS84"]
 				}, {
 					"required" : ["jmd:geoJSONgeometryItems"]
-				}, {
-					"required" : ["jmd:verticalExtent"]
 				}
 			],
 			"properties" : {
@@ -1520,7 +1517,7 @@
 					"description" : "Maximum and Minimum Elevations are relative to a datum elevation (based on vertical CRS), which will typically be the Earth surface at the location of the resource or sea level. Datum Elevation must be reported relative to mean sea level (MSL) in meters using EPSG::5714 geodetic parameters (WGS 84). Datum type must be a controlled vocabulary (Earth surface, MSL, Kelly bushing, etc.). The maximum is always numerically greater than the minimum elevation. For boreholes with datum at the earth surface, depth below surface is reported as a negative number.  *Vertical extent may be reported relative to different datum (e.g. sea level, Earth surface) in the same record.  Example: core from borehole at depths between 100 and 470 feet, borehole collar at 4787 feet above sea level.",
 					"type" : "object",
 					"properties" : {
-						"jmd:verticalExtentMinimum" : {oop
+						"jmd:verticalExtentMinimum" : {
 							"type" : "number"
 						},
 						"jmd:verticalExtentMaximum" : {
@@ -2012,7 +2009,8 @@
 				},
 				"jmd:qualityInformation" : {
 					"type" : "object",
-					"anyOf" : [{
+					"anyOf" : [
+                        {
 							"required" : ["jmd:qualityStatement"]
 						}, {
 							"required" : ["jmd:qualityReportReference"]

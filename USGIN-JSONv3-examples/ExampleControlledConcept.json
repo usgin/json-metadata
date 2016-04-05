@@ -1,0 +1,100 @@
+{
+    "@context": {
+        "@base": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/3.0"
+    },
+    "metadataSpecification":"http://resources.usgin.org/uri-gin/usgin/schema/json/3.0/metadata",
+    "conceptURI": "83747,Corning transparent pot",
+    "conceptPrefLabel": "an / VS-08/0.8L skillet",
+    "conceptAltLabels": [
+        {
+            "conceptAltLabelText": "another label",
+            "conceptAltContext": {
+                "referenceLabel": "Mexico"
+            }
+    },
+        {
+            "conceptAltLabelText": "不合理则返回",
+            "conceptAltContext": {
+                "referenceLabel": "Chinese,Hong Kong",
+                "referenceURI": "http: //sqxpxzmp.gov/fwmw"
+            }
+    },
+        {
+            "conceptAltLabelText": "aljh4pio5",
+            "conceptAltContext": {
+                "referenceLabel": "random label",
+                "referenceURI": "http://sqddxaa.gov/fwd43"
+            }
+    }],
+    "vocabularyURI": "http://vocabulary.gov/potsandpans",
+    "conceptLinks": [
+        {
+            "linkURL": "http://shvfuaqv.net/bzskpi",
+            "linkRelations": [
+                {
+                    "relLabel": "download",
+                    "relURI": "http://schema.org/relations/accessURL"
+                }
+            ],
+            "linkTitle": "mp decorated romantic,Corning Glass cris",
+            "linkTargetResourceType": "ter wash",
+            "linkContentResourceType": "il",
+            "linkOverlayAPI": {
+                "APILabel": "wok,DJ Corning pot",
+                "API-URI": "http://zqsksa.io/wqtfkpeb"
+            },
+            "linkProfile": {
+                "profileLabel": "y balm (4 groups) H72388,",
+                "profileURI": "http://hohqdwvb.org/fkyqmm"
+            }
+        },
+        {
+            "linkURL": "http://mspzyqp.org/xsme",
+            "linkTitle": "h box cute student",
+            "linkTargetResourceType": "d",
+            "linkContentResourceType": "h hood care agent J12731,Hea",
+            "linkOverlayAPI": {
+                "APILabel": "wok,DJ Corning pot",
+                "API-URI": "http://zqsksa.io/wqtfkpeb"
+            },
+            "linkProfile": {
+                "profileLabel": "y balm (4 groups) H72388,",
+                "profileURI": "http://hohqdwvb.org/fkyqmm"
+            },
+            "linkParameters": [{
+                    "linkParameterLabel": "paramA",
+                    "linkParameterURI": "http://usgin.org/heat",
+                    "linkParameterValue": "2456"
+                },
+                {
+                    "linkParameterLabel": "ParamB",
+                    "linkParameterURI": "http://cuahsi.org/vocab/energy",
+                    "linkParameterValue": "22 kwh"
+                },
+                {
+                    "linkParameterLabel": "ParamC",
+                    "linkParameterURI": "http://xqq.org/hegklnxwk",
+                    "linkParameterValue": "blue"
+                }]
+        },
+        {
+            "linkURL": "http://kuv.gov/aaglswr",
+            "linkRelations": [
+                {
+                    "relLabel": "information",
+                    "relURI": "http://schema.org/relations/webPage"
+                }
+            ],
+            "linkTitle": "rning Ware / one-piece cutlery Pink L",
+            "linkTargetResourceType": "ft piece,Please modify the title, TAFUCO / Dy",
+            "linkContentResourceType": "h toilet ",
+            "linkOverlayAPI": {
+                "APILabel": "wok,DJ Corning pot",
+                "API-URI": "http://zqsksa.io/wqtfkpeb"
+            },
+            "linkProfile": {
+                "profileLabel": "y balm (4 groups) H72388,",
+                "profileURI": "http://hohqdwvb.org/fkyqmm"
+            }
+        }]
+}

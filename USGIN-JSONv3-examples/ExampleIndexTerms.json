@@ -1,0 +1,28 @@
+{
+    "@context": {
+        "@base": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/3.0"
+    },
+    "metadataSpecification": "http://resources.usgin.org/uri-gin/usgin/schema/json/3.0/metadata",
+    "resourceIndexTerms": [
+        {
+            "keywordType": {
+                "conceptURI": "iso19115:theme",
+                "conceptPrefLabel": "thematic"
+            },
+            "keywords": ["metadata", "schema", "JSON", "USGIN"],
+            "keywordReference": {
+                "referenceLabel": "usgin thematic thesaurus",
+                "referenceURI": "http://usgin.org/specs/dummyURI/themethesaurus"
+            }
+            },
+        {
+            "keywords": ["tag1", "tag2", "tag3"]
+        },
+        {
+            "keywordType": {
+                "conceptPrefLabel": "temporal"
+            },
+            "keywords": ["Jurassic", "Toarcian"]
+         }
+     ]
+}

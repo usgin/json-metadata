@@ -1,0 +1,66 @@
+{
+    "contacts": [{}],
+    "metadataInfo": {
+        "metadataIdentifier": "http://host.org/uriString",
+        "metadataLastUpdate": "2016-03-31T12:00:00",
+        "metadataContacts": [
+            {
+                "agentRole": {
+                    "conceptPrefLabel": "point of contact"
+                },
+                "agent": {
+                    "personName": "Metad A. Taexpert",
+                    "contactEmails": [
+                        "taexpertma@email.com"
+                    ]
+                }
+            }
+        ],
+        "metadataSpecification": {
+            "referenceLabel": "label string that identifies the spec"
+        },
+        "metadataLanguage": {
+            "languageCode": "eng"
+        }
+    },
+    "describedResource": {
+        "resourceTitle": "This is the resource title",
+        "resourceAbstract": "",
+        "citationResponsibleParties": [{}],
+        "citationDates": [{}],
+        "resourceSpatialExtents": [
+            {
+                "boundingBoxesWGS84": [
+                    {
+                        "northBoundLatitude": 22,
+                        "southBoundLatitude": 21,
+                        "eastBoundLongitude": -111,
+                        "westBoundLongitude": -112
+                    }
+                ]
+            }
+
+        ],
+        "resourceAccessOptions": [
+            {
+                "distributor": {
+                    "agentRole": {
+                        "conceptPrefLabel": "distributor contact"
+                    },
+                    "agent": {
+                        "personName": "Host A. Dministrator",
+                        "contactEmails": [
+                        "dministratorha@email.com"
+                    ]
+                    }
+                },
+                "accessLinks": [
+                    {
+                        "linkURL": "http://azgs.az.gov/links/4347357"
+                    }
+            ]
+            }
+        ]
+
+    }
+}

@@ -1,0 +1,277 @@
+{
+    "contacts": [{}],
+    "metadataInfo": {
+        "metadataIdentifier": "http://host.org/uriString",
+        "metadataLastUpdate": "2016-03-31T12:00:00",
+        "metadataContacts": [
+            {
+                "agentRole": {
+                    "conceptPrefLabel": "point of contact"
+                },
+                "agent": {
+                    "personName": "Metad A. Taexpert",
+                    "contactEmails": [
+                        "taexpertma@email.com"
+                    ]
+                }
+            }
+        ],
+        "metadataSpecification": {
+            "referenceLabel": "label string that identifies the spec"
+        },
+        "metadataLanguage": {
+            "languageCode": "eng"
+        }
+    },
+    "describedResource": {
+        "resourceTitle": "This is the resource title",
+        "resourceAbstract": "This is a long and informative description of what this resource is about, what is in the content, why it was produced, etc.",
+        "resourceIdentifiers": [
+            {
+                "resourceURI": "http://resource.usgin.org/uri-gin/resource/3427287"
+            },
+            {
+                "scopedIdentifier": {
+                    "identifierCodeString": "3427287",
+                    "identifierCodespace": "http://resource.usgin.org/uri-gin/resource",
+                    "scopedIdentifierAuthority": {
+                        "referenceLabel": "US Geoscience Information Network",
+                        "referenceURI": "http://usgin.org"
+                    }
+                }
+            }
+        ],
+        "citationResponsibleParties": [
+            {
+                "agentRole": {
+                    "conceptPrefLabel": "author"
+                },
+                "agent": {
+                    "personName": "Joe E. Scientist",
+                    "contactEmails": [
+                        "taexpertma@email.com"
+                    ]
+                }
+            },
+            {
+                "agentRole": {
+                    "conceptPrefLabel": "author"
+                },
+                "agent": {
+                    "personName": "Sara I. Smart",
+                    "contactEmails": [
+                        "smartsi@email.com"
+                    ]
+                }
+            },
+            {
+                "agentRole": {
+                    "conceptPrefLabel": "funding agency"
+                },
+                "agent": {
+                    "organizationNames": ["U.S. Geological Survey", "USGS"],
+                    "contactEmails": [
+                        "funder@usgs.gov"
+                    ]
+                }
+            }
+         ],
+        "citationDates": [
+            {
+                "eventTypes": [
+                    {
+                        "conceptURI": "http://resource.usgin.org/concepts/43727",
+                        "conceptPrefLabel": "publication"
+                    }
+                ],
+                "eventDateTime": "2011-07-06T12:00:00"
+            },
+            {
+                "eventTypes": [
+                    {
+                        "conceptURI": "http://resource.usgin.org/concepts/794758",
+                        "conceptPrefLabel": "revision"
+                    }
+                ],
+                "eventDateTime": "2015-03-16T12:00:00"
+            }
+        ],
+        "citationRecommendation": "text of recommended citation to identify the described resource",
+        "resourceTemporalExtents": [
+            {
+                "timePeriod": {
+                    "timePeriodID": "g21546",
+                    "timePeriodBeginPosition": "2001-03-21T12:00:00",
+                    "timePeriodEndPosition": "2010-01-01T12:00:00"
+                }
+            }
+        ],
+        "resourceSpatialExtents": [
+            {
+                "boundingBoxesWGS84": [
+                    {
+                        "northBoundLatitude": 22,
+                        "southBoundLatitude": 21,
+                        "eastBoundLongitude": -111,
+                        "westBoundLongitude": -112
+                    }
+                ],
+                "verticalExtent": {
+                    "verticalExtentMinimum": 0,
+                    "verticalExtentMaximum": 1952,
+                    "verticalExtentCRS": {
+                        "referenceLabel": "depth from ground level in feet"
+                    }
+                }
+            }
+        ],
+        "resourceIndexTerms": [
+            {
+                "keywordType": {
+                    "conceptURI": "iso19115:theme",
+                    "conceptPrefLabel": "thematic"
+                },
+                "keywords": ["gold", "mining", "arsenic", "hydrothermal alteration"],
+                "keywordReference": {
+                    "referenceLabel": "usgin thematic thesaurus",
+                    "referenceURI": "http://usgin.org/specs/dummyURI/themethesaurus"
+                }
+            },
+            {
+                "keywords": ["gold", "ore", "mother lode"]
+        },
+            {
+                "keywordType": {
+                    "conceptPrefLabel": "temporal"
+                },
+                "keywords": ["Jurassic", "Toarcian"]
+         },
+            {
+                "keywordType": {
+                    "conceptURI": "iso19115:location",
+                    "conceptPrefLabel": "geographic keywords",
+                    "conceptAltLabels": [
+                        {
+                            "conceptAltLabelText": "location",
+                            "conceptAltLabelContext": {
+                                "referenceLabel": "ISO19115 usage"
+                            }
+                        }
+                    ]
+                },
+                "keywords": ["Harquahala", "La Paz County", "Socorro Peak"]
+         }
+     ],
+        "resourceLanguages": [
+            {
+                "languageCode": "eng"
+            }
+        ],
+        "resourceAccessOptions": [
+            {
+                "distributor": {
+                    "agentRole": {
+                        "conceptPrefLabel": "distributor contact"
+                    },
+                    "agent": {
+                        "personName": "Host A. Dministrator",
+                        "contactEmails": [
+                        "dministratorha@email.com"
+                    ]
+                    }
+                },
+                "accessLinks": [
+                    {
+                        "linkURL": "http://azgs.az.gov/links/4347357",
+                        "linkRelations": [
+                            {
+                                "relLabel": "download",
+                                "relVocabularyURI": "http://tc211.iso.org/codelists/functionCode"
+                            }
+                        ],
+                        "linkTitle": "download data"
+                    },
+                    {
+                        "linkURL": "http://shvfuaqv.net/bzskpi",
+                        "linkRelations": [
+                            {
+                                "relLabel": "download",
+                                "relURI": "http://schema.org/relations/accessURL"
+                            }
+                        ],
+                        "linkTitle": "alternate download location",
+                        "linkTargetResourceType": "zip",
+                        "linkContentResourceType": "csv"
+
+                    },
+                    {
+                        "linkURL": "http://mspzyqp.org/xsme",
+                        "linkRelations": [
+                            {
+                                "relLabel": "web service",
+                                "relURI": "http://tc211.iso.org/functionCodes/webService"
+                }
+            ],
+                        "linkTitle": "h box cute student",
+                        "linkTargetResourceType": "image/tif",
+                        "linkOverlayAPI": {
+                            "APILabel": "OGC:WMS",
+                            "API-URI": "http://ogc.org/services/wms"
+                        },
+                        "linkProfile": {
+                            "profileLabel": "OneGeology Tier 3 WMS",
+                            "profileURI": "http://oneGeology.org/Tier3"
+                        },
+                        "linkParameters": [{
+                                "linkParameterLabel": "paramA",
+                                "linkParameterURI": "http://usgin.org/heat",
+                                "linkParameterValue": "2456"
+                },
+                            {
+                                "linkParameterLabel": "ParamB",
+                                "linkParameterURI": "http://cuahsi.org/vocab/energy",
+                                "linkParameterValue": "22 kwh"
+                },
+                            {
+                                "linkParameterLabel": "ParamC",
+                                "linkParameterURI": "http://xqq.org/hegklnxwk",
+                                "linkParameterValue": "blue"
+                }]
+        },
+                    {
+                        "linkURL": "http://kuv.gov/aaglswr",
+                        "linkRelations": [
+                            {
+                                "relLabel": "information",
+                                "relURI": "http://schema.org/relations/webPage"
+                            }
+                        ],
+                        "linkTitle": "link to dataset landing page"
+                    }
+            ]
+            }
+        ],
+        "resourceLineageItems": [
+            {
+                "stepSequenceNo": 0,
+                "processStepStatement": "text body describing the origin lineage of the resource"
+            },
+            {
+                "stepSequenceNo": 1,
+                "processStepStatement": "text body describing second step in the processing lineage of the resource"
+            }
+        ],
+        "resourceQualityItems": [
+            {
+                "qualityScope": {
+                    "qualityResultScopeLevel": {
+                        "conceptPrefLabel": "dataset"
+                    }
+                },
+                "qualityInformation": {
+                    "qualityStatement": "statement summarizing what is known about the quality of a resource"
+                }
+            }
+        ]
+    }
+}
