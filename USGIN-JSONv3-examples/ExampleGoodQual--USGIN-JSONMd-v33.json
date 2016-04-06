@@ -17,7 +17,7 @@
             }
         ],
         "metadataSpecification": {
-            "referenceLabel": "label string that identifies the spec"
+            "referenceLabel": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/3.0"
         },
         "metadataLanguage": {
             "languageCode": "eng"
