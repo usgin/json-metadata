@@ -1,0 +1,455 @@
+{
+    "resourceDescription": {
+        "resourceSpatialExtents": [{
+            "extentStatement": "Extent Description 1",
+            "verticalExtents": [{
+                "verticalExtentMinimum": "0",
+                "verticalExtentMaximum": "0"
+            }, {
+                "verticalExtentMinimum": "0",
+                "verticalExtentMaximum": "0"
+            }]
+        }, {
+            "extentStatement": "exten description",
+            "verticalExtents": [{
+                "verticalExtentMinimum": "0",
+                "verticalExtentMaximum": "0"
+            }, {
+                "verticalExtentMinimum": "0",
+                "verticalExtentMaximum": "0",
+                "verticalExtentCRS": {
+                    "referenceLabel": "",
+                    "referenceURI": "link to vertical CRS"
+                }
+            }],
+            "boundingBoxesWGS84": [{
+                "extentGeometryTypes": "within",
+                "northBoundLatitude": "0",
+                "westBoundLongitude": "0",
+                "eastBoundLongitude": "0",
+                "southBoundLatitude": "0"
+            }, {
+                "extentGeometryTypes": "within",
+                "northBoundLatitude": "0",
+                "westBoundLongitude": "0",
+                "eastBoundLongitude": "0",
+                "southBoundLatitude": "0"
+            }]
+        }, {}],
+        "resourceIndexTerms": [{
+            "keywords": ["KeywordGroup1.word1", "KeywordGroup1.word2", "KeywordGroup1.word3"],
+            "keywordReference": {
+                "referenceLabel": "thesaurus 1 titel"
+            },
+            "keywordType": {
+                "conceptURI": "location",
+                "conceptVocabularyURI": "keywordCodelist1URI",
+                "conceptPrefLabel": "location keyword type code1"
+            }
+        }, {
+            "keywords": ["KeywordGroup2.word1", "KeywordGroup2.word2", "KeywordGroup2.word3"],
+            "keywordReference": {
+                "referenceLabel": "thesaurus 2 titel"
+            },
+            "keywordType": {
+                "conceptURI": "theme",
+                "conceptVocabularyURI": "keywordtypeCodeListURI2",
+                "conceptPrefLabel": "keyword type2 theme"
+            }
+        }, {
+            "keywords": ["KeywordGroup3.word1", "KeywordGroup3.word2", "KeywordGroup3.word3"],
+            "keywordReference": {
+                "referenceLabel": "thesaurus 3 title"
+            },
+            "keywordType": {
+                "conceptURI": "keywordTypeCode3",
+                "conceptVocabularyURI": "keywordTypeCodeList3",
+                "conceptPrefLabel": "stratum typecode3"
+            }
+        }],
+        "resourceStatus": ["statusCodeListValueURI", "statusCodeListValueURI2", "status text", "status text 2"],
+        "resourceQualityItems": [],
+        "resourceUsageConstraints": [],
+        "resourceIdentifiers": ["https://www.sciencebase.gov/catalog/item/dataseURI", "ISBN ID", "ISSN ID"],
+        "resourceSpecificUsage": [{
+            "specificUsage": "specific usage 1",
+            "specificUsageUserContact": {
+                "agentRolePrefLabel": "specUsageCodeValue1",
+                "agentRoleVocabularyURI": "",
+                "agentRoleConceptURI": "SpecUsageCodeValue1",
+                "contact": {
+                    "personName": "specificUsage individual1",
+                    "personPosition": "",
+                    "organizationNames": "",
+                    "contact-info": ""
+                },
+                "contactXlinkHRef": "",
+                "contactXlinkTitle": ""
+            },
+            "specificUsageDateTime": "",
+            "specificUsageLimitations": ""
+        }, {
+            "specificUsage": "specific usage 2",
+            "specificUsageUserContact": {
+                "agentRolePrefLabel": "specUsageCodeValue2",
+                "agentRoleVocabularyURI": "",
+                "agentRoleConceptURI": "SpecUsageCodeValue2",
+                "contact": {
+                    "personName": "specificUsage individual2",
+                    "personPosition": "",
+                    "organizationNames": "",
+                    "contact-info": ""
+                },
+                "contactXlinkHRef": "",
+                "contactXlinkTitle": ""
+            },
+            "specificUsageDateTime": "",
+            "specificUsageLimitations": ""
+        }],
+        "resourceTemporalExtents": [{
+            "timeInstant": {
+                "timeInstantTimePosition": " 1995-02-20T00:00:11 "
+            }
+        }, {
+            "timePeriod": {
+                "timePeriodBeginPosition": "2015-02-03",
+                "timePeriodEndPosition": "2015-06-22"
+            }
+        }, {
+            "timePeriod": {
+                "timePeriodBeginPosition": "2006-05-04",
+                "timePeriodEndPosition": "2006-05-09"
+            }
+        }, {}, {
+            "timePeriod": {
+                "timePeriodBeginPosition": "2014-07-11T12:00:00Z ",
+                "timePeriodEndPosition": " 2014-07-11T14:00:00Z "
+            }
+        }],
+        "resourceTitle": "citation title",
+        "topicCategory": ["biota", "farming"],
+        "resourceCredit": "",
+        "resourcePurpose": "",
+        "citationDetails": ["environment: ", "; presentation form: ", "presentFormCode1", "presFormCode1"],
+        "resourceSpatialDescription": {
+            "resourceSpatialRepresentationTypes": [{
+                "conceptURI": "SpatialRepresentationTypeCodeVal1",
+                "conceptPrefLabel": "MD_SpatialRepresentationTypeCode1",
+                "vocabularyURI": "SpatialRepresentationTypeCodeList1"
+            }, {
+                "conceptURI": "SpatialRepresentationTypeCodeVal2",
+                "conceptPrefLabel": "MD_SpatialRepresentationTypeCode2",
+                "vocabularyURI": "SpatialRepresentationTypeCodeList2"
+            }],
+            "resourceSpatialReferenceSystems": [{
+                "conceptURI": "rs identifier 1",
+                "conceptPrefLabel": "rs identifier 1"
+            }, {
+                "conceptURI": "rs id 2",
+                "conceptPrefLabel": "rs id 2"
+            }]
+        },
+        "resourceDetails": {
+            "service": {},
+            "dataset": {}
+        },
+        "resourceMaintenance": {},
+        "resourceLineageItems": {
+            "processStepStatement": "",
+            "stepSequenceNo": 0
+        },
+        "resourceCharacterSet": "resourcecharSetCodeList2:resourcecharSetCodeVal2",
+        "citationDates": [{
+            "eventTypes": [{
+                "conceptURI": "Publication, Publication, ",
+                "conceptPrefLabel": "Publication, Publication, ",
+                "vocabularyURI": "https://www.sciencebase.gov/vocab/category/4f4e475de4b07f02db47ded1"
+            }],
+            "eventDateTime": "1996-10-20T15:33:32.56"
+        }, {
+            "eventTypes": [{
+                "conceptURI": "Revision, date2 revison, ",
+                "conceptPrefLabel": "Revision, date2 revison, ",
+                "vocabularyURI": "https://www.sciencebase.gov/vocab/category/4f4e475de4b07f02db47ded1"
+            }],
+            "eventDateTime": "1997-11-20T17:22:00"
+        }],
+        "resourceAbstract": "The Upper Mississippi Valley zinc-lead district is hosted by Ordovician carbonate rocks at the northern margin of the Illinois Basin. Fluid inclusion temperature measurements on Early Permian sphalerite ore from the district are predominantly between 90?C and I50?C. These temperatures are greater than can be explained by their reconstructed burial depth, which was a maximum of approximately 1 km at the time of mineralization. In contrast to the temperatures of mineral formation derived from fluid inclusions, biomarker maturities in the Upper Mississippi Valley district give an estimate of total thermal exposure integrated over time. Temperatures from fluid inclusions trapped during ore genesis with biomarker maturities were combined to construct an estimate of the district's overall thermal history and, by inference, the late Paleozoic thermal and hydrologic history of the Illinois Basin. Circulation of groundwater through regional aquifers, given sufficient flow rates, can redistribute heat from deep in a sedimentary basin to its shallower margins. Evidence for regional-scale circulation of fluids is provided by paleomagnetic studies, regionally correlated zoned dolomite, fluid inclusions, and thermal maturity of organic matter. Evidence for igneous acti vity contemporaneous with mineralization in the vicinity of the Upper Mississippi Valley district is absent. Regional fluid and heat circulation is the most likely explanation for the elevated fluid inclusion temperatures (relative to maximum estimated burial depth) in the Upper Mississippi Valley district. One plausible driving mechanism and flow path for the ore-forming fluids is groundwater recharge in the late Paleozoic Appalachian-Ouachita mountain belt and northward flow through the Reelfoot rift and the proto- Illinois Basin to the Upper Mississippi Valley district. Warm fluid flowing laterally through Cambrian and Ordovician aquifers would then move vertically upward through the fractures that control sphalerite mineralization in the Upper Mississippi Valley district. Biomarker reactant-product measurements on rock extracts from the Upper Mississippi Valley district define a relatively low level ofthermal maturity for the district, 0.353 for sterane and 0.577 for hopane. Recently published kinetic constants permit a time-temperature relationship to be determined from these biomarker maturities. Numerical calculations were made to simulate fluid heat flow through the fracture-controlled ore zones of the Thompson-Temperly mine and heat transfer to the adjacent rocks where biomarker samples were collected. Calculations that combine the fluid inclusion temperatures and the biomarker constraints on thermal maturity indicate that the time interval during which mineralizing fluids circulated through the Upper Mississippi Valley district is on the order of 200,000 years. Fluid inclusion measurements and thermal maturities from biomarkers in the district reflect the duration of peak temperatures resulting from regional fluid circulation. On the basis of thermal considerations, the timing of fluorite mineralization in southern Illinois, and the northward-decreasing pattern of fluorine enrichment in sediments, we hypothesize that the principal flow direction was northward through the Cambrian and Ordovician aquifers of the Illinois Basin. A basin-scale flow system would result in mass transport (hydrocarbon migration, transport of metals in solution) and energy (heat) transport, which would in turn drive chemical reactions (for example, maturation of organic matter, mineralization, diagenetic reactions) within the Illinois Basin and at its margins., Data Identification supplemental information, ",
+        "resourceAccessOptions": [{
+            "distributor": {
+                "agent": {
+                    "personPosition": "distributor contact  position name",
+                    "contactEmails": [["DistributorContact1@e-mail.org"]]
+                },
+                "agentRole": {
+                    "conceptURI": "distContactRoleCodeValue",
+                    "conceptPrefLabel": "distributor contact role"
+                }
+            },
+            "accessLinks": [{
+                "url": "https://www.sciencebase.gov/catalog/item/4f4e49d6e4b07f02db5de6c7",
+                "linkTargetResourceType": [{
+                    "formatDecompressionTechnique": "",
+                    "formatAmendmentNumber": "",
+                    "formatName": "distributionFormat1",
+                    "formatVersion": "no distirbution version1",
+                    "formatID": "",
+                    "formatRequestMethod": "unknown",
+                    "formatSpecification": null
+                }],
+                "linkOverlayAPI": "WWW:LINK-1.0-http--link",
+                "linkDescription": null,
+                "linkParameters": [],
+                "linkRelations": [{
+                    "relURI": "information",
+                    "relLabel": "information",
+                    "relVocabularyURI": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode"
+                }],
+                "linkTitle": "ScienceBase Item Summary Page"
+            }, {
+                "url": "http://pubs.usgs.gov/bul/2094f/report.pdf",
+                "linkTargetResourceType": [{
+                    "formatDecompressionTechnique": "",
+                    "formatAmendmentNumber": "",
+                    "formatName": "distributionFormat1",
+                    "formatVersion": "no distirbution version1",
+                    "formatID": "",
+                    "formatRequestMethod": "unknown",
+                    "formatSpecification": null
+                }],
+                "linkOverlayAPI": "WWW:LINK-1.0-http--link",
+                "linkDescription": null,
+                "linkParameters": [],
+                "linkRelations": [{
+                    "relURI": "information",
+                    "relLabel": "information",
+                    "relVocabularyURI": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode"
+                }],
+                "linkTitle": "PDF Download"
+            }, {
+                "url": "http://pubs.er.usgs.gov/publication/b2094F",
+                "linkTargetResourceType": [{
+                    "formatDecompressionTechnique": "",
+                    "formatAmendmentNumber": "",
+                    "formatName": "distributionFormat1",
+                    "formatVersion": "no distirbution version1",
+                    "formatID": "",
+                    "formatRequestMethod": "unknown",
+                    "formatSpecification": null
+                }],
+                "linkOverlayAPI": "WWW:LINK-1.0-http--link",
+                "linkDescription": null,
+                "linkParameters": [],
+                "linkRelations": [{
+                    "relURI": "information",
+                    "relLabel": "information",
+                    "relVocabularyURI": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode"
+                }],
+                "linkTitle": "Web Site"
+            }, {
+                "transferOptionHref": "#bozoLinkTransferOption1"
+            }]
+        }],
+        "relatedResources": [{
+            "relationTypeVocabularyURI": "1assocTypeCodeList",
+            "relatedResourceLabel": "",
+            "relatedInitiativeLabel": "1DS_InitiativeTypeCode11",
+            "relatedInitiativeTypeConceptURI": "1initTypeCodeValue",
+            "relationTypeConceptURI": "1AssocTypeCodeValue",
+            "relatedInitiativeTypeVocabularyURI": "1initTypeCodeList",
+            "relatedResourceIdentifier": "",
+            "relationTypeLabel": "1DS_AssociationTypeCode9, 1AssocTypeCodeValue, "
+        }, {
+            "relationTypeVocabularyURI": "assocTypeCodeList",
+            "relatedResourceLabel": "",
+            "relatedInitiativeLabel": "DS_InitiativeTypeCode",
+            "relatedInitiativeTypeConceptURI": "initTypeCodeValue",
+            "relationTypeConceptURI": "AssocTypeCodeValue",
+            "relatedInitiativeTypeVocabularyURI": "initTypeCodeList",
+            "relatedResourceIdentifier": "",
+            "relationTypeLabel": "DS_AssociationTypeCode, AssocTypeCodeValue, "
+        }],
+        "resourceLanguages": ["resLangCodeVal1", "resLangCodeVal2", "resource language code1", "resource language code2"],
+        "resourceTypes": ["hierarchy level name1", "hierarchy level name2", "hierarchy level name3"],
+        "resourceEnvironmentDescription": "environmentDescription",
+        "citationAlternateTitles": ["alt title 1", "alt title 2"],
+        "citationResponsibleParties": [{
+            "agent": {
+                "personName": "citation individName1",
+                "personPosition": "citation posName1",
+                "contactEmails": ["missing@missing.org"]
+            },
+            "agentRole": {
+                "conceptURI": "author",
+                "conceptPrefLabel": "citRespParty1 author"
+            }
+        }, {
+            "agent": {
+                "personName": "citation individName2",
+                "contactEmails": [["cit.respParty2.email"]],
+                "organizationNames": ["cit2 orgName"]
+            },
+            "agentRole": {
+                "conceptURI": "editor",
+                "conceptPrefLabel": "citRespParty2 editor"
+            }
+        }],
+        "citationRecommendation": "citation individName1citation individName21996-10-20T15:33:32.56citation titlethe citation edition, 1997-11-20T17:22:00, SeriesName, seriesIssueID, seriesPage, Other citation Details, collective titel, ",
+        "resourceBrowseGraphic": [],
+        "resourceContacts": [{
+            "agent": {
+                "personName": "Missing",
+                "contactEmails": ["missing@missing.org"]
+            },
+            "agentRole": {
+                "conceptPrefLabel": "Missing"
+            }
+        }]
+    },
+    "metadataProperties": {
+        "metadataContacts": [{
+            "agent": {
+                "personName": "contact individual name",
+                "contactEmails": [["e-mail for metadata contact"]],
+                "organizationNames": ["contact org name"]
+            },
+            "agentRole": {
+                "conceptURI": "Point Of Contact",
+                "conceptPrefLabel": "Point Of Contact"
+            }
+        }, {
+            "agent": {
+                "contactEmails": ["missing@missing.org"],
+                "organizationNames": ["md contact orgExpanded"]
+            },
+            "agentRole": {
+                "conceptURI": "Point Of Contact",
+                "conceptPrefLabel": "md Point Of Contact"
+            }
+        }, {
+            "agent": {
+                "contactEmails": ["missing@missing.org"],
+                "organizationNames": ["md org uri3 here"]
+            },
+            "agentRole": {
+                "conceptURI": "Point Of Contact",
+                "conceptPrefLabel": "md2 Point Of Contact"
+            }
+        }, {
+            "agent": {
+                "contactEmails": ["missing@missing.org"],
+                "organizationNames": ["org name uri1 here"]
+            },
+            "agentRole": {
+                "conceptPrefLabel": "Missing"
+            }
+        }, {
+            "agent": {
+                "contactEmails": ["missing@missing.org"],
+                "organizationNames": ["md org parent uri2 here"]
+            },
+            "agentRole": {
+                "conceptPrefLabel": "Missing"
+            }
+        }, {
+            "agent": {
+                "contactEmails": ["missing@missing.org"],
+                "organizationNames": ["md org original name parent1 >> parent2 >> org"]
+            },
+            "agentRole": {
+                "conceptURI": "Point Of Contact",
+                "conceptPrefLabel": "md org 3 Point Of Contact"
+            }
+        }, {
+            "agent": {
+                "contactEmails": ["missing@missing.org"],
+                "organizationNames": ["parent1expanded >> parent2expanded >> orgexpanded"]
+            },
+            "agentRole": {
+                "conceptURI": "Point Of Contact",
+                "conceptPrefLabel": "Point Of Contact"
+            }
+        }, {
+            "agent": {
+                "personName": "md contact4 Goldhaber, Martin B.",
+                "contactEmails": ["missing@missing.org"],
+                "organizationNames": ["md org4 Unknown"]
+            },
+            "agentRole": {
+                "conceptURI": "Point Of Contact",
+                "conceptPrefLabel": "md4 Point Of Contact"
+            }
+        }, {
+            "agent": {
+                "personName": "md indiv5 U.S. G.P.O.,",
+                "phoneContacts": [{
+                    "phoneLabel": "voice",
+                    "phoneNumber": "md5 voiceTel 222"
+                }],
+                "organizationNames": ["md org5 Unknown"]
+            },
+            "agentRole": {
+                "conceptURI": "Point Of Contact",
+                "conceptPrefLabel": "md5 Point Of Contact"
+            }
+        }],
+        "harvestInformation": {
+            "harvestedFileIdentifier": "4f4e49d6e4b07f02db5de6c7",
+            "harvestedMetadataFormat": {
+                "referenceLabel": "standard name ISO19115",
+                "version": "standard version 1.0"
+            },
+            "harvestDate": "",
+            "harvestURL": ""
+        },
+        "metadataUsageConstraint": [[{
+            "legalAccessRestrictionCode": [],
+            "securityHandlingDescription": "",
+            "useLimitation": ["metadata Constraints use limitation"],
+            "securityUserNote": "",
+            "securityClassificationSystem": "",
+            "legalUseLimitation": [],
+            "constraintRestrictionCodelist": [],
+            "legalOtherRestrictionConstraints": [],
+            "securityClassificationCode": "",
+            "securityUseLimitation": [],
+            "legalUseRestrictionCode": []
+        }]],
+        "metadataSpecification": {
+            "referenceLabel": "USGIN JSON metadata v3.0",
+            "referenceURI": "http://resources.usgin.org/uri-gin/usgin/schema/json/3.0/metadata"
+        },
+        "metadataRecordLineageItems": [],
+        "metadataLanguage": {
+            "languageCode": "eng",
+            "languageReference": {
+                "referenceURI": ""
+            }
+        },
+        "metadataIdentifier": "4f4e49d6e4b07f02db5de6c7",
+        "parentMetadata": {
+            "referenceURI": "yo mama parent identifier"
+        },
+        "metadataLastUpdate": "2013-05-15T16:57:31Z",
+        "metadataMaintenance": {
+            "maintenanceContacts": [{
+                "agentRolePrefLabel": "metadata mainteancne contact role",
+                "agentRoleVocabularyURI": "",
+                "agentRoleConceptURI": "metaMaintRoleCodeValue",
+                "contact": {
+                    "personName": "",
+                    "personPosition": "metadata maintenance position name",
+                    "organizationNames": "",
+                    "contact-info": ""
+                },
+                "contactXlinkHRef": "",
+                "contactXlinkTitle": ""
+            }],
+            "MaintenanceNote": ["metadata maintenance note1", "metadata maintenance note2"],
+            "maintenanceInterval": "",
+            "maintenanceFrequencyURI": "metadataMaintFreqCodeVAl, mainatenance and update frequency, ",
+            "maintenanceFrequencyVocabularyURI": "metadataMaintFreqCodeList",
+            "dateNextUpdate": ""
+        }
+    }
+}
