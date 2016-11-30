@@ -200,7 +200,7 @@
             "$ref": "#/definitions/jmd:ResourceDescription"
         }
     },
-
+    
     "definitions": {
         "jmd:ResourceDescription": {
             "description": "metadata that documents a resource. Basic requirement is title and access information to support the most basic discovery scenarios. The various optional elements provide capabilities for extensive resource documentation and inforamtion for machine interoperability.",
@@ -2101,8 +2101,6 @@
             }
         },
 
-
-
         "jmd:QualityReportObject": {
             "id": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/3.0/QualityReport",
             "description": "a collection of quality elements that apply to the specified scope.",
@@ -2535,182 +2533,181 @@
                         "ISO 19115-2": ["MD_Usage > usageDateTime"]
                     }
                 }
-            },
+            }
+        },
 
-            "jmd:TimeInstantObject": {
-                "description": "this is only necessary if thre is a requiremnt to have description text associated with the position, or if the position has an identifier",
-                "type": "object",
-                "required": ["jmd:timePosition"],
-                "additionalProperties": true,
-                "properties": {
-                    "jmd:timeInstantId": {
-                        "type": "string",
-                        "description": "A unique identifier for the timeInstant.",
-                        "translation": {
-                            "ISO 19115-2": ["EX_TemporalExtent > extent > TimeInstant @id"]
-                        }
-                    },
-                    "jmd:timeInstantDescription": {
-                        "type": "string",
-                        "description": "A brief description providing relevant information about the date and time.",
-                        "translation": {
-                            "ISO 19115-2": ["EX_TemporalExtent > extent > TimeInstant > description"]
-                        }
-                    },
-                    "jmd:timeInstantTimePosition": {
-                        "translation": {
-                            "ISO 19115-2": ["EX_TemporalExtent > extent > TimeInstant > timePosition"]
-                        },
-                        "$ref": "#/definitions/jmd:DateObject"
-                    }
-                }
-            },
-
-            "jmd:TimePeriodObject": {
-                "type": "object",
-                "description": "A span of time represented by a starting date-time and an ending date-time.",
-                "additionalProperties": true,
-                "properties": {
-                    "jmd:timePeriodId": {
-                        "type": "string",
-                        "description": "A unique identifier for a time period.",
-                        "translation": {
-                            "ISO 19115-2": ["EX_TemporalExtent > extent > TimePeriod @id"]
-                        }
-                    },
-                    "jmd:timePeriodDescription": {
-                        "type": "string",
-                        "description": "A brief description providing relevant information about the time period.",
-                        "translation": {
-                            "ISO 19115-2": ["EX_TemporalExtent > extent > TimePeriod > description "]
-                        }
-                    },
-                    "jmd:timePeriodBeginPosition": {
-                        "description": "Starting date, or date and time.",
-                        "translation": {
-                            "ISO 19115-2": ["EX_TemporalExtent > extent > TimePeriod > beginPosition "],
-                            "FGDC CSDGM": ["idinfo > timeperd > rngdates > begdate"]
-                        },
-                        "$ref": "#/definitions/jmd:DateObject"
-                    },
-                    "jmd:timePeriodEndPosition": {
-                        "description": "Ending date, or date and time.",
-                        "translation": {
-                            "ISO 19115-2": ["EX_TemporalExtent > extent > TimePeriod > endPosition"],
-                            "FGDC CSDGM": ["idinfo > timeperd > rngdates > enddate"]
-                        },
-                        "$ref": "#/definitions/jmd:DateObject"
+        "jmd:TimeInstantObject": {
+            "description": "this is only necessary if thre is a requiremnt to have description text associated with the position, or if the position has an identifier",
+            "type": "object",
+            "required": ["jmd:timePosition"],
+            "additionalProperties": true,
+            "properties": {
+                "jmd:timeInstantId": {
+                    "type": "string",
+                    "description": "A unique identifier for the timeInstant.",
+                    "translation": {
+                        "ISO 19115-2": ["EX_TemporalExtent > extent > TimeInstant @id"]
                     }
                 },
-                "allOf": [{
-                        "title": "beginPosition required",
-                        "required": ["jmd:timePeriodBeginPosition"]
+                "jmd:timeInstantDescription": {
+                    "type": "string",
+                    "description": "A brief description providing relevant information about the date and time.",
+                    "translation": {
+                        "ISO 19115-2": ["EX_TemporalExtent > extent > TimeInstant > description"]
+                    }
+                },
+                "jmd:timeInstantTimePosition": {
+                    "translation": {
+                        "ISO 19115-2": ["EX_TemporalExtent > extent > TimeInstant > timePosition"]
+                    },
+                    "$ref": "#/definitions/jmd:DateObject"
+                }
+            }
+        },
+
+        "jmd:TimePeriodObject": {
+            "type": "object",
+            "description": "A span of time represented by a starting date-time and an ending date-time.",
+            "additionalProperties": true,
+            "properties": {
+                "jmd:timePeriodId": {
+                    "type": "string",
+                    "description": "A unique identifier for a time period.",
+                    "translation": {
+                        "ISO 19115-2": ["EX_TemporalExtent > extent > TimePeriod @id"]
+                    }
+                },
+                "jmd:timePeriodDescription": {
+                    "type": "string",
+                    "description": "A brief description providing relevant information about the time period.",
+                    "translation": {
+                        "ISO 19115-2": ["EX_TemporalExtent > extent > TimePeriod > description "]
+                    }
+                },
+                "jmd:timePeriodBeginPosition": {
+                    "description": "Starting date, or date and time.",
+                    "translation": {
+                        "ISO 19115-2": ["EX_TemporalExtent > extent > TimePeriod > beginPosition "],
+                        "FGDC CSDGM": ["idinfo > timeperd > rngdates > begdate"]
+                    },
+                    "$ref": "#/definitions/jmd:DateObject"
+                },
+                "jmd:timePeriodEndPosition": {
+                    "description": "Ending date, or date and time.",
+                    "translation": {
+                        "ISO 19115-2": ["EX_TemporalExtent > extent > TimePeriod > endPosition"],
+                        "FGDC CSDGM": ["idinfo > timeperd > rngdates > enddate"]
+                    },
+                    "$ref": "#/definitions/jmd:DateObject"
+                }
+            },
+            "allOf": [{
+                    "title": "beginPosition required",
+                    "required": ["jmd:timePeriodBeginPosition"]
 				}, {
-                        "title": "endPosition required",
-                        "required": ["jmd:timePeriodEndPosition"]
+                    "title": "endPosition required",
+                    "required": ["jmd:timePeriodEndPosition"]
 				}
 			]
-            },
+        },
 
-            "jmd:UsageConstraintObject": {
-                "description": "properties for specifying legal, technical or security restrictions on the usage or distribution of a resource. Use for DPLA rights properties.",
-                "id": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/3.0/UsageConstraint",
-                "type": "object",
-                "anyOf": [{
-                        "required": ["jmd:constraintsStatements"]
+        "jmd:UsageConstraintObject": {
+            "description": "properties for specifying legal, technical or security restrictions on the usage or distribution of a resource. Use for DPLA rights properties.",
+            "id": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/3.0/UsageConstraint",
+            "type": "object",
+            "anyOf": [{
+                    "required": ["jmd:constraintsStatements"]
 				}, {
-                        "required": ["jmd:constraints"]
+                    "required": ["jmd:constraints"]
 				}, {
-                        "required": ["jmd:licenses"]
+                    "required": ["jmd:licenses"]
 				}
 			],
-                "Properties": {
-                    "jmd:constraintsStatements": {
-                        "description": "an array free text description of legal, technical, and security-related constraint on access to or use of a resource, along with other notes such as userNotes, Classification system, handling instructions, etc.",
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "jmd:constraints": {
-                        "description": "list of all constraints on usage, each categorized by type (security, legal, technical) and specific instance of that constraint type using a controlled vocabulary. Any necessary text elucidation of the constraints should be in the constraintsStatement element",
-                        "type": "array",
-                        "minItems": 1,
-                        "items": {
-                            "type": "object",
-                            "required": ["jmd:constraintType", "jmd:constraintTerm"],
-                            "properties": {
-                                "jmd:constraintType": {
-                                    "description": "category of constraint e.g.security, access, technical, usage.",
-                                    "$ref": "#/definitions/jmd:ControlledConceptObject"
-                                },
-                                "jmd:constraintTerm": {
-                                    "description": "a controlled concept that specifies the particular constraint within the domain of constraints specified by the constraintType; e.g. ISO19115 codelists",
-                                    "$ref": "#/definitions/jmd:ControlledConceptObject"
-                                }
-                            }
-                        }
-                    },
-                    "jmd:licenses": {
-                        "description": "specification of one or more licenses that applies to the resource. Complete statement of license should be put in the constraintsStatement key if it is desired to include in the metadata",
-                        "type": "array",
-                        "minItems": 1,
-                        "items": {
-                            "jmd:licenseURI": {
-                                "description": "identifier for the license. should derfenrnce to some kind of statement of license",
-                                "type": "string",
-                                "format": "URI"
+            "Properties": {
+                "jmd:constraintsStatements": {
+                    "description": "an array free text description of legal, technical, and security-related constraint on access to or use of a resource, along with other notes such as userNotes, Classification system, handling instructions, etc.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "jmd:constraints": {
+                    "description": "list of all constraints on usage, each categorized by type (security, legal, technical) and specific instance of that constraint type using a controlled vocabulary. Any necessary text elucidation of the constraints should be in the constraintsStatement element",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "required": ["jmd:constraintType", "jmd:constraintTerm"],
+                        "properties": {
+                            "jmd:constraintType": {
+                                "description": "category of constraint e.g.security, access, technical, usage.",
+                                "$ref": "#/definitions/jmd:ControlledConceptObject"
                             },
-                            "jmd:licenseName": {
-                                "description": "Name used to identify the license to users",
-                                "type": "string"
+                            "jmd:constraintTerm": {
+                                "description": "a controlled concept that specifies the particular constraint within the domain of constraints specified by the constraintType; e.g. ISO19115 codelists",
+                                "$ref": "#/definitions/jmd:ControlledConceptObject"
                             }
                         }
                     }
-                }
-            },
-
-            "jmd:ValueDomainObject": {
-                "id": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/3.0/ValueDomain",
-                "type": "object",
-                "description": "choice of one of the following elements:",
-                "oneOf": [{
-                        "required": ["jmd:numericDomain"]
-				}, {
-                        "required": ["jmd:controlledVocabulary"]
-				}, {
-                        "required": ["jmd:targetEntity"]
-				}, {
-                        "required": ["jmd:stringLength"]
-				}
-			],
-                "properties": {
-                    "jmd:numericDomain": {
-                        "type": "object",
-                        "properties": {
-                            "jmd:numericDomainLowerBound": {
-                                "type": "number"
-                            },
-                            "jmd:numericDomainUpperBound": {
-                                "type": "number"
-                            }
+                },
+                "jmd:licenses": {
+                    "description": "specification of one or more licenses that applies to the resource. Complete statement of license should be put in the constraintsStatement key if it is desired to include in the metadata",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "jmd:licenseURI": {
+                            "description": "identifier for the license. should derfenrnce to some kind of statement of license",
+                            "type": "string",
+                            "format": "URI"
+                        },
+                        "jmd:licenseName": {
+                            "description": "Name used to identify the license to users",
+                            "type": "string"
                         }
-                    },
-                    "jmd:controlledVocabulary": {
-                        "$ref": "#/definitions/jmd:ReferenceObject",
-                        "description": "attribute value is restricted to terms from a vocabulary (pick list)"
-                    },
-                    "jmd:targetEntity": {
-                        "$ref": "#/definitions/jmd:ReferenceObject",
-                        "description": "The attribute value is a link to another entity (foreign key). The URI identifies the target entity type definition, and the reference links should enable access to the linked resource in a specific instance."
-                    },
-                    "jmd:stringLength": {
-                        "type": "integer",
-                        "description": "if datatype is text, max length of text string"
                     }
                 }
             }
+        },
 
+        "jmd:ValueDomainObject": {
+            "id": "http://resources.usgin.org/uri-gin/usgin/schema/json-metadata/3.0/ValueDomain",
+            "type": "object",
+            "description": "choice of one of the following elements:",
+            "oneOf": [{
+                    "required": ["jmd:numericDomain"]
+				}, {
+                    "required": ["jmd:controlledVocabulary"]
+				}, {
+                    "required": ["jmd:targetEntity"]
+				}, {
+                    "required": ["jmd:stringLength"]
+				}
+			],
+            "properties": {
+                "jmd:numericDomain": {
+                    "type": "object",
+                    "properties": {
+                        "jmd:numericDomainLowerBound": {
+                            "type": "number"
+                        },
+                        "jmd:numericDomainUpperBound": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "jmd:controlledVocabulary": {
+                    "$ref": "#/definitions/jmd:ReferenceObject",
+                    "description": "attribute value is restricted to terms from a vocabulary (pick list)"
+                },
+                "jmd:targetEntity": {
+                    "$ref": "#/definitions/jmd:ReferenceObject",
+                    "description": "The attribute value is a link to another entity (foreign key). The URI identifies the target entity type definition, and the reference links should enable access to the linked resource in a specific instance."
+                },
+                "jmd:stringLength": {
+                    "type": "integer",
+                    "description": "if datatype is text, max length of text string"
+                }
+            }
         }
     }
 }
