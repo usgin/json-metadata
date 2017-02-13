@@ -1,0 +1,252 @@
+  {
+      "History": {
+          "batchId": "10312016-18:16",
+          "prov": {
+              "curVersion": "1.3",
+              "lastProcessedDate": "2016-11-05T10:47:11.936Z",
+              "events": [
+                  {
+                      "wasGeneratedBy": {
+                              "localID":"_:wGB759467",
+                              "prov:activity": "foundry:ac_1",
+                              "prov:entity": "foundry:en_2"
+                      },
+                      "entity": {
+                          "foundry:en_1": {
+                              "foundry:label": {
+                                  "type": "pre_0:string",
+                                  "_$": "ScienceBase WAF:4f4e4b0be4b07f02db69d92b"
+                              },
+                              "foundry:creationTime": {
+                                  "type": "pre_0:string",
+                                  "_$": "2016-11-01T03:08:11Z"
+                              },
+                              "foundry:version": {
+                                  "type": "pre_0:string",
+                                  "_$": "1.0"
+                              },
+                              "foundry:sourceId": {
+                                  "type": "pre_0:string",
+                                  "_$": "cinergi-0001"
+                              },
+                              "foundry:UUID": {
+                                  "type": "pre_0:string",
+                                  "_$": "9df6ba1e-071d-4bd4-84e1-0f56a3ed6d86"
+                              }
+                          },
+                          "foundry:en_2": {
+                              "foundry:label": {
+                                  "type": "pre_0:string",
+                                  "_$": "ScienceBase WAF:4f4e4b0be4b07f02db69d92b"
+                              },
+                              "foundry:creationTime": {
+                                  "type": "pre_0:string",
+                                  "_$": "2016-11-01T03:08:11Z"
+                              },
+                              "foundry:version": {
+                                  "type": "pre_0:string",
+                                  "_$": "1.1"
+                              },
+                              "foundry:UUID": {
+                                  "type": "pre_0:string",
+                                  "_$": "4f4e4b0be4b07f02db69d92b"
+                              }
+                          }
+                      },
+                      "prefix": {
+                          "xsd": "http://www.w3.org/2001/XMLSchema#",
+                          "pre_0": "http://www.w3.org/2001/XMLSchema",
+                          "prov": "http://www.w3.org/ns/prov#",
+                          "foundry": "http://example.org"
+                      },
+                      "used": {
+                          "_:u759357": {
+                              "prov:activity": "foundry:ac_1",
+                              "prov:entity": "foundry:en_1"
+                          }
+                      },
+                      "activity": {
+                          "foundry:ac_1": {
+                              "prov:type": {
+                                  "type": "pre_0:string",
+                                  "_$": "ingestion"
+                              },
+                              "prov:startTime": "2016-11-01T03:08:11Z",
+                              "prov:endTime": "2016-11-01T03:08:11Z",
+                              "prov:how": {
+                                  "type": "pre_0:string",
+                                  "_$": "Added document with uuid 4f4e4b0be4b07f02db69d92b"
+                              }
+                          }
+                      }
+        },
+                  {
+                      "wasGeneratedBy": {
+                          "_:wGB1400829": {
+                              "prov:activity": "foundry:ac_1",
+                              "prov:entity": "foundry:en_2"
+                          }
+                      },
+                      "entity": {
+                          "foundry:en_1": {
+                              "foundry:label": {
+                                  "_$": "ScienceBase WAF:4f4e4b0be4b07f02db69d92b",
+                                  "type": "pre_0:string"
+                              },
+                              "foundry:creationTime": {
+                                  "_$": "2016-11-01T03:08:11Z",
+                                  "type": "pre_0:string"
+                              },
+                              "foundry:version": {
+                                  "_$": "1.1",
+                                  "type": "pre_0:string"
+                              },
+                              "foundry:sourceId": {
+                                  "_$": "cinergi-0001",
+                                  "type": "pre_0:string"
+                              },
+                              "foundry:UUID": {
+                                  "_$": "4f4e4b0be4b07f02db69d92b",
+                                  "type": "pre_0:string"
+                              }
+                          },
+                          "foundry:en_2": {
+                              "foundry:label": {
+                                  "_$": "ScienceBase WAF:4f4e4b0be4b07f02db69d92b",
+                                  "type": "pre_0:string"
+                              },
+                              "foundry:creationTime": {
+                                  "_$": "2016-11-05T10:47:11Z",
+                                  "type": "pre_0:string"
+                              },
+                              "foundry:version": {
+                                  "_$": "1.2",
+                                  "type": "pre_0:string"
+                              },
+                              "foundry:UUID": {
+                                  "_$": "4f4e4b0be4b07f02db69d92b",
+                                  "type": "pre_0:string"
+                              }
+                          }
+                      },
+                      "prefix": {
+                          "xsd": "http://www.w3.org/2001/XMLSchema#",
+                          "pre_0": "http://www.w3.org/2001/XMLSchema",
+                          "prov": "http://www.w3.org/ns/prov#",
+                          "foundry": "http://example.org"
+                      },
+                      "wasDerivedFrom": {
+                          "_:wDF1041420": {
+                              "prov:activity": "foundry:ac_1",
+                              "prov:generatedEntity": "foundry:en_2",
+                              "prov:usedEntity": "foundry:en_1"
+                          }
+                      },
+                      "used": {
+                          "_:u1400697": {
+                              "prov:activity": "foundry:ac_1",
+                              "prov:entity": "foundry:en_1"
+                          }
+                      },
+                      "activity": {
+                          "foundry:ac_1": {
+                              "prov:type": {
+                                  "_$": "spatialEnhancer",
+                                  "type": "pre_0:string"
+                              },
+                              "prov:startTime": "2016-11-05T10:47:11Z",
+                              "prov:endTime": "2016-11-05T10:47:11Z",
+                              "prov:how": {
+                                  "_$": "No bounding box is added..",
+                                  "type": "pre_0:string"
+                              }
+                          }
+                      }
+        },
+                  {
+                      "wasGeneratedBy": {
+                          "_:wGB1400830": {
+                              "prov:activity": "foundry:ac_1",
+                              "prov:entity": "foundry:en_2"
+                          }
+                      },
+                      "entity": {
+                          "foundry:en_1": {
+                              "foundry:label": {
+                                  "_$": "ScienceBase WAF:4f4e4b0be4b07f02db69d92b",
+                                  "type": "pre_0:string"
+                              },
+                              "foundry:creationTime": {
+                                  "_$": "2016-11-05T10:47:11Z",
+                                  "type": "pre_0:string"
+                              },
+                              "foundry:version": {
+                                  "_$": "1.2",
+                                  "type": "pre_0:string"
+                              },
+                              "foundry:sourceId": {
+                                  "_$": "cinergi-0001",
+                                  "type": "pre_0:string"
+                              },
+                              "foundry:UUID": {
+                                  "_$": "4f4e4b0be4b07f02db69d92b",
+                                  "type": "pre_0:string"
+                              }
+                          },
+                          "foundry:en_2": {
+                              "foundry:label": {
+                                  "_$": "ScienceBase WAF:4f4e4b0be4b07f02db69d92b",
+                                  "type": "pre_0:string"
+                              },
+                              "foundry:creationTime": {
+                                  "_$": "2016-11-05T10:47:11Z",
+                                  "type": "pre_0:string"
+                              },
+                              "foundry:version": {
+                                  "_$": "1.3",
+                                  "type": "pre_0:string"
+                              },
+                              "foundry:UUID": {
+                                  "_$": "4f4e4b0be4b07f02db69d92b",
+                                  "type": "pre_0:string"
+                              }
+                          }
+                      },
+                      "prefix": {
+                          "xsd": "http://www.w3.org/2001/XMLSchema#",
+                          "pre_0": "http://www.w3.org/2001/XMLSchema",
+                          "prov": "http://www.w3.org/ns/prov#",
+                          "foundry": "http://example.org"
+                      },
+                      "wasDerivedFrom": {
+                          "_:wDF1041421": {
+                              "prov:activity": "foundry:ac_1",
+                              "prov:generatedEntity": "foundry:en_2",
+                              "prov:usedEntity": "foundry:en_1"
+                          }
+                      },
+                      "used": {
+                          "_:u1400698": {
+                              "prov:activity": "foundry:ac_1",
+                              "prov:entity": "foundry:en_1"
+                          }
+                      },
+                      "activity": {
+                          "foundry:ac_1": {
+                              "prov:type": {
+                                  "_$": "keywordEnhancer",
+                                  "type": "pre_0:string"
+                              },
+                              "prov:startTime": "2016-11-05T10:47:11Z",
+                              "prov:endTime": "2016-11-05T10:47:11Z",
+                              "prov:how": {
+                                  "_$": "No keywords are added.",
+                                  "type": "pre_0:string"
+                              }
+                          }
+                      }
+        }
+      ]
+          }
+      }
+  }

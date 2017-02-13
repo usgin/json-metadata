@@ -1,0 +1,714 @@
+{
+    "_id": "5818071be4b0889f1250e1e2",
+    "primaryKey": "4f4e4b0be4b07f02db69d92b",
+    "Version": 1,
+    "CrawlDate": "2016-11-01T03:08:11.542Z",
+    "OriginalDoc": {
+        "gmd:MD_Metadata": {
+            "@xsi:schemaLocation": "http://www.isotc211.org/2005/gmi http://ngdc.noaa.gov/metadata/published/xsd/schema.xsd",
+            "gmd:fileIdentifier": {
+                "gco:CharacterString": {
+                    "_$": "4f4e4b0be4b07f02db69d92b"
+                }
+            },
+            "gmd:language": {
+                "gmd:LanguageCode": {
+                    "@codeList": "http://www.loc.gov/standards/iso639-2/php/English_list.php",
+                    "@codeListValue": "eng: USA",
+                    "_$": "eng USA"
+                }
+            },
+            "gmd:characterSet": {
+                "gmd:MD_CharacterSetCode": {
+                    "@codeList": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode",
+                    "@codeListValue": "utf8",
+                    "_$": "UTF8"
+                }
+            },
+            "gmd:hierarchyLevel": {
+                "gmd:MD_ScopeCode": {
+                    "@codeList": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode",
+                    "@codeListValue": "dataset",
+                    "_$": "dataset"
+                }
+            },
+            "gmd:contact": [
+                {
+                    "gmd:CI_ResponsibleParty": {
+                        "gmd:organisationName": {
+                            "gco:CharacterString": {
+                                "_$": "Huber, D. F."
+                            }
+                        },
+                        "gmd:contactInfo": {
+                            "gmd:CI_Contact": {}
+                        },
+                        "gmd:role": {
+                            "gmd:CI_RoleCode": {
+                                "@codeList": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
+                                "@codeListValue": "author",
+                                "_$": "author"
+                            }
+                        }
+                    }
+        },
+                {
+                    "gmd:CI_ResponsibleParty": {
+                        "gmd:organisationName": {
+                            "gco:CharacterString": {
+                                "_$": "Nelson, S. C."
+                            }
+                        },
+                        "gmd:contactInfo": {
+                            "gmd:CI_Contact": {}
+                        },
+                        "gmd:role": {
+                            "gmd:CI_RoleCode": {
+                                "@codeList": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
+                                "@codeListValue": "author",
+                                "_$": "author"
+                            }
+                        }
+                    }
+        },
+                {
+                    "gmd:CI_ResponsibleParty": {
+                        "gmd:organisationName": {
+                            "gco:CharacterString": {
+                                "_$": "Fraticelli, Luis A."
+                            }
+                        },
+                        "gmd:contactInfo": {
+                            "gmd:CI_Contact": {}
+                        },
+                        "gmd:role": {
+                            "gmd:CI_RoleCode": {
+                                "@codeList": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
+                                "@codeListValue": "author",
+                                "_$": "author"
+                            }
+                        }
+                    }
+        },
+                {
+                    "gmd:CI_ResponsibleParty": {
+                        "gmd:organisationName": {
+                            "gco:CharacterString": {
+                                "_$": "Stebbins, S. A."
+                            }
+                        },
+                        "gmd:contactInfo": {
+                            "gmd:CI_Contact": {}
+                        },
+                        "gmd:role": {
+                            "gmd:CI_RoleCode": {
+                                "@codeList": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
+                                "@codeListValue": "author",
+                                "_$": "author"
+                            }
+                        }
+                    }
+        },
+                {
+                    "gmd:CI_ResponsibleParty": {
+                        "gmd:organisationName": {
+                            "gco:CharacterString": {
+                                "_$": "U.S. Geological Survey,"
+                            }
+                        },
+                        "gmd:contactInfo": {
+                            "gmd:CI_Contact": {}
+                        },
+                        "gmd:role": {
+                            "gmd:CI_RoleCode": {
+                                "@codeList": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
+                                "@codeListValue": "publisher",
+                                "_$": "publisher"
+                            }
+                        }
+                    }
+        }
+      ],
+            "gmd:dateStamp": {
+                "gco:DateTime": {
+                    "_$": "2014-07-21T19:17:29Z"
+                }
+            },
+            "gmd:metadataStandardName": {
+                "gco:CharacterString": {
+                    "_$": "ISO19115"
+                }
+            },
+            "gmd:metadataStandardVersion": {
+                "gco:CharacterString": {
+                    "_$": "1.0"
+                }
+            },
+            "gmd:dataSetURI": {
+                "gco:CharacterString": {
+                    "_$": "https://www.sciencebase.gov/catalog/item/4f4e4b0be4b07f02db69d92b"
+                }
+            },
+            "gmd:identificationInfo": {
+                "gmd:MD_DataIdentification": {
+                    "gmd:citation": {
+                        "gmd:CI_Citation": {
+                            "gmd:title": {
+                                "gco:CharacterString": {
+                                    "_$": "Mineral resource potential map of the Chanchelulla Roadless Area, Trinity County, California"
+                                }
+                            },
+                            "gmd:date": {
+                                "gmd:CI_Date": {
+                                    "gmd:date": {
+                                        "gco:Date": {
+                                            "_$": "1983"
+                                        }
+                                    },
+                                    "gmd:dateType": {
+                                        "gmd:CI_DateTypeCode": {
+                                            "@codeList": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode",
+                                            "@codeListValue": "Publication Date",
+                                            "_$": "Publication Date"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "gmd:abstract": {
+                        "gco:CharacterString": {
+                            "_$": "REQUIRED FIELD"
+                        }
+                    },
+                    "gmd:descriptiveKeywords": {
+                        "gmd:MD_Keywords": {
+                            "gmd:keyword": {
+                                "gco:CharacterString": {
+                                    "_$": "Open-File Report"
+                                }
+                            },
+                            "gmd:type": {
+                                "gmd:MD_KeywordTypeCode": {
+                                    "@codeList": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode",
+                                    "@codeListValue": "Publication",
+                                    "_$": "Publication"
+                                }
+                            },
+                            "gmd:thesaurusName": {
+                                "gmd:CI_Citation": {
+                                    "gmd:title": {
+                                        "gco:CharacterString": {
+                                            "_$": "USGS Publications Warehouse"
+                                        }
+                                    },
+                                    "gmd:date": {
+                                        "gmd:CI_Date": {
+                                            "gmd:date": {
+                                                "gco:Date": {
+                                                    "_$": "2015-07-19"
+                                                }
+                                            },
+                                            "gmd:dateType": {
+                                                "gmd:CI_DateTypeCode": {
+                                                    "@codeList": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode",
+                                                    "@codeListValue": "revision",
+                                                    "_$": "Date Revised"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "gmd:language": {
+                        "gco:CharacterString": {
+                            "_$": "eng"
+                        }
+                    },
+                    "gmd:topicCategory": {
+                        "gmd:MD_TopicCategoryCode": {
+                            "_$": "geoscientificInformation"
+                        }
+                    }
+                }
+            },
+            "gmd:distributionInfo": {
+                "gmd:MD_Distribution": {
+                    "gmd:transferOptions": {
+                        "gmd:MD_DigitalTransferOptions": {
+                            "gmd:onLine": [
+                                {
+                                    "gmd:CI_OnlineResource": {
+                                        "gmd:linkage": {
+                                            "gmd:URL": {
+                                                "_$": "https://www.sciencebase.gov/catalog/item/4f4e4b0be4b07f02db69d92b"
+                                            }
+                                        },
+                                        "gmd:protocol": {
+                                            "gco:CharacterString": {
+                                                "_$": "WWW:LINK-1.0-http--link"
+                                            }
+                                        },
+                                        "gmd:applicationProfile": {
+                                            "gco:CharacterString": {
+                                                "_$": "Web Browser"
+                                            }
+                                        },
+                                        "gmd:name": {
+                                            "gco:CharacterString": {
+                                                "_$": "ScienceBase Item Summary Page"
+                                            }
+                                        },
+                                        "gmd:description": {
+                                            "gco:CharacterString": {
+                                                "_$": "Link to the ScienceBase Item Summary page for the item described by this metadata record"
+                                            }
+                                        },
+                                        "gmd:function": {
+                                            "gmd:CI_OnLineFunctionCode": {
+                                                "@codeList": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode",
+                                                "@codeListValue": "information",
+                                                "_$": "information"
+                                            }
+                                        }
+                                    }
+                },
+                                {
+                                    "gmd:CI_OnlineResource": {
+                                        "gmd:linkage": {
+                                            "gmd:URL": {
+                                                "_$": "http://pubs.usgs.gov/of/1983/0506/report.pdf"
+                                            }
+                                        },
+                                        "gmd:protocol": {
+                                            "gco:CharacterString": {
+                                                "_$": "WWW:LINK-1.0-http--link"
+                                            }
+                                        },
+                                        "gmd:applicationProfile": {
+                                            "gco:CharacterString": {
+                                                "_$": "Web Browser"
+                                            }
+                                        },
+                                        "gmd:name": {
+                                            "gco:CharacterString": {
+                                                "_$": "DOCUMENT"
+                                            }
+                                        },
+                                        "gmd:description": {
+                                            "gco:CharacterString": {
+                                                "_$": "ScienceBase WebLink"
+                                            }
+                                        },
+                                        "gmd:function": {
+                                            "gmd:CI_OnLineFunctionCode": {
+                                                "@codeList": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode",
+                                                "@codeListValue": "information",
+                                                "_$": "information"
+                                            }
+                                        }
+                                    }
+                },
+                                {
+                                    "gmd:CI_OnlineResource": {
+                                        "gmd:linkage": {
+                                            "gmd:URL": {
+                                                "_$": "http://pubs.er.usgs.gov/publication/ofr83506"
+                                            }
+                                        },
+                                        "gmd:protocol": {
+                                            "gco:CharacterString": {
+                                                "_$": "WWW:LINK-1.0-http--link"
+                                            }
+                                        },
+                                        "gmd:applicationProfile": {
+                                            "gco:CharacterString": {
+                                                "_$": "Web Browser"
+                                            }
+                                        },
+                                        "gmd:name": {
+                                            "gco:CharacterString": {
+                                                "_$": "index page"
+                                            }
+                                        },
+                                        "gmd:description": {
+                                            "gco:CharacterString": {
+                                                "_$": "ScienceBase WebLink"
+                                            }
+                                        },
+                                        "gmd:function": {
+                                            "gmd:CI_OnLineFunctionCode": {
+                                                "@codeList": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode",
+                                                "@codeListValue": "information",
+                                                "_$": "information"
+                                            }
+                                        }
+                                    }
+                },
+                                {
+                                    "gmd:CI_OnlineResource": {
+                                        "gmd:linkage": {
+                                            "gmd:URL": {
+                                                "_$": "https://www.sciencebase.gov/catalog/file/get/4f4e4b0be4b07f02db69d92b"
+                                            }
+                                        },
+                                        "gmd:protocol": {
+                                            "gco:CharacterString": {
+                                                "_$": "WWW:LINK-1.0-http--link"
+                                            }
+                                        },
+                                        "gmd:applicationProfile": {
+                                            "gco:CharacterString": {
+                                                "_$": "Web Browser"
+                                            }
+                                        },
+                                        "gmd:name": {
+                                            "gco:CharacterString": {
+                                                "_$": "Download Attached Files"
+                                            }
+                                        },
+                                        "gmd:description": {
+                                            "gco:CharacterString": {
+                                                "_$": "Download Link"
+                                            }
+                                        },
+                                        "gmd:function": {
+                                            "gmd:CI_OnLineFunctionCode": {
+                                                "@codeList": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode",
+                                                "@codeListValue": "information",
+                                                "_$": "information"
+                                            }
+                                        }
+                                    }
+                }
+              ]
+                        }
+                    }
+                }
+            },
+            "gmd:metadataConstraints": {
+                "gmd:MD_Constraints": {
+                    "gmd:useLimitation": {
+                        "gco:CharacterString": {
+                            "_$": "none"
+                        }
+                    }
+                }
+            }
+        },
+        "_@gmd": "http://www.isotc211.org/2005/gmd",
+        "_@default": "",
+        "_@gco": "http://www.isotc211.org/2005/gco",
+        "_@gmi": "http://www.isotc211.org/2005/gmi",
+        "_@gml": "http://www.opengis.net/gml/3.2",
+        "_@gmx": "http://www.isotc211.org/2005/gmx",
+        "_@gsr": "http://www.isotc211.org/2005/gsr",
+        "_@gss": "http://www.isotc211.org/2005/gss",
+        "_@gts": "http://www.isotc211.org/2005/gts",
+        "_@srv": "http://www.isotc211.org/2005/srv",
+        "_@xlink": "http://www.w3.org/1999/xlink",
+        "_@xml": "http://www.w3.org/XML/1998/namespace",
+        "_@xsi": "http://www.w3.org/2001/XMLSchema-instance"
+    },
+    "SourceInfo": {
+        "SourceID": "cinergi-0001",
+        "ViewID": "",
+        "Name": "ScienceBase WAF",
+        "DataSource": "ScienceBase WAF"
+    },
+    "Data": {
+        "spatial": {
+            "bounding_boxes": [],
+            "place_keywords": [],
+            "text": "Mineral resource potential map of the Chanchelulla Roadless Area, Trinity County, California \nREQUIRED FIELD \n",
+            "invalid_place_keywords": [],
+            "derived_bounding_boxes_from_places": {},
+            "derived_place_from_text": [
+        "California",
+        "Trinity County"
+      ],
+            "derived_bounding_boxes_from_derived_place": {
+                "California, United States": {
+                    "southwest": {
+                        "lat": 32.311216,
+                        "lng": -124.690261
+                    },
+                    "northeast": {
+                        "lat": 42.189216,
+                        "lng": -114.812261
+                    }
+                },
+                "Trinity County, California, United States": {
+                    "southwest": {
+                        "lat": 39.946196,
+                        "lng": -123.804807
+                    },
+                    "northeast": {
+                        "lat": 41.220196,
+                        "lng": -122.530807
+                    }
+                }
+            }
+        },
+
+        "keywords": []
+    },
+    "Updates": {},
+    "Processing": {
+        "status": "finished",
+        "docId": "2ed49970-2cb9-4b17-8f01-d9834a9bec66"
+    },
+    "History": {
+        "batchId": "10312016-18:16",
+        "prov": {
+            "curVersion": "1.3",
+            "lastProcessedDate": "2016-11-05T10:47:11.936Z",
+            "events": [
+                {
+                    "wasGeneratedBy": {
+                        "_:wGB759467": {
+                            "prov:activity": "foundry:ac_1",
+                            "prov:entity": "foundry:en_2"
+                        }
+                    },
+                    "entity": {
+                        "foundry:en_1": {
+                            "foundry:label": {
+                                "type": "pre_0:string",
+                                "_$": "ScienceBase WAF:4f4e4b0be4b07f02db69d92b"
+                            },
+                            "foundry:creationTime": {
+                                "type": "pre_0:string",
+                                "_$": "2016-11-01T03:08:11Z"
+                            },
+                            "foundry:version": {
+                                "type": "pre_0:string",
+                                "_$": "1.0"
+                            },
+                            "foundry:sourceId": {
+                                "type": "pre_0:string",
+                                "_$": "cinergi-0001"
+                            },
+                            "foundry:UUID": {
+                                "type": "pre_0:string",
+                                "_$": "9df6ba1e-071d-4bd4-84e1-0f56a3ed6d86"
+                            }
+                        },
+                        "foundry:en_2": {
+                            "foundry:label": {
+                                "type": "pre_0:string",
+                                "_$": "ScienceBase WAF:4f4e4b0be4b07f02db69d92b"
+                            },
+                            "foundry:creationTime": {
+                                "type": "pre_0:string",
+                                "_$": "2016-11-01T03:08:11Z"
+                            },
+                            "foundry:version": {
+                                "type": "pre_0:string",
+                                "_$": "1.1"
+                            },
+                            "foundry:UUID": {
+                                "type": "pre_0:string",
+                                "_$": "4f4e4b0be4b07f02db69d92b"
+                            }
+                        }
+                    },
+                    "prefix": {
+                        "xsd": "http://www.w3.org/2001/XMLSchema#",
+                        "pre_0": "http://www.w3.org/2001/XMLSchema",
+                        "prov": "http://www.w3.org/ns/prov#",
+                        "foundry": "http://example.org"
+                    },
+                    "used": {
+                        "_:u759357": {
+                            "prov:activity": "foundry:ac_1",
+                            "prov:entity": "foundry:en_1"
+                        }
+                    },
+                    "activity": {
+                        "foundry:ac_1": {
+                            "prov:type": {
+                                "type": "pre_0:string",
+                                "_$": "ingestion"
+                            },
+                            "prov:startTime": "2016-11-01T03:08:11Z",
+                            "prov:endTime": "2016-11-01T03:08:11Z",
+                            "prov:how": {
+                                "type": "pre_0:string",
+                                "_$": "Added document with uuid 4f4e4b0be4b07f02db69d92b"
+                            }
+                        }
+                    }
+        },
+                {
+                    "wasGeneratedBy": {
+                        "_:wGB1400829": {
+                            "prov:activity": "foundry:ac_1",
+                            "prov:entity": "foundry:en_2"
+                        }
+                    },
+                    "entity": {
+                        "foundry:en_1": {
+                            "foundry:label": {
+                                "_$": "ScienceBase WAF:4f4e4b0be4b07f02db69d92b",
+                                "type": "pre_0:string"
+                            },
+                            "foundry:creationTime": {
+                                "_$": "2016-11-01T03:08:11Z",
+                                "type": "pre_0:string"
+                            },
+                            "foundry:version": {
+                                "_$": "1.1",
+                                "type": "pre_0:string"
+                            },
+                            "foundry:sourceId": {
+                                "_$": "cinergi-0001",
+                                "type": "pre_0:string"
+                            },
+                            "foundry:UUID": {
+                                "_$": "4f4e4b0be4b07f02db69d92b",
+                                "type": "pre_0:string"
+                            }
+                        },
+                        "foundry:en_2": {
+                            "foundry:label": {
+                                "_$": "ScienceBase WAF:4f4e4b0be4b07f02db69d92b",
+                                "type": "pre_0:string"
+                            },
+                            "foundry:creationTime": {
+                                "_$": "2016-11-05T10:47:11Z",
+                                "type": "pre_0:string"
+                            },
+                            "foundry:version": {
+                                "_$": "1.2",
+                                "type": "pre_0:string"
+                            },
+                            "foundry:UUID": {
+                                "_$": "4f4e4b0be4b07f02db69d92b",
+                                "type": "pre_0:string"
+                            }
+                        }
+                    },
+                    "prefix": {
+                        "xsd": "http://www.w3.org/2001/XMLSchema#",
+                        "pre_0": "http://www.w3.org/2001/XMLSchema",
+                        "prov": "http://www.w3.org/ns/prov#",
+                        "foundry": "http://example.org"
+                    },
+                    "wasDerivedFrom": {
+                        "_:wDF1041420": {
+                            "prov:activity": "foundry:ac_1",
+                            "prov:generatedEntity": "foundry:en_2",
+                            "prov:usedEntity": "foundry:en_1"
+                        }
+                    },
+                    "used": {
+                        "_:u1400697": {
+                            "prov:activity": "foundry:ac_1",
+                            "prov:entity": "foundry:en_1"
+                        }
+                    },
+                    "activity": {
+                        "foundry:ac_1": {
+                            "prov:type": {
+                                "_$": "spatialEnhancer",
+                                "type": "pre_0:string"
+                            },
+                            "prov:startTime": "2016-11-05T10:47:11Z",
+                            "prov:endTime": "2016-11-05T10:47:11Z",
+                            "prov:how": {
+                                "_$": "No bounding box is added..",
+                                "type": "pre_0:string"
+                            }
+                        }
+                    }
+        },
+                {
+                    "wasGeneratedBy": {
+                        "_:wGB1400830": {
+                            "prov:activity": "foundry:ac_1",
+                            "prov:entity": "foundry:en_2"
+                        }
+                    },
+                    "entity": {
+                        "foundry:en_1": {
+                            "foundry:label": {
+                                "_$": "ScienceBase WAF:4f4e4b0be4b07f02db69d92b",
+                                "type": "pre_0:string"
+                            },
+                            "foundry:creationTime": {
+                                "_$": "2016-11-05T10:47:11Z",
+                                "type": "pre_0:string"
+                            },
+                            "foundry:version": {
+                                "_$": "1.2",
+                                "type": "pre_0:string"
+                            },
+                            "foundry:sourceId": {
+                                "_$": "cinergi-0001",
+                                "type": "pre_0:string"
+                            },
+                            "foundry:UUID": {
+                                "_$": "4f4e4b0be4b07f02db69d92b",
+                                "type": "pre_0:string"
+                            }
+                        },
+                        "foundry:en_2": {
+                            "foundry:label": {
+                                "_$": "ScienceBase WAF:4f4e4b0be4b07f02db69d92b",
+                                "type": "pre_0:string"
+                            },
+                            "foundry:creationTime": {
+                                "_$": "2016-11-05T10:47:11Z",
+                                "type": "pre_0:string"
+                            },
+                            "foundry:version": {
+                                "_$": "1.3",
+                                "type": "pre_0:string"
+                            },
+                            "foundry:UUID": {
+                                "_$": "4f4e4b0be4b07f02db69d92b",
+                                "type": "pre_0:string"
+                            }
+                        }
+                    },
+                    "prefix": {
+                        "xsd": "http://www.w3.org/2001/XMLSchema#",
+                        "pre_0": "http://www.w3.org/2001/XMLSchema",
+                        "prov": "http://www.w3.org/ns/prov#",
+                        "foundry": "http://example.org"
+                    },
+                    "wasDerivedFrom": {
+                        "_:wDF1041421": {
+                            "prov:activity": "foundry:ac_1",
+                            "prov:generatedEntity": "foundry:en_2",
+                            "prov:usedEntity": "foundry:en_1"
+                        }
+                    },
+                    "used": {
+                        "_:u1400698": {
+                            "prov:activity": "foundry:ac_1",
+                            "prov:entity": "foundry:en_1"
+                        }
+                    },
+                    "activity": {
+                        "foundry:ac_1": {
+                            "prov:type": {
+                                "_$": "keywordEnhancer",
+                                "type": "pre_0:string"
+                            },
+                            "prov:startTime": "2016-11-05T10:47:11Z",
+                            "prov:endTime": "2016-11-05T10:47:11Z",
+                            "prov:how": {
+                                "_$": "No keywords are added.",
+                                "type": "pre_0:string"
+                            }
+                        }
+                    }
+        }
+      ]
+        }
+    }
+}

@@ -10,7 +10,7 @@
         "skos": "http://www.w3.org/2004/02/skos/core#"
     },
     "description": "A metadata record has two sections, one with information for management of the metadata itself, and one that describes some individual resource. Each metadata record describes exactly one resource. The metadata record can be considered a representation of the resource, but it has an identity that is distinct from the identity of the described resource.  There may be more than one metadata record in the system describing a single resource, these should have distinct metadata lineages. specifications followed here-  JSON pointer--http: tools.ietf.org/html/rfc6901; JSON schema Core--http://tools.ietf.org/html/draft-zyp-json-schema-04; JSON schema validation--http://tools.ietf.org/html/draft-fge-json-schema-validation-00. Some integration of JSON-LD, more to come hopefully... http://www.w3.org/TR/json-ld/. FOAF for person, organization--http://xmlns.com/foaf/spec/. DCAT--http://www.w3.org/TR/vocab-dcat/, and DublinCore--http://dublincore.org/documents/dcmi-terms/. still need to do integration work figuring out how to link elements in this metadata vocabulary with the other schemes.",
-    "skos:HistoryNote": "2015-10-09, add /2.0 to schema element base URI, review; make metadataSpecification id the spec for the metadata instance, not the harvestedsource; still need to set upreferences to the objects defined in the definitions section. Revise so will validate with http://www.jsonschemavalidator.net/ and http://jsonschemalint.com/draft4/# using the draft 4 version of the json schema schema. Note that http://www.jsonschemavalidator.net/ cannot process this schema to use to validate instance docs. Jsonschemlint.com will work to validate instances. 2015-01-20 v3.0 integrate lookup concepts from ADIWG ISO metadata JSON implementation. Contacts array at top uses ContactID as lookup for repeated values. Add some coverage info elements other adjustments to aling with ADIWG.     V3.1 2016-04-29 add all MD format properties, make linkformat type an array; add extentTypeCode as enum on extent spatial geometries",
+    "skos:HistoryNote": "2015-10-09, add /2.0 to schema element base URI, review; make metadataSpecification id the spec for the metadata instance, not the harvestedsource; still need to set upreferences to the objects defined in the definitions section. Revise so will validate with http://www.jsonschemavalidator.net/ and http://jsonschemalint.com/draft4/# using the draft 4 version of the json schema schema. Note that http://www.jsonschemavalidator.net/ cannot process this schema to use to validate instance docs. Jsonschemlint.com will work to validate instances. 2015-01-20 v3.0 integrate lookup concepts from ADIWG ISO metadata JSON implementation. Contacts array at top uses ContactID as lookup for repeated values. Add some coverage info elements other adjustments to aling with ADIWG.     V3.1 2016-04-29 add all MD format properties, make linkformat type an array; add extentTypeCode as enum on extent spatial geometries.  2017-02-01--Fix metadata lineage section; it referenced LineageObject, which has been deprecated. Need to harmonize metadata record history/lineage with CINERGI usage; best approach is probably a JSONLD encoding of W3C prov.",
     "version": "3.1",
     "id": "http://resources.usgin.org/uri-gin/usgin/schema/json/3.1/metadata",
     "type": "object",
@@ -113,16 +113,72 @@
                     "$ref": "#/definitions/jmd:LanguageObject"
                 },
                 "jmd:metadataRecordLineageItems": {
-                    "description": "documentation of update history for this metadata record. An array of processing steps or a link to an external provenance trace. First step in lineage should record harvest or creation via form. Metadata creation date goes in here with eventType = creation. USGIN has been putting this information in the metadata maintenance section",
+                    "description": "documentation of update history for this metadata record. An array of processing steps or a link to an external provenance trace. First step in lineage should record harvest or creation via form. Metadata creation date goes in here with eventType = creation. USGIN has been putting this information in the metadata maintenance section. Originally defined by #/definitions/jmd:LineageObject, but that object is deprecated.  Ideally probably want some kind of Prov encoding; see https://provenance.ecs.soton.ac.uk/ and https://www.w3.org/Submission/prov-json/",
                     "translation": {
-                        "ISO 19115-2": ["MI_Metadata > dateStamp"],
-                        "FGDC CSDGM": ["metainfo > metd"],
-                        "ADIWG": ["metadataInfo > metadataCreationDate"]
+                        "ISO 19115-2": [""],
+                        "FGDC CSDGM": [""],
+                        "ADIWG": [""]
                     },
                     "type": "array",
                     "minItems": 1,
                     "items": {
-                        "$ref": "#/definitions/jmd:LineageObject"
+                        "jmd:stepSequenceNo": {
+                            "description": "integer provided to sort processing steps in chronologic order.",
+                            "type": "integer"
+                        },
+                        "jmd:stepLabel": {
+                            "type": "string",
+                            "description": "text to characterize,identify this step for user interface listing"
+                        },
+                        "jmd:stepProcessors": {
+                            "description": "0..N parties responsible for processing step",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/jmd:AgentObject"
+                            }
+                        },
+                        "jmd:stepProcessTypes": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/jmd:ControlledConceptObject"
+                            }
+                        },
+                        "jmd:stepProcessDescription": {
+                            "description": "free text description of what processing was done",
+                            "type": "string"
+                        },
+                        "jmd:stepDateTime": {
+                            "type": "object",
+                            "description": "only allow single time stamp",
+                            "properties": {
+                                "$ref": "#/definitions/EventDate"
+                            }
+                        },
+                        "jmd:metadataUpdates": {
+                            "type": "array",
+                            "description": "object that defines the changes made to the original record by this processing step. Content TBD for CINERGI",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "jmd:deletePath":{
+                                        "type": "string",
+                                        "description": "JSON path identifying the location in this record that was deleted"
+                                    },
+                                    "jmd:updatePath": {
+                                        "type": "string",
+                                        "description": "JSON path identifying the location in this record that was updated"
+                                    },
+                                    "jmd:originalValue": {
+                                        "type": "string",
+                                        "description": "escape-encoded content that was originally at that location. use 'NULL' if there was no content there before processing"
+                                    },
+                                    "jmd:newValue": {
+                                        "type": "string",
+                                        "description": "escape-encoded content of the updated content at that location. For deletion"
+                                    }
+                                }
+                            }
+                        }
                     }
                 },
                 "jmd:metadataConformanceTests": {
@@ -182,6 +238,24 @@
                         }
                     }
                 },
+                "jmd:SourceInfo": {
+                    "type": "object",
+                    "description": "identification of the source of the harvested metadata, used for internal processing",
+                    "properties": {
+                        "SourceID": {
+                            "type": "string"
+                        },
+                        "ViewID": {
+                            "type": "string"
+                        },
+                        "Name": {
+                            "type": "string"
+                        },
+                        "DataSource": {
+                            "type": "string"
+                        }
+                    }
+                },
                 "jmd:collections": {
                     "type": "array",
                     "description": "list of collection identifiers that this resource is a member of. Property only generally needed if this JSON scheme is used as a document format for metadata management.",
@@ -200,7 +274,7 @@
             "$ref": "#/definitions/jmd:ResourceDescription"
         }
     },
-    
+
     "definitions": {
         "jmd:ResourceDescription": {
             "description": "metadata that documents a resource. Basic requirement is title and access information to support the most basic discovery scenarios. The various optional elements provide capabilities for extensive resource documentation and inforamtion for machine interoperability.",
