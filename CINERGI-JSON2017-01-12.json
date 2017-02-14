@@ -710,5 +710,8 @@
         }
       ]
         }
+    },
+    "FinalDoc": {
+        "note": "content here should conform to the JSON metadata schema"
     }
 }

@@ -120,61 +120,90 @@
                         "ADIWG": [""]
                     },
                     "type": "array",
-                    "minItems": 1,
+                    "minItems": 0,
                     "items": {
-                        "jmd:stepSequenceNo": {
-                            "description": "integer provided to sort processing steps in chronologic order.",
-                            "type": "integer"
-                        },
-                        "jmd:stepLabel": {
-                            "type": "string",
-                            "description": "text to characterize,identify this step for user interface listing"
-                        },
-                        "jmd:stepProcessors": {
-                            "description": "0..N parties responsible for processing step",
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/jmd:AgentObject"
-                            }
-                        },
-                        "jmd:stepProcessTypes": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/jmd:ControlledConceptObject"
-                            }
-                        },
-                        "jmd:stepProcessDescription": {
-                            "description": "free text description of what processing was done",
-                            "type": "string"
-                        },
-                        "jmd:stepDateTime": {
-                            "type": "object",
-                            "description": "only allow single time stamp",
-                            "properties": {
-                                "$ref": "#/definitions/EventDate"
-                            }
-                        },
-                        "jmd:metadataUpdates": {
-                            "type": "array",
-                            "description": "object that defines the changes made to the original record by this processing step. Content TBD for CINERGI",
-                            "items": {
+                        "type": "object",
+                        "required": ["jmd:stepDateTime", "jmd:metadataUpdates"],
+                        "properties": {
+                            "jmd:stepSequenceNo": {
+                                "description": "integer provided to sort processing steps in chronologic order. If sequence numbering is inconsistent with the stepDateTime, the time stamp takes precedence",
+                                "type": "integer"
+                            },
+                            "jmd:stepLabel": {
+                                "type": "string",
+                                "description": "text to characterize,identify this step for user interface listing"
+                            },
+                            "jmd:stepProcessors": {
+                                "description": "0..N parties responsible for processing step",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/jmd:AgentObject"
+                                }
+                            },
+                            "jmd:stepSoftware": {
+                                "description": "reference that specifies software used in this process step",
                                 "type": "object",
                                 "properties": {
-                                    "jmd:deletePath":{
-                                        "type": "string",
-                                        "description": "JSON path identifying the location in this record that was deleted"
-                                    },
-                                    "jmd:updatePath": {
-                                        "type": "string",
-                                        "description": "JSON path identifying the location in this record that was updated"
-                                    },
-                                    "jmd:originalValue": {
-                                        "type": "string",
-                                        "description": "escape-encoded content that was originally at that location. use 'NULL' if there was no content there before processing"
-                                    },
-                                    "jmd:newValue": {
-                                        "type": "string",
-                                        "description": "escape-encoded content of the updated content at that location. For deletion"
+                                    "$ref": "#/definitions/jmd:ReferenceObject"
+                                }
+                            },
+                            "jmd:stepProcessTypes": {
+                                "type": "array",
+                                "description": "concepts to categorize the kind of processing executed in this step e.g. ",
+                                "items": {
+                                    "$ref": "#/definitions/jmd:ControlledConceptObject"
+                                }
+                            },
+                            "jmd:stepProcessDescription": {
+                                "description": "free text description of what processing was done",
+                                "type": "string"
+                            },
+                            "jmd:stepDateTime": {
+                                "type": "object",
+                                "description": "only allow single time stamp",
+                                "properties": {
+                                    "$ref": "#/definitions/DateObject"
+                                }
+                            },
+                            "jmd:metadataUpdates": {
+                                "type": "array",
+                                "description": "object that defines the changes made to the original record by this processing step. Content TBD for CINERGI. originalValue and newValue are escape-encoded JSON text; these might are each key value pairs; the values might be simple (string or number), or JSON objects. This is an array because a component in a metadata processing pipeline might effect multiple elements in the metadata record.",
+                                "items": {
+                                    "type": "object",
+                                    "allof": [
+                                        { "oneOf": [
+                                            {"required": ["jmd:deletePath"]}, 
+                                            {"required": ["jmd:updatePath"]}, 
+                                            { "required": ["jmd:insertPath"]}
+						                      ]
+                                        },
+                                        {"oneOf": [
+                                            {"required": ["jmd:newValue"]},
+                                            {"required": ["jmd:originalValue"]}
+						                      ]
+                                        }
+                                    ],
+                                    "properties": {
+                                        "jmd:deletePath": {
+                                            "type": "string",
+                                            "description": "JSON path identifying the location in this record where a key value pair was deleted. OriginalValue should record the content that was deleted."
+                                        },
+                                        "jmd:updatePath": {
+                                            "type": "string",
+                                            "description": "JSON path identifying the location in this record that was updated. originalValue records the content as is was, newValue records the updated value."
+                                        },
+                                        "jmd:insertPath": {
+                                            "type": "string",
+                                            "description": "JSON path identifying the location in this record where new content was inserted. newValue records the inserted content."
+                                        },
+                                        "jmd:originalValue": {
+                                            "type": "string",
+                                            "description": "escape-encoded content that was originally at that location. use 'NULL' if there was no content there before processing"
+                                        },
+                                        "jmd:newValue": {
+                                            "type": "string",
+                                            "description": "escape-encoded content of the updated content at that location. For deletion"
+                                        }
                                     }
                                 }
                             }
