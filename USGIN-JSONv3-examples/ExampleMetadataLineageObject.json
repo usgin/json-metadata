@@ -1,5 +1,5 @@
 {
-    "jmd:metadataRecordLineageItems": [
+    "jmd:metadataLineageItems": [
         {
             "jmd:stepLabel": "text to characterize,identify this step for user interface listing",
             "jmd:stepProcessors": [
