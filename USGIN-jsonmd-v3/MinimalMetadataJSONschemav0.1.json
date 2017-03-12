@@ -1,0 +1,1455 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "comment": "this section is start at making compatible with JSON-LD. see https://www.w3.org/TR/json-ld",
+    "@context": {
+        "jmd": "http://resources.usgin.org/uri-gin/usgin/schema/json/3.2/metadata",
+        "@vocab": "http://json-schema.org/draft-04/schema",
+        "@base": "http://resources.usgin.org/uri-gin/usgin/schema/json/3.2/metadata",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "dct": "http://purl.org/dc/terms/",
+        "skos": "http://www.w3.org/2004/02/skos/core#"
+    },
+    "description": "This is a pared down version of the USGIN JSON metadata scheme to use as a starting point for CINERGI/SciCrunch. Resource description content is designed to satisfy minimum requirements for a DataCite record, and include some distribution information. A metadata record has two sections, one with information for management of the metadata itself (metadataInfo), and one that describes some individual resource (describedResource). Each metadata record describes exactly one resource. The metadata record can be considered a representation of the resource, but it has an identity that is distinct from the identity of the described resource, denoted by the metadataIdentifier element.  There may be more than one metadata record in the system describing a single resource, these should have distinct metadata lineages. specifications followed here-  JSON pointer--http: tools.ietf.org/html/rfc6901; JSON schema Core--http://tools.ietf.org/html/draft-zyp-json-schema-04; JSON schema validation--http://tools.ietf.org/html/draft-fge-json-schema-validation-00. Some integration of JSON-LD, more to come hopefully... http://www.w3.org/TR/json-ld/. FOAF for person, organization--http://xmlns.com/foaf/spec/. DCAT--http://www.w3.org/TR/vocab-dcat/, and DublinCore--http://dublincore.org/documents/dcmi-terms/. The search_path elements define mappings from ISO19115 (19139) or ISO19115-2 (19139-2) and DataCite v3 xml to this JSON model. Some logic is necessary to account for variations in the model.",
+    "skos:HistoryNote": "2017-02-15 SMR copy from USGINMetadataJSONSchema3.1.JSON and edit down to basic DataCite content. 2015-10-09, add /2.0 to schema element base URI, review; make metadataSpecification id the spec for the metadata instance, not the harvestedsource; still need to set upreferences to the objects defined in the definitions section. Revise so will validate with http://www.jsonschemavalidator.net/ and http://jsonschemalint.com/draft4/# using the draft 4 version of the json schema schema. Note that http://www.jsonschemavalidator.net/ cannot process this schema to use to validate instance docs. Jsonschemlint.com will work to validate instances. 2015-01-20 v3.0 integrate lookup concepts from ADIWG ISO metadata JSON implementation. Contacts array at top uses ContactID as lookup for repeated values. Add some coverage info elements other adjustments to aling with ADIWG.     V3.1 2016-04-29 add all MD format properties, make linkformat type an array; add extentTypeCode as enum on extent spatial geometries.  2017-02-01--Fix metadata lineage section; it referenced LineageObject, which has been deprecated. Need to harmonize metadata record history/lineage with CINERGI usage; best approach is probably a JSONLD encoding of W3C prov. 2017-03-11 update scheme mapping and search_paths, add citationResponsibleParties, citationDates, and resourceAccessOptions sections for minimal DataCite compatibility and so can provide links to described resources; ",
+    "version": "3.2",
+    "type": "object",
+    "search_paths": [
+        {
+            "schema": "ISO 19139",
+            "path": "/gmd:MD_Metadata"
+                    },
+        {
+            "schema": "DataCite v3",
+            "path": "/resource"
+                    }
+    ],
+    "mappingNote":"xpaths are set up to work with either gmi (19115-2) or gmd (19115/19139) metadata,  and either gmd:MD_IdentificationInfo or srv:ServiceInfo for the gmd:identificationInfo section, using the ISO 19139 schema choice",
+    "required": [
+		"jmd:metadataInfo",
+		"jmd:describedResource"
+	],
+    "properties": {
+        "jmd:metadataInfo": {
+            "type": "object",
+            "description": "keys providing documentation on the origin and provenance of this metadata record",
+            "required": [
+				"jmd:metadataIdentifier",
+				"jmd:metadataLastUpdate",
+				"jmd:metadataSpecification",
+				"jmd:metadataLanguage"
+			],
+            "properties": {
+                "jmd:metadataIdentifier": {
+                    "type": "string",
+                    "description": "uri that identifies this metadata record, default is UUID type URN, in which case the URN:UUID: prefix is left off. If some other identifier scheme is used, an appropriate prefix should specifiy the identifier scheme (e.g. DOI, ISSN, ARK...)",
+                    "format": "uri",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "//gmd:fileIdentifier/gco:CharacterString"
+                    },
+                        {
+                            "schema": "DataCite v3",
+                            "path": "missing"
+                    }
+                        ],
+                    "description": "unique identifier for the metadata record (as distinct from the resource it describes)"
+                },
+                "jmd:metadataLastUpdate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "search_paths": [{
+                            "schema": "ISO 19139",
+                            "path": "//gmd:dateStamp/gco:Date"
+                    },
+                        {
+                            "schema": "DataCite v3",
+                            "path": "missing"
+                    }],
+                    "description": "exactly 1. This is time stamp for most recent change to metadata content in this record. Update history should be in metadataLineage; this is a convienence property"
+                },
+                "jmd:metadataContacts": {
+                    "description": "contact information to report problems with the resource description content. jmd:metadataContacts maps to ISO19115 metadataContact",
+                    "type": "array",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "//gmd:contact"
+                    },
+                        {
+                            "schema": "DataCite v3",
+                            "path": "missing"
+                    }],
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "jmd:agentRole": {
+                                "type": "object",
+                                "properties": {
+                                    "jmd:conceptPrefLabel": {
+                                        "type": "string",
+                                        "search_paths": [
+                                            {
+                                                "schema": "ISO 19139",
+                                                "path": "./gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue"
+                                                    }
+                                                ]
+                                    },
+                                    "jmd:vocabularyURI": {
+                                        "type": "string",
+                                        "search_paths": [
+                                            {
+                                                "schema": "ISO 19139",
+                                                "path": "./gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeList"
+                                                    }
+                                                ]
+                                    }
+
+                                }
+                            },
+                            "jmd:agent": {
+                                "type": "object",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "path": "./gmd:CI_ResponsibleParty"
+                                            }
+                                        ],
+                                "$ref": "#/definitions/jmd:AgentObject"
+                            }
+                        }
+                    }
+                },
+                "jmd:metadataSpecification": {
+                    "description": "Identifies the specification & profile for this metadata instance. Instances of this json schema should be identified using the id property of this schema",
+                    "type": "object",
+                    "properties": {
+                        "jmd:referenceLabel": {
+                            "description": "text to identify the reference in a UI",
+                            "type": "string",
+                            "search_paths": [
+                                {
+                                    "schema": "ISO 19139",
+                                    "concat": [
+                                        {
+                                            "path": "//gmd:metadataStandardName/gco:CharacterString"
+                                        },
+                                        {
+                                            "delimiter": "||"
+                                        },
+                                        {
+                                            "path": "//gmd:metadataStandardVersion/gco:CharacterString"
+                                        }]
+                                },
+                                {
+                                    "schema": "DataCite v3",
+                                    "path": "missing"
+                    }]
+                        },
+                        "jmd:referenceURIs": {
+                            "description": "identifiers for the metadata specification; might include identifiers under diffrent id schemes; not applicable for mapping because identifier in input our output metadata should be for the specification for that format.",
+                            "type": "array",
+                            "search_paths": [
+                                {
+                                    "schema": "ISO 19139",
+                                    "path": "missing"
+                        },
+                                {
+                                    "schema": "DataCite v3",
+                                    "path": "missing"
+                    }
+                    ],
+                            "items": {
+                                "type": "string",
+                                "format": "uri",
+                                "default": "http://resources.usgin.org/uri-gin/usgin/schema/json/3.1/metadata"
+                            }
+                        }
+                    }
+                },
+                "jmd:metadataLanguage": {
+                    "description": "Language of metadata content. Default is eng if no value is specified. ",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "//gmd:language/gmd:LanguageCode/@codeListValue"
+                        },
+                        {
+                            "schema": "DataCite v3",
+                            "path": "missing"
+                    }
+                    ],
+                    "type": "string"
+                },
+                "jmd:metadataRecordLineageItems": {
+                    "description": "documentation of update history for this metadata record. An array of processing steps or a link to an external provenance trace. First step in lineage should record harvest or creation via form. Metadata creation date goes in here with eventType = creation. USGIN has been putting this information in the metadata maintenance section.   Ideally probably want some kind of Prov encoding for information interchange; see https://provenance.ecs.soton.ac.uk/ and https://www.w3.org/Submission/prov-json/",
+                    "type": "array",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "missing"
+                        },
+                        {
+                            "schema": "DataCite v3",
+                            "path": "missing"
+                    }
+                    ],
+                    "minItems": 0,
+                    "items": {
+                        "type": "object",
+                        "required": ["jmd:stepDateTime", "jmd:metadataUpdates"],
+                        "properties": {
+                            "jmd:stepSequenceNo": {
+                                "description": "integer provided to sort processing steps in chronologic order. If sequence numbering is inconsistent with the stepDateTime, the time stamp takes precedence",
+                                "type": "integer"
+                            },
+                            "jmd:stepLabel": {
+                                "type": "string",
+                                "description": "text to characterize,identify this step for user interface listing"
+                            },
+                            "jmd:stepProcessors": {
+                                "description": "0..N parties responsible for processing step",
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "jmd:personURI": {
+                                            "type": "string",
+                                            "format": "uri",
+                                            "skos:relatedMatch": "foaf:openID"
+                                        },
+                                        "jmd:personName": {
+                                            "type": "string",
+                                            "description": "format--Last Name,First name MI",
+                                            "skos:exactMatch": "foaf:name"
+                                        },
+                                        "jmd:personPosition": {
+                                            "type": "string",
+                                            "description": "identifies an individual who currently holds the named position in context of an organization"
+                                        },
+                                        "jmd:organizationNames": {
+                                            "description": "an array of synonyms used to identify an organization; put alternate spellings, abbreviations, and acronyms here. I a person name and organizaiton name are supplied with the same agent, the implication is that the person is affiliated with the organizaiton",
+                                            "skos:relatedMatch": "foaf:name",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "minItems": 1
+                                        },
+                                        "jmd:organizationURI": {
+                                            "description": "unique identifier for organization",
+                                            "type": "string",
+                                            "format": "uri"
+                                        },
+                                        "jmd:phoneContacts": {
+                                            "type": "array",
+                                            "description": "this bit imported from https://github.com/adiwg/mdJson-schemas",
+                                            "items": {
+                                                "type": "object",
+                                                "required": ["jmd:phoneNumber"],
+                                                "properties": {
+                                                    "jmd:phoneLabel": {
+                                                        "type": "string",
+                                                        "description": "Descriptive name of the phone number."
+                                                    },
+                                                    "jmd:phoneNumber": {
+                                                        "type": "string",
+                                                        "description": "Telephone number. Recommended format is to use 'x' or 'ext' to denote extensions.",
+                                                        "translation": {
+                                                            "ISO 19115-2": ["CI_Telephone > voice | facsimile"],
+                                                            "FGDC CSDGM": ["cntinfo > cntvoice"]
+                                                        },
+                                                        "pattern": "^[0-9+()#. \/ext-]+$"
+                                                    },
+                                                    "jmd:phoneService": {
+                                                        "type": "string",
+                                                        "description": "Type(s) of phone number, e.g. voice, sms."
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "jmd:contactEmails": {
+                                            "description": "map to foaf:mbox",
+                                            "type": "array",
+                                            "minItems": 1,
+                                            "items": {
+                                                "type": "string",
+                                                "format": "email",
+                                                "skos:closeMatch": "foaf:mbox"
+                                            }
+                                        },
+                                        "jmd:agentPostalAddress": {
+                                            "type": "string",
+                                            "description": "postal address,ideally formatted appropriate to the target country. One field because there is no clear reason to disaggregate the address into street, city, country, postal code, etc..."
+                                        }
+                                    }
+                                }
+                            },
+                            "jmd:stepSoftware": {
+                                "description": "reference that specifies software used in this process step",
+                                "type": "object",
+                                "properties": {
+                                    "jmd:referenceLabel": {
+                                        "description": "text to identify the reference in a UI",
+                                        "type": "string"
+                                    },
+                                    "jmd:referenceURIs": {
+                                        "description": "identifiers for referenced resource; might include identifiers under diffrent id schemes",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "uri"
+                                        }
+                                    }
+                                }
+                            },
+                            "jmd:stepProcessDescription": {
+                                "description": "free text description of what processing was done",
+                                "type": "string"
+                            },
+                            "jmd:stepDateTime": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "only allow single time stamp"
+                            },
+                            "jmd:metadataUpdates": {
+                                "type": "array",
+                                "description": "object that defines the changes made to the original record by this processing step. Content here is draft version for CINERGI testing. originalValue and newValue are escape-encoded JSON text; these might are each key value pairs; the values might be simple (string or number), or JSON objects. This is an array because a component in a metadata processing pipeline might effect multiple elements in the metadata record.",
+                                "items": {
+                                    "type": "object",
+                                    "oneOf": [
+                                        {
+                                            "required": ["jmd:deletePath", "jmd:originalValue"]
+                                        },
+                                        {
+                                            "required": ["jmd:updatePath", "jmd:originalValue", "jmd:newValue"]
+                                        },
+                                        {
+                                            "required": ["jmd:insertPath", "jmd:newValue"]
+                                        }
+						                      ],
+                                    "properties": {
+                                        "jmd:deletePath": {
+                                            "type": "string",
+                                            "description": "JSON path identifying the location in this record where a key value pair was deleted. OriginalValue should record the content that was deleted."
+                                        },
+                                        "jmd:updatePath": {
+                                            "type": "string",
+                                            "description": "JSON path identifying the location in this record that was updated. originalValue records the content as is was, newValue records the updated value."
+                                        },
+                                        "jmd:insertPath": {
+                                            "type": "string",
+                                            "description": "JSON path identifying the location in this record where new content was inserted. newValue records the inserted content."
+                                        },
+                                        "jmd:originalValue": {
+                                            "type": "string",
+                                            "description": "escape-encoded content that was originally at that location. use 'NULL' if there was no content there before processing"
+                                        },
+                                        "jmd:newValue": {
+                                            "type": "string",
+                                            "description": "escape-encoded content of the updated content at that location. For deletion"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "jmd:harvestInformation": {
+                    "type": "object",
+                    "description": "this is information about the harvest origin of a record, only necessary when this JSON scheme is used as a document format in a metadata management system, generally not necessary for metadata interchange",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "missing"
+                        },
+                        {
+                            "schema": "DataCite v3",
+                            "path": "missing"
+                    }
+                    ],
+                    "required": ["jmd:harvestURL", "jmd:harvestDate"],
+                    "properties": {
+                        "jmd:harvestedFileIdentifier": {
+                            "type": "string"
+                        },
+                        "jmd:harvestedMetadataFormat": {
+                            "description": "Identifies the specification & profile of the source metadata harvested to construct this metadata object",
+                            "type": "object",
+                            "properties": {
+                                "jmd:referenceLabel": {
+                                    "description": "text to identify the reference in a UI",
+                                    "type": "string"
+                                },
+                                "jmd:referenceURIs": {
+                                    "description": "identifiers for referenced resource; might include identifiers under diffrent id schemes",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "format": "uri"
+                                    }
+                                }
+                            }
+                        },
+                        "jmd:harvestRecordId": {
+                            "type": "string"
+                        },
+                        "jmd:harvestURL": {
+                            "type": "string"
+                        },
+                        "jmd:harvestDate": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                },
+                "jmd:SourceInfo": {
+                    "type": "object",
+                    "description": "identification of the source of the harvested metadata, used for internal processing",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "missing"
+                        },
+                        {
+                            "schema": "DataCite v3",
+                            "path": "missing"
+                    }
+                    ],
+                    "properties": {
+                        "SourceID": {
+                            "type": "string"
+                        },
+                        "ViewID": {
+                            "type": "string"
+                        },
+                        "Name": {
+                            "type": "string"
+                        },
+                        "DataSource": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "jmd:collections": {
+                    "type": "array",
+                    "description": "list of collection identifiers that this resource is a member of. Property only generally needed if this JSON scheme is used as a document format for metadata management.",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "missing"
+                        },
+                        {
+                            "schema": "DataCite v3",
+                            "path": "missing"
+                    }
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "jmd:published": {
+                    "description": "true if the metadata record should be visible in the catalog; probably need to generalize to a policy object (like Fedora) to allow more granular access control. Only necessary for JSON docs in a metadata management system, not needed for interchange",
+                    "type": "boolean",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "missing"
+                        },
+                        {
+                            "schema": "DataCite v3",
+                            "path": "missing"
+                    }
+                    ]
+                }
+            }
+        },
+        "jmd:describedResource": {
+            "description": "exactly 1. what the metadata record is about. Use this to test Cordra with definition reference. Metadata that documents a resource. Basic requirement is title and access information to support the most basic discovery scenarios. The various optional elements provide capabilities for extensive resource documentation and inforamtion for machine interoperability.",
+            "type": "object",
+            "required": ["jmd:resourceTitle"],
+            "properties": {
+                "jmd:resourceTitle": {
+                    "description": "Title that identifies the resource for human users. Ideally the title would be unique to the described resource.ISO series information goes in full citation",
+                    "type": "string",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "concat": [
+                                {
+                                    "path": "//gmd:identificationInfo//gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString"
+                                },
+                                {
+                                    "path": "//gmd:identificationInfo//gmd:citation/gmd:CI_Citation/gmd:alternateTitle/gco:CharacterString || ' alternateTitle'"
+                                },
+                                {
+                                    "path": "//gmd:identificationInfo//gmd:citation/gmd:CI_Citation/gmd:collectiveTitle/gco:CharacterString || ' collectiveTitle'"
+                                },
+                                {
+                                    "delimiter": "||"
+                                }
+                            ],
+                            "mappingNote": "note that the title type value is appended to the value returned by the xpath; if the xpath is null, nothing should be appended."
+                        },
+                        {
+                            "schema": "DataCite v3",
+                            "concat": [
+                                {
+                                    "path": "/resource/titles/title || ../@titleType"
+                                },
+                                {
+                                    "delimiter": "||"
+                                }
+                            ],
+                            "mappingNote": "primary title will not have a @titleType attribute; if multiple titles are present, concatenate here on harvest"
+                    }
+                    ],
+                    "net.cnri.repository": {
+                        "preview": {
+                            "showInPreview": true,
+                            "isPrimary": true
+                        }
+                    }
+                },
+                "jmd:resourceAbstract": {
+                    "description": "Free text description of the resource. May summarize intellectual content, as well as describe various metadata aspects such as physical expression, lineage, quality, use constraints, maintenance.",
+                    "type": "string",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "//gmd:identificationInfo//gmd:abstract/gco:CharacterString"
+                        },
+                        {
+                            "schema": "DataCite v3",
+                            "concat": [
+                                {
+                                    "path": "/resource/descriptions/description || ../@descriptionType"
+                                },
+                                {
+                                    "delimiter": "||"
+                                }
+                            ]
+                    }
+                    ]
+                },
+                "jmd:resourceIdentifiers": {
+                    "description": " Array of scoped identifiers with an optional authority associated with each identifier. Scoped Identifier(s) for the resource, e.g. ISBN, ISSN, Dewey Decimal system numbers, or other URIs determined by the publishing authority.",
+                    "type": "array",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "or": [
+                                {
+                                    "path": "//gmd:identificationInfo//gmd:citation/gmd:CI_Citation/gmd:identifier"
+                                },
+                                {
+                                    "path": "//gmd:dataSetURI"
+                                }
+                            ]
+                        },
+                        {
+                            "schema": "DataCite v3",
+                            "or": [
+                                {
+                                    "path": "/resource/alternateIdentifier"
+                                },
+                                {
+                                    "path": "/resource/identifier"
+                                }
+                            ]
+                        }
+                    ],
+                    "mappingNote": "there might be multiple identifiers, which would become separate array elements. these search paths identify when an element should be generated. When doing JSON to DataCite, unless are testing that id is a DOI, put in alternateIdentifier; for ISO prefer the citation//MD_Identifier because dataSetURI appears to be non-normative",
+                    "items": {
+                        "type": "object",
+                        "oneOf": [
+                            {
+                                "required": ["jmd:resourceURI"]
+							},
+                            {
+                                "required": ["jmd:scopedIdentifier"]
+							}
+						],
+                        "properties": {
+                            "jmd:resourceURI": {
+                                "description": "identifier string that conforms to RFC 3986. If identifier uses different syntax or conveintions use scopedIdetifier. Unique identifier conforming to IETF URI syntax (RFC 3986). Resource may have multiple identifiers; the identifier in this element is the preferred identifier recommended by the resource steward. The resourceURI is intended to identify the resource at the FRBR work level.",
+                                "type": "string",
+                                "format": "URI",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "path": "./gco:CharacterString"
+                                    },
+                                    {
+                                        "schema": "DataCite v3",
+                                        "path": "/resource/identifier"
+                                    }
+                                ],
+                                "mappingNote": "When mapping from this JSON to DataCite, the identifier here can only go to DataCite identifier if ID String has DOI: or http://doi.org, otherwise goes to alternateIdentifier in DataCite."
+                            },
+                            "jmd:scopedIdentifier": {
+                                "description": "Identifier code with optional codespace and authority",
+                                "type": "object",
+                                "properties": {
+                                    "jmd:identiferCodeString": {
+                                        "description": "actual identifier string",
+                                        "type": "string",
+                                        "search_paths": [
+                                            {
+                                                "schema": "ISO 19139",
+                                                "path": ".//gmd:code/gco:CharacterString"
+                                            },
+                                            {
+                                                "schema": "DataCite v3",
+                                                "path": "/resource/alternateIdentifier"
+                                            }
+                                        ],
+                                        "mappingNote": "the xpath here is relative to the search_paths for the containing JSON element (jmd:resourceIdentifiers); the gmd:identifier type might be MD_Identifier or RS_Identifier"
+                                    },
+                                    "jmd:identifierCodespace": {
+                                        "description": "string that together with code string is intended to generate a globally unique identifier string; like a namespace",
+                                        "type": "string",
+                                        "search_paths": [
+                                            {
+                                                "schema": "ISO 19139",
+                                                "path": ".//gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString"
+
+                                            },
+                                            {
+                                                "schema": "DataCite v3",
+                                                "path": "/resource/alternateIdentifier/@alternateIdentifierType"
+                                            }
+                                        ],
+                                        "mappingNote": "the xpath here is relative to the search_paths for the containing JSON element (jmd:resourceIdentifiers); the gmd:identifier type might be MD_Identifier or RS_Identifier. Make sure the DataCite @alternateIdentifierType stays with the correct alternate identifier string."
+                                    },
+                                    "jmd:identifierVersion": {
+                                        "description": "account for ISO19115 RS_Identifier version; unclear what the use cases for this are...",
+                                        "type": "string",
+                                        "search_paths": [
+                                            {
+                                                "schema": "ISO 19139",
+                                                "path": ".//gmd:version/gco:CharacterString"
+                                            },
+                                            {
+                                                "schema": "DataCite v3",
+                                                "path": "missing"
+                                            }
+                                        ],
+                                        "mappingNote": "the xpath here is relative to the search_paths for the containing JSON element (jmd:resourceIdentifiers); gmd:version will only be present if its an RS_Identifier. No equivalent in DataCite"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "jmd:citationResponsibleParties": {
+                    "description": "Citation information for the resource:  contributing agents (author, publisher, editor, compiler, etc.,  intellectual originator and contributors to content and presentation of the resource that metadata record describes.  DataCite requires a creator and a publisher",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "search_paths": [
+                            {
+                                "schema": "ISO 19139",
+                                "path": "//gmd:identificationInfo//gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty"
+                                    },
+                            {
+                                "schema": "DataCite v3",
+                                "or": [
+                                    {
+                                        "path": "/resource/creators"
+                                    },
+                                    {
+                                        "path": "/resource/contributors"
+                                    }
+                                ]
+                                            }
+                                ],
+                        "mappingNote": "agentRole is implemented in the contactRef as a controlled concept. mapping and search paths for agentRole need to assume it is getting a node that has a @codelist and @codelistValue attribute.",
+                        "properties": {
+                            "jmd:agentRole": {
+                                "type": "object",
+                                "properties": {
+                                    "jmd:conceptPrefLabel": {
+                                        "type": "string",
+                                        "search_paths": [
+                                            {
+                                                "schema": "ISO 19139",
+                                                "path": "./gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue"
+                                                    },
+                                            {
+                                                "schema": "DataCite v3",
+                                                "if": [
+                                                    {
+                                                        "path": "./creator",
+                                                        "constant": "creator"
+                                                    },
+                                                    {
+                                                        "path": "./contributor",
+                                                        "valueOf": "./contributor/@contributorType",
+                                                        "default": "contributor"
+                                                    }
+                                                ]
+                                            }
+                                                ]
+                                    },
+                                    "jmd:vocabularyURI": {
+                                        "type": "string",
+                                        "search_paths": [
+                                            {
+                                                "schema": "ISO 19139",
+                                                "path": "./gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeList"
+                                                    },
+                                            {
+                                                "schema": "DataCite v3",
+                                                "constant": "http://datacite.org/schema/kernel-3"
+                                            }
+                                                ]
+                                    }
+
+                                }
+                            },
+                            "jmd:agent": {
+                                "type": "object",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "path": "./gmd:CI_ResponsibleParty"
+                                            },
+                                    {
+                                        "schema": "DataCite v3",
+                                        "or": [
+                                            {
+                                                "path": "./creator"
+                                            },
+                                            {
+                                                "path": "./contributor"
+                                            }
+                                        ]
+                                            }
+                                        ],
+                                "properties": {
+                                    "$ref": "#/definitions/jmd:AgentObject"
+                                }
+                            }
+                        }
+                    }
+                },
+                "jmd:citationDates": {
+                    "description": "pertinent dates that may be useful in searches for the resource or for identifying it,Each date should scope a different origin event. DataCite requires a publication date",
+                    "type": "array",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "//gmd:identificationInfo//gmd:citation/gmd:CI_Citation/gmd:date"
+                                    }
+                                ],
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "jmd:eventTypes": {
+                                "description": "0..N  event may be categorized in various ways...",
+                                "type": "array",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "path": "./gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode"
+                                    }
+                                ],
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "jmd:conceptPrefLabel": {
+                                            "description": "text to identify the reference in a UI",
+                                            "type": "string",
+                                            "search_paths": [
+                                                {
+                                                    "schema": "ISO 19139",
+                                                    "path": "./@codeListValue"
+                                                         }
+                                                    ]
+                                        },
+                                        "jmd:vocabularyURI": {
+                                            "description": "identifier for vocabulary in which the typeCode is defined.",
+                                            "type": "string",
+                                            "format": "uri",
+                                            "search_paths": [
+                                                {
+                                                    "schema": "ISO 19139",
+                                                    "path": "./@codeList"
+                                            }]
+                                        }
+                                    }
+                                },
+                                "jmd:eventDateTime": {
+                                    "description": "Use ISO 8601: 2011-10-11T14:30",
+                                    "type": "string",
+                                    "search_paths": [
+                                        {
+                                            "schema": "ISO 19139",
+                                            "path": "./gmd:CI_Date/gmd:date/gco:DateTime"
+                                    }
+                                ]
+                                }
+
+                            }
+                        }
+                    }
+                },
+                "jmd:resourceTypes": {
+                    "description": "0..N. DataCite requires a resourceType (user determined), with a resourceTypeGeneral attribute from a controlled vocabulary; ISO requires a hierachyLevel from a controlled vocabulary.",
+                    "type": "array",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "or": [
+                                {
+                                    "path": "//gmd:hierarchyLevel/gmd:MD_ScopeCode"
+                                },
+                                {
+                                    "path": "//gmd:hierarchyLevelName"
+                                }
+                                        ]
+                                    },
+                        {
+                            "schema": "DataCite v3",
+                            "path": "/resource/resourceType"
+                                }
+                    ],
+                    "mappingNote": "if a hierarchyLevel ScopeCode is found, the it is paired with the ScopeCode/@codeListValue; hierarchyLevelNames are free text, if only a conceptPrefLabel is avaialble in the JSON, then map to hierarchyLevelName for JSON to ISO; if a vocabularyURI or name is provided that is not an ISO ScopeCode vocabulary, then recommend mapping JSON resource type to an ISO keyword or DataCite subject with the vocabulary identifier as a thesaurus name/ identifier or dataCite subjectScheme. If the JSON resource type contains the '>' delimiter, then for JSON to dataCite, map to resourceType and @resourceTypeGeneral (should probably check that resourceTypeGeneral is valid in the DataCite enumeration) Resource categorization is one of widely divergent practice between the various metadata schemes.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "jmd:conceptPrefLabel": {
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "or": [
+                                            {
+                                                "path": "./@codeListValue"
+                                            },
+                                            {
+                                                "path": "./gco:CharacterString"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "schema": "DataCite v3",
+                                        "path": ". || ' > ' || ./@resourceTypeGeneral"
+                                }
+                                ]
+                            },
+                            "jmd:vocabularyURI": {
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "path": "//gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeList"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "jmd:resourceAccessOptions": {
+                    "description": "describes how to access the resource described by the metadata. Corresponds to ISO19115 distribution. Each object in the accessOptions array contains the offerings from a particular distributor. If no distributor is specified, assume that the resource contact is the distributor. Note that distributions are grouped by distributor, and Formats are associated with LinkObjects for online access and with the offline access. OrderingInstructions and turnaround are associated with Offline access procedures",
+                    "type": "array",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "//gmd:distributionInfo/gmd:MD_Distribution"
+                        },
+                        {
+                            "schema": "DataCite v3",
+                            "path": "missing"
+                    }
+                    ],
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "jmd:distributor": {
+                                "description": "agent responsible for making the resources accessible at the associated URLs or offline locations",
+                                "type": "object",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "path": "./gmd:distributor/gmd:MD_Distributor/gmd:distributorContact"
+                                    }
+                                ],
+                                "mappingNote": "agentRole is implemented in the contactRef as a controlled concept. mapping and search paths for agentRole need to assume it is getting a node that has a @codelist and @codelistValue attribute.",
+                                "properties": {
+                                    "jmd:agentRole": {
+                                        "type": "object",
+                                        "properties": {
+                                            "jmd:conceptPrefLabel": {
+                                                "type": "string",
+                                                "search_paths": [
+                                                    {
+                                                        "schema": "ISO 19139",
+                                                        "path": "./gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue"
+                                                    }
+                                                ]
+                                            },
+                                            "jmd:vocabularyURI": {
+                                                "type": "string",
+                                                "search_paths": [
+                                                    {
+                                                        "schema": "ISO 19139",
+                                                        "path": "./gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeList"
+                                                    }
+                                                ]
+                                            }
+
+                                        }
+                                    },
+                                    "jmd:agent": {
+                                        "type": "object",
+                                        "search_paths": [
+                                            {
+                                                "schema": "ISO 19139",
+                                                "path": "./gmd:CI_ResponsibleParty"
+                                            }
+                                        ],
+                                        "$ref": "#/definitions/jmd:AgentObject"
+                                    }
+                                }
+                            },
+                            "jmd:accessLinks": {
+                                "description": "online location that provides some kind of access to the described resource. The link properties are used to characterize the nature of the resource at the specified location, e.g. if only particular spatial representation or spatial reference system types.",
+                                "type": "array",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "path": "gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource"
+                                    }
+                                ],
+                                "mappingNote": "LinkObject handles mapping for  CI_OnlineResource",
+                                "items": {
+                                    "$ref": "#/definitions/jmd:LinkObject"
+                                }
+                            },
+                            "jmd:accessInstructions": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "description": "free text description of how to get resource;  Include turnaround time and business hours information, turnaround time, and any other necessary information, including density, density units, number of volumes, software or hardware requirements, etc. Allow array because ordering Instructions in ISO19115 are 0..* on MD_Distributor",
+                                    "search_paths": [
+                                        {
+                                            "schema": "ISO 19139",
+                                            "path": "gmd:distributor/gmd:MD_Distributor/gmd:distributionOrderProcess/gmd:MD_StandardOrderProcess/gmd:orderingInstructions/gco:CharacterString"
+                                            }
+                                        ],
+                                    "mappingNote": "if distributor contact is not provided in JSON, will have to create a gmd:MD_Distributor/gmd:distributorContact /@gco:nilReason='missing' element for to write valid ISO from JSON."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+    "definitions": {
+        "jmd:AgentObject": {
+            "description": "This object represents one person-organization affiliation, can be used with just organization or an unaffiliated person. There must be at least one personName, personPosition or organizationName, and there must be at least one phoneNumber or contactEmail. Paths for mapping are relative to CI_ResponsibleParty. For DataCite, paths are relative to either creator or contributor.",
+            "type": "object",
+            "allOf": [
+                {
+                    "anyOf": [{
+                            "required": ["jmd:personName"]
+						}, {
+                            "required": ["jmd:personPosition"]
+						}, {
+                            "required": ["jmd:organizationNames"]
+						}
+					]
+				},
+                {
+                    "anyOf": [
+                        {
+                            "required": ["jmd:phoneContacts"]
+						},
+                        {
+                            "required": ["jmd:contactEmails"]
+						}
+					]
+				}
+			],
+            "properties": {
+                "jmd:personURI": {
+                    "type": "string",
+                    "format": "uri",
+                    "skos:relatedMatch": "foaf:openID",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "./gmd:individualName/gmx:Anchor/@xlink:href"
+                    },
+                        {
+                            "schema": "DataCite v3",
+                            "concat": [
+                                {
+                                    "path": "./nameIdentifier"
+                                },
+                                {
+                                    "path": "./nameIdentifier/@nameIdentifierScheme"
+                                },
+                                {
+                                    "path": "./nameIdentifier/@schemeURI"
+                                },
+                                {
+                                    "delimiter": "||"
+                                }
+                            ]
+                        }
+                        ]
+                },
+                "jmd:personName": {
+                    "type": "string",
+                    "description": "format--Last Name,First name MI",
+                    "skos:exactMatch": "foaf:name",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "or": [
+                                {
+                                    "path": "./gmd:individualName/gmx:Anchor/@xlink:href"
+                                },
+                                {
+                                    "path": "./gmd:individualName/gco:CharacterString"
+                                }
+                            ]
+                    },
+                        {
+                            "schema": "DataCite v3",
+                            "or": [
+                                {
+                                    "path": "./creatorName"
+                                },
+                                {
+                                    "path": "./contributorName"
+                                }
+                            ]
+                        }
+                        ],
+                    "mappingNote": "if a person URI is provided, use gmx:Anchor for name and personURI (where the URI is xml encoded as xlink:href)"
+                },
+                "jmd:personPosition": {
+                    "type": "string",
+                    "description": "identifies an individual who currently holds the named position in context of an organization",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "./gmd:positionName/gco:CharacterString"
+                        }
+                            ]
+                },
+                "jmd:organizationNames": {
+                    "description": "an array of synonyms used to identify an organization; put alternate spellings, abbreviations, and acronyms here. I a person name and organizaiton name are supplied with the same agent, the implication is that the person is affiliated with the organizaiton",
+                    "skos:relatedMatch": "foaf:name",
+                    "type": "array",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "./gmd:organisationName"
+                    },
+                        {
+                            "schema": "DataCite v3",
+                            "path": "./affiliation"
+                        }
+                        ],
+                    "minItems": 1,
+                    "items": {
+                        "type": "string",
+                        "search_paths": [
+                            {
+                                "schema": "ISO 19139",
+                                "or": [
+                                    {
+                                        "path": "./gmx:Anchor"
+                                },
+                                    {
+                                        "path": "./gco:CharacterString"
+                                }
+                            ]
+                    },
+                            {
+                                "schema": "DataCite v3",
+                                "path": "./text()"
+                        }
+                            ],
+                        "mappingNote": "there is no schema for datacite affiliation, thus don't know what  you'll get; to harden code should probably process whatever is there to make sure its JSON safe text, thus the phony 'text()' function. "
+                    }
+                },
+                "jmd:organizationURI": {
+                    "description": "unique identifier for organization",
+                    "type": "string",
+                    "format": "uri",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "./gmd:organisationName/gmx:Anchor"
+                    },
+                        {
+                            "schema": "DataCite v3",
+                            "path": "./nameIdentifier"
+                        }
+                        ],
+                    "minItems": 1,
+                    "items": {
+                        "type": "string",
+                        "search_paths": [
+                            {
+                                "schema": "ISO 19139",
+                                "path": "./@xlink:href"
+                    },
+                            {
+                                "schema": "DataCite v3",
+                                "concat": [
+                                    {
+                                        "path": "."
+                                },
+                                    {
+                                        "path": "./@nameIdentifierScheme"
+                                },
+                                    {
+                                        "path": "./@schemeURI"
+                                },
+                                    {
+                                        "delimiter": "||"
+                                }
+
+                            ]
+                        }
+                        ]
+                    }
+                },
+                "jmd:agentLinks": {
+                    "description": "Links to additional information about the agent, e.g. a home page; one of these should be for an icon to represent the organization",
+                    "minItems": 1,
+                    "type": "array",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "./gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource"
+                                            },
+                        {
+                            "schema": "DataCite v3",
+                            "path": "missing"
+                                            }
+                                        ],
+                    "mappingNote": "LinkObject handles mapping for  CI_OnlineResource",
+                    "items": {
+                        "$ref": "#/definitions/jmd:LinkObject"
+                    }
+                },
+                "jmd:phoneContacts": {
+                    "type": "array",
+                    "description": "this bit imported from https://github.com/adiwg/mdJson-schemas",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "./gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone"
+                                            },
+                        {
+                            "schema": "DataCite v3",
+                            "path": "missing"
+                                            }
+                                        ],
+                    "items": {
+                        "type": "object",
+                        "required": ["jmd:phoneNumber"],
+                        "properties": {
+                            "jmd:phoneNumber": {
+                                "type": "string",
+                                "description": "Telephone number. Recommended format is to use 'x' or 'ext' to denote extensions.",
+                                "pattern": "^[0-9+()#. \/ext-]+$",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "or": [
+                                            {
+                                                "path": "./gmd:voice/gco:CharacterString"
+                                            },
+                                            {
+                                                "path": "./gmd:facsimile/gco:CharacterString"
+                                            }
+                                                ]
+                                            }
+                                        ]
+                            },
+                            "jmd:phoneService": {
+                                "type": "string",
+                                "description": "Type(s) of phone number, e.g. voice, sms.",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "if": [
+                                            {
+                                                "path": "./gmd:voice/gco:CharacterString",
+                                                "constant": "voice"
+                                            },
+                                            {
+                                                "path": "./gmd:facsimile/gco:CharacterString",
+                                                "constant": "facsimile"
+                                            }
+                                                ]
+                                            }
+                                        ]
+                            }
+                        }
+                    }
+                },
+                "jmd:contactEmails": {
+                    "description": "map to foaf:mbox",
+                    "type": "array",
+                    "minItems": 1,
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "./gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress"
+                                            }
+                        ],
+                    "items": {
+                        "type": "string",
+                        "format": "email",
+                        "skos:closeMatch": "foaf:mbox",
+                        "search_paths": [
+                            {
+                                "schema": "ISO 19139",
+                                "path": "./gco:CharacterString"
+                                            }
+                        ]
+                    }
+                },
+                "jmd:agentPostalAddress": {
+                    "type": "string",
+                    "description": "postal address,ideally formatted appropriate to the target country. One field because there is no clear reason to disaggregate the address into street, city, country, postal code, etc...",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "concat": [
+                                {
+                                    "path": "./gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString"
+                                },
+                                {
+                                    "path": "./gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:city/gco:CharacterString"
+                                },
+                                {
+                                    "path": "./gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:administrativeArea/gco:CharacterString"
+                                },
+                                {
+                                    "path": "./gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode/gco:CharacterString"
+                                },
+                                {
+                                    "path": "./gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:country/gco:CharacterString"
+                                },
+                                {
+                                    "delimiter": ", "
+                                }
+                                            ],
+                            "mappingNote": "postal address is put in one string field in JSON, for JSON  to ISO, put the full address in gmd:deliveryPoint. "
+                            }
+                        ]
+                }
+            }
+        },
+        "jmd:LinkObject": {
+            "description": "used for situations that need a link (hypermedia affordance) to an online resource, typically for navigating linked data space.  The link is a locator--an identifier for a location that can provide a digital object. Paths for ISO mapping  are relative to gmd:CI_OnlineResource; targetResourceType and transferSize require accessing  parent or sibling nodes of CI_OnlineResource, this might cause problems. ",
+            "type": "object",
+            "required": ["jmd:linkURL"],
+            "properties": {
+                "jmd:linkURL": {
+                    "description": "a web-derferencable identifier that locates the link target; typically an HTTP URI. URI syntax specifies that the identifier string includes a prefix that specifies the base protocol for the identifier",
+                    "type": "string",
+                    "format": "uri",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "./gmd:linkage/gmd:URL"
+                                            }
+                                        ]
+                },
+                "jmd:linkRelations": {
+                    "type": "array",
+                    "description": "Term from IANA rel vocabulary for consistency with IETF5988. Specifies relationship between resources. Use to assign semantics to the relationship between the linked resources.",
+                    "minItems": 1,
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "./gmd:function/gmd:CI_OnLineFunctionCode"
+                        }],
+                    "items": {
+                        "type": "object",
+                        "required": ["jmd:relLabel"],
+                        "properties": {
+                            "jmd:relLabel": {
+                                "description": "text to identify the reference in a UI",
+                                "type": "string",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "path": "./@codeListValue"
+                                                         }
+                                                    ]
+                            },
+                            "jmd:relVocabularyURI": {
+                                "description": "identifier for vocabulary in which the relLabel is defined.",
+                                "type": "string",
+                                "format": "uri",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "path": "./@codeList"
+                                            }]
+                            }
+                        }
+                    }
+                },
+                "jmd:linkTitle": {
+                    "type": "string",
+                    "description": "text to label this link in a UI",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "./gmd:name/gco:CharacterString"
+                                            }
+                                        ]
+                },
+                "jmd:linkTargetResourceTypes": {
+                    "type": "array",
+                    "description": "typically use MIME type string from IANA registry http : //www.iana.org/assignments/media-types/application/index.html. This is the type of the file that will be accessed directly by the link URL; if this is a container file (e.g. zip archive), the innerResourceType property is used to specify the type of file with actual resource content.  This array contains the content from ISO19115 MD_Format. In general multiple formats indicate that there is some method of specifying format in request",
+                    "items": {
+                        "type": "object",
+                        "search_paths": [
+                            {
+                                "schema": "ISO 19139",
+                                "path": "../../../../gmd:distributionFormat"
+                                                }
+                                            ],
+                        "required": ["jmd:formatName"],
+                        "properties": {
+                            "jmd:formatName": {
+                                "type": "string",
+                                "description": "put MIME type here if applicable, otherwise the name of a file format",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "path": "./MD_Format/gmd:name/gco:CharacterString"
+                                                        }
+                                                    ]
+                            },
+                            "jmd:formatVersion": {
+                                "type": "string",
+                                "description": "version number of format",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "path": "./MD_Format/gmd:version/gco:CharacterString"
+                                                        }
+                                                    ]
+                            },
+                            "jmd:formatAmendmentNumber": {
+                                "type": "string",
+                                "description": "additioanl version information if applicable",
+                                "description": "version number of format",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "path": "./MD_Format/gmd:amendmentNumber/gco:CharacterString"
+                                                        }
+                                                    ]
+                            },
+                            "jmd:formatSpecification": {
+                                "type": "string",
+                                "description": "Name of a subset, profile, or product specification of the format",
+                                "description": "version number of format",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "path": "./MD_Format/gmd:specification/gco:CharacterString"
+                                                        }
+                                                    ]
+                            },
+                            "jmd:formatDecompressionTechnique": {
+                                "type": "string",
+                                "description": "text explanation of any decompression technology required",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "path": "./MD_Format/gmd:fileDecompressionTechnique/gco:CharacterString"
+                                                        }
+                                                    ]
+                            }
+                        }
+                    }
+                },
+                "jmd:linkOverlayAPI": {
+                    "description": "Reference that identifies the API for messages tunneled to a component on the target server.  Optional, provide if such scheme or protocol is necessary to utilize the link. The URI should be defined by the service specification for the protocol or service type; version information should be included if applicable.  E.g. OGC WMS, WS-services. This property is typically used for services that encode remote procedure calls using identifiers dereferenced using standard HTTP methods (GET, POST).",
+                    "type": "object",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "./gmd:protocol"
+                                            }
+                                        ],
+                    "required": ["jmd:APILabel"],
+                    "properties": {
+                        "jmd:APILabel": {
+                            "description": "text to identify the overlay API in a UI",
+                            "type": "string",
+                            "search_paths": [
+                                {
+                                    "schema": "ISO 19139",
+                                    "path": "./gco:CharacterString"
+                                                     }
+                                                ]
+                        }
+                    }
+                },
+                "jmd:linkProfile": {
+                    "description": "Identifier for profile of specifications identified by type, overlayAPI, and template attributes. Optional, provide if additional conventions are necessary for content contained in messages through this link. Note that the same output scheme might be encoded using different types. Profiles typically add usage conventions when the interchange scheme offers alternate approaches, restrict cardinality for elements in the interchange format, or specify usage of particular vocabularies.",
+                    "type": "object",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "./gmd:applicationProfile"
+                                          }],
+                    "required": ["jmd:profileLabel"],
+                    "properties": {
+                        "jmd:profileLabel": {
+                            "description": "text to identify the profile in a UI",
+                            "type": "string",
+                            "search_paths": [
+                                {
+                                    "schema": "ISO 19139",
+                                    "path": "./gco:CharacterString"
+                                            }]
+                        }
+                    }
+                },
+                "jmd:linkDescription": {
+                    "type": "string",
+                    "description": "free text description of the target to help UI",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "./gmd:description/gco:CharacterString"
+                                            }
+                                        ]
+                },
+                "jmd:linkTransferSize": {
+                    "type": "integer",
+                    "description": "advisory length of the linked content in octets",
+                    "search_paths": [
+                        {
+                            "schema": "ISO 19139",
+                            "path": "../../gmd:transferSize/gco:Real"
+                                            }
+                                        ]
+                }
+            }
+        }
+
+    }
+}
