@@ -4,27 +4,26 @@
         "jmd:metadataLastUpdate": "2015-04-10T20:05:36",
         "jmd:metadataContacts": [{
             "jmd:agentRole": {
-                "jmd:conceptPrefLabel": "string",
-                "jmd:vocabularyURI": "string"
+                "jmd:conceptPrefLabel": "pointOfContact",
+                "jmd:vocabularyURI": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
             },
             "jmd:agent": {
                 "jmd:personName": "Roland Horne",
                 "jmd:organizationNames": ["Stanford University"],
                 "jmd:agentLinks": [
-                    {
-                        "jmd:linkURL": "https://pangea.stanford.edu/departments/ere/"
-                    }
-        ],
+                    {"jmd:linkURL": "https://pangea.stanford.edu/departments/ere/"}
+                ],
                 "jmd:phoneContacts": [
                     {
                         "jmd:phoneNumber": "(650)723-9595",
                         "jmd:phoneService": "voice"
-            }
-        ],
+                    }
+                ],
                 "jmd:contactEmails": ["horne@stanford.edu"],
                 "jmd:agentPostalAddress": "Green Earth Science Bldg. 098 (mail code: 2220)Stanford University, Stanford, CA, 94305-2220, USA"
             }
-                        }],
+        }
+        ],
         "jmd:metadataSpecification": {
             "jmd:referenceLabel": "CINERGI Minimal Metadata v3.2",
             "jmd:referenceURIs": ["http://resources.usgin.org/uri-gin/usgin/schema/json/3.1/metadata"]
@@ -37,7 +36,6 @@
                 "jmd:stepProcessors": [
                     {
                         "jmd:personName": "Richard, Stephen M.",
-
                         "jmd:organizationNames": ["Lamont Doherty Earth Observatory", "LDEO, Columbia University"],
                         "jmd:organizationURI": "string",
                         "jmd:phoneContacts": [
@@ -47,13 +45,13 @@
                                 "jmd:phoneService": "voice"
                             }
                                         ],
-                        "jmd:contactEmails": [
-                                        "smr2209@columbia.edu", "smrTucson@gmail.com"
-                                    ]
-                    }],
+                        "jmd:contactEmails": ["smr2209@columbia.edu", "smrTucson@gmail.com"]
+                    }
+                ],
                 "jmd:stepProcessDescription": "Hand craft example instance based on a real metadata record",
                 "jmd:stepDateTime": "2017-03-13T01:15"
-                                    }],
+            }
+        ],
         "jmd:harvestInformation": {
             "jmd:harvestedFileIdentifier": "1551020c-40a9-4fef-b47a-4e9e3f7e471a",
             "jmd:harvestedMetadataFormat": {
@@ -131,8 +129,9 @@
                     {
                         "jmd:linkURL": "http://www.geothermal-library.org/index.php?mode=pubs&amp;action=view&amp;record=1000315",
                         "jmd:linkTitle": "Downloadable File"
-                        }]
-    }
-            ]
+                        }
+                ]
+            }
+        ]
     }
 }

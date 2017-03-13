@@ -19,7 +19,7 @@
             "schema": "ISO 19139",
             "path": "gmd:MD_Metadata"
                     },
-        {t
+        {
             "schema": "DataCite v3",
             "path": "resource"
                     },
