@@ -23,7 +23,7 @@
             "path": "/resource"
                     }
     ],
-    "mappingNote":"xpaths are set up to work with either gmi (19115-2) or gmd (19115/19139) metadata,  and either gmd:MD_IdentificationInfo or srv:ServiceInfo for the gmd:identificationInfo section, using the ISO 19139 schema choice",
+    "mappingNote": "xpaths are set up to work with either gmi (19115-2) or gmd (19115/19139) metadata,  and either gmd:MD_IdentificationInfo or srv:ServiceInfo for the gmd:identificationInfo section, using the ISO 19139 schema choice",
     "required": [
 		"jmd:metadataInfo",
 		"jmd:describedResource"
@@ -60,7 +60,14 @@
                     "format": "date-time",
                     "search_paths": [{
                             "schema": "ISO 19139",
-                            "path": "//gmd:dateStamp/gco:Date"
+                            "or": [
+                                {
+                                    "path": "//gmd:dateStamp/gco:Date"
+                                },
+                                {
+                                    "path": "//gmd:dateStamp/gco:DateTime"
+                                }
+                        ]
                     },
                         {
                             "schema": "DataCite v3",
@@ -173,7 +180,14 @@
                     "search_paths": [
                         {
                             "schema": "ISO 19139",
-                            "path": "//gmd:language/gmd:LanguageCode/@codeListValue"
+                            "or": [
+                                {
+                                    "path": "//gmd:language/gmd:LanguageCode/@codeListValue"
+                                },
+                                {
+                                    "path": "//gmd:language/gco:CharacterString"
+                                }
+                            ]
                         },
                         {
                             "schema": "DataCite v3",
@@ -518,7 +532,17 @@
                     "search_paths": [
                         {
                             "schema": "ISO 19139",
-                            "path": "//gmd:identificationInfo//gmd:abstract/gco:CharacterString"
+                            "concat": [
+                                {
+                                    "path": "//gmd:identificationInfo//gmd:abstract/gco:CharacterString"
+                                },
+                                {
+                                    "path": "//gmd:identificationInfo//gmd:citation/gmd:CI_Citation/gmd:otherCitationDetails/gco:CharacterString || ' citationDetails'"
+                                },
+                                {
+                                    "delimiter": "||"
+                                }
+                            ]
                         },
                         {
                             "schema": "DataCite v3",
@@ -780,19 +804,27 @@
                                             }]
                                         }
                                     }
-                                },
-                                "jmd:eventDateTime": {
-                                    "description": "Use ISO 8601: 2011-10-11T14:30",
-                                    "type": "string",
-                                    "search_paths": [
-                                        {
-                                            "schema": "ISO 19139",
-                                            "path": "./gmd:CI_Date/gmd:date/gco:DateTime"
-                                    }
-                                ]
                                 }
-
+                            },
+                            "jmd:eventDateTime": {
+                                "description": "Use ISO 8601: 2011-10-11T14:30",
+                                "type": "string",
+                                "search_paths": [
+                                    {
+                                        "schema": "ISO 19139",
+                                        "or": [
+                                            {
+                                                "path": "./gmd:CI_Date/gmd:date/gco:DateTime"
+                                            },
+                                            {
+                                                "path": "./gmd:CI_Date/gmd:date/gco:Date"
+                                            }
+                                            ]
+                                    }
+                                ],
+                                "mappingNote": "in mapping code need to put check it to catch Excel null date value 1905-06-01T00:00:00, and replace with a nil:missing"
                             }
+
                         }
                     }
                 },
@@ -821,6 +853,7 @@
                         "type": "object",
                         "properties": {
                             "jmd:conceptPrefLabel": {
+                                "type": "string",
                                 "search_paths": [
                                     {
                                         "schema": "ISO 19139",
@@ -840,6 +873,7 @@
                                 ]
                             },
                             "jmd:vocabularyURI": {
+                                "type": "string",
                                 "search_paths": [
                                     {
                                         "schema": "ISO 19139",
@@ -920,7 +954,7 @@
                                 "search_paths": [
                                     {
                                         "schema": "ISO 19139",
-                                        "path": "gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource"
+                                        "path": "./gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource"
                                     }
                                 ],
                                 "mappingNote": "LinkObject handles mapping for  CI_OnlineResource",
@@ -1013,7 +1047,7 @@
                             "schema": "ISO 19139",
                             "or": [
                                 {
-                                    "path": "./gmd:individualName/gmx:Anchor/@xlink:href"
+                                    "path": "./gmd:individualName/gmx:Anchor"
                                 },
                                 {
                                     "path": "./gmd:individualName/gco:CharacterString"
@@ -1088,41 +1122,27 @@
                     "search_paths": [
                         {
                             "schema": "ISO 19139",
-                            "path": "./gmd:organisationName/gmx:Anchor"
+                            "path": "./gmd:organisationName/gmx:Anchor/@xlink:href"
                     },
                         {
                             "schema": "DataCite v3",
-                            "path": "./nameIdentifier"
-                        }
-                        ],
-                    "minItems": 1,
-                    "items": {
-                        "type": "string",
-                        "search_paths": [
-                            {
-                                "schema": "ISO 19139",
-                                "path": "./@xlink:href"
-                    },
-                            {
-                                "schema": "DataCite v3",
-                                "concat": [
-                                    {
-                                        "path": "."
-                                },
-                                    {
-                                        "path": "./@nameIdentifierScheme"
-                                },
-                                    {
-                                        "path": "./@schemeURI"
-                                },
-                                    {
-                                        "delimiter": "||"
-                                }
 
+                            "concat": [
+                                {
+                                    "path": "./nameIdentifier"
+                                },
+                                {
+                                    "path": "./nameIdentifier/@nameIdentifierScheme"
+                                },
+                                {
+                                    "path": "./nameIdentifier/@schemeURI"
+                                },
+                                {
+                                    "delimiter": "||"
+                                }
                             ]
                         }
                         ]
-                    }
                 },
                 "jmd:agentLinks": {
                     "description": "Links to additional information about the agent, e.g. a home page; one of these should be for an icon to represent the organization",

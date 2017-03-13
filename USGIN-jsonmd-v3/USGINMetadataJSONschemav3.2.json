@@ -2248,7 +2248,7 @@
                 },
                 "jmd:linkTransferSize": {
                     "type": "integer",
-                    "description": "advisory length of the linked content in octets"
+                    "description": "advisory length of the linked content in octets (bytes)"
                 }
             }
         },
