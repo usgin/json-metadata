@@ -1,0 +1,138 @@
+{
+    "jmd:metadataInfo": {
+        "jmd:metadataIdentifier": "1551020c-40a9-4fef-b47a-4e9e3f7e471a",
+        "jmd:metadataLastUpdate": "2015-04-10T20:05:36",
+        "jmd:metadataContacts": [{
+            "jmd:agentRole": {
+                "jmd:conceptPrefLabel": "string",
+                "jmd:vocabularyURI": "string"
+            },
+            "jmd:agent": {
+                "jmd:personName": "Roland Horne",
+                "jmd:organizationNames": ["Stanford University"],
+                "jmd:agentLinks": [
+                    {
+                        "jmd:linkURL": "https://pangea.stanford.edu/departments/ere/"
+                    }
+        ],
+                "jmd:phoneContacts": [
+                    {
+                        "jmd:phoneNumber": "(650)723-9595",
+                        "jmd:phoneService": "voice"
+            }
+        ],
+                "jmd:contactEmails": ["horne@stanford.edu"],
+                "jmd:agentPostalAddress": "Green Earth Science Bldg. 098 (mail code: 2220)Stanford University, Stanford, CA, 94305-2220, USA"
+            }
+                        }],
+        "jmd:metadataSpecification": {
+            "jmd:referenceLabel": "CINERGI Minimal Metadata v3.2",
+            "jmd:referenceURIs": ["http://resources.usgin.org/uri-gin/usgin/schema/json/3.1/metadata"]
+        },
+        "jmd:metadataLanguage": "eng",
+        "jmd:metadataRecordLineageItems": [
+            {
+                "jmd:stepSequenceNo": 1,
+                "jmd:stepLabel": "string",
+                "jmd:stepProcessors": [
+                    {
+                        "jmd:personName": "Richard, Stephen M.",
+
+                        "jmd:organizationNames": ["Lamont Doherty Earth Observatory", "LDEO, Columbia University"],
+                        "jmd:organizationURI": "string",
+                        "jmd:phoneContacts": [
+                            {
+                                "jmd:phoneLabel": "office",
+                                "jmd:phoneNumber": "846-295-0746",
+                                "jmd:phoneService": "voice"
+                            }
+                                        ],
+                        "jmd:contactEmails": [
+                                        "smr2209@columbia.edu", "smrTucson@gmail.com"
+                                    ]
+                    }],
+                "jmd:stepProcessDescription": "Hand craft example instance based on a real metadata record",
+                "jmd:stepDateTime": "2017-03-13T01:15"
+                                    }],
+        "jmd:harvestInformation": {
+            "jmd:harvestedFileIdentifier": "1551020c-40a9-4fef-b47a-4e9e3f7e471a",
+            "jmd:harvestedMetadataFormat": {
+                "jmd:referenceLabel": "ISO-USGIN v1.2"
+            },
+            "jmd:harvestRecordId": "00001",
+            "jmd:harvestURL": "http://catalog.usgin.org/geoportal/rest/document?id=%7B1551020c-40a9-4fef-b47a-4e9e3f7e471a%7D",
+            "jmd:harvestDate": "2017-03-12T23:52:00"
+        },
+        "jmd:SourceInfo": {
+            "SourceID": "string",
+            "ViewID": "string",
+            "Name": "string",
+            "DataSource": "string"
+        },
+        "jmd:published": "FALSE"
+    },
+    "jmd:describedResource": {
+        "jmd:resourceTitle": "Sulfide Precipitation of Heavy Metals from High Salinity Geothermal Brine",
+        "jmd:resourceAbstract": "Large quantities of high salinity geothermal brine from the Salton Sea Geothermal Area contain significant amount of Ag, Zn, Pb, Fe and Mn. A simple method of treating large volumes of spent brine is needed to economically recover the valuable nonferrous metals.|| || ||Hydrothermal alteration; gabbro; granite; Magmatism; rhyolite citationDetails",
+        "jmd:resourceIdentifiers": [
+            {
+                "jmd:resourceURI": "http://www.opengis.net/def/nil/OGC/0/missing/2013-04-04T12:00:00Z"
+            }
+        ],
+        "jmd:citationResponsibleParties": [
+            {
+                "jmd:agentRole": {
+                    "jmd:conceptPrefLabel": "originator",
+                    "jmd:vocabularyURI": "http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+                },
+                "jmd:agent": {
+                    "jmd:personName": "Bartlett, R. W.; Macdonald, D. D.; Farley, E. P.",
+                    "jmd:organizationNames": ["Geothermal Resources Council Transactions", "GRC Transactions"],
+                    "jmd:contactEmails": ["horne@stanford.edu"]
+                }
+            }
+                ],
+        "jmd:citationDates": [
+            {
+                "jmd:eventTypes": [
+                    {
+                        "jmd:conceptPrefLabel": "publication",
+                        "jmd:vocabularyURI": "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode"
+                    }
+                ],
+                "jmd:eventDateTime": "1905-06-01T00:00:00"
+            }
+            ],
+        "jmd:resourceTypes": [
+            {
+                "jmd:conceptPrefLabel": "dataset",
+                "jmd:vocabularyURI": "http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ScopeCode"
+            }],
+        "jmd:resourceAccessOptions": [
+            {
+                "jmd:distributor": {
+                    "jmd:agentRole": {
+                        "jmd:conceptPrefLabel": "distributor",
+                        "jmd:vocabularyURI": "http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+                    },
+                    "jmd:agent": {
+                        "jmd:personName": "Roland Horne",
+                        "jmd:organizationNames": ["Stanford University"],
+                        "jmd:phoneContacts": [
+                            {"jmd:phoneNumber": "(650)723-9595",
+                                "jmd:phoneService": "voice"
+                            }
+                        ],
+                        "jmd:contactEmails": ["horne@stanford.edu"],
+                        "jmd:agentPostalAddress": "Green Earth Science Bldg. 098 (mail code: 2220)Stanford University, Stanford, CA, 94305-2220, USA"
+                    }
+                },
+                "jmd:accessLinks": [
+                    {
+                        "jmd:linkURL": "http://www.geothermal-library.org/index.php?mode=pubs&amp;action=view&amp;record=1000315",
+                        "jmd:linkTitle": "Downloadable File"
+                        }]
+    }
+            ]
+    }
+}
